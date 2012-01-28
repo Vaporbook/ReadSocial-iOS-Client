@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="1" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="872" systemVersion="10K549" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="RSGroup" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RSNote" inverseName="group" inverseEntity="RSNote" syncable="YES"/>
+        <relationship name="paragraphs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RSParagraph" inverseName="groups" inverseEntity="RSParagraph" syncable="YES"/>
+    </entity>
+    <entity name="RSNote" representedClassName="RSNote" syncable="YES">
+        <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="group" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RSGroup" inverseName="notes" inverseEntity="RSGroup" syncable="YES"/>
+        <relationship name="paragraph" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RSParagraph" inverseName="notes" inverseEntity="RSParagraph" syncable="YES"/>
+        <relationship name="responses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RSResponse" inverseName="note" inverseEntity="RSResponse" syncable="YES"/>
+        <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RSUser" inverseName="notes" inverseEntity="RSUser" syncable="YES"/>
+    </entity>
+    <entity name="RSParagraph" representedClassName="RSParagraph" syncable="YES">
+        <attribute name="noteCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="par_hash" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="raw" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RSGroup" inverseName="paragraphs" inverseEntity="RSGroup" syncable="YES"/>
+        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RSNote" inverseName="paragraph" inverseEntity="RSNote" syncable="YES"/>
+    </entity>
+    <entity name="RSResponse" representedClassName="RSResponse" syncable="YES">
+        <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="note" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RSNote" inverseName="responses" inverseEntity="RSNote" syncable="YES"/>
+        <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RSUser" inverseName="responses" inverseEntity="RSUser" syncable="YES"/>
+    </entity>
+    <entity name="RSUser" syncable="YES">
+        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RSNote" inverseName="user" inverseEntity="RSNote" syncable="YES"/>
+        <relationship name="responses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RSResponse" inverseName="user" inverseEntity="RSResponse" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="RSGroup" positionX="241" positionY="207" width="128" height="90"/>
+        <element name="RSNote" positionX="243" positionY="-102" width="128" height="180"/>
+        <element name="RSParagraph" positionX="-83" positionY="-96" width="128" height="120"/>
+        <element name="RSResponse" positionX="-83" positionY="198" width="128" height="135"/>
+        <element name="RSUser" positionX="-81" positionY="45" width="128" height="75"/>
+    </elements>
+</model>

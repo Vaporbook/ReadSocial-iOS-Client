@@ -1,0 +1,429 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0E34D0C214CF097A00AAEC1D /* RSParagraph+Core.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0C114CF097A00AAEC1D /* RSParagraph+Core.m */; };
+		0E34D0C514CF0C1F00AAEC1D /* RSParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0C414CF0C1E00AAEC1D /* RSParagraph.m */; };
+		0E34D0C814CF0C7200AAEC1D /* NSString+RSParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0C714CF0C7100AAEC1D /* NSString+RSParagraph.m */; };
+		0E34D0CB14CF14EA00AAEC1D /* ParagraphNotesRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0CA14CF14EA00AAEC1D /* ParagraphNotesRequest.m */; };
+		0E34D0CF14CF1D4100AAEC1D /* RSAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0CE14CF1D4100AAEC1D /* RSAPIRequest.m */; };
+		0E34D0D314CF296000AAEC1D /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0D214CF296000AAEC1D /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		0E34D0D614CF323800AAEC1D /* RSNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0D514CF323800AAEC1D /* RSNote.m */; };
+		0E34D0D914CF324C00AAEC1D /* RSNote+Core.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0D814CF324C00AAEC1D /* RSNote+Core.m */; };
+		0E34D0DC14CF3D3400AAEC1D /* DataContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0DB14CF3D3300AAEC1D /* DataContext.m */; };
+		0E34D0DF14CF4F2B00AAEC1D /* RSNoteHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0DE14CF4F2A00AAEC1D /* RSNoteHandler.m */; };
+		0E34D0E214CF559400AAEC1D /* RSResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0E114CF559300AAEC1D /* RSResponseHandler.m */; };
+		0E34D0E514CF56A700AAEC1D /* NoteResponsesRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0E414CF56A700AAEC1D /* NoteResponsesRequest.m */; };
+		0E34D0EB14CF5E3600AAEC1D /* RSResponse+Core.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0EA14CF5E3600AAEC1D /* RSResponse+Core.m */; };
+		0E34D0EE14CF5F4700AAEC1D /* RSResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0ED14CF5F4700AAEC1D /* RSResponse.m */; };
+		0E34D0F114CF662400AAEC1D /* CreateNoteResponseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0F014CF662400AAEC1D /* CreateNoteResponseRequest.m */; };
+		0E34D12114CF6D5D00AAEC1D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D11F14CF6D5B00AAEC1D /* ViewController.m */; };
+		0E34D12214CF6D5D00AAEC1D /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E34D12014CF6D5D00AAEC1D /* ViewController.xib */; };
+		0E34D12514CF7B5F00AAEC1D /* AuthStatusRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D12414CF7B5F00AAEC1D /* AuthStatusRequest.m */; };
+		0E61BE4614CB20720017F3E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E61BE4514CB20720017F3E3 /* UIKit.framework */; };
+		0E61BE4814CB20720017F3E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E61BE4714CB20720017F3E3 /* Foundation.framework */; };
+		0E61BE4A14CB20720017F3E3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E61BE4914CB20720017F3E3 /* CoreGraphics.framework */; };
+		0E61BE4C14CB20720017F3E3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E61BE4B14CB20720017F3E3 /* CoreData.framework */; };
+		0E61BE5214CB20720017F3E3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0E61BE5014CB20720017F3E3 /* InfoPlist.strings */; };
+		0E61BE5414CB20720017F3E3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E61BE5314CB20720017F3E3 /* main.m */; };
+		0E61BE5814CB20720017F3E3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E61BE5714CB20720017F3E3 /* AppDelegate.m */; };
+		0E61BE5B14CB20720017F3E3 /* ReadSocial.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0E61BE5914CB20720017F3E3 /* ReadSocial.xcdatamodeld */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0E34D0C014CF097A00AAEC1D /* RSParagraph+Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RSParagraph+Core.h"; sourceTree = "<group>"; };
+		0E34D0C114CF097A00AAEC1D /* RSParagraph+Core.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RSParagraph+Core.m"; sourceTree = "<group>"; };
+		0E34D0C314CF0C1E00AAEC1D /* RSParagraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSParagraph.h; sourceTree = "<group>"; };
+		0E34D0C414CF0C1E00AAEC1D /* RSParagraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSParagraph.m; sourceTree = "<group>"; };
+		0E34D0C614CF0C7100AAEC1D /* NSString+RSParagraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+RSParagraph.h"; path = "ReadSocial/NSString+RSParagraph.h"; sourceTree = "<group>"; };
+		0E34D0C714CF0C7100AAEC1D /* NSString+RSParagraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+RSParagraph.m"; path = "ReadSocial/NSString+RSParagraph.m"; sourceTree = "<group>"; };
+		0E34D0C914CF14EA00AAEC1D /* ParagraphNotesRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParagraphNotesRequest.h; sourceTree = "<group>"; };
+		0E34D0CA14CF14EA00AAEC1D /* ParagraphNotesRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParagraphNotesRequest.m; sourceTree = "<group>"; };
+		0E34D0CD14CF1D4100AAEC1D /* RSAPIRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAPIRequest.h; sourceTree = "<group>"; };
+		0E34D0CE14CF1D4100AAEC1D /* RSAPIRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAPIRequest.m; sourceTree = "<group>"; };
+		0E34D0D114CF296000AAEC1D /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		0E34D0D214CF296000AAEC1D /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		0E34D0D414CF323800AAEC1D /* RSNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNote.h; sourceTree = "<group>"; };
+		0E34D0D514CF323800AAEC1D /* RSNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNote.m; sourceTree = "<group>"; };
+		0E34D0D714CF324C00AAEC1D /* RSNote+Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RSNote+Core.h"; sourceTree = "<group>"; };
+		0E34D0D814CF324C00AAEC1D /* RSNote+Core.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RSNote+Core.m"; sourceTree = "<group>"; };
+		0E34D0DA14CF3D3300AAEC1D /* DataContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataContext.h; sourceTree = "<group>"; };
+		0E34D0DB14CF3D3300AAEC1D /* DataContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataContext.m; sourceTree = "<group>"; };
+		0E34D0DD14CF4F2A00AAEC1D /* RSNoteHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNoteHandler.h; sourceTree = "<group>"; };
+		0E34D0DE14CF4F2A00AAEC1D /* RSNoteHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNoteHandler.m; sourceTree = "<group>"; };
+		0E34D0E014CF559200AAEC1D /* RSResponseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSResponseHandler.h; sourceTree = "<group>"; };
+		0E34D0E114CF559300AAEC1D /* RSResponseHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSResponseHandler.m; sourceTree = "<group>"; };
+		0E34D0E314CF56A700AAEC1D /* NoteResponsesRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteResponsesRequest.h; sourceTree = "<group>"; };
+		0E34D0E414CF56A700AAEC1D /* NoteResponsesRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteResponsesRequest.m; sourceTree = "<group>"; };
+		0E34D0E914CF5E3600AAEC1D /* RSResponse+Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RSResponse+Core.h"; sourceTree = "<group>"; };
+		0E34D0EA14CF5E3600AAEC1D /* RSResponse+Core.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RSResponse+Core.m"; sourceTree = "<group>"; };
+		0E34D0EC14CF5F4600AAEC1D /* RSResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSResponse.h; sourceTree = "<group>"; };
+		0E34D0ED14CF5F4700AAEC1D /* RSResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSResponse.m; sourceTree = "<group>"; };
+		0E34D0EF14CF662400AAEC1D /* CreateNoteResponseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateNoteResponseRequest.h; sourceTree = "<group>"; };
+		0E34D0F014CF662400AAEC1D /* CreateNoteResponseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateNoteResponseRequest.m; sourceTree = "<group>"; };
+		0E34D11E14CF6D5B00AAEC1D /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		0E34D11F14CF6D5B00AAEC1D /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		0E34D12014CF6D5D00AAEC1D /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
+		0E34D12314CF7B5E00AAEC1D /* AuthStatusRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthStatusRequest.h; sourceTree = "<group>"; };
+		0E34D12414CF7B5F00AAEC1D /* AuthStatusRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthStatusRequest.m; sourceTree = "<group>"; };
+		0E61BE4114CB20720017F3E3 /* ReadSocial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReadSocial.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E61BE4514CB20720017F3E3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		0E61BE4714CB20720017F3E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		0E61BE4914CB20720017F3E3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		0E61BE4B14CB20720017F3E3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		0E61BE4F14CB20720017F3E3 /* ReadSocial-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ReadSocial-Info.plist"; sourceTree = "<group>"; };
+		0E61BE5114CB20720017F3E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0E61BE5314CB20720017F3E3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0E61BE5514CB20720017F3E3 /* ReadSocial-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ReadSocial-Prefix.pch"; sourceTree = "<group>"; };
+		0E61BE5614CB20720017F3E3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		0E61BE5714CB20720017F3E3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		0E61BE5A14CB20720017F3E3 /* ReadSocial.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ReadSocial.xcdatamodel; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0E61BE3E14CB20720017F3E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0E61BE4614CB20720017F3E3 /* UIKit.framework in Frameworks */,
+				0E61BE4814CB20720017F3E3 /* Foundation.framework in Frameworks */,
+				0E61BE4A14CB20720017F3E3 /* CoreGraphics.framework in Frameworks */,
+				0E61BE4C14CB20720017F3E3 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0E34D0CC14CF1D1500AAEC1D /* API Requests */ = {
+			isa = PBXGroup;
+			children = (
+				0E34D0C914CF14EA00AAEC1D /* ParagraphNotesRequest.h */,
+				0E34D0CA14CF14EA00AAEC1D /* ParagraphNotesRequest.m */,
+				0E34D0CD14CF1D4100AAEC1D /* RSAPIRequest.h */,
+				0E34D0CE14CF1D4100AAEC1D /* RSAPIRequest.m */,
+				0E34D0E314CF56A700AAEC1D /* NoteResponsesRequest.h */,
+				0E34D0E414CF56A700AAEC1D /* NoteResponsesRequest.m */,
+				0E34D0EF14CF662400AAEC1D /* CreateNoteResponseRequest.h */,
+				0E34D0F014CF662400AAEC1D /* CreateNoteResponseRequest.m */,
+				0E34D12314CF7B5E00AAEC1D /* AuthStatusRequest.h */,
+				0E34D12414CF7B5F00AAEC1D /* AuthStatusRequest.m */,
+			);
+			name = "API Requests";
+			path = ReadSocial/Requests;
+			sourceTree = "<group>";
+		};
+		0E34D0D014CF296000AAEC1D /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				0E34D0D114CF296000AAEC1D /* JSONKit.h */,
+				0E34D0D214CF296000AAEC1D /* JSONKit.m */,
+			);
+			path = JSONKit;
+			sourceTree = "<group>";
+		};
+		0E61BE3614CB20720017F3E3 = {
+			isa = PBXGroup;
+			children = (
+				0E61BE4D14CB20720017F3E3 /* ReadSocial */,
+				0E61BE4414CB20720017F3E3 /* Frameworks */,
+				0E61BE4214CB20720017F3E3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0E61BE4214CB20720017F3E3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0E61BE4114CB20720017F3E3 /* ReadSocial.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0E61BE4414CB20720017F3E3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0E61BE4514CB20720017F3E3 /* UIKit.framework */,
+				0E61BE4714CB20720017F3E3 /* Foundation.framework */,
+				0E61BE4914CB20720017F3E3 /* CoreGraphics.framework */,
+				0E61BE4B14CB20720017F3E3 /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0E61BE4D14CB20720017F3E3 /* ReadSocial */ = {
+			isa = PBXGroup;
+			children = (
+				0E34D0D014CF296000AAEC1D /* JSONKit */,
+				0E61BE6414CB3F680017F3E3 /* Models */,
+				0E34D0CC14CF1D1500AAEC1D /* API Requests */,
+				0E78F65414D4568800DF151B /* Data Handlers */,
+				0E34D11E14CF6D5B00AAEC1D /* ViewController.h */,
+				0E34D11F14CF6D5B00AAEC1D /* ViewController.m */,
+				0E34D12014CF6D5D00AAEC1D /* ViewController.xib */,
+				0E61BE5614CB20720017F3E3 /* AppDelegate.h */,
+				0E61BE5714CB20720017F3E3 /* AppDelegate.m */,
+				0E61BE5914CB20720017F3E3 /* ReadSocial.xcdatamodeld */,
+				0E61BE4E14CB20720017F3E3 /* Supporting Files */,
+				0E34D0C614CF0C7100AAEC1D /* NSString+RSParagraph.h */,
+				0E34D0C714CF0C7100AAEC1D /* NSString+RSParagraph.m */,
+				0E34D0DA14CF3D3300AAEC1D /* DataContext.h */,
+				0E34D0DB14CF3D3300AAEC1D /* DataContext.m */,
+			);
+			path = ReadSocial;
+			sourceTree = "<group>";
+		};
+		0E61BE4E14CB20720017F3E3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0E61BE4F14CB20720017F3E3 /* ReadSocial-Info.plist */,
+				0E61BE5014CB20720017F3E3 /* InfoPlist.strings */,
+				0E61BE5314CB20720017F3E3 /* main.m */,
+				0E61BE5514CB20720017F3E3 /* ReadSocial-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0E61BE6414CB3F680017F3E3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0E34D0C014CF097A00AAEC1D /* RSParagraph+Core.h */,
+				0E34D0C114CF097A00AAEC1D /* RSParagraph+Core.m */,
+				0E34D0C314CF0C1E00AAEC1D /* RSParagraph.h */,
+				0E34D0C414CF0C1E00AAEC1D /* RSParagraph.m */,
+				0E34D0D414CF323800AAEC1D /* RSNote.h */,
+				0E34D0D514CF323800AAEC1D /* RSNote.m */,
+				0E34D0D714CF324C00AAEC1D /* RSNote+Core.h */,
+				0E34D0D814CF324C00AAEC1D /* RSNote+Core.m */,
+				0E34D0E914CF5E3600AAEC1D /* RSResponse+Core.h */,
+				0E34D0EA14CF5E3600AAEC1D /* RSResponse+Core.m */,
+				0E34D0EC14CF5F4600AAEC1D /* RSResponse.h */,
+				0E34D0ED14CF5F4700AAEC1D /* RSResponse.m */,
+			);
+			name = Models;
+			path = ReadSocial/Models;
+			sourceTree = "<group>";
+		};
+		0E78F65414D4568800DF151B /* Data Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				0E34D0DD14CF4F2A00AAEC1D /* RSNoteHandler.h */,
+				0E34D0DE14CF4F2A00AAEC1D /* RSNoteHandler.m */,
+				0E34D0E014CF559200AAEC1D /* RSResponseHandler.h */,
+				0E34D0E114CF559300AAEC1D /* RSResponseHandler.m */,
+			);
+			name = "Data Handlers";
+			path = ReadSocial/Handlers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0E61BE4014CB20720017F3E3 /* ReadSocial */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0E61BE5E14CB20720017F3E3 /* Build configuration list for PBXNativeTarget "ReadSocial" */;
+			buildPhases = (
+				0E61BE3D14CB20720017F3E3 /* Sources */,
+				0E61BE3E14CB20720017F3E3 /* Frameworks */,
+				0E61BE3F14CB20720017F3E3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ReadSocial;
+			productName = ReadSocial;
+			productReference = 0E61BE4114CB20720017F3E3 /* ReadSocial.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0E61BE3814CB20720017F3E3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Float Mobile Learning";
+			};
+			buildConfigurationList = 0E61BE3B14CB20720017F3E3 /* Build configuration list for PBXProject "ReadSocial" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 0E61BE3614CB20720017F3E3;
+			productRefGroup = 0E61BE4214CB20720017F3E3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0E61BE4014CB20720017F3E3 /* ReadSocial */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0E61BE3F14CB20720017F3E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0E61BE5214CB20720017F3E3 /* InfoPlist.strings in Resources */,
+				0E34D12214CF6D5D00AAEC1D /* ViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0E61BE3D14CB20720017F3E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0E61BE5414CB20720017F3E3 /* main.m in Sources */,
+				0E61BE5814CB20720017F3E3 /* AppDelegate.m in Sources */,
+				0E61BE5B14CB20720017F3E3 /* ReadSocial.xcdatamodeld in Sources */,
+				0E34D0C214CF097A00AAEC1D /* RSParagraph+Core.m in Sources */,
+				0E34D0C514CF0C1F00AAEC1D /* RSParagraph.m in Sources */,
+				0E34D0C814CF0C7200AAEC1D /* NSString+RSParagraph.m in Sources */,
+				0E34D0CB14CF14EA00AAEC1D /* ParagraphNotesRequest.m in Sources */,
+				0E34D0CF14CF1D4100AAEC1D /* RSAPIRequest.m in Sources */,
+				0E34D0D314CF296000AAEC1D /* JSONKit.m in Sources */,
+				0E34D0D614CF323800AAEC1D /* RSNote.m in Sources */,
+				0E34D0D914CF324C00AAEC1D /* RSNote+Core.m in Sources */,
+				0E34D0DC14CF3D3400AAEC1D /* DataContext.m in Sources */,
+				0E34D0DF14CF4F2B00AAEC1D /* RSNoteHandler.m in Sources */,
+				0E34D0E214CF559400AAEC1D /* RSResponseHandler.m in Sources */,
+				0E34D0E514CF56A700AAEC1D /* NoteResponsesRequest.m in Sources */,
+				0E34D0EB14CF5E3600AAEC1D /* RSResponse+Core.m in Sources */,
+				0E34D0EE14CF5F4700AAEC1D /* RSResponse.m in Sources */,
+				0E34D0F114CF662400AAEC1D /* CreateNoteResponseRequest.m in Sources */,
+				0E34D12114CF6D5D00AAEC1D /* ViewController.m in Sources */,
+				0E34D12514CF7B5F00AAEC1D /* AuthStatusRequest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		0E61BE5014CB20720017F3E3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0E61BE5114CB20720017F3E3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0E61BE5C14CB20720017F3E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		0E61BE5D14CB20720017F3E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0E61BE5F14CB20720017F3E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ReadSocial/ReadSocial-Prefix.pch";
+				INFOPLIST_FILE = "ReadSocial/ReadSocial-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		0E61BE6014CB20720017F3E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ReadSocial/ReadSocial-Prefix.pch";
+				INFOPLIST_FILE = "ReadSocial/ReadSocial-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0E61BE3B14CB20720017F3E3 /* Build configuration list for PBXProject "ReadSocial" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0E61BE5C14CB20720017F3E3 /* Debug */,
+				0E61BE5D14CB20720017F3E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0E61BE5E14CB20720017F3E3 /* Build configuration list for PBXNativeTarget "ReadSocial" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0E61BE5F14CB20720017F3E3 /* Debug */,
+				0E61BE6014CB20720017F3E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0E61BE5914CB20720017F3E3 /* ReadSocial.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0E61BE5A14CB20720017F3E3 /* ReadSocial.xcdatamodel */,
+			);
+			currentVersion = 0E61BE5A14CB20720017F3E3 /* ReadSocial.xcdatamodel */;
+			path = ReadSocial.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 0E61BE3814CB20720017F3E3 /* Project object */;
+}
