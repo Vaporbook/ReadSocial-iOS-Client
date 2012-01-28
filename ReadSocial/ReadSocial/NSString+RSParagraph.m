@@ -24,8 +24,11 @@
     normalized = [normalized stringByReplacingOccurrencesOfString:@"-" withString:@""];
     
     // 4. Replacing multiple spaces with a single space
-    // TODO: Verify that this is able to correctly handle strings that have 3 or 4 spaces in a row.
-    normalized = [normalized stringByReplacingOccurrencesOfString:@"  " withString:@" "];
+    // TODO: This is probably not the most efficient method.
+    while ([normalized rangeOfString:@"  "].location!=NSNotFound) 
+    {
+        normalized = [normalized stringByReplacingOccurrencesOfString:@"  " withString:@" "];
+    }
     
     return normalized;
 }
