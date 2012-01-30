@@ -7,7 +7,7 @@
 //
 
 #import "ReadSocialViewController.h"
-#import "NotesViewController.h"
+#import "RSNotesViewController.h"
 #import "RSAuthentication.h"
 
 @implementation ReadSocialViewController
@@ -24,7 +24,7 @@
 
 - (id) initWithParagraph:(RSParagraph*) paragraph
 {
-    NotesViewController *notes = [[NotesViewController alloc] initWithParagraph:paragraph];
+    RSNotesViewController *notes = [[RSNotesViewController alloc] initWithParagraph:paragraph];
     self = [super initWithRootViewController:notes];
     if (self)
     {

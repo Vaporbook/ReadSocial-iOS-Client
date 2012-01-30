@@ -10,7 +10,7 @@
 		0E34D0C214CF097A00AAEC1D /* RSParagraph+Core.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0C114CF097A00AAEC1D /* RSParagraph+Core.m */; };
 		0E34D0C514CF0C1F00AAEC1D /* RSParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0C414CF0C1E00AAEC1D /* RSParagraph.m */; };
 		0E34D0C814CF0C7200AAEC1D /* NSString+RSParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0C714CF0C7100AAEC1D /* NSString+RSParagraph.m */; };
-		0E34D0CB14CF14EA00AAEC1D /* ParagraphNotesRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0CA14CF14EA00AAEC1D /* ParagraphNotesRequest.m */; };
+		0E34D0CB14CF14EA00AAEC1D /* RSParagraphNotesRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0CA14CF14EA00AAEC1D /* RSParagraphNotesRequest.m */; };
 		0E34D0CF14CF1D4100AAEC1D /* RSAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0CE14CF1D4100AAEC1D /* RSAPIRequest.m */; };
 		0E34D0D314CF296000AAEC1D /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0D214CF296000AAEC1D /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		0E34D0D614CF323800AAEC1D /* RSNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0D514CF323800AAEC1D /* RSNote.m */; };
@@ -18,7 +18,7 @@
 		0E34D0DC14CF3D3400AAEC1D /* DataContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0DB14CF3D3300AAEC1D /* DataContext.m */; };
 		0E34D0DF14CF4F2B00AAEC1D /* RSNoteHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0DE14CF4F2A00AAEC1D /* RSNoteHandler.m */; };
 		0E34D0E214CF559400AAEC1D /* RSResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0E114CF559300AAEC1D /* RSResponseHandler.m */; };
-		0E34D0E514CF56A700AAEC1D /* NoteResponsesRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0E414CF56A700AAEC1D /* NoteResponsesRequest.m */; };
+		0E34D0E514CF56A700AAEC1D /* RSNoteResponsesRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0E414CF56A700AAEC1D /* RSNoteResponsesRequest.m */; };
 		0E34D0EB14CF5E3600AAEC1D /* RSResponse+Core.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0EA14CF5E3600AAEC1D /* RSResponse+Core.m */; };
 		0E34D0EE14CF5F4700AAEC1D /* RSResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0ED14CF5F4700AAEC1D /* RSResponse.m */; };
 		0E34D0F114CF662400AAEC1D /* RSCreateNoteResponseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0F014CF662400AAEC1D /* RSCreateNoteResponseRequest.m */; };
@@ -34,9 +34,9 @@
 		0E61BE5814CB20720017F3E3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E61BE5714CB20720017F3E3 /* AppDelegate.m */; };
 		0E61BE5B14CB20720017F3E3 /* ReadSocial.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0E61BE5914CB20720017F3E3 /* ReadSocial.xcdatamodeld */; };
 		0E78F65714D4627900DF151B /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 0E78F65614D4627900DF151B /* index.html */; };
-		0E78F66014D470DD00DF151B /* NotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E78F65F14D470DD00DF151B /* NotesViewController.m */; };
+		0E78F66014D470DD00DF151B /* RSNotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E78F65F14D470DD00DF151B /* RSNotesViewController.m */; };
 		0E78F66314D48C1400DF151B /* ReadSocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E78F66214D48C1400DF151B /* ReadSocialViewController.m */; };
-		0E78F66614D4915000DF151B /* NoteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E78F66514D4915000DF151B /* NoteDetailViewController.m */; };
+		0E78F66614D4915000DF151B /* RSNoteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E78F66514D4915000DF151B /* RSNoteDetailViewController.m */; };
 		0E78F67114D5CB2000DF151B /* RSUser+Core.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E78F67014D5CB2000DF151B /* RSUser+Core.m */; };
 		0E78F67414D5CC2E00DF151B /* RSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E78F67314D5CC2E00DF151B /* RSUser.m */; };
 		0E78F67714D5D10400DF151B /* RSUserHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E78F67614D5D10300DF151B /* RSUserHandler.m */; };
@@ -54,8 +54,8 @@
 		0E34D0C414CF0C1E00AAEC1D /* RSParagraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSParagraph.m; sourceTree = "<group>"; };
 		0E34D0C614CF0C7100AAEC1D /* NSString+RSParagraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+RSParagraph.h"; path = "ReadSocial/NSString+RSParagraph.h"; sourceTree = "<group>"; };
 		0E34D0C714CF0C7100AAEC1D /* NSString+RSParagraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+RSParagraph.m"; path = "ReadSocial/NSString+RSParagraph.m"; sourceTree = "<group>"; };
-		0E34D0C914CF14EA00AAEC1D /* ParagraphNotesRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParagraphNotesRequest.h; sourceTree = "<group>"; };
-		0E34D0CA14CF14EA00AAEC1D /* ParagraphNotesRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParagraphNotesRequest.m; sourceTree = "<group>"; };
+		0E34D0C914CF14EA00AAEC1D /* RSParagraphNotesRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSParagraphNotesRequest.h; sourceTree = "<group>"; };
+		0E34D0CA14CF14EA00AAEC1D /* RSParagraphNotesRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSParagraphNotesRequest.m; sourceTree = "<group>"; };
 		0E34D0CD14CF1D4100AAEC1D /* RSAPIRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAPIRequest.h; sourceTree = "<group>"; };
 		0E34D0CE14CF1D4100AAEC1D /* RSAPIRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAPIRequest.m; sourceTree = "<group>"; };
 		0E34D0D114CF296000AAEC1D /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
@@ -70,8 +70,8 @@
 		0E34D0DE14CF4F2A00AAEC1D /* RSNoteHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNoteHandler.m; sourceTree = "<group>"; };
 		0E34D0E014CF559200AAEC1D /* RSResponseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSResponseHandler.h; sourceTree = "<group>"; };
 		0E34D0E114CF559300AAEC1D /* RSResponseHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSResponseHandler.m; sourceTree = "<group>"; };
-		0E34D0E314CF56A700AAEC1D /* NoteResponsesRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteResponsesRequest.h; sourceTree = "<group>"; };
-		0E34D0E414CF56A700AAEC1D /* NoteResponsesRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteResponsesRequest.m; sourceTree = "<group>"; };
+		0E34D0E314CF56A700AAEC1D /* RSNoteResponsesRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNoteResponsesRequest.h; sourceTree = "<group>"; };
+		0E34D0E414CF56A700AAEC1D /* RSNoteResponsesRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNoteResponsesRequest.m; sourceTree = "<group>"; };
 		0E34D0E914CF5E3600AAEC1D /* RSResponse+Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RSResponse+Core.h"; sourceTree = "<group>"; };
 		0E34D0EA14CF5E3600AAEC1D /* RSResponse+Core.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RSResponse+Core.m"; sourceTree = "<group>"; };
 		0E34D0EC14CF5F4600AAEC1D /* RSResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSResponse.h; sourceTree = "<group>"; };
@@ -96,12 +96,12 @@
 		0E61BE5714CB20720017F3E3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		0E61BE5A14CB20720017F3E3 /* ReadSocial.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ReadSocial.xcdatamodel; sourceTree = "<group>"; };
 		0E78F65614D4627900DF151B /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
-		0E78F65E14D470DD00DF151B /* NotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesViewController.h; sourceTree = "<group>"; };
-		0E78F65F14D470DD00DF151B /* NotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesViewController.m; sourceTree = "<group>"; };
+		0E78F65E14D470DD00DF151B /* RSNotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNotesViewController.h; sourceTree = "<group>"; };
+		0E78F65F14D470DD00DF151B /* RSNotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNotesViewController.m; sourceTree = "<group>"; };
 		0E78F66114D48C1400DF151B /* ReadSocialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadSocialViewController.h; sourceTree = "<group>"; };
 		0E78F66214D48C1400DF151B /* ReadSocialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadSocialViewController.m; sourceTree = "<group>"; };
-		0E78F66414D4915000DF151B /* NoteDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteDetailViewController.h; sourceTree = "<group>"; };
-		0E78F66514D4915000DF151B /* NoteDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteDetailViewController.m; sourceTree = "<group>"; };
+		0E78F66414D4915000DF151B /* RSNoteDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNoteDetailViewController.h; sourceTree = "<group>"; };
+		0E78F66514D4915000DF151B /* RSNoteDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNoteDetailViewController.m; sourceTree = "<group>"; };
 		0E78F66F14D5CB2000DF151B /* RSUser+Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RSUser+Core.h"; sourceTree = "<group>"; };
 		0E78F67014D5CB2000DF151B /* RSUser+Core.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RSUser+Core.m"; sourceTree = "<group>"; };
 		0E78F67214D5CC2D00DF151B /* RSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSUser.h; sourceTree = "<group>"; };
@@ -138,12 +138,12 @@
 		0E34D0CC14CF1D1500AAEC1D /* API Requests */ = {
 			isa = PBXGroup;
 			children = (
-				0E34D0C914CF14EA00AAEC1D /* ParagraphNotesRequest.h */,
-				0E34D0CA14CF14EA00AAEC1D /* ParagraphNotesRequest.m */,
+				0E34D0C914CF14EA00AAEC1D /* RSParagraphNotesRequest.h */,
+				0E34D0CA14CF14EA00AAEC1D /* RSParagraphNotesRequest.m */,
 				0E34D0CD14CF1D4100AAEC1D /* RSAPIRequest.h */,
 				0E34D0CE14CF1D4100AAEC1D /* RSAPIRequest.m */,
-				0E34D0E314CF56A700AAEC1D /* NoteResponsesRequest.h */,
-				0E34D0E414CF56A700AAEC1D /* NoteResponsesRequest.m */,
+				0E34D0E314CF56A700AAEC1D /* RSNoteResponsesRequest.h */,
+				0E34D0E414CF56A700AAEC1D /* RSNoteResponsesRequest.m */,
 				0E34D0EF14CF662400AAEC1D /* RSCreateNoteResponseRequest.h */,
 				0E34D0F014CF662400AAEC1D /* RSCreateNoteResponseRequest.m */,
 				0E34D12314CF7B5E00AAEC1D /* AuthStatusRequest.h */,
@@ -278,12 +278,12 @@
 		0E78F65D14D4704300DF151B /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				0E78F65E14D470DD00DF151B /* NotesViewController.h */,
-				0E78F65F14D470DD00DF151B /* NotesViewController.m */,
+				0E78F65E14D470DD00DF151B /* RSNotesViewController.h */,
+				0E78F65F14D470DD00DF151B /* RSNotesViewController.m */,
 				0E78F66114D48C1400DF151B /* ReadSocialViewController.h */,
 				0E78F66214D48C1400DF151B /* ReadSocialViewController.m */,
-				0E78F66414D4915000DF151B /* NoteDetailViewController.h */,
-				0E78F66514D4915000DF151B /* NoteDetailViewController.m */,
+				0E78F66414D4915000DF151B /* RSNoteDetailViewController.h */,
+				0E78F66514D4915000DF151B /* RSNoteDetailViewController.m */,
 				0E78F67814D5E32300DF151B /* RSLoginViewController.h */,
 				0E78F67914D5E32400DF151B /* RSLoginViewController.m */,
 				0EC8A9BF14D6504E00EA7C74 /* RSComposeNoteViewController.h */,
@@ -365,7 +365,7 @@
 				0E34D0C214CF097A00AAEC1D /* RSParagraph+Core.m in Sources */,
 				0E34D0C514CF0C1F00AAEC1D /* RSParagraph.m in Sources */,
 				0E34D0C814CF0C7200AAEC1D /* NSString+RSParagraph.m in Sources */,
-				0E34D0CB14CF14EA00AAEC1D /* ParagraphNotesRequest.m in Sources */,
+				0E34D0CB14CF14EA00AAEC1D /* RSParagraphNotesRequest.m in Sources */,
 				0E34D0CF14CF1D4100AAEC1D /* RSAPIRequest.m in Sources */,
 				0E34D0D314CF296000AAEC1D /* JSONKit.m in Sources */,
 				0E34D0D614CF323800AAEC1D /* RSNote.m in Sources */,
@@ -373,15 +373,15 @@
 				0E34D0DC14CF3D3400AAEC1D /* DataContext.m in Sources */,
 				0E34D0DF14CF4F2B00AAEC1D /* RSNoteHandler.m in Sources */,
 				0E34D0E214CF559400AAEC1D /* RSResponseHandler.m in Sources */,
-				0E34D0E514CF56A700AAEC1D /* NoteResponsesRequest.m in Sources */,
+				0E34D0E514CF56A700AAEC1D /* RSNoteResponsesRequest.m in Sources */,
 				0E34D0EB14CF5E3600AAEC1D /* RSResponse+Core.m in Sources */,
 				0E34D0EE14CF5F4700AAEC1D /* RSResponse.m in Sources */,
 				0E34D0F114CF662400AAEC1D /* RSCreateNoteResponseRequest.m in Sources */,
 				0E34D12114CF6D5D00AAEC1D /* ViewController.m in Sources */,
 				0E34D12514CF7B5F00AAEC1D /* AuthStatusRequest.m in Sources */,
-				0E78F66014D470DD00DF151B /* NotesViewController.m in Sources */,
+				0E78F66014D470DD00DF151B /* RSNotesViewController.m in Sources */,
 				0E78F66314D48C1400DF151B /* ReadSocialViewController.m in Sources */,
-				0E78F66614D4915000DF151B /* NoteDetailViewController.m in Sources */,
+				0E78F66614D4915000DF151B /* RSNoteDetailViewController.m in Sources */,
 				0E78F67114D5CB2000DF151B /* RSUser+Core.m in Sources */,
 				0E78F67414D5CC2E00DF151B /* RSUser.m in Sources */,
 				0E78F67714D5D10400DF151B /* RSUserHandler.m in Sources */,

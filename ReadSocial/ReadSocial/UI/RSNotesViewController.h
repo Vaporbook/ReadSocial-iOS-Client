@@ -1,5 +1,5 @@
 //
-//  NotesViewController.h
+//  RSNotesViewController.h
 //  ReadSocial
 //
 //  Created by Daniel Pfeiffer on 1/28/12.
@@ -13,7 +13,7 @@
 @class RSParagraph;
 @class RSComposeNoteViewController;
 
-@interface NotesViewController : UITableViewController <RSNoteCompositionDelegate,RSAPIRequestDelegate>
+@interface RSNotesViewController : UITableViewController <RSNoteCompositionDelegate,RSAPIRequestDelegate>
 {
     NSArray *notes;
     RSComposeNoteViewController *noteComposer;

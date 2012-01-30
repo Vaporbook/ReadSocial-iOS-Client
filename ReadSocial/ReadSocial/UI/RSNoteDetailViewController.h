@@ -1,5 +1,5 @@
 //
-//  NoteDetailViewController.h
+//  RSNoteDetailViewController.h
 //  ReadSocial
 //
 //  Created by Daniel Pfeiffer on 1/28/12.
@@ -11,7 +11,7 @@
 #import "RSCreateNoteResponseRequest.h"
 
 @class RSNote;
-@interface NoteDetailViewController : UITableViewController <RSResponseCompositionDelegate, RSAPIRequestDelegate>
+@interface RSNoteDetailViewController : UITableViewController <RSResponseCompositionDelegate, RSAPIRequestDelegate>
 {
     NSArray *responses;
     RSComposeResponseViewController *responseComposer;

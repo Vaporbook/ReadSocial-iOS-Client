@@ -1,19 +1,19 @@
 //
-//  NoteDetailViewController.m
+//  RSNoteDetailViewController.m
 //  ReadSocial
 //
 //  Created by Daniel Pfeiffer on 1/28/12.
 //  Copyright (c) 2012 Float Mobile Learning. All rights reserved.
 //
 
-#import "NoteDetailViewController.h"
+#import "RSNoteDetailViewController.h"
 #import "RSNote+Core.h"
 #import "RSResponse+Core.h"
 #import "RSParagraph+Core.h"
 #import "RSResponseHandler.h"
 #import "DataContext.h"
 
-@implementation NoteDetailViewController
+@implementation RSNoteDetailViewController
 @synthesize note=_note;
 
 - (id)initWithStyle:(UITableViewStyle)style

@@ -1,21 +1,21 @@
 //
-//  NoteResponsesRequest.m
+//  RSNoteResponsesRequest.m
 //  ReadSocial
 //
 //  Created by Daniel Pfeiffer on 1/24/12.
 //  Copyright (c) 2012 Float Mobile Learning. All rights reserved.
 //
 
-#import "NoteResponsesRequest.h"
+#import "RSNoteResponsesRequest.h"
 #import "RSNote+Core.h"
 #import "RSResponseHandler.h"
 #import "RSUserHandler.h"
 
-@implementation NoteResponsesRequest
+@implementation RSNoteResponsesRequest
 
 + (id) responsesForNote: (RSNote *)note
 {
-    NoteResponsesRequest *request = [[NoteResponsesRequest alloc] initWithNote:note];
+    RSNoteResponsesRequest *request = [[RSNoteResponsesRequest alloc] initWithNote:note];
     [request start];
     return request;
 }

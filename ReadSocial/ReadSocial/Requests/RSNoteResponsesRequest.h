@@ -1,5 +1,5 @@
 //
-//  NoteResponsesRequest.h
+//  RSNoteResponsesRequest.h
 //  ReadSocial
 //
 //  Created by Daniel Pfeiffer on 1/24/12.
@@ -9,7 +9,7 @@
 #import "RSAPIRequest.h"
 
 @class RSNote;
-@interface NoteResponsesRequest : RSAPIRequest {
+@interface RSNoteResponsesRequest : RSAPIRequest {
     RSNote* _note;
 }
 

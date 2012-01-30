@@ -1,21 +1,21 @@
 //
-//  NotesViewController.m
+//  RSNotesViewController.m
 //  ReadSocial
 //
 //  Created by Daniel Pfeiffer on 1/28/12.
 //  Copyright (c) 2012 Float Mobile Learning. All rights reserved.
 //
 
-#import "NotesViewController.h"
+#import "RSNotesViewController.h"
 #import "RSParagraph+Core.h"
 #import "RSNote+Core.h"
 #import "RSNoteHandler.h"
-#import "ParagraphNotesRequest.h"
-#import "NoteDetailViewController.h"
+#import "RSParagraphNotesRequest.h"
+#import "RSNoteDetailViewController.h"
 #import "RSUser+Core.h"
 #import "DataContext.h"
 
-@implementation NotesViewController
+@implementation RSNotesViewController
 @synthesize paragraph=_paragraph;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -67,7 +67,7 @@
 - (void) requestDidSucceed:(id)note
 {
     [DataContext save];
-    NoteDetailViewController *detail = [[NoteDetailViewController alloc] initWithNote:(RSNote *)note];
+    RSNoteDetailViewController *detail = [[RSNoteDetailViewController alloc] initWithNote:(RSNote *)note];
     [self.navigationController pushViewController:detail animated:NO];
     [self.navigationController dismissModalViewControllerAnimated:YES];
 }
@@ -220,7 +220,7 @@
 {
     // Navigation logic may go here. Create and push another view controller.
     RSNote *note = [notes objectAtIndex:indexPath.row];
-    NoteDetailViewController *detailViewController = [[NoteDetailViewController alloc] initWithNote:note];
+    RSNoteDetailViewController *detailViewController = [[RSNoteDetailViewController alloc] initWithNote:note];
     
     [self.navigationController pushViewController:detailViewController animated:YES];
 }

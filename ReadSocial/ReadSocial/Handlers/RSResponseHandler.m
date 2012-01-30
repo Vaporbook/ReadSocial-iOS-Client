@@ -9,7 +9,7 @@
 #import "RSResponseHandler.h"
 #import "RSNote+Core.h"
 #import "RSResponse+Core.h"
-#import "NoteResponsesRequest.h"
+#import "RSNoteResponsesRequest.h"
 #import "DataContext.h"
 
 @implementation RSResponseHandler
@@ -23,7 +23,7 @@
 
 + (void) updateResponsesForNote: (RSNote *)note
 {
-    [NoteResponsesRequest responsesForNote:note];
+    [RSNoteResponsesRequest responsesForNote:note];
 }
 
 + (void) updateOrCreateResponsesWithArray: (NSArray *)responses

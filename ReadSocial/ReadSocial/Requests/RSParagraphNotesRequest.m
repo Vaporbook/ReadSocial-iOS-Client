@@ -1,21 +1,21 @@
 //
-//  ParagraphNotesRequest.m
+//  RSParagraphNotesRequest.m
 //  ReadSocial
 //
 //  Created by Daniel Pfeiffer on 1/24/12.
 //  Copyright (c) 2012 Float Mobile Learning. All rights reserved.
 //
 
-#import "ParagraphNotesRequest.h"
+#import "RSParagraphNotesRequest.h"
 #import "RSParagraph+Core.h"
 #import "RSNoteHandler.h"
 #import "RSUserHandler.h"
 
-@implementation ParagraphNotesRequest
+@implementation RSParagraphNotesRequest
 
 + (id) notesForParagraph: (RSParagraph *)paragraph
 {
-    ParagraphNotesRequest *request = [[ParagraphNotesRequest alloc] initWithParagraph:paragraph];
+    RSParagraphNotesRequest *request = [[RSParagraphNotesRequest alloc] initWithParagraph:paragraph];
     [request start];
     return request;
 }

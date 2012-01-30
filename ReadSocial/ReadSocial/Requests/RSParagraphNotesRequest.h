@@ -1,5 +1,5 @@
 //
-//  ParagraphNotesRequest.h
+//  RSParagraphNotesRequest.h
 //  ReadSocial
 //
 //  Created by Daniel Pfeiffer on 1/24/12.
@@ -11,7 +11,7 @@
 
 @class RSParagraph;
 // Notes are saved directly to the paragraph object
-@interface ParagraphNotesRequest : RSAPIRequest {
+@interface RSParagraphNotesRequest : RSAPIRequest {
     // The paragraph for which to request notes
     RSParagraph* _paragraph;
 }

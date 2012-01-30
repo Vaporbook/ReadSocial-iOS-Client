@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "NotesViewController.h"
+#import "RSNotesViewController.h"
 #import "RSParagraph+Core.h"
 #import "NSString+RSParagraph.h"
 #import "ReadSocialViewController.h"

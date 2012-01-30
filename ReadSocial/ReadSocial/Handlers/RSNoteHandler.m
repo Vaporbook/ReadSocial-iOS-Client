@@ -10,7 +10,7 @@
 #import "RSNote+Core.h"
 #import "RSParagraph+Core.h"
 #import "DataContext.h"
-#import "ParagraphNotesRequest.h"
+#import "RSParagraphNotesRequest.h"
 #import "RSCreateNoteRequest.h"
 
 @implementation RSNoteHandler
@@ -24,7 +24,7 @@
 
 + (void) updateNotesForParagraph:(RSParagraph *)paragraph
 {
-    [ParagraphNotesRequest notesForParagraph:paragraph];
+    [RSParagraphNotesRequest notesForParagraph:paragraph];
 }
 
 + (void) updateOrCreateNotesWithArray: (NSArray *)notes
