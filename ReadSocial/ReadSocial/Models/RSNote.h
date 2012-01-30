@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 
 @class RSParagraph;
+@class RSUser;
 
 @interface RSNote : NSManagedObject
 
@@ -21,7 +22,7 @@
 @property (nonatomic, retain) NSManagedObject *group;
 @property (nonatomic, retain) RSParagraph *paragraph;
 @property (nonatomic, retain) NSSet *responses;
-@property (nonatomic, retain) NSManagedObject *user;
+@property (nonatomic, retain) RSUser *user;
 @end
 
 @interface RSNote (CoreDataGeneratedAccessors)

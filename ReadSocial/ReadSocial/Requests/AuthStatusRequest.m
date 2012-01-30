@@ -17,6 +17,18 @@
     return request;
 }
 
++ (NSURL *) loginURL
+{
+    NSString *url = [NSString stringWithFormat:@"%@/v1/%d/auth/login", kAPIURL, 8];
+    return [NSURL URLWithString:url];
+}
+
++ (NSURL *) statusURL
+{
+    NSString *url = [NSString stringWithFormat:@"%@/v1/%d/auth/status", kAPIURL, 8];
+    return [NSURL URLWithString:url];
+}
+
 - (NSMutableURLRequest *) createRequest
 {
     NSMutableURLRequest *request = [super createRequest];

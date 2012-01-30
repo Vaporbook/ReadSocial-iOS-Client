@@ -9,6 +9,7 @@
 #import "ParagraphNotesRequest.h"
 #import "RSParagraph+Core.h"
 #import "RSNoteHandler.h"
+#import "RSUserHandler.h"
 
 @implementation ParagraphNotesRequest
 
@@ -47,13 +48,18 @@
     {
         [NSException raise:@"Invalid Response" format:@"Invalid response received from API; expecting an array.\n%@", responseJSON];
     }
-    
     // Create notes
     NSArray *notes = (NSArray *)responseJSON;
+    
+    //NSLog(@"Notes:\n%@", notes);
     
     // Update the note count for the paragraph
     _paragraph.noteCount = [NSNumber numberWithInt:[notes count]];
     
+    // First, update user data
+    [RSUserHandler updateOrCreateUsersWithArray:notes];
+    
+    // Then update the note data
     [RSNoteHandler updateOrCreateNotesWithArray:notes];
 }
 

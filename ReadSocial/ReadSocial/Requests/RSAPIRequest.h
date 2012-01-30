@@ -11,6 +11,9 @@
 // API URL
 extern NSString* const kAPIURL;
 
+@protocol RSAPIRequestDelegate;
+@class RSAuthentication;
+
 // Creates a request to send to the API
 @interface RSAPIRequest : NSObject <NSURLConnectionDelegate, NSURLConnectionDataDelegate> {
     NSURLConnection *connection;
@@ -24,12 +27,21 @@ extern NSString* const kAPIURL;
     NSMutableData *responseData;
     NSHTTPURLResponse *apiResponse;
     id responseJSON;
+    RSAuthentication *auth;
 }
 
 @property (nonatomic, retain) NSDictionary *responseJSON;
+@property (strong, nonatomic) id<RSAPIRequestDelegate> delegate;
 
 - (NSMutableURLRequest *)createRequest;
 - (void) start;
 - (void) responseReceived;
+
+@end
+
+@protocol RSAPIRequestDelegate<NSObject>
+
+- (void) requestDidSucceed: (id)arg;
+- (void) requestDidFail: (id)arg;
 
 @end

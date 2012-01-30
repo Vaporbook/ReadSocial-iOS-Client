@@ -7,13 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "RSParagraph+Core.h"
-#import "ParagraphNotesRequest.h"
-#import "RSNote+Core.h"
-#import "RSNoteHandler.h"
-#import "RSResponseHandler.h"
 #import "ViewController.h"
-#import "AuthStatusRequest.h"
 
 @implementation AppDelegate
 
@@ -33,19 +27,6 @@
     self.window.rootViewController = self.viewController;
     
     [self.window makeKeyAndVisible];
-    
-    // Check auth status
-    [AuthStatusRequest status];
-    
-    // Create a new paragraph
-    RSParagraph *paragraph = [RSParagraph createParagraphInDefaultContextForString:@"This has not been a scientist's war; it has been a war in which all have had a part. The scientists, burying their old professional competition in the demand of a common cause, have shared greatly and learned much. It has been exhilarating to work in effective partnership. Now, for many, this appears to be approaching an end. What are the scientists to do next?"];
-    //[self saveContext];
-    
-    // Check the value of the hash
-    NSLog(@"Hash: %@", paragraph.par_hash);
-    
-    NSLog(@"Get notes:");
-    [ParagraphNotesRequest notesForParagraph:paragraph];
     
     return YES;
 }

@@ -21,7 +21,7 @@
 		0E34D0E514CF56A700AAEC1D /* NoteResponsesRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0E414CF56A700AAEC1D /* NoteResponsesRequest.m */; };
 		0E34D0EB14CF5E3600AAEC1D /* RSResponse+Core.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0EA14CF5E3600AAEC1D /* RSResponse+Core.m */; };
 		0E34D0EE14CF5F4700AAEC1D /* RSResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0ED14CF5F4700AAEC1D /* RSResponse.m */; };
-		0E34D0F114CF662400AAEC1D /* CreateNoteResponseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0F014CF662400AAEC1D /* CreateNoteResponseRequest.m */; };
+		0E34D0F114CF662400AAEC1D /* RSCreateNoteResponseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0F014CF662400AAEC1D /* RSCreateNoteResponseRequest.m */; };
 		0E34D12114CF6D5D00AAEC1D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D11F14CF6D5B00AAEC1D /* ViewController.m */; };
 		0E34D12214CF6D5D00AAEC1D /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E34D12014CF6D5D00AAEC1D /* ViewController.xib */; };
 		0E34D12514CF7B5F00AAEC1D /* AuthStatusRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D12414CF7B5F00AAEC1D /* AuthStatusRequest.m */; };
@@ -33,6 +33,18 @@
 		0E61BE5414CB20720017F3E3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E61BE5314CB20720017F3E3 /* main.m */; };
 		0E61BE5814CB20720017F3E3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E61BE5714CB20720017F3E3 /* AppDelegate.m */; };
 		0E61BE5B14CB20720017F3E3 /* ReadSocial.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0E61BE5914CB20720017F3E3 /* ReadSocial.xcdatamodeld */; };
+		0E78F65714D4627900DF151B /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 0E78F65614D4627900DF151B /* index.html */; };
+		0E78F66014D470DD00DF151B /* NotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E78F65F14D470DD00DF151B /* NotesViewController.m */; };
+		0E78F66314D48C1400DF151B /* ReadSocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E78F66214D48C1400DF151B /* ReadSocialViewController.m */; };
+		0E78F66614D4915000DF151B /* NoteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E78F66514D4915000DF151B /* NoteDetailViewController.m */; };
+		0E78F67114D5CB2000DF151B /* RSUser+Core.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E78F67014D5CB2000DF151B /* RSUser+Core.m */; };
+		0E78F67414D5CC2E00DF151B /* RSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E78F67314D5CC2E00DF151B /* RSUser.m */; };
+		0E78F67714D5D10400DF151B /* RSUserHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E78F67614D5D10300DF151B /* RSUserHandler.m */; };
+		0E78F67A14D5E32400DF151B /* RSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E78F67914D5E32400DF151B /* RSLoginViewController.m */; };
+		0EC8A9BD14D5FAB600EA7C74 /* RSAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8A9BC14D5FAB600EA7C74 /* RSAuthentication.m */; };
+		0EC8A9C114D6504F00EA7C74 /* RSComposeNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8A9C014D6504F00EA7C74 /* RSComposeNoteViewController.m */; };
+		0EC8A9C414D6639500EA7C74 /* RSCreateNoteRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8A9C314D6639500EA7C74 /* RSCreateNoteRequest.m */; };
+		0EC8A9C714D66E3D00EA7C74 /* RSComposeResponseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8A9C614D66E3C00EA7C74 /* RSComposeResponseViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,8 +76,8 @@
 		0E34D0EA14CF5E3600AAEC1D /* RSResponse+Core.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RSResponse+Core.m"; sourceTree = "<group>"; };
 		0E34D0EC14CF5F4600AAEC1D /* RSResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSResponse.h; sourceTree = "<group>"; };
 		0E34D0ED14CF5F4700AAEC1D /* RSResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSResponse.m; sourceTree = "<group>"; };
-		0E34D0EF14CF662400AAEC1D /* CreateNoteResponseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateNoteResponseRequest.h; sourceTree = "<group>"; };
-		0E34D0F014CF662400AAEC1D /* CreateNoteResponseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateNoteResponseRequest.m; sourceTree = "<group>"; };
+		0E34D0EF14CF662400AAEC1D /* RSCreateNoteResponseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSCreateNoteResponseRequest.h; sourceTree = "<group>"; };
+		0E34D0F014CF662400AAEC1D /* RSCreateNoteResponseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSCreateNoteResponseRequest.m; sourceTree = "<group>"; };
 		0E34D11E14CF6D5B00AAEC1D /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		0E34D11F14CF6D5B00AAEC1D /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		0E34D12014CF6D5D00AAEC1D /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
@@ -83,6 +95,29 @@
 		0E61BE5614CB20720017F3E3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0E61BE5714CB20720017F3E3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		0E61BE5A14CB20720017F3E3 /* ReadSocial.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ReadSocial.xcdatamodel; sourceTree = "<group>"; };
+		0E78F65614D4627900DF151B /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		0E78F65E14D470DD00DF151B /* NotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesViewController.h; sourceTree = "<group>"; };
+		0E78F65F14D470DD00DF151B /* NotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesViewController.m; sourceTree = "<group>"; };
+		0E78F66114D48C1400DF151B /* ReadSocialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadSocialViewController.h; sourceTree = "<group>"; };
+		0E78F66214D48C1400DF151B /* ReadSocialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadSocialViewController.m; sourceTree = "<group>"; };
+		0E78F66414D4915000DF151B /* NoteDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteDetailViewController.h; sourceTree = "<group>"; };
+		0E78F66514D4915000DF151B /* NoteDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteDetailViewController.m; sourceTree = "<group>"; };
+		0E78F66F14D5CB2000DF151B /* RSUser+Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RSUser+Core.h"; sourceTree = "<group>"; };
+		0E78F67014D5CB2000DF151B /* RSUser+Core.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RSUser+Core.m"; sourceTree = "<group>"; };
+		0E78F67214D5CC2D00DF151B /* RSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSUser.h; sourceTree = "<group>"; };
+		0E78F67314D5CC2E00DF151B /* RSUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSUser.m; sourceTree = "<group>"; };
+		0E78F67514D5D10300DF151B /* RSUserHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSUserHandler.h; sourceTree = "<group>"; };
+		0E78F67614D5D10300DF151B /* RSUserHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSUserHandler.m; sourceTree = "<group>"; };
+		0E78F67814D5E32300DF151B /* RSLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSLoginViewController.h; sourceTree = "<group>"; };
+		0E78F67914D5E32400DF151B /* RSLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSLoginViewController.m; sourceTree = "<group>"; };
+		0EC8A9BB14D5FAB600EA7C74 /* RSAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSAuthentication.h; path = ReadSocial/RSAuthentication.h; sourceTree = "<group>"; };
+		0EC8A9BC14D5FAB600EA7C74 /* RSAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSAuthentication.m; path = ReadSocial/RSAuthentication.m; sourceTree = "<group>"; };
+		0EC8A9BF14D6504E00EA7C74 /* RSComposeNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSComposeNoteViewController.h; sourceTree = "<group>"; };
+		0EC8A9C014D6504F00EA7C74 /* RSComposeNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSComposeNoteViewController.m; sourceTree = "<group>"; };
+		0EC8A9C214D6639500EA7C74 /* RSCreateNoteRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSCreateNoteRequest.h; sourceTree = "<group>"; };
+		0EC8A9C314D6639500EA7C74 /* RSCreateNoteRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSCreateNoteRequest.m; sourceTree = "<group>"; };
+		0EC8A9C514D66E3C00EA7C74 /* RSComposeResponseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSComposeResponseViewController.h; sourceTree = "<group>"; };
+		0EC8A9C614D66E3C00EA7C74 /* RSComposeResponseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSComposeResponseViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,10 +144,12 @@
 				0E34D0CE14CF1D4100AAEC1D /* RSAPIRequest.m */,
 				0E34D0E314CF56A700AAEC1D /* NoteResponsesRequest.h */,
 				0E34D0E414CF56A700AAEC1D /* NoteResponsesRequest.m */,
-				0E34D0EF14CF662400AAEC1D /* CreateNoteResponseRequest.h */,
-				0E34D0F014CF662400AAEC1D /* CreateNoteResponseRequest.m */,
+				0E34D0EF14CF662400AAEC1D /* RSCreateNoteResponseRequest.h */,
+				0E34D0F014CF662400AAEC1D /* RSCreateNoteResponseRequest.m */,
 				0E34D12314CF7B5E00AAEC1D /* AuthStatusRequest.h */,
 				0E34D12414CF7B5F00AAEC1D /* AuthStatusRequest.m */,
+				0EC8A9C214D6639500EA7C74 /* RSCreateNoteRequest.h */,
+				0EC8A9C314D6639500EA7C74 /* RSCreateNoteRequest.m */,
 			);
 			name = "API Requests";
 			path = ReadSocial/Requests;
@@ -158,6 +195,8 @@
 		0E61BE4D14CB20720017F3E3 /* ReadSocial */ = {
 			isa = PBXGroup;
 			children = (
+				0E78F65D14D4704300DF151B /* UI */,
+				0E78F65514D4624100DF151B /* Resources */,
 				0E34D0D014CF296000AAEC1D /* JSONKit */,
 				0E61BE6414CB3F680017F3E3 /* Models */,
 				0E34D0CC14CF1D1500AAEC1D /* API Requests */,
@@ -173,6 +212,8 @@
 				0E34D0C714CF0C7100AAEC1D /* NSString+RSParagraph.m */,
 				0E34D0DA14CF3D3300AAEC1D /* DataContext.h */,
 				0E34D0DB14CF3D3300AAEC1D /* DataContext.m */,
+				0EC8A9BB14D5FAB600EA7C74 /* RSAuthentication.h */,
+				0EC8A9BC14D5FAB600EA7C74 /* RSAuthentication.m */,
 			);
 			path = ReadSocial;
 			sourceTree = "<group>";
@@ -203,6 +244,10 @@
 				0E34D0EA14CF5E3600AAEC1D /* RSResponse+Core.m */,
 				0E34D0EC14CF5F4600AAEC1D /* RSResponse.h */,
 				0E34D0ED14CF5F4700AAEC1D /* RSResponse.m */,
+				0E78F66F14D5CB2000DF151B /* RSUser+Core.h */,
+				0E78F67014D5CB2000DF151B /* RSUser+Core.m */,
+				0E78F67214D5CC2D00DF151B /* RSUser.h */,
+				0E78F67314D5CC2E00DF151B /* RSUser.m */,
 			);
 			name = Models;
 			path = ReadSocial/Models;
@@ -215,9 +260,39 @@
 				0E34D0DE14CF4F2A00AAEC1D /* RSNoteHandler.m */,
 				0E34D0E014CF559200AAEC1D /* RSResponseHandler.h */,
 				0E34D0E114CF559300AAEC1D /* RSResponseHandler.m */,
+				0E78F67514D5D10300DF151B /* RSUserHandler.h */,
+				0E78F67614D5D10300DF151B /* RSUserHandler.m */,
 			);
 			name = "Data Handlers";
 			path = ReadSocial/Handlers;
+			sourceTree = "<group>";
+		};
+		0E78F65514D4624100DF151B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0E78F65614D4627900DF151B /* index.html */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		0E78F65D14D4704300DF151B /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				0E78F65E14D470DD00DF151B /* NotesViewController.h */,
+				0E78F65F14D470DD00DF151B /* NotesViewController.m */,
+				0E78F66114D48C1400DF151B /* ReadSocialViewController.h */,
+				0E78F66214D48C1400DF151B /* ReadSocialViewController.m */,
+				0E78F66414D4915000DF151B /* NoteDetailViewController.h */,
+				0E78F66514D4915000DF151B /* NoteDetailViewController.m */,
+				0E78F67814D5E32300DF151B /* RSLoginViewController.h */,
+				0E78F67914D5E32400DF151B /* RSLoginViewController.m */,
+				0EC8A9BF14D6504E00EA7C74 /* RSComposeNoteViewController.h */,
+				0EC8A9C014D6504F00EA7C74 /* RSComposeNoteViewController.m */,
+				0EC8A9C514D66E3C00EA7C74 /* RSComposeResponseViewController.h */,
+				0EC8A9C614D66E3C00EA7C74 /* RSComposeResponseViewController.m */,
+			);
+			name = UI;
+			path = ReadSocial/UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +348,7 @@
 			files = (
 				0E61BE5214CB20720017F3E3 /* InfoPlist.strings in Resources */,
 				0E34D12214CF6D5D00AAEC1D /* ViewController.xib in Resources */,
+				0E78F65714D4627900DF151B /* index.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,9 +376,20 @@
 				0E34D0E514CF56A700AAEC1D /* NoteResponsesRequest.m in Sources */,
 				0E34D0EB14CF5E3600AAEC1D /* RSResponse+Core.m in Sources */,
 				0E34D0EE14CF5F4700AAEC1D /* RSResponse.m in Sources */,
-				0E34D0F114CF662400AAEC1D /* CreateNoteResponseRequest.m in Sources */,
+				0E34D0F114CF662400AAEC1D /* RSCreateNoteResponseRequest.m in Sources */,
 				0E34D12114CF6D5D00AAEC1D /* ViewController.m in Sources */,
 				0E34D12514CF7B5F00AAEC1D /* AuthStatusRequest.m in Sources */,
+				0E78F66014D470DD00DF151B /* NotesViewController.m in Sources */,
+				0E78F66314D48C1400DF151B /* ReadSocialViewController.m in Sources */,
+				0E78F66614D4915000DF151B /* NoteDetailViewController.m in Sources */,
+				0E78F67114D5CB2000DF151B /* RSUser+Core.m in Sources */,
+				0E78F67414D5CC2E00DF151B /* RSUser.m in Sources */,
+				0E78F67714D5D10400DF151B /* RSUserHandler.m in Sources */,
+				0E78F67A14D5E32400DF151B /* RSLoginViewController.m in Sources */,
+				0EC8A9BD14D5FAB600EA7C74 /* RSAuthentication.m in Sources */,
+				0EC8A9C114D6504F00EA7C74 /* RSComposeNoteViewController.m in Sources */,
+				0EC8A9C414D6639500EA7C74 /* RSCreateNoteRequest.m in Sources */,
+				0EC8A9C714D66E3D00EA7C74 /* RSComposeResponseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

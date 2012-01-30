@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 
 @class RSNote;
-
+@class RSUser;
 @interface RSResponse : NSManagedObject
 
 @property (nonatomic, retain) NSString * id;
@@ -18,6 +18,6 @@
 @property (nonatomic, retain) NSDate * timestamp;
 @property (nonatomic, retain) NSString * body;
 @property (nonatomic, retain) RSNote *note;
-@property (nonatomic, retain) NSManagedObject *user;
+@property (nonatomic, retain) RSUser *user;
 
 @end

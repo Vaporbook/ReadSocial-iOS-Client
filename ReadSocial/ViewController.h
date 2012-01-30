@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController <UIWebViewDelegate>
-
+@interface ViewController : UIViewController <UIWebViewDelegate,UIPopoverControllerDelegate>
+{
+    UIPopoverController *popover;
+}
 @property (strong, nonatomic) IBOutlet UIWebView *webview;
 
 @end

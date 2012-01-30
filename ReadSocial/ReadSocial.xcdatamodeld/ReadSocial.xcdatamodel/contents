@@ -31,7 +31,13 @@
         <relationship name="note" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RSNote" inverseName="responses" inverseEntity="RSNote" syncable="YES"/>
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RSUser" inverseName="responses" inverseEntity="RSUser" syncable="YES"/>
     </entity>
-    <entity name="RSUser" syncable="YES">
+    <entity name="RSUser" representedClassName="RSUser" syncable="YES">
+        <attribute name="imageData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="udom" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="updated" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RSNote" inverseName="user" inverseEntity="RSNote" syncable="YES"/>
         <relationship name="responses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RSResponse" inverseName="user" inverseEntity="RSResponse" syncable="YES"/>
     </entity>
@@ -40,6 +46,6 @@
         <element name="RSNote" positionX="243" positionY="-102" width="128" height="180"/>
         <element name="RSParagraph" positionX="-83" positionY="-96" width="128" height="120"/>
         <element name="RSResponse" positionX="-83" positionY="198" width="128" height="135"/>
-        <element name="RSUser" positionX="-81" positionY="45" width="128" height="75"/>
+        <element name="RSUser" positionX="-81" positionY="45" width="128" height="165"/>
     </elements>
 </model>

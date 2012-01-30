@@ -10,15 +10,20 @@
 #import "RSNote+Core.h"
 #import "RSResponse+Core.h"
 #import "NoteResponsesRequest.h"
-#import "CreateNoteResponseRequest.h"
 #import "DataContext.h"
 
 @implementation RSResponseHandler
 
 + (NSArray *) responsesForNote: (RSNote *)note
 {
+    // The responses for the note are already available on the scratchpad as a set
+    // The set needs to be sorted by timestamp descending.
+    return [note.responses sortedArrayUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO]]];
+}
+
++ (void) updateResponsesForNote: (RSNote *)note
+{
     [NoteResponsesRequest responsesForNote:note];
-    return [note.responses allObjects];
 }
 
 + (void) updateOrCreateResponsesWithArray: (NSArray *)responses
@@ -65,7 +70,8 @@
         }
     }
     
-    // TODO: Delete old notes
+    // TODO: Responses that didn't receive an update from the server should probably be deleted from the store
+    // Low priority since users cannot delete their own responses.
     
     [DataContext save];
 }
@@ -82,13 +88,6 @@
     NSArray *fetchedResponses = [[DataContext defaultContext] executeFetchRequest:request error:nil];
     
     return fetchedResponses;
-}
-
-#warning This method needs to update the store when the response is received.
-+ (void) createResponse: (NSString*)content forNote:(RSNote*)note
-{
-    // Create a new request to create a note response
-    [CreateNoteResponseRequest createResponse:content forNote:(RSNote *)note];
 }
 
 @end

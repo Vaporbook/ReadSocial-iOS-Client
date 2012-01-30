@@ -21,6 +21,7 @@
     // Create the paragraph if it doesn't exist
     if (!paragraph)
     {
+        NSLog(@"Paragraph didn't exist--creating a new one.");
         paragraph = (RSParagraph *)[NSEntityDescription insertNewObjectForEntityForName:@"RSParagraph" inManagedObjectContext:[DataContext defaultContext]];
         paragraph.raw = raw;
         paragraph.par_hash = par_hash;
@@ -50,6 +51,11 @@
     
     // There should only be one result
     return (RSParagraph *)[result objectAtIndex:0];
+}
+
+- (NSString *) getNormalizedParagraph
+{
+    return [self.raw normalize];
 }
 
 @end

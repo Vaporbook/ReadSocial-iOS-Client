@@ -11,5 +11,6 @@
 @interface AuthStatusRequest : RSAPIRequest
 
 + (id) status;
-
++ (NSURL *) loginURL;
++ (NSURL *) statusURL;
 @end

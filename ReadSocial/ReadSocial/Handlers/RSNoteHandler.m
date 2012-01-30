@@ -8,9 +8,24 @@
 
 #import "RSNoteHandler.h"
 #import "RSNote+Core.h"
+#import "RSParagraph+Core.h"
 #import "DataContext.h"
+#import "ParagraphNotesRequest.h"
+#import "RSCreateNoteRequest.h"
 
 @implementation RSNoteHandler
+
++ (NSArray *) notesForParagraph: (RSParagraph *)paragraph
+{
+    // The notes for the paragraph are already available on the scratchpad as a set
+    // The set needs to be sorted by timestamp descending.
+    return [paragraph.notes sortedArrayUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO]]];
+}
+
++ (void) updateNotesForParagraph:(RSParagraph *)paragraph
+{
+    [ParagraphNotesRequest notesForParagraph:paragraph];
+}
 
 + (void) updateOrCreateNotesWithArray: (NSArray *)notes
 {

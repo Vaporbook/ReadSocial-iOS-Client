@@ -18,15 +18,25 @@
 @interface RSResponseHandler : NSObject
 
 /**
- Immediately pulls all the responses for the specified note from the persistent store
- and initiates a request to the API to update the persitent store. Once the new data is
- available, all referencing objects will automatically be updated and any views should
- refresh their data.
+ Immediately pulls all responses for a note from the local store and places the
+ responses in an NSArray sorted by timestamp descending.
+ Note: This content may be outdated based on when the last time the local store
+ was updated. The best thing to do is to get the stale data from the local store
+ and immediately request updated data using [RSResponseHandler updateResponsesForNote].
  
  @param note The RSNote object.
  @return An NSArray of RSResponse's for the note.
  */
 + (NSArray *) responsesForNote: (RSNote *)note;
+
+/**
+ Initiates a request to the API and updates the local store with the latest information
+ from the server. Once the data is available, it saves the data context initiating
+ a notification so that all active views can update their content.
+ 
+ @param note The note for which to fetch responses.
+ */
++ (void) updateResponsesForNote: (RSNote *)note;
 
 /**
  Updates/creates RSResponse objects in the persistent store with the contents of an NSArray.
@@ -44,14 +54,5 @@
  I don't think that the return will neccessarily respond in the same order as specified in the parameter.
  */
 + (NSArray *) responsesForIds: (NSArray *)ids;
-
-/**
- Creates a response for a note and sends the data to the API.
- Once the response is received, updates the local store with the new response.
- 
- @param content The NSString containing the content of the response.
- @param note The RSNote the response is responding to.
- */
-+ (void) createResponse: (NSString*)content forNote:(RSNote*)note;
 
 @end

@@ -29,4 +29,6 @@
 // this doesn't belong here. move it.
 + (RSParagraph *) paragraphFromHash: (NSString *) hash;
 
+@property (readonly, nonatomic, getter=getNormalizedParagraph) NSString *normalized;
+
 @end

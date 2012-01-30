@@ -8,11 +8,12 @@
 
 #import "RSAPIRequest.h"
 #import "JSONKit.h"
+#import "RSAuthentication.h"
 
 NSString* const kAPIURL = @"https://api.readsocial.net";
 
 @implementation RSAPIRequest
-@synthesize responseJSON;
+@synthesize responseJSON, delegate;
 
 - (id) init
 {
@@ -111,7 +112,8 @@ NSString* const kAPIURL = @"https://api.readsocial.net";
     
     if ([apiResponse statusCode]==401) 
     {
-        NSLog(@"User needs to log in.");
+        auth = [RSAuthentication loginAndReattemptRequest:self];
+        return;
     }
     
     // Save JSON response

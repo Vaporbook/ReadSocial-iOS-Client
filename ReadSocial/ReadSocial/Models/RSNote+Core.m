@@ -8,7 +8,9 @@
 
 #import "RSNote+Core.h"
 #import "RSParagraph+Core.h"
+#import "RSUser+Core.h"
 #import "DataContext.h"
+#import "RSUserHandler.h"
 
 NSString* const kNoteId             = @"_id";
 NSString* const kNoteBody           = @"body";
@@ -36,6 +38,7 @@ NSString* const kNoteParagraphHash  = @"par_hash";
     self.link       = [args valueForKey:kNoteLink];
     self.timestamp  = [NSDate dateWithTimeIntervalSince1970:([[args valueForKey:kNoteCreated] floatValue]/1000)];
     self.paragraph  = [RSParagraph paragraphFromHash:[args valueForKey:kNoteParagraphHash]];
+    self.user       = [RSUserHandler userForID:[args valueForKey:kUserId]];
 }
 
 - (NSString *) description

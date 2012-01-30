@@ -13,8 +13,30 @@
 
 #import <Foundation/Foundation.h>
 
+@class RSParagraph;
 @class RSNote;
 @interface RSNoteHandler : NSObject
+
+/**
+ Immediately pulls all notes for a paragraph from the local store and places the
+ notes in an NSArray sorted by timestamp descending.
+ Note: This content may be outdated based on when the last time the local store
+ was updated. The best thing to do is to get the stale data from the local store
+ and immediately request updated data using [RSResponseHandler updateNotesForParagraph].
+ 
+ @param paragraph The RSParagraph object.
+ @return An NSArray of RSNote's for the paragraph (for the active group only).
+ */
++ (NSArray *) notesForParagraph: (RSParagraph *)paragraph;
+
+/**
+ Initiates a request to the API and updates the local store with the latest information
+ from the server. Once the data is available, it saves the data context initiating
+ a notification so that all active views can update their content.
+ 
+ @param paragraph The paragraph for which to fetch responses.
+ */
++ (void) updateNotesForParagraph: (RSParagraph *)paragraph;
 
 /**
  Updates/creates Note objects in the persistent store with the contents of an NSArray.

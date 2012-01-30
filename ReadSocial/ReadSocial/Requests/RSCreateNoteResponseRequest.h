@@ -1,5 +1,5 @@
 //
-//  CreateNoteResponseRequest.h
+//  RSCreateNoteResponseRequest.h
 //  ReadSocial
 //
 //  Created by Daniel Pfeiffer on 1/24/12.
@@ -9,12 +9,13 @@
 #import "RSAPIRequest.h"
 
 @class RSNote;
-@interface CreateNoteResponseRequest : RSAPIRequest {
+@interface RSCreateNoteResponseRequest : RSAPIRequest {
     RSNote *_note;
     NSString *noteResponseBody;
 }
 
 + (id) createResponse:(NSString *)content forNote:(RSNote*)note;
++ (id) createResponse:(NSString *)content forNote:(RSNote*)note withDelegate: (id<RSAPIRequestDelegate>)delegate;
 - (id) initWithBody:(NSString *)content andNote:(RSNote *)note;
 
 @end

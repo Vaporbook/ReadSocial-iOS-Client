@@ -9,6 +9,7 @@
 #import "NoteResponsesRequest.h"
 #import "RSNote+Core.h"
 #import "RSResponseHandler.h"
+#import "RSUserHandler.h"
 
 @implementation NoteResponsesRequest
 
@@ -51,6 +52,7 @@
     // Create responses
     NSArray *responses = (NSArray *)responseJSON;
     
+    [RSUserHandler updateOrCreateUsersWithArray:responses];
     [RSResponseHandler updateOrCreateResponsesWithArray:responses];
 }
 

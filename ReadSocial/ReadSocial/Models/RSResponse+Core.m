@@ -9,6 +9,8 @@
 #import "RSResponse+Core.h"
 #import "DataContext.h"
 #import "RSNoteHandler.h"
+#import "RSUser+Core.h"
+#import "RSUserHandler.h"
 
 NSString* const kResponseId         = @"_id";
 NSString* const kResponseBody       = @"body";
@@ -34,6 +36,7 @@ NSString* const kResponseNoteId     = @"note_id";
     self.body       = [args valueForKey:kResponseBody];
     self.note       = [RSNoteHandler noteForId:[args valueForKey:kResponseNoteId]];
     self.timestamp  = [NSDate dateWithTimeIntervalSince1970:[[args valueForKey:kResponseCreated] floatValue]/1000];
+    self.user       = [RSUserHandler userForID:[args valueForKey:kUserId]];
 }
 
 @end
