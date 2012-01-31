@@ -12,6 +12,7 @@
 #import "JSONKit.h"
 #import "RSUser+Core.h"
 #import "RSUserHandler.h"
+#import "ReadSocialSession.h"
 
 NSString* const RSAuthenticationLoginWasSuccessful  =   @"RSloginWasSuccessful";
 
@@ -54,6 +55,7 @@ NSString* const RSAuthenticationLoginWasSuccessful  =   @"RSloginWasSuccessful";
     if (self)
     {
         loginViewController = [RSLoginViewController new];
+        loginViewController.delegate = self;
         loginViewController.webview.delegate = self;
     }
     return self;
@@ -61,14 +63,20 @@ NSString* const RSAuthenticationLoginWasSuccessful  =   @"RSloginWasSuccessful";
 
 + (NSURL *) loginURL
 {
-    NSString *url = [NSString stringWithFormat:@"%@/v1/%d/auth/login", kAPIURL, 8];
+    NSString *url = [NSString stringWithFormat:@"%@/v1/%d/auth/login", ReadSocialAPIURL, [ReadSocialSession sharedReadSocialSession].networkID];
     return [NSURL URLWithString:url];
 }
 
 + (NSURL *) statusURL
 {
-    NSString *url = [NSString stringWithFormat:@"%@/v1/%d/auth/status", kAPIURL, 8];
+    NSString *url = [NSString stringWithFormat:@"%@/v1/%d/auth/status", ReadSocialAPIURL, [ReadSocialSession sharedReadSocialSession].networkID];
     return [NSURL URLWithString:url];
+}
+
+# pragma mark RSLoginViewController Delegate methods
+- (void) didCancelLogin
+{
+    [self closeModalView];
 }
 
 # pragma mark UIWebView Delegate Methods
@@ -128,10 +136,7 @@ NSString* const RSAuthenticationLoginWasSuccessful  =   @"RSloginWasSuccessful";
     }
     else
     {
-        NSLog(@"This looks like JSON! %@", jsonResponse);
-        
         NSDictionary *user = [jsonResponse valueForKey:@"user"];
-        NSLog(@"User data: %@", user);
         
         RSUser *authenticatedUser = [RSUserHandler retrieveOrCreateUser:user];
         [self loginWasSuccessfulForUser:authenticatedUser];
@@ -146,13 +151,20 @@ NSString* const RSAuthenticationLoginWasSuccessful  =   @"RSloginWasSuccessful";
     // Find the root view controller
     UIViewController *rootViewController = [UIApplication sharedApplication].delegate.window.rootViewController;
     
+    // Create a navigation controller wrapper for the login view
+    UINavigationController *wrapper = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+    wrapper.modalPresentationStyle = UIModalPresentationFormSheet;
+    
     // Open the modal view controller in the root view controller
-    [rootViewController presentModalViewController:loginViewController animated:YES];
+    [rootViewController presentModalViewController:wrapper animated:YES];
 }
 
 - (void) closeModalView
 {
-    [loginViewController dismissModalViewControllerAnimated:YES];
+    // Find the root view controller
+    UIViewController *rootViewController = [UIApplication sharedApplication].delegate.window.rootViewController;
+    
+    [rootViewController dismissModalViewControllerAnimated:YES];
 }
 
 - (void) loginWasSuccessfulForUser: (RSUser *)user
@@ -165,6 +177,7 @@ NSString* const RSAuthenticationLoginWasSuccessful  =   @"RSloginWasSuccessful";
     // Reattempt the failed request
     if (failedRequest)
     {
+        NSLog(@"Reattempting failed request.");
         [failedRequest start];
     }
     

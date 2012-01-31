@@ -8,9 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol RSLoginViewControllerDelegate;
 @interface RSLoginViewController : UIViewController
 
 @property (strong, nonatomic) NSURL *loginURL;
 @property (strong, nonatomic) UIWebView *webview;
+@property (strong, nonatomic) id<RSLoginViewControllerDelegate> delegate;
+
+@end
+
+@protocol RSLoginViewControllerDelegate <NSObject>
+
+- (void) didCancelLogin;
 
 @end

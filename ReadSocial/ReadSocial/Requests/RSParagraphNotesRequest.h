@@ -10,14 +10,13 @@
 #import "RSAPIRequest.h"
 
 @class RSParagraph;
-// Notes are saved directly to the paragraph object
-@interface RSParagraphNotesRequest : RSAPIRequest {
-    // The paragraph for which to request notes
-    RSParagraph* _paragraph;
-}
 
-+ (id) notesForParagraph: (RSParagraph *)paragraph;
+@interface RSParagraphNotesRequest : RSAPIRequest
 
-- (id) initWithParagraph: (RSParagraph *)paragraph;
+@property (strong, nonatomic) RSParagraph *paragraph;
+
++ (RSParagraphNotesRequest *) notesForParagraph: (RSParagraph *)paragraph withDelegate: (id<RSAPIRequestDelegate>)delegate;
++ (RSParagraphNotesRequest *) notesForParagraph: (RSParagraph *)paragraph;
+- (RSParagraphNotesRequest *) initWithParagraph: (RSParagraph *)paragraph;
 
 @end

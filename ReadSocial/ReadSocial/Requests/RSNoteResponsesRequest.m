@@ -12,45 +12,57 @@
 #import "RSUserHandler.h"
 
 @implementation RSNoteResponsesRequest
+@synthesize note=_note;
 
-+ (id) responsesForNote: (RSNote *)note
++ (RSNoteResponsesRequest *) responsesForNote: (RSNote *)note withDelegate: (id<RSAPIRequestDelegate>)delegate
 {
     RSNoteResponsesRequest *request = [[RSNoteResponsesRequest alloc] initWithNote:note];
+    request.delegate = delegate;
     [request start];
     return request;
 }
 
-- (id) initWithNote: (RSNote *)note
++ (RSNoteResponsesRequest *) responsesForNote: (RSNote *)note
+{
+    return [RSNoteResponsesRequest responsesForNote:note withDelegate:nil];
+}
+
+- (RSNoteResponsesRequest *) initWithNote: (RSNote *)note
 {
     self = [super init];
-    _note = note;
+    if (self)
+    {
+        _note = note;
+    }
     return self;
 }
 
+# pragma mark - RSAPIRequest Overriden Methods
 - (NSMutableURLRequest *) createRequest
 {
     NSMutableURLRequest *request = [super createRequest];
     
     // Determine the URL
-    NSString *url = [NSString stringWithFormat:@"%@/v1/%d/notes/%@/responses", kAPIURL, networkId, _note.id];
+    NSString *url = [NSString stringWithFormat:@"%@/v1/%d/notes/%@/responses", ReadSocialAPIURL, networkID, self.note.id];
     
     [request setURL:[NSURL URLWithString:url]];
     
     return request;
 }
 
-- (void) responseReceived
+- (void) handleResponse:(id)json error:(NSError *__autoreleasing *)error
 {
-    [super responseReceived];
+    [super handleResponse:json error:error];
     
     // ResponseJSON should be an NSArray
-    if (![responseJSON isKindOfClass:[NSArray class]])
+    if (![json isKindOfClass:[NSArray class]])
     {
-        [NSException raise:@"Invalid Response" format:@"Invalid response received from API; expecting an array.\n%@", responseJSON];
+        *error = [NSError errorWithDomain:@"Invalid response from server." code:0 userInfo:nil];
+        return;
     }
     
     // Create responses
-    NSArray *responses = (NSArray *)responseJSON;
+    NSArray *responses = (NSArray *)json;
     
     [RSUserHandler updateOrCreateUsersWithArray:responses];
     [RSResponseHandler updateOrCreateResponsesWithArray:responses];

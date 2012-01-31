@@ -21,4 +21,9 @@
     [((AppDelegate *)[UIApplication sharedApplication].delegate) saveContext];
 }
 
++ (void) erase
+{
+    [((AppDelegate *)[UIApplication sharedApplication].delegate) resetStore];
+}
+
 @end

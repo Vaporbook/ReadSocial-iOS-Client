@@ -7,19 +7,29 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RSCreateNoteRequest.h"
+
+enum {
+    RSNoteCompositionSucceeded  =   0,
+    RSNoteCompositionCancelled  =   1,
+    RSNoteCompositionFailed     =   2
+};
 
 @protocol RSNoteCompositionDelegate;
 @class RSNote;
 
-@interface RSComposeNoteViewController : UIViewController
+@interface RSComposeNoteViewController : UIViewController <RSAPIRequestDelegate>
 {
+    RSParagraph *_paragraph;
     UITextView *textview;
     UIBarButtonItem *submitButton;
     UIBarButtonItem *cancelButton;
 }
 
 @property (strong, nonatomic) id<RSNoteCompositionDelegate> delegate;
+@property (strong, nonatomic, readonly) RSNote *note;
 
+- (RSComposeNoteViewController *) initWithParagraph: (RSParagraph *)paragraph;
 - (void) enableSubmitButton;
 - (void) disableSubmitButton;
 
@@ -27,7 +37,6 @@
 
 @protocol RSNoteCompositionDelegate <NSObject>
 
-- (void) didSubmitNoteWithString: (NSString *)content;
-- (void) didCancelNoteComposition;
+- (void) didFinishComposingNote: (RSNote *)note withResult: (NSInteger)result error: (NSError *)error;
 
 @end

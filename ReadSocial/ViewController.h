@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ReadSocial.h"
 
-@interface ViewController : UIViewController <UIWebViewDelegate,UIPopoverControllerDelegate>
-{
-    UIPopoverController *popover;
-}
+@class RSAuthentication;
+@interface ViewController : UIViewController <UIWebViewDelegate, ReadSocialDataSource>
+
 @property (strong, nonatomic) IBOutlet UIWebView *webview;
 
 @end

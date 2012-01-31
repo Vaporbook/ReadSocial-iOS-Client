@@ -9,36 +9,54 @@
 #import "RSAPIRequest.h"
 #import "JSONKit.h"
 #import "RSAuthentication.h"
+#import "ReadSocialSession.h"
 
-NSString* const kAPIURL = @"https://api.readsocial.net";
+NSString* const ReadSocialAPIURL = @"https://api.readsocial.net";
+static NSString *userAgent;
+
+@interface RSAPIRequest ()
+
+// Prepares response for delegate
+- (void) didStartRequest;
+- (void) requestDidSucceed;
+- (void) requestDidFailWithError: (NSError *)error;
+
+@end;
 
 @implementation RSAPIRequest
-@synthesize responseJSON, delegate;
+@synthesize delegate, receivedError;
+
++ (void) initialize
+{
+    // Create a UIWebView to retrieve the user agent
+    UIWebView* webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+    userAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
+}
 
 - (id) init
 {
     self = [super init];
-    
-    // Set the default values...this is a temporary place for the assignment to happen.
-    networkId = 8;
-    defaultGroup = @"partner-testing-channel";
-    
+    if (self)
+    {
+        networkID = [ReadSocialSession sharedReadSocialSession].networkID;
+        group = [ReadSocialSession sharedReadSocialSession].currentGroup;
+        receivedError = NO;
+    }
     return self;
 }
 
-// This method should be overridden
 - (NSMutableURLRequest *)createRequest
 {
     NSMutableURLRequest *request = [NSMutableURLRequest new];
     
     // Get the cookies for the API
-    NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:kAPIURL]];
+    NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:ReadSocialAPIURL]];
     [request setAllHTTPHeaderFields:[NSHTTPCookie requestHeaderFieldsWithCookies:cookies]];
     
     // Add additional header values
     [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request addValue:@"Mozilla/5.0 (iPad; CPU OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Mobile/9A334" forHTTPHeaderField:@"User-Agent"];
+    [request addValue:userAgent forHTTPHeaderField:@"User-Agent"];
     
     return request;
 }
@@ -49,54 +67,84 @@ NSString* const kAPIURL = @"https://api.readsocial.net";
     
     responseData = [NSMutableData data];
     
-    //NSLog(@"Headers: %@", [request allHTTPHeaderFields]);
-    //NSLog(@"Body: %@", [[NSString alloc] initWithData:[request HTTPBody] encoding:NSUTF8StringEncoding]);
     NSLog(@"Sending request to: %@", [request URL]);
     
     // Check the URL for "(null)" indicating that the request is invalid
     if ([[[request URL] absoluteString] rangeOfString:@"(null)"].location != NSNotFound) 
     {
         NSLog(@"Invalid request!");
+        [self requestDidFailWithError:[NSError errorWithDomain:@"Invalid request." code:0 userInfo:nil]];
         return;
     }
     
     sentTime = [NSDate date];
+    [self didStartRequest];
     [NSURLConnection connectionWithRequest:request delegate:self];
 }
 
-// Expecting this method to get overridden
-- (void) responseReceived
+- (void) handleResponse: (id)json error: (NSError**)error
 {
-    
+    // Expecting this method to get overridden
+    NSLog(@"Response: %@", json);
 }
+
+- (void) didStartRequest
+{
+    if ([delegate respondsToSelector:@selector(didStartRequest:)])
+    {
+        [delegate didStartRequest:self];
+    }
+}
+
+- (void) requestDidSucceed
+{
+    if (receivedError)
+    {
+        return;
+    }
+    
+    if ([delegate respondsToSelector:@selector(requestDidSucceed:)])
+    {
+        [delegate requestDidSucceed:self];
+    }
+}
+
+- (void) requestDidFailWithError: (NSError *)error
+{
+    receivedError = YES;
+    if ([delegate respondsToSelector:@selector(requestDidFail:withError:)])
+    {
+        [delegate requestDidFail:self withError:error];
+    }
+}
+
 
 # pragma mark - NSURLConnectionDelegate and NSURLConnectionDataDelegate methods
 
 - (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    // Failed
-    NSLog(@"Failed: %@", error);
+    [self requestDidFailWithError:error];
 }
 
 - (void) connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 {
-    NSLog(@"Failed: %@", @"Requires authentication.");
+    NSError *error = [NSError errorWithDomain:@"API Requested Authentication" code:401 userInfo:nil];
+    [self requestDidFailWithError:error];
 }
 
 - (void) connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    // Received data
-    // Append data
     [responseData appendData:data];
 }
 
 - (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-    // Received HTTP response (will contain the status code)
-    // Reset data
+    // It's only expected to receive one response for each request
+    // but in the off-chance that another response was received, then the
+    // responseData container needs to be cleared out.
     [responseData setLength:0];
     
-    // Set the response
+    // Store the response from the server
     apiResponse = (NSHTTPURLResponse *) response;
 }
 
@@ -110,6 +158,7 @@ NSString* const kAPIURL = @"https://api.readsocial.net";
     // Get the response code
     NSLog(@"Response Code: %d", [apiResponse statusCode]);
     
+    // Check if the user needs to log in
     if ([apiResponse statusCode]==401) 
     {
         auth = [RSAuthentication loginAndReattemptRequest:self];
@@ -117,9 +166,19 @@ NSString* const kAPIURL = @"https://api.readsocial.net";
     }
     
     // Save JSON response
-    responseJSON = [responseData objectFromJSONData];
+    id responseJSON = [responseData objectFromJSONData];
     
-    [self responseReceived];
+    NSError *error;
+    [self handleResponse:responseJSON error:&error];
+    
+    if (error)
+    {
+        [self requestDidFailWithError:error];
+    }
+    else
+    {
+        [self requestDidSucceed];
+    }
 }
 
 @end

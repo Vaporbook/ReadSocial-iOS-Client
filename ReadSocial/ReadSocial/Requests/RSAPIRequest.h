@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 // API URL
-extern NSString* const kAPIURL;
+extern NSString* const ReadSocialAPIURL;
 
 @protocol RSAPIRequestDelegate;
 @class RSAuthentication;
@@ -17,8 +17,11 @@ extern NSString* const kAPIURL;
 // Creates a request to send to the API
 @interface RSAPIRequest : NSObject <NSURLConnectionDelegate, NSURLConnectionDataDelegate> {
     NSURLConnection *connection;
-    int networkId;
-    NSString *defaultGroup; // TODO: This will be moved to app level
+    
+    // Copy of session variables for request
+    // Just in case the session changes in the middle of a request.
+    int networkID;
+    NSString *group;
     
     // Time response sent
     NSDate *sentTime;
@@ -26,22 +29,24 @@ extern NSString* const kAPIURL;
     // Response
     NSMutableData *responseData;
     NSHTTPURLResponse *apiResponse;
-    id responseJSON;
+    
     RSAuthentication *auth;
 }
 
-@property (nonatomic, retain) NSDictionary *responseJSON;
+@property (nonatomic, readonly) BOOL receivedError;
 @property (strong, nonatomic) id<RSAPIRequestDelegate> delegate;
 
 - (NSMutableURLRequest *)createRequest;
 - (void) start;
-- (void) responseReceived;
+- (void) handleResponse: (id)json error: (NSError**)error;
 
 @end
 
 @protocol RSAPIRequestDelegate<NSObject>
 
-- (void) requestDidSucceed: (id)arg;
-- (void) requestDidFail: (id)arg;
+@optional
+- (void) didStartRequest: (RSAPIRequest *)request;
+- (void) requestDidSucceed: (RSAPIRequest *)request;
+- (void) requestDidFail: (RSAPIRequest *)request withError: (NSError *)error;
 
 @end

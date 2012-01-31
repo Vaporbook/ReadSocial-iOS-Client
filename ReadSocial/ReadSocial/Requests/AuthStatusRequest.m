@@ -9,41 +9,38 @@
 #import "AuthStatusRequest.h"
 
 @implementation AuthStatusRequest
+@synthesize authed;
 
-+ (id) status
++ (id) requestAuthStatusWithDelegate: (id<RSAPIRequestDelegate>) delegate
 {
     AuthStatusRequest *request = [AuthStatusRequest new];
+    request.delegate = delegate;
     [request start];
     return request;
 }
 
-+ (NSURL *) loginURL
++ (id) requestAuthStatus
 {
-    NSString *url = [NSString stringWithFormat:@"%@/v1/%d/auth/login", kAPIURL, 8];
-    return [NSURL URLWithString:url];
+    return [AuthStatusRequest requestAuthStatusWithDelegate:nil];
 }
 
-+ (NSURL *) statusURL
-{
-    NSString *url = [NSString stringWithFormat:@"%@/v1/%d/auth/status", kAPIURL, 8];
-    return [NSURL URLWithString:url];
-}
-
+# pragma mark - RSAPIRequest Overriden Methods
 - (NSMutableURLRequest *) createRequest
 {
     NSMutableURLRequest *request = [super createRequest];
     
     // Set the URL
-    NSString *url = [NSString stringWithFormat:@"%@/v1/%d/auth/status", kAPIURL, networkId];
+    NSString *url = [NSString stringWithFormat:@"%@/v1/%d/auth/status", ReadSocialAPIURL, networkID];
     [request setURL:[NSURL URLWithString:url]];
     
     return request;
 }
 
-- (void) responseReceived
+- (void) handleResponse:(id)json error:(NSError *__autoreleasing *)error
 {
-    [super responseReceived];
-    NSLog(@"Auth status: %@", responseJSON);
+    [super handleResponse:json error:error];
+    
+    authed = [[json valueForKey:@"authed"] boolValue];
 }
 
 @end

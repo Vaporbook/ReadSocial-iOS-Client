@@ -19,7 +19,7 @@
 @property (nonatomic, retain) NSData * image;
 @property (nonatomic, retain) NSDate * timestamp;
 @property (nonatomic, retain) NSString * link;
-@property (nonatomic, retain) NSManagedObject *group;
+@property (nonatomic, retain) NSString *group;
 @property (nonatomic, retain) RSParagraph *paragraph;
 @property (nonatomic, retain) NSSet *responses;
 @property (nonatomic, retain) RSUser *user;

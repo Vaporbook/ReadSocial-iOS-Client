@@ -7,26 +7,24 @@
 //
 
 #import "RSComposeNoteViewController.h"
-#import "RSNoteHandler.h"
+
+@interface RSComposeNoteViewController ()
+
+- (void) finishNoteCompositionWithResult: (NSInteger)result error:(NSError *)error;
+
+@end
 
 @implementation RSComposeNoteViewController
-@synthesize delegate;
+@synthesize delegate, note;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (RSComposeNoteViewController *) initWithParagraph: (RSParagraph *)paragraph
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    self = [super init];
+    if (self)
+    {
+        _paragraph = paragraph;
     }
     return self;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
 }
 
 - (void) enableSubmitButton
@@ -42,18 +40,21 @@
 - (void) submitNote
 {
     [textview resignFirstResponder];
-    
-    if ([delegate respondsToSelector:@selector(didSubmitNoteWithString:)])
-    {
-        [delegate didSubmitNoteWithString:textview.text];
-    }
+    [self disableSubmitButton];
+    [RSCreateNoteRequest createNoteWithString:textview.text forParagraph:_paragraph withDelegate:self];
 }
 
-- (void) didCancelNoteComposition
+- (void) cancelNoteComposition
 {
-    if ([delegate respondsToSelector:@selector(didCancelNoteComposition)])
+    [self disableSubmitButton];
+    [self finishNoteCompositionWithResult:RSNoteCompositionCancelled error:nil];
+}
+
+- (void) finishNoteCompositionWithResult: (NSInteger)result error:(NSError *)error
+{
+    if ([delegate respondsToSelector:@selector(didFinishComposingNote:withResult:error:)])
     {
-        [delegate didCancelNoteComposition];
+        [delegate didFinishComposingNote:self.note withResult:result error:error];
     }
 }
 
@@ -67,7 +68,7 @@
     
     // Create the buttons
     submitButton = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStyleDone target:self action:@selector(submitNote)];
-    cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(didCancelNoteComposition)];
+    cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancelNoteComposition)];
     
     // Create the view
     UIView *view = [UIView new];
@@ -117,6 +118,21 @@
 {
     // Return YES for supported orientations
 	return YES;
+}
+
+#pragma mark - RSAPIRequest Delegate Methods
+- (void) requestDidSucceed:(RSCreateNoteRequest *)request
+{
+    NSLog(@"Note created!");
+    note = request.note;
+    [self finishNoteCompositionWithResult:RSNoteCompositionSucceeded error:nil];
+}
+
+- (void) requestDidFail:(RSAPIRequest *)request withError:(NSError *)error
+{
+    NSLog(@"Note failed to create.");
+    [self enableSubmitButton];
+    [self finishNoteCompositionWithResult:RSNoteCompositionFailed error:error];
 }
 
 @end

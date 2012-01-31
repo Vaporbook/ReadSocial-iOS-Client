@@ -12,6 +12,8 @@
 #import "RSParagraph+Core.h"
 #import "RSResponseHandler.h"
 #import "DataContext.h"
+#import "RSNavigationController.h"
+#import "RSNoteResponsesRequest.h"
 
 @implementation RSNoteDetailViewController
 @synthesize note=_note;
@@ -56,31 +58,23 @@
 - (void) presentResponseComposer
 {
     // Create the composer
-    responseComposer = [RSComposeResponseViewController new];
-    
-    UINavigationController *composer = [[UINavigationController alloc] initWithRootViewController:responseComposer];
-    
-    composer.modalInPopover = YES;
-    composer.modalPresentationStyle = UIModalPresentationCurrentContext;
+    RSComposeResponseViewController *responseComposer = [[RSComposeResponseViewController alloc] initWithNote:self.note];
     responseComposer.delegate = self;
-    [self.navigationController presentModalViewController:composer animated:YES];
+    
+    [self.navigationController presentModalViewController:[RSNavigationController wrapViewController:responseComposer withInputEnabled:YES] animated:YES];
 }
 
-- (void) requestDidSucceed:(id)response
+# pragma mark - Response Composer Delegate methods
+- (void) didFinishComposingResponse:(RSResponse *)response withResult:(NSInteger)result error:(NSError *)error
 {
-    [DataContext save];
-    [self.navigationController dismissModalViewControllerAnimated:YES];
-}
-
-# pragma mark - Note Composer Delegate methods
-- (void) didCancelResponseComposition
-{
-    [self.navigationController dismissModalViewControllerAnimated:YES];
-}
-- (void) didSubmitResponseWithString:(NSString *)content
-{
-    [responseComposer disableSubmitButton];
-    [RSCreateNoteResponseRequest createResponse:content forNote:self.note withDelegate:self];
+    NSLog(@"Finished compositing response with result: %d", result);
+    
+    // Only close the modal view if the note was submitted succesfully, or if the user cancelled it
+    // Do not cancel the note if an error occurred.
+    if (result==RSResponseCompositionSucceeded || result==RSResponseCompositionCancelled)
+    {
+        [self dismissModalViewControllerAnimated:YES];
+    }
 }
 
 #pragma mark - View lifecycle
@@ -119,10 +113,10 @@
 {
     // Get the responses for the note sorted by timestamp descending
     // This is what the data for the table is based on
-    responses = [RSResponseHandler responsesForNote:_note];
+    responses = [RSResponseHandler responsesForNote:self.note];
     
     // Request an update from the API
-    [RSResponseHandler updateResponsesForNote:_note];
+    [RSNoteResponsesRequest responsesForNote:self.note withDelegate:self];
     
     [super viewWillAppear:animated];
 }
@@ -162,7 +156,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [responses count]+1;
+    return [responses count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -174,20 +168,13 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    if (indexPath.row >= [responses count])
-    {
-        cell.textLabel.text = @"Load more responses...";
-    }
-    else
-    {
-        RSResponse *response = [responses objectAtIndex:indexPath.row];
-        cell.textLabel.numberOfLines = 0;
-        cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:14.0];
-        cell.textLabel.text = response.body;
-        
-        // Configure the cell...
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
+    RSResponse *response = [responses objectAtIndex:indexPath.row];
+    cell.textLabel.numberOfLines = 0;
+    cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:14.0];
+    cell.textLabel.text = response.body;
+    
+    // Configure the cell...
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }
@@ -238,5 +225,21 @@
     // Navigation logic may go here. Create and push another view controller.
 
 }*/
+
+#pragma mark - RSAPIRequest Delegate Methods
+- (void) didStartRequest:(RSAPIRequest *)request
+{
+    
+}
+- (void) requestDidSucceed:(RSAPIRequest *)request
+{
+    NSLog(@"Responses updated.");
+    
+}
+
+- (void) requestDidFail:(RSAPIRequest *)request withError:(NSError *)error
+{
+    NSLog(@"Responses could not be updated: %@", error);
+}
 
 @end

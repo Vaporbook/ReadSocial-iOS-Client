@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "ReadSocialSession.h"
 
 @implementation AppDelegate
 
@@ -20,7 +21,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
     // Override point for customization after application launch.
+    [ReadSocialSession sharedReadSocialSession].networkID = 8;
+    
     self.window.backgroundColor = [UIColor whiteColor];
     
     self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
@@ -121,6 +125,20 @@
     NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"ReadSocial" withExtension:@"momd"];
     __managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return __managedObjectModel;
+}
+
+- (void) resetStore
+{
+    NSArray *stores = [self.persistentStoreCoordinator persistentStores];
+    
+    for(NSPersistentStore *store in stores) {
+        [self.persistentStoreCoordinator removePersistentStore:store error:nil];
+        [[NSFileManager defaultManager] removeItemAtPath:store.URL.path error:nil];
+    }
+    
+    __persistentStoreCoordinator = nil;
+    __managedObjectContext = nil;
+    __managedObjectModel = nil;
 }
 
 /**

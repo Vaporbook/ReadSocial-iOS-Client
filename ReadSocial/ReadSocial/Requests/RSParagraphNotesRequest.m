@@ -12,49 +12,60 @@
 #import "RSUserHandler.h"
 
 @implementation RSParagraphNotesRequest
+@synthesize paragraph=_paragraph;
 
-+ (id) notesForParagraph: (RSParagraph *)paragraph
++ (RSParagraphNotesRequest *) notesForParagraph: (RSParagraph *)paragraph withDelegate: (id<RSAPIRequestDelegate>)delegate
 {
     RSParagraphNotesRequest *request = [[RSParagraphNotesRequest alloc] initWithParagraph:paragraph];
+    request.delegate = delegate;
     [request start];
     return request;
 }
 
-- (id) initWithParagraph: (RSParagraph *)paragraph
++ (RSParagraphNotesRequest *) notesForParagraph: (RSParagraph *)paragraph
+{
+    return [RSParagraphNotesRequest notesForParagraph:paragraph withDelegate:nil];
+}
+
+- (RSParagraphNotesRequest *) initWithParagraph: (RSParagraph *)paragraph
 {
     self = [super init];
-    _paragraph = paragraph;
+    if (self)
+    {
+        _paragraph = paragraph;
+    }
     return self;
 }
 
+# pragma mark - RSAPIRequest Overriden Methods
 - (NSMutableURLRequest *) createRequest
 {
     NSMutableURLRequest *request = [super createRequest];
     
     // Determine the URL
-    NSString *url = [NSString stringWithFormat:@"%@/v1/%d/%@/notes?par_hash=%@", kAPIURL, networkId, defaultGroup, _paragraph.par_hash];
+    NSString *url = [NSString stringWithFormat:@"%@/v1/%d/%@/notes?par_hash=%@", ReadSocialAPIURL, networkID, group, self.paragraph.par_hash];
     
     [request setURL:[NSURL URLWithString:url]];
     
     return request;
 }
 
-- (void) responseReceived
+- (void) handleResponse:(id)json error:(NSError *__autoreleasing *)error
 {
-    [super responseReceived];
+    [super handleResponse:json error:error];
     
     // ResponseJSON should be an NSArray
-    if (![responseJSON isKindOfClass:[NSArray class]])
+    if (![json isKindOfClass:[NSArray class]])
     {
-        [NSException raise:@"Invalid Response" format:@"Invalid response received from API; expecting an array.\n%@", responseJSON];
+        *error = [NSError errorWithDomain:@"Invalid response from server." code:0 userInfo:nil];
+        return;
     }
-    // Create notes
-    NSArray *notes = (NSArray *)responseJSON;
     
-    //NSLog(@"Notes:\n%@", notes);
+    // Create notes
+    NSArray *notes = (NSArray *)json;
     
     // Update the note count for the paragraph
-    _paragraph.noteCount = [NSNumber numberWithInt:[notes count]];
+    self.paragraph.noteCount = [NSNumber numberWithInt:[notes count]];
     
     // First, update user data
     [RSUserHandler updateOrCreateUsersWithArray:notes];

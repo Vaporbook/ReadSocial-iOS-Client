@@ -9,10 +9,14 @@
 #import "RSAPIRequest.h"
 
 @class RSNote;
-@interface RSCreateNoteResponseRequest : RSAPIRequest {
-    RSNote *_note;
+@class RSResponse;
+@interface RSCreateNoteResponseRequest : RSAPIRequest 
+{
     NSString *noteResponseBody;
 }
+
+@property (strong, nonatomic) RSNote *note;
+@property (strong, nonatomic) RSResponse *rsResponse;
 
 + (id) createResponse:(NSString *)content forNote:(RSNote*)note;
 + (id) createResponse:(NSString *)content forNote:(RSNote*)note withDelegate: (id<RSAPIRequestDelegate>)delegate;

@@ -9,14 +9,23 @@
 #import <UIKit/UIKit.h>
 #import "RSComposeNoteViewController.h"
 #import "RSCreateNoteRequest.h"
+#import "RSGroupViewController.h"
 
 @class RSParagraph;
 @class RSComposeNoteViewController;
 
-@interface RSNotesViewController : UITableViewController <RSNoteCompositionDelegate,RSAPIRequestDelegate>
+@interface RSNotesViewController : UITableViewController <RSNoteCompositionDelegate,RSAPIRequestDelegate, RSGroupSelectionDelegate>
 {
     NSArray *notes;
-    RSComposeNoteViewController *noteComposer;
+    
+    /**
+     The view controller keeps track of the raw paragraph so that it always has a sense of the current context.
+     */
+    NSString *raw;
+    
+    // Toolbar items
+    UIActivityIndicatorView *activityIndicator;
+    UIBarButtonItem *status; // The status is implemented as a bar button item because all items on the toolbar must be buttons.
 }
 
 @property (strong, nonatomic) RSParagraph *paragraph;

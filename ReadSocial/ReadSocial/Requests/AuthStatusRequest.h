@@ -10,7 +10,9 @@
 
 @interface AuthStatusRequest : RSAPIRequest
 
-+ (id) status;
-+ (NSURL *) loginURL;
-+ (NSURL *) statusURL;
+@property (nonatomic, readonly) BOOL authed;
+
++ (id) requestAuthStatus;
++ (id) requestAuthStatusWithDelegate: (id<RSAPIRequestDelegate>) delegate;
+
 @end

@@ -7,18 +7,30 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RSCreateNoteResponseRequest.h"
+
+enum {
+    RSResponseCompositionSucceeded  =   0,
+    RSResponseCompositionCancelled  =   1,
+    RSResponseCompositionFailed     =   2
+};
+
 
 @protocol RSResponseCompositionDelegate;
+@class RSResponse;
 
-@interface RSComposeResponseViewController : UIViewController
+@interface RSComposeResponseViewController : UIViewController <RSAPIRequestDelegate>
 {
+    RSNote *_note;
     UITextView *textview;
     UIBarButtonItem *submitButton;
     UIBarButtonItem *cancelButton;
 }
 
 @property (strong, nonatomic) id<RSResponseCompositionDelegate> delegate;
+@property (strong, nonatomic, readonly) RSResponse *response;
 
+- (RSComposeResponseViewController *) initWithNote: (RSNote *)note;
 - (void) enableSubmitButton;
 - (void) disableSubmitButton;
 
@@ -26,7 +38,6 @@
 
 @protocol RSResponseCompositionDelegate <NSObject>
 
-- (void) didSubmitResponseWithString: (NSString *)content;
-- (void) didCancelResponseComposition;
+- (void) didFinishComposingResponse: (RSResponse *)response withResult: (NSInteger)result error: (NSError *)error;
 
 @end

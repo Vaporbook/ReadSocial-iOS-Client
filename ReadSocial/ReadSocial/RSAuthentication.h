@@ -7,12 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RSLoginViewController.h"
 
 extern NSString* const RSAuthenticationLoginWasSuccessful;
 
 @class RSAPIRequest;
 @class RSLoginViewController;
-@interface RSAuthentication : NSObject <UIWebViewDelegate, NSURLConnectionDataDelegate, NSURLConnectionDelegate>
+@interface RSAuthentication : NSObject <UIWebViewDelegate, NSURLConnectionDataDelegate, NSURLConnectionDelegate, RSLoginViewControllerDelegate>
 {
     RSLoginViewController *loginViewController;
     NSURLRequest *lastInspectedRequest;

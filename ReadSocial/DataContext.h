@@ -14,4 +14,9 @@
 + (NSManagedObjectContext *) defaultContext;
 + (void) save;
 
+/**
+ Dumps the entire persistent store.
+ */
++ (void) erase;
+
 @end

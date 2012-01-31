@@ -12,6 +12,7 @@
 #import "RSNote+Core.h"
 
 @implementation RSCreateNoteRequest
+@synthesize paragraph=_paragraph, note;
 
 + (id) createNoteWithString: (NSString *)content forParagarph: (RSParagraph *)paragraph
 {
@@ -37,20 +38,21 @@
     return self;
 }
 
+# pragma mark - RSAPIRequest Overriden Methods
 - (NSMutableURLRequest *) createRequest
 {
     NSMutableURLRequest *request = [super createRequest];
     
     // Set the URL
-    NSString *url = [NSString stringWithFormat:@"%@/v1/%d/%@/notes/create", kAPIURL, networkId, defaultGroup];
+    NSString *url = [NSString stringWithFormat:@"%@/v1/%d/%@/notes/create", ReadSocialAPIURL, networkID, group];
     [request setURL:[NSURL URLWithString:url]];
     
     // Set the headers
     NSDictionary *payload = [NSDictionary dictionaryWithObjectsAndKeys:
-                             [NSNumber numberWithInt:networkId], @"net_id",
-                             defaultGroup,                       @"group_name",
+                             [NSNumber numberWithInt:networkID], @"net_id",
+                             group,                              @"group_name",
                              noteBody,                           @"note_body",
-                             _paragraph.par_hash,                @"par_hash", 
+                             self.paragraph.par_hash,            @"par_hash", 
                              nil];
     
     [request setHTTPBody:[payload JSONData]];
@@ -61,17 +63,12 @@
     return request;
 }
 
-- (void) responseReceived
+- (void) handleResponse:(id)json error:(NSError *__autoreleasing *)error
 {
-    NSLog(@"Response: %@", responseJSON);
+    [super handleResponse:json error:error];
     
     // Create a new note
-    RSNote *note = [RSNote noteFromDictionary:responseJSON];
-    
-    if ([self.delegate respondsToSelector:@selector(requestDidSucceed:)])
-    {
-        [self.delegate requestDidSucceed:note];
-    }
+    note = [RSNote noteFromDictionary:json];
 }
 
 @end

@@ -14,7 +14,6 @@
 @dynamic noteCount;
 @dynamic raw;
 @dynamic par_hash;
-@dynamic groups;
 @dynamic notes;
 
 @end

@@ -11,7 +11,7 @@
 #import "JSONKit.h"
 
 @implementation RSLoginViewController
-@synthesize loginURL, webview;
+@synthesize loginURL, webview, delegate;
 
 - (id) init
 {
@@ -32,19 +32,25 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-#pragma mark - View lifecycle
-
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
+- (void) didCancelLogin
 {
+    if ([delegate respondsToSelector:@selector(didCancelLogin)])
+    {
+        [delegate didCancelLogin];
+    }
 }
-*/
 
+#pragma mark - View lifecycle
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Title on the navigation bar
+    self.title = @"Login";
+    
+    // Cancel button
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(didCancelLogin)];
     
     [webview loadRequest:[NSURLRequest requestWithURL:loginURL]];
     [self.view addSubview:webview];

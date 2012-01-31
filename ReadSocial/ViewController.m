@@ -7,64 +7,29 @@
 //
 
 #import "ViewController.h"
-#import "RSNotesViewController.h"
-#import "RSParagraph+Core.h"
-#import "NSString+RSParagraph.h"
-#import "ReadSocialViewController.h"
-#import "RSAuthentication.h"
-#import "RSUser+Core.h"
 
 @implementation ViewController
 @synthesize webview=_webview;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
 
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     self.webview.delegate = self;
-    
-    // Load the content
     [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html"]]]];
 }
 
-- (void) userLoggedIn: (NSNotification *)notification
+- (void) openReadSocial
 {
-    NSLog(@"WELCOME, %@", ((RSUser *)notification.object).name);
+    [ReadSocial openReadSocialForSelectionInView:self.view];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     // When this view appears, add the custom menu item
-    UIMenuItem *readSocial = [[UIMenuItem alloc] initWithTitle:@"ReadSocial" action:@selector(getWholeParagraph)];
+    UIMenuItem *readSocial = [[UIMenuItem alloc] initWithTitle:@"ReadSocial" action:@selector(openReadSocial)];
     [[UIMenuController sharedMenuController] setMenuItems:[NSArray arrayWithObject:readSocial]];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoggedIn:) name:RSAuthenticationLoginWasSuccessful object:nil];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -73,45 +38,63 @@
 	return YES;
 }
 
-#pragma mark - ReadSocial behaviors
-- (CGRect) getSelectionLocation
+# pragma mark - ReadSocial Data Source
+- (NSInteger) numberOfParagraphsOnPage
 {
-    float x = [[self.webview stringByEvaluatingJavaScriptFromString:@"window.getSelection().anchorNode.parentNode.getBoundingClientRect().left"] floatValue];
-    float y = [[self.webview stringByEvaluatingJavaScriptFromString:@"window.getSelection().anchorNode.parentNode.getBoundingClientRect().top"] floatValue];
-    float width = [[self.webview stringByEvaluatingJavaScriptFromString:@"window.getSelection().anchorNode.parentNode.getBoundingClientRect().right"] floatValue] - x;
-    float height = [[self.webview stringByEvaluatingJavaScriptFromString:@"window.getSelection().anchorNode.parentNode.getBoundingClientRect().bottom"] floatValue] - y;
-    return CGRectMake(x,y,width,height);
+    return [[self.webview stringByEvaluatingJavaScriptFromString:@"RS.countParagraphsInView()"] intValue];
 }
 
-- (void) getWholeParagraph
+- (NSString *) paragraphAtIndex:(NSInteger)index
 {
-    // Get the paragraph with the selected word
-    NSString *raw = [self.webview stringByEvaluatingJavaScriptFromString:@"window.getSelection().anchorNode.data"];
-    NSLog(@"Paragraph: %@", raw);
-    
-    // Select the entire paragraph
-    [self.webview stringByEvaluatingJavaScriptFromString:@"window.getSelection().modify(\"extend\",\"backward\",\"paragraphboundary\");window.getSelection().modify(\"extend\",\"forward\",\"paragraphboundary\");"];
-    
-    // Get a rectangle that describes the paragraph's current place on the page
-    CGRect paragraphLocation = [self getSelectionLocation];
-    
-    // Create a paragraph
-    RSParagraph *paragraph = [RSParagraph createParagraphInDefaultContextForString:raw];
-    NSLog(@"Paragraph hash: %@", paragraph.par_hash);
-    
-    ReadSocialViewController *rsvc = [[ReadSocialViewController alloc] initWithParagraph:paragraph];
-    popover = [[UIPopoverController alloc] initWithContentViewController:rsvc];
-    popover.delegate = self;
-    
-    [popover presentPopoverFromRect:paragraphLocation inView:self.view permittedArrowDirections:(UIPopoverArrowDirectionDown|UIPopoverArrowDirectionUp) animated:YES];
+    return [self.webview stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"RS.paragraphAtIndex(%d).innerText", index]];
 }
+
+- (NSString *) paragraphAtSelection
+{
+    return [self.webview stringByEvaluatingJavaScriptFromString:@"window.getSelection().anchorNode.data"];
+}
+
+- (CGRect) rectForParagraphAtIndex:(NSInteger)index
+{
+    // Get comma-separated coordinates
+    NSString *coordinates = [self.webview stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"RS.coordinatesForParagraphAtIndex(%d)", index]];
+    
+    // Split the coordinates into components
+    NSArray *components = [coordinates componentsSeparatedByString:@","];
+    
+    float x = [[components objectAtIndex:0] floatValue];
+    float y = [[components objectAtIndex:1] floatValue];
+    float width = [[components objectAtIndex:2] floatValue];
+    float height = [[components objectAtIndex:3] floatValue];
+    
+    return CGRectMake(x, y, width, height);
+}
+
 
 #pragma mark - UIWebView delegate methods
+- (BOOL) webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    if ([[[request URL] scheme] isEqualToString:@"rs"]) 
+    {
+        // Whenever the page scrolls, we treat that like a new page
+        [ReadSocial setCurrentPage:self];
+        return NO;
+    }
+    return YES;
+}
 - (void) webViewDidFinishLoad:(UIWebView *)webView
 {
-    // Count the number of paragraphs in the document
-    NSString *count = [webView stringByEvaluatingJavaScriptFromString:@"document.querySelectorAll(\"p\").length"];
-    NSLog(@"Number of paragraphs: %@", count);
+    // Inject RS JavaScript
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"rs" ofType:@"js"];
+    NSError *error;
+    NSString *js = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
+    if (error)
+    {
+        return;
+    }
+    
+    [webView stringByEvaluatingJavaScriptFromString:js];
+    [ReadSocial setCurrentPage:self];
 }
 
 @end

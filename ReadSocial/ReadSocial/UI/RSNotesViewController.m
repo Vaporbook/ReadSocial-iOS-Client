@@ -14,9 +14,19 @@
 #import "RSNoteDetailViewController.h"
 #import "RSUser+Core.h"
 #import "DataContext.h"
+#import "ReadSocialSession.h"
+#import "RSGroupViewController.h"
+#import "RSNavigationController.h"
+#import "RSParagraphNotesRequest.h"
 
 @implementation RSNotesViewController
 @synthesize paragraph=_paragraph;
+
+- (void) setParagraph:(RSParagraph *)paragraph
+{
+    _paragraph = paragraph;
+    raw = paragraph.raw;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -50,37 +60,58 @@
     // TODO: This method is getting triggered twice upon opening the view--when new users are updated and when the responses are updated.
     notes = [RSNoteHandler notesForParagraph:_paragraph];
     [self.tableView reloadData];
+    [self.tableView flashScrollIndicators];
 }
 - (void) presentNoteComposer
 {
-    // Create the composer
-    noteComposer = [RSComposeNoteViewController new];
-    
-    UINavigationController *composer = [[UINavigationController alloc] initWithRootViewController:noteComposer];
-    
-    composer.modalInPopover = YES;
-    composer.modalPresentationStyle = UIModalPresentationCurrentContext;
+    RSComposeNoteViewController *noteComposer = [[RSComposeNoteViewController alloc] initWithParagraph:self.paragraph];
     noteComposer.delegate = self;
-    [self.navigationController presentModalViewController:composer animated:YES];
+    
+    [self.navigationController presentModalViewController:[RSNavigationController wrapViewController:noteComposer withInputEnabled:YES] animated:YES];
 }
 
-- (void) requestDidSucceed:(id)note
+- (void) changeGroup
 {
-    [DataContext save];
-    RSNoteDetailViewController *detail = [[RSNoteDetailViewController alloc] initWithNote:(RSNote *)note];
-    [self.navigationController pushViewController:detail animated:NO];
-    [self.navigationController dismissModalViewControllerAnimated:YES];
+    RSGroupViewController *groupViewController = [RSGroupViewController new];
+    groupViewController.delegate = self;
+    
+    [self.navigationController presentModalViewController:[RSNavigationController wrapViewController:groupViewController withInputEnabled:NO] animated:YES];
 }
 
 # pragma mark - Note Composer Delegate methods
-- (void) didCancelNoteComposition
+- (void) didFinishComposingNote:(RSNote *)note withResult:(NSInteger)result error:(NSError *)error
 {
-    [self.navigationController dismissModalViewControllerAnimated:YES];
+    NSLog(@"Finished compositing note with result: %d", result);
+    
+    // Only close the modal view if the note was submitted succesfully, or if the user cancelled it
+    // Do not cancel the note if an error occurred.
+    if (result==RSNoteCompositionSucceeded || result==RSNoteCompositionCancelled)
+    {
+        [self dismissModalViewControllerAnimated:YES];
+    }
+    
+    // If the note was created successfully, open the note detail view with the new note
+    if (result==RSNoteCompositionSucceeded)
+    {
+        RSNoteDetailViewController *noteDetailViewController = [[RSNoteDetailViewController alloc] initWithNote:note];
+        [self.navigationController pushViewController:noteDetailViewController animated:NO];
+    }
 }
-- (void) didSubmitNoteWithString:(NSString *)content
+
+#pragma mark - Group Selection delegate
+- (void) didChangeToGroup:(NSString *)group
 {
-    [noteComposer disableSubmitButton];
-    [RSCreateNoteRequest createNoteWithString:content forParagraph:self.paragraph withDelegate:self];
+    NSLog(@"Did change group.");
+    self.navigationItem.leftBarButtonItem.title = group;
+    
+    // Pull data from the persistent store so that the interface can immediately open
+    [self reloadNotes];
+    
+    // Recreate the current paragraph
+    self.paragraph = [RSParagraph createParagraphInDefaultContextForString:raw];
+    
+    // Request updated notes
+    [RSParagraphNotesRequest notesForParagraph:self.paragraph withDelegate:self];
 }
 
 #pragma mark - View lifecycle
@@ -89,14 +120,28 @@
 {
     [super viewDidLoad];
     
+    status = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    status.enabled = NO;
+    status.tintColor = [UIColor whiteColor];
+    
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    activityIndicator.hidesWhenStopped = YES;
+    
+    // Add a toolbar to the bottom
+    self.navigationController.toolbarHidden = NO;
+    self.toolbarItems = [NSArray arrayWithObjects:
+                         [[UIBarButtonItem alloc] initWithCustomView: activityIndicator],
+                         [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+                         status,
+                         nil];
+    
     // Set the title and the back button for the notes listing
     self.title = @"ReadSocial";
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:[ReadSocialSession sharedReadSocialSession].currentGroup style:UIBarButtonItemStyleBordered target:self action:@selector(changeGroup)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(presentNoteComposer)];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Notes" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.contentSizeForViewInPopover = CGSizeMake(300.0, 300.0);
-    
-    // Listen for the data context to change
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadNotes) name:NSManagedObjectContextObjectsDidChangeNotification object:nil];
 }
 
 - (void)viewDidUnload
@@ -108,8 +153,11 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    // Pull data from the persistent store so that the interface can immediately open
     notes = [RSNoteHandler notesForParagraph:_paragraph];
-    [RSNoteHandler updateNotesForParagraph:_paragraph];
+    
+    // Request updated notes
+    [RSParagraphNotesRequest notesForParagraph:self.paragraph withDelegate:self];
     
     [super viewWillAppear:animated];
 }
@@ -126,9 +174,9 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
     [super viewDidDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -223,6 +271,26 @@
     RSNoteDetailViewController *detailViewController = [[RSNoteDetailViewController alloc] initWithNote:note];
     
     [self.navigationController pushViewController:detailViewController animated:YES];
+}
+
+#pragma mark - RSAPIRequest Delegate Methods
+- (void) didStartRequest:(RSAPIRequest *)request
+{
+    NSLog(@"Updating notes...");
+    [activityIndicator startAnimating];
+    // Listen for the data context to change
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadNotes) name:NSManagedObjectContextObjectsDidChangeNotification object:[DataContext defaultContext]];
+}
+- (void) requestDidSucceed:(RSAPIRequest *)request
+{
+    NSLog(@"Notes updated.");
+    [activityIndicator stopAnimating];
+}
+
+- (void) requestDidFail:(RSAPIRequest *)request withError:(NSError *)error
+{
+    NSLog(@"Notes could not be updated.");
+    [activityIndicator stopAnimating];
 }
 
 @end

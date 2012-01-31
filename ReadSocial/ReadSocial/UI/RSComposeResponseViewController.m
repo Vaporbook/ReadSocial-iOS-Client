@@ -8,24 +8,23 @@
 
 #import "RSComposeResponseViewController.h"
 
-@implementation RSComposeResponseViewController
-@synthesize delegate;
+@interface RSComposeResponseViewController ()
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void) finishResponseCompositionWithResult: (NSInteger)result error:(NSError *)error;
+
+@end
+
+@implementation RSComposeResponseViewController
+@synthesize delegate, response;
+
+- (RSComposeResponseViewController *) initWithNote: (RSNote *)note
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    self = [super init];
+    if (self)
+    {
+        _note = note;
     }
     return self;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
 }
 
 - (void) enableSubmitButton
@@ -41,19 +40,22 @@
 - (void) submitResponse
 {
     [textview resignFirstResponder];
-    
-    if ([delegate respondsToSelector:@selector(didSubmitResponseWithString:)])
-    {
-        [delegate didSubmitResponseWithString:textview.text];
-    }
+    [self disableSubmitButton];
+    [RSCreateNoteResponseRequest createResponse:textview.text forNote:_note withDelegate:self];
 }
 
-- (void) didCancelResponseComposition
+- (void) cancelResponseComposition
 {
-    if ([delegate respondsToSelector:@selector(didCancelResponseComposition)])
+    [self disableSubmitButton];
+    [self finishResponseCompositionWithResult:RSResponseCompositionCancelled error:nil];
+}
+
+- (void) finishResponseCompositionWithResult: (NSInteger)result error:(NSError *)error
+{
+    if ([delegate respondsToSelector:@selector(didFinishComposingResponse:withResult:error:)])
     {
-        [delegate didCancelResponseComposition];
-    }
+        [delegate didFinishComposingResponse:self.response withResult:result error:error];
+    } 
 }
 
 #pragma mark - View lifecycle
@@ -65,7 +67,7 @@
     
     // Create the buttons
     submitButton = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStyleDone target:self action:@selector(submitResponse)];
-    cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(didCancelResponseComposition)];
+    cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancelResponseComposition)];
     
     // Create the view
     UIView *view = [UIView new];
@@ -81,7 +83,7 @@
 {
     [super viewDidLoad];
     
-    self.title = @"Compose Response";
+    self.title = @"Add Response";
     self.navigationItem.leftBarButtonItem = cancelButton;
     self.navigationItem.rightBarButtonItem = submitButton;
 }
@@ -113,6 +115,21 @@
 {
     // Return YES for supported orientations
 	return YES;
+}
+
+#pragma mark - RSAPIRequest Delegate Methods
+- (void) requestDidSucceed:(RSCreateNoteResponseRequest *)request
+{
+    NSLog(@"Response created!");
+    response = request.rsResponse;
+    [self finishResponseCompositionWithResult:RSResponseCompositionSucceeded error:nil];
+}
+
+- (void) requestDidFail:(RSAPIRequest *)request withError:(NSError *)error
+{
+    NSLog(@"Response failed to create.");
+    [self enableSubmitButton];
+    [self finishResponseCompositionWithResult:RSResponseCompositionFailed error:error];
 }
 
 @end

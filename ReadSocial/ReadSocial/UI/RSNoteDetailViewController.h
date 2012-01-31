@@ -14,7 +14,6 @@
 @interface RSNoteDetailViewController : UITableViewController <RSResponseCompositionDelegate, RSAPIRequestDelegate>
 {
     NSArray *responses;
-    RSComposeResponseViewController *responseComposer;
 }
 
 - (id) initWithNote: (RSNote *)note;

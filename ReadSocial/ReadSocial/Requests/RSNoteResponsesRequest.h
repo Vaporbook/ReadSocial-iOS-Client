@@ -9,11 +9,12 @@
 #import "RSAPIRequest.h"
 
 @class RSNote;
-@interface RSNoteResponsesRequest : RSAPIRequest {
-    RSNote* _note;
-}
+@interface RSNoteResponsesRequest : RSAPIRequest
 
-+ (id) responsesForNote: (RSNote *)note;
-- (id) initWithNote: (RSNote *)note;
+@property (strong, nonatomic) RSNote *note;
+
++ (RSNoteResponsesRequest *) responsesForNote: (RSNote *)note withDelegate: (id<RSAPIRequestDelegate>)delegate;
++ (RSNoteResponsesRequest *) responsesForNote: (RSNote *)note;
+- (RSNoteResponsesRequest *) initWithNote: (RSNote *)note;
 
 @end
