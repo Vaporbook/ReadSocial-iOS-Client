@@ -30,6 +30,12 @@ var RS = {
         return RS.paragraphs[i];
     },
     
+    indexAtSelection: function()
+    {
+        var p = window.getSelection().anchorNode.parentElement; //parentNode
+        return RS.paragraphs.indexOf(p);
+    },
+    
     coordinatesForParagraphAtIndex: function(i)
     {
         var p    = RS.paragraphAtIndex(i),

@@ -49,9 +49,14 @@
     return [self.webview stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"RS.paragraphAtIndex(%d).innerText", index]];
 }
 
-- (NSString *) paragraphAtSelection
+- (NSInteger) paragraphIndexAtSelection
 {
-    return [self.webview stringByEvaluatingJavaScriptFromString:@"window.getSelection().anchorNode.data"];
+    return [[self.webview stringByEvaluatingJavaScriptFromString:@"RS.indexAtSelection()"] intValue];
+}
+
+- (NSString *) selectedText
+{
+    return [self.webview stringByEvaluatingJavaScriptFromString:@"window.getSelection().toString()"];
 }
 
 - (CGRect) rectForParagraphAtIndex:(NSInteger)index

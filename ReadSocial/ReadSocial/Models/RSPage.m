@@ -51,9 +51,18 @@ NSString* const RSParagraphUpdatedNoteCount = @"RSParagraphUpdatedNoteCount";
     }
 }
 
+- (RSParagraph *) selectedParagraph
+{
+    // Request from the data source the index of the selected paragraph
+    NSInteger index = [datasource paragraphIndexAtSelection];
+    
+    // Determine the RSParagraph associated with that index
+    return [paragraphs objectAtIndex:index];
+}
+
 - (NSString *) selection
 {
-    return [datasource paragraphAtSelection];
+    return [datasource selectedText];
 }
 
 #pragma mark - RSAPIRequest Delegate methods

@@ -30,7 +30,7 @@
     NSMutableURLRequest *request = [super createRequest];
     
     // Set the URL
-    NSString *url = [NSString stringWithFormat:@"%@/v1/%d/auth/status", ReadSocialAPIURL, networkID];
+    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/auth/status", ReadSocialAPIURL, networkID];
     [request setURL:[NSURL URLWithString:url]];
     
     return request;

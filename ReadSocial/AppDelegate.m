@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
-#import "ReadSocialSession.h"
+#import "ReadSocial.h"
 
 @implementation AppDelegate
 
@@ -22,8 +22,8 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    // Override point for customization after application launch.
-    [ReadSocialSession sharedReadSocialSession].networkID = 8;
+    // Initialize ReadSocial
+    [ReadSocial initializeWithNetworkID:[NSNumber numberWithInt:8] andDefaultGroup:@"partner-testing-channel"];
     
     self.window.backgroundColor = [UIColor whiteColor];
     

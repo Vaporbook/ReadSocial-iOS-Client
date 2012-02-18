@@ -43,7 +43,7 @@
     NSMutableURLRequest *request = [super createRequest];
     
     // Determine the URL
-    NSString *url = [NSString stringWithFormat:@"%@/v1/%d/%@/notes?par_hash=%@", ReadSocialAPIURL, networkID, group, self.paragraph.par_hash];
+    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/%@/notes?par_hash=%@", ReadSocialAPIURL, networkID, group, self.paragraph.par_hash];
     
     [request setURL:[NSURL URLWithString:url]];
     

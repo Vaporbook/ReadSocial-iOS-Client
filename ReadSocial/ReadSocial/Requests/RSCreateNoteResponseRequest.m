@@ -41,14 +41,14 @@
     NSMutableURLRequest *request = [super createRequest];
     
     // Set the URL
-    NSString *url = [NSString stringWithFormat:@"%@/v1/%d/notes/%@/responses/create", ReadSocialAPIURL, networkID, self.note.id];
+    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/notes/%@/responses/create", ReadSocialAPIURL, networkID, self.note.id];
     [request setURL:[NSURL URLWithString:url]];
     
     // Set the headers
     NSDictionary *payload = [NSDictionary dictionaryWithObjectsAndKeys:
-                             [NSNumber numberWithInt:networkID],  @"net_id",
-                             self.note.id,                        @"note_id",
-                             noteResponseBody,                    @"resp_body", 
+                             networkID,         @"net_id",
+                             self.note.id,      @"note_id",
+                             noteResponseBody,  @"resp_body", 
                              nil];
     
     [request setHTTPBody:[payload JSONData]];

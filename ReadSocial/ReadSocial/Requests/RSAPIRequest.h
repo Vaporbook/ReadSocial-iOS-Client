@@ -20,7 +20,7 @@ extern NSString* const ReadSocialAPIURL;
     
     // Copy of session variables for request
     // Just in case the session changes in the middle of a request.
-    int networkID;
+    NSNumber *networkID;
     NSString *group;
     
     // Time response sent

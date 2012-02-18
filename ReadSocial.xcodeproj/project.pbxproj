@@ -42,7 +42,6 @@
 		0E78F67414D5CC2E00DF151B /* RSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E78F67314D5CC2E00DF151B /* RSUser.m */; };
 		0E78F67714D5D10400DF151B /* RSUserHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E78F67614D5D10300DF151B /* RSUserHandler.m */; };
 		0E78F67A14D5E32400DF151B /* RSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E78F67914D5E32400DF151B /* RSLoginViewController.m */; };
-		0EAEF53714D745C600EA2ECE /* ReadSocialSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EAEF53614D745C600EA2ECE /* ReadSocialSession.m */; };
 		0EAEF53B14D74D5000EA2ECE /* RSGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EAEF53A14D74D5000EA2ECE /* RSGroupViewController.m */; };
 		0EAEF53E14D7531C00EA2ECE /* ReadSocial.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EAEF53D14D7531B00EA2ECE /* ReadSocial.m */; };
 		0EAEF54114D7544100EA2ECE /* RSPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EAEF54014D7544100EA2ECE /* RSPage.m */; };
@@ -51,7 +50,6 @@
 		0EC8A9C114D6504F00EA7C74 /* RSComposeNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8A9C014D6504F00EA7C74 /* RSComposeNoteViewController.m */; };
 		0EC8A9C414D6639500EA7C74 /* RSCreateNoteRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8A9C314D6639500EA7C74 /* RSCreateNoteRequest.m */; };
 		0EC8A9C714D66E3D00EA7C74 /* RSComposeResponseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8A9C614D66E3C00EA7C74 /* RSComposeResponseViewController.m */; };
-		0EE9417C14D794FE00526C36 /* rs.js in Sources */ = {isa = PBXBuildFile; fileRef = 0EE9417B14D794FE00526C36 /* rs.js */; };
 		0EE9417E14D79A1400526C36 /* rs.js in Resources */ = {isa = PBXBuildFile; fileRef = 0EE9417B14D794FE00526C36 /* rs.js */; };
 /* End PBXBuildFile section */
 
@@ -120,8 +118,6 @@
 		0E78F67614D5D10300DF151B /* RSUserHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSUserHandler.m; sourceTree = "<group>"; };
 		0E78F67814D5E32300DF151B /* RSLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSLoginViewController.h; sourceTree = "<group>"; };
 		0E78F67914D5E32400DF151B /* RSLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSLoginViewController.m; sourceTree = "<group>"; };
-		0EAEF53514D745C500EA2ECE /* ReadSocialSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReadSocialSession.h; path = ReadSocial/ReadSocialSession.h; sourceTree = "<group>"; };
-		0EAEF53614D745C600EA2ECE /* ReadSocialSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReadSocialSession.m; path = ReadSocial/ReadSocialSession.m; sourceTree = "<group>"; };
 		0EAEF53914D74D5000EA2ECE /* RSGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSGroupViewController.h; sourceTree = "<group>"; };
 		0EAEF53A14D74D5000EA2ECE /* RSGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSGroupViewController.m; sourceTree = "<group>"; };
 		0EAEF53C14D7531A00EA2ECE /* ReadSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReadSocial.h; path = ReadSocial/ReadSocial.h; sourceTree = "<group>"; };
@@ -130,6 +126,7 @@
 		0EAEF54014D7544100EA2ECE /* RSPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSPage.m; sourceTree = "<group>"; };
 		0EAEF54214D756C100EA2ECE /* RSNoteCountRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNoteCountRequest.h; sourceTree = "<group>"; };
 		0EAEF54314D756C100EA2ECE /* RSNoteCountRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNoteCountRequest.m; sourceTree = "<group>"; };
+		0EBFDF4A14F0647200CD45F6 /* ReadSocialAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReadSocialAPI.h; path = ReadSocial/ReadSocialAPI.h; sourceTree = "<group>"; };
 		0EC8A9BB14D5FAB600EA7C74 /* RSAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSAuthentication.h; path = ReadSocial/RSAuthentication.h; sourceTree = "<group>"; };
 		0EC8A9BC14D5FAB600EA7C74 /* RSAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSAuthentication.m; path = ReadSocial/RSAuthentication.m; sourceTree = "<group>"; };
 		0EC8A9BF14D6504E00EA7C74 /* RSComposeNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSComposeNoteViewController.h; sourceTree = "<group>"; };
@@ -237,9 +234,8 @@
 				0E34D0DB14CF3D3300AAEC1D /* DataContext.m */,
 				0EC8A9BB14D5FAB600EA7C74 /* RSAuthentication.h */,
 				0EC8A9BC14D5FAB600EA7C74 /* RSAuthentication.m */,
-				0EAEF53514D745C500EA2ECE /* ReadSocialSession.h */,
-				0EAEF53614D745C600EA2ECE /* ReadSocialSession.m */,
 				0EAEF53C14D7531A00EA2ECE /* ReadSocial.h */,
+				0EBFDF4A14F0647200CD45F6 /* ReadSocialAPI.h */,
 				0EAEF53D14D7531B00EA2ECE /* ReadSocial.m */,
 			);
 			path = ReadSocial;
@@ -425,12 +421,10 @@
 				0EC8A9C114D6504F00EA7C74 /* RSComposeNoteViewController.m in Sources */,
 				0EC8A9C414D6639500EA7C74 /* RSCreateNoteRequest.m in Sources */,
 				0EC8A9C714D66E3D00EA7C74 /* RSComposeResponseViewController.m in Sources */,
-				0EAEF53714D745C600EA2ECE /* ReadSocialSession.m in Sources */,
 				0EAEF53B14D74D5000EA2ECE /* RSGroupViewController.m in Sources */,
 				0EAEF53E14D7531C00EA2ECE /* ReadSocial.m in Sources */,
 				0EAEF54114D7544100EA2ECE /* RSPage.m in Sources */,
 				0EAEF54414D756C100EA2ECE /* RSNoteCountRequest.m in Sources */,
-				0EE9417C14D794FE00526C36 /* rs.js in Sources */,
 				0E1BAC1414D8580E009F5C69 /* RSNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,7 +9,7 @@
 #import "RSAPIRequest.h"
 #import "JSONKit.h"
 #import "RSAuthentication.h"
-#import "ReadSocialSession.h"
+#import "ReadSocial.h"
 
 NSString* const ReadSocialAPIURL = @"https://api.readsocial.net";
 static NSString *userAgent;
@@ -38,9 +38,9 @@ static NSString *userAgent;
     self = [super init];
     if (self)
     {
-        networkID = [ReadSocialSession sharedReadSocialSession].networkID;
-        group = [ReadSocialSession sharedReadSocialSession].currentGroup;
-        receivedError = NO;
+        networkID       =   [ReadSocial networkID];
+        group           =   [ReadSocial currentGroup];
+        receivedError   =   NO;
     }
     return self;
 }

@@ -7,17 +7,10 @@
 //
 
 #import "RSNotesViewController.h"
-#import "RSParagraph+Core.h"
-#import "RSNote+Core.h"
-#import "RSNoteHandler.h"
-#import "RSParagraphNotesRequest.h"
 #import "RSNoteDetailViewController.h"
-#import "RSUser+Core.h"
-#import "DataContext.h"
-#import "ReadSocialSession.h"
 #import "RSGroupViewController.h"
 #import "RSNavigationController.h"
-#import "RSParagraphNotesRequest.h"
+#import "ReadSocialAPI.h"
 
 @implementation RSNotesViewController
 @synthesize paragraph=_paragraph;
@@ -138,7 +131,7 @@
     // Set the title and the back button for the notes listing
     self.title = @"ReadSocial";
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:[ReadSocialSession sharedReadSocialSession].currentGroup style:UIBarButtonItemStyleBordered target:self action:@selector(changeGroup)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:[ReadSocial sharedInstance].currentGroup style:UIBarButtonItemStyleBordered target:self action:@selector(changeGroup)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(presentNoteComposer)];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Notes" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.contentSizeForViewInPopover = CGSizeMake(300.0, 300.0);

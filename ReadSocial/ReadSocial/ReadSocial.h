@@ -7,12 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RSParagraph+Core.h"
-#import "RSNote+Core.h"
-#import "RSResponse+Core.h"
-#import "RSUser+Core.h"
 
 @class RSPage;
+@class RSParagraph;
+@class RSNote;
+@class RSResponse;
 @protocol ReadSocialDataSource;
 
 extern NSString* const ReadSocialUserSelectedParagraphNotification;
@@ -25,10 +24,59 @@ extern NSString* const ReadSocialUserDidChangeGroupNotification;
 
 @interface ReadSocial : NSObject
 
-+ (RSPage *) initView: (id<ReadSocialDataSource>)view;
+/**
+ The default network ID for this ReadSocial session.
+ */
+@property (nonatomic, strong) NSNumber *networkID;
+
+/**
+ The root UI controller for ReadSocial.
+ Right now, it is assumed that the ReadSocial UI will be presented in a UIPopover.
+ TODO: Another level of abstraction needs to be added so that the interface for ReadSocial can be anything--not just a popover.
+ */
+@property (nonatomic, strong) UIPopoverController *rsPopover;
+
+/**
+ The page the user is currently viewing.
+ Contains references to each paragraph on the page as well as the datasource 
+ reference to obtain more information as needed.
+ */
+@property (nonatomic, strong) RSPage *currentPage;
+
+/**
+ The group the user is currently using. All notes are filtered by this group.
+ This property cannot be changed directly but can be modified with changeToGroupWithString.
+ Changing the group will trigger a wipe of the persistent store and it will redownload all the data.
+ */
+@property (readonly, getter = getCurrentGroup) NSString *currentGroup;
+
+/**
+ The default group for this app.
+ Changing this value will not change the current group.
+ This is generally only referred to on initial app launch as once the user sets
+ a new group, that group will become the default group for subsequent app launches.
+ */
+@property (nonatomic, strong) NSString *defaultGroup;
+
+/**
+ Change the group frmo which the user is posting and receiving data.
+ Changing the group will empty out the persistent store in preparation for the new content from the server.
+ */
+- (void) changeToGroupWithString: (NSString *) newGroup;
+
+
+- (RSPage *) initializeView: (id<ReadSocialDataSource>)view;
 + (void) setCurrentPage: (id<ReadSocialDataSource>)view;
-+ (void) openReadSocialForParagraph: (NSString *)content inView: (UIView *)view;
++ (void) openReadSocialForParagraph: (RSParagraph *)paragaph inView: (UIView *)view;
++ (void) openReadSocialForRawParagraph: (NSString *)content inView: (UIView *)view;
 + (void) openReadSocialForSelectionInView: (UIView *)view;
+
+// Convenience accessors
++ (NSNumber *) networkID;
++ (NSString *) currentGroup;
+
++ (ReadSocial *) sharedInstance;
++ (ReadSocial *) initializeWithNetworkID: (NSNumber *)networkID andDefaultGroup: (NSString *)defaultGroup;
 
 // API Methods //TODO: Implement API Methods
 //- (NSNumber *) noteCountForRawParagraph: (NSString *)raw;
@@ -54,6 +102,7 @@ extern NSString* const ReadSocialUserDidChangeGroupNotification;
  */
 @protocol ReadSocialDelegate <NSObject>
 
+@optional
 - (void) userDidSelectParagraph: (RSParagraph *)paragraph;
 - (void) userWillComposeNote: (RSNote *)note;
 - (void) userDidComposeNote: (RSNote *)note;
@@ -92,7 +141,7 @@ extern NSString* const ReadSocialUserDidChangeGroupNotification;
  which is intended to be invoked by a UIMenuItem.
  TODO: Consider removing the paragraphAtSelection delegate method as it is inconsistent with how other methods interact (based on paragraph index).
  */
-- (NSString *) paragraphAtSelection;
+//RETIRED- (NSString *) paragraphAtSelection;
 
 /**
  Same as paragraphAtSelection, but instead of requesting the raw paragraph content,

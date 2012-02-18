@@ -7,7 +7,7 @@
 //
 
 #import "RSGroupViewController.h"
-#import "ReadSocialSession.h"
+#import "ReadSocial.h"
 
 @implementation RSGroupViewController
 @synthesize groups, delegate;
@@ -17,7 +17,7 @@
     self = [super init];
     if (self)
     {
-        oldGroup = [ReadSocialSession sharedReadSocialSession].currentGroup;
+        oldGroup = [ReadSocial currentGroup];
         selectedGroup = oldGroup;
     }
     return self;
@@ -27,7 +27,7 @@
 {
     if (![oldGroup isEqualToString:selectedGroup] && [delegate respondsToSelector:@selector(didChangeToGroup:)])
     {
-        [[ReadSocialSession sharedReadSocialSession] changeToGroupWithString:selectedGroup];
+        [[ReadSocial sharedInstance] changeToGroupWithString:selectedGroup];
         [delegate didChangeToGroup:selectedGroup];
     }
     [self dismissModalViewControllerAnimated:YES];

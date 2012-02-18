@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ReadSocial.h"
+#import "ReadSocialAPI.h"
 
 @class RSAuthentication;
-@interface ViewController : UIViewController <UIWebViewDelegate, ReadSocialDataSource>
+@interface ViewController : UIViewController <UIWebViewDelegate, ReadSocialDataSource, ReadSocialDelegate>
 
 @property (strong, nonatomic) IBOutlet UIWebView *webview;
 

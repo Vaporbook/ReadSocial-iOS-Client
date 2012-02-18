@@ -19,6 +19,7 @@ extern NSString* const RSParagraphUpdatedNoteCount;
 @property (strong, nonatomic) NSArray *paragraphs;
 @property (strong, nonatomic) id<ReadSocialDataSource> datasource;
 @property (strong, readonly) NSString *selection;
+@property (strong, readonly) RSParagraph *selectedParagraph;
 
 - (RSPage *) initWithDataSource: (id<ReadSocialDataSource>)pDatasource;
 

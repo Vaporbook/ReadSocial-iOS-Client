@@ -12,7 +12,7 @@
 #import "JSONKit.h"
 #import "RSUser+Core.h"
 #import "RSUserHandler.h"
-#import "ReadSocialSession.h"
+#import "ReadSocial.h"
 
 NSString* const RSAuthenticationLoginWasSuccessful  =   @"RSloginWasSuccessful";
 
@@ -63,13 +63,13 @@ NSString* const RSAuthenticationLoginWasSuccessful  =   @"RSloginWasSuccessful";
 
 + (NSURL *) loginURL
 {
-    NSString *url = [NSString stringWithFormat:@"%@/v1/%d/auth/login", ReadSocialAPIURL, [ReadSocialSession sharedReadSocialSession].networkID];
+    NSString *url = [NSString stringWithFormat:@"%@/v1/%d/auth/login", ReadSocialAPIURL, [ReadSocial networkID]];
     return [NSURL URLWithString:url];
 }
 
 + (NSURL *) statusURL
 {
-    NSString *url = [NSString stringWithFormat:@"%@/v1/%d/auth/status", ReadSocialAPIURL, [ReadSocialSession sharedReadSocialSession].networkID];
+    NSString *url = [NSString stringWithFormat:@"%@/v1/%d/auth/status", ReadSocialAPIURL, [ReadSocial networkID]];
     return [NSURL URLWithString:url];
 }
 
