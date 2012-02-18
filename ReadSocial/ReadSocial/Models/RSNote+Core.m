@@ -35,7 +35,7 @@ NSString* const kNoteParagraphHash  = @"par_hash";
 {
     // Set note values
     self.body       = [args valueForKey:kNoteBody];
-    self.link       = [args valueForKey:kNoteLink];
+    self.link       = [NSString stringWithFormat:@"%@", [args valueForKey:kNoteLink]];
     self.timestamp  = [NSDate dateWithTimeIntervalSince1970:([[args valueForKey:kNoteCreated] floatValue]/1000)];
     self.paragraph  = [RSParagraph paragraphFromHash:[args valueForKey:kNoteParagraphHash]];
     self.user       = [RSUserHandler userForID:[args valueForKey:kUserId]];
