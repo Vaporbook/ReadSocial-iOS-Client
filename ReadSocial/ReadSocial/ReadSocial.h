@@ -13,6 +13,7 @@
 @class RSNote;
 @class RSResponse;
 @protocol ReadSocialDataSource;
+@protocol ReadSocialDelegate;
 
 extern NSString* const ReadSocialUserSelectedParagraphNotification;
 extern NSString* const ReadSocialUserWillComposeNoteNotification;
@@ -59,14 +60,30 @@ extern NSString* const ReadSocialUserDidChangeGroupNotification;
 @property (nonatomic, strong) NSString *defaultGroup;
 
 /**
+ Object to receive delegate notifications when the user interacts with the API.
+ */
+@property (nonatomic, strong) id<ReadSocialDelegate> delegate;
+
+/**
  Change the group frmo which the user is posting and receiving data.
  Changing the group will empty out the persistent store in preparation for the new content from the server.
  */
 - (void) changeToGroupWithString: (NSString *) newGroup;
 
 
+# pragma mark Delegate and Notification Triggers
+- (void) userDidSelectParagraph: (RSParagraph *)paragraph;
+- (void) userWillComposeNote: (RSNote *)note;
+- (void) userDidComposeNote: (RSNote *)note;
+- (void) userWillComposeResponse: (RSResponse *)response;
+- (void) userDidComposeResponse: (RSResponse *)response;
+- (void) noteCountUpdatedForParagraph: (RSParagraph *)paragraph atIndex: (NSInteger)index;
+- (void) userDidChangeGroup: (NSString *)newGroup;
+
+# pragma mark Methods
 - (RSPage *) initializeView: (id<ReadSocialDataSource>)view;
 + (void) setCurrentPage: (id<ReadSocialDataSource>)view;
++ (void) setCurrentPageAndDelegate: (id<ReadSocialDataSource>)view;
 + (void) openReadSocialForParagraph: (RSParagraph *)paragaph inView: (UIView *)view;
 + (void) openReadSocialForRawParagraph: (NSString *)content inView: (UIView *)view;
 + (void) openReadSocialForSelectionInView: (UIView *)view;
@@ -108,7 +125,7 @@ extern NSString* const ReadSocialUserDidChangeGroupNotification;
 - (void) userDidComposeNote: (RSNote *)note;
 - (void) userWillComposeResponse: (RSResponse *)response;
 - (void) userDidComposeResponse: (RSResponse *)response;
-- (void) noteCountUpdatedForParagraph: (RSParagraph *) atIndex: (NSInteger)index;
+- (void) noteCountUpdatedForParagraph: (RSParagraph *)paragraph atIndex: (NSInteger)index;
 - (void) userDidChangeGroup: (NSString *)newGroup;
 
 @end

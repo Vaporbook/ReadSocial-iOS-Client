@@ -10,14 +10,22 @@
 #import "RSParagraph+Core.h"
 #import "RSNoteCountRequest.h"
 
-NSString* const RSParagraphUpdatedNoteCount = @"RSParagraphUpdatedNoteCount";
-
 @implementation RSPage
 @synthesize paragraphs, datasource;
 
-- (RSPage *) initWithDataSource: (id<ReadSocialDataSource>)pDatasource
+- (id) init
 {
     self = [super init];
+    if (self)
+    {
+        rs = [ReadSocial sharedInstance];
+    }
+    return self;
+}
+
+- (RSPage *) initWithDataSource: (id<ReadSocialDataSource>)pDatasource
+{
+    self = [self init];
     if (self)
     {
         self.datasource = pDatasource;
@@ -68,7 +76,8 @@ NSString* const RSParagraphUpdatedNoteCount = @"RSParagraphUpdatedNoteCount";
 #pragma mark - RSAPIRequest Delegate methods
 - (void) requestDidSucceed:(RSNoteCountRequest *)request
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:RSParagraphUpdatedNoteCount object:request.paragraph];
+    NSInteger index = [paragraphs indexOfObject:request.paragraph];
+    [rs noteCountUpdatedForParagraph:request.paragraph atIndex:index];
 }
 
 @end

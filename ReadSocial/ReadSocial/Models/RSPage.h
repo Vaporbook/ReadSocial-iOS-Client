@@ -12,9 +12,10 @@
 #import "ReadSocial.h"
 #import "RSAPIRequest.h"
 
-extern NSString* const RSParagraphUpdatedNoteCount;
-
 @interface RSPage : NSObject <RSAPIRequestDelegate>
+{
+    ReadSocial *rs;
+}
 
 @property (strong, nonatomic) NSArray *paragraphs;
 @property (strong, nonatomic) id<ReadSocialDataSource> datasource;

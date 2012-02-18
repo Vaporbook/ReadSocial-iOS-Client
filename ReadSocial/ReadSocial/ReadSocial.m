@@ -40,7 +40,7 @@ NSString* const ReadSocialUserDidChangeGroupNotification            =   @"ReadSo
 
 
 @implementation ReadSocial
-@synthesize networkID, rsPopover, currentPage, defaultGroup;
+@synthesize delegate, networkID, rsPopover, currentPage, defaultGroup;
 
 - (NSString *) getCurrentGroup
 {
@@ -103,6 +103,12 @@ NSString* const ReadSocialUserDidChangeGroupNotification            =   @"ReadSo
     rs.currentPage = [rs initializeView:view];
 }
 
++ (void) setCurrentPageAndDelegate: (id<ReadSocialDataSource,ReadSocialDelegate>)view
+{
+    [ReadSocial sharedInstance].delegate = view;
+    [ReadSocial setCurrentPage:view];
+}
+
 + (void) openReadSocialForParagraph:(RSParagraph *)paragraph inView :(UIView *)view
 {
     ReadSocial *rs = [ReadSocial sharedInstance];
@@ -138,6 +144,41 @@ NSString* const ReadSocialUserDidChangeGroupNotification            =   @"ReadSo
     RSParagraph *paragraph = rs.currentPage.selectedParagraph;
     [ReadSocial openReadSocialForParagraph:paragraph inView:view];
 }
+
+# pragma mark Delegate and Notification Triggers
+- (void) userDidSelectParagraph: (RSParagraph *)paragraph
+{
+    
+}
+- (void) userWillComposeNote: (RSNote *)note
+{
+    
+}
+- (void) userDidComposeNote: (RSNote *)note
+{
+    
+}
+- (void) userWillComposeResponse: (RSResponse *)response
+{
+    
+}
+- (void) userDidComposeResponse: (RSResponse *)response
+{
+    
+}
+- (void) noteCountUpdatedForParagraph: (RSParagraph *)paragraph atIndex: (NSInteger)index
+{
+    if ([delegate respondsToSelector:@selector(noteCountUpdatedForParagraph:atIndex:)])
+    {
+        [delegate noteCountUpdatedForParagraph:paragraph atIndex:index];
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:ReadSocialParagraphNoteCountUpdatedNotification object:paragraph];
+}
+- (void) userDidChangeGroup: (NSString *)newGroup
+{
+    
+}
+
 
 + (NSNumber *) networkID
 {

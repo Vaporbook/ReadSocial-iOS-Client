@@ -38,6 +38,12 @@
 	return YES;
 }
 
+#pragma mark - ReadSocial Delegate Methods
+- (void) noteCountUpdatedForParagraph:(RSParagraph *)paragraph atIndex:(NSInteger)index
+{
+    NSLog(@"Note count updated for paragraph at index: %d", index);
+}
+
 # pragma mark - ReadSocial Data Source
 - (NSInteger) numberOfParagraphsOnPage
 {
@@ -99,7 +105,7 @@
     }
     
     [webView stringByEvaluatingJavaScriptFromString:js];
-    [ReadSocial setCurrentPage:self];
+    [ReadSocial setCurrentPageAndDelegate:self];
 }
 
 @end
