@@ -129,9 +129,11 @@
                          nil];
     
     // Set the title and the back button for the notes listing
-    self.title = @"ReadSocial";
+    UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]];
+    self.navigationItem.titleView = logo;
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:[ReadSocial sharedInstance].currentGroup style:UIBarButtonItemStyleBordered target:self action:@selector(changeGroup)];
+    //Removed to add image title; will be added later as a custom view
+    //self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:[ReadSocial sharedInstance].currentGroup style:UIBarButtonItemStyleBordered target:self action:@selector(changeGroup)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(presentNoteComposer)];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Notes" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.contentSizeForViewInPopover = CGSizeMake(300.0, 300.0);

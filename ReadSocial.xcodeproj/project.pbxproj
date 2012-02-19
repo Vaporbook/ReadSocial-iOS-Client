@@ -49,6 +49,7 @@
 		0EBFDF4F14F0718000CD45F6 /* RSNoteCountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBFDF4E14F0718000CD45F6 /* RSNoteCountViewController.m */; };
 		0EBFDF5214F09BE200CD45F6 /* ReadSocialUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBFDF5114F09BE200CD45F6 /* ReadSocialUI.m */; };
 		0EBFDF5514F0B40F00CD45F6 /* notes.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFDF5414F0B40F00CD45F6 /* notes.png */; };
+		0EBFDF5714F0C6FF00CD45F6 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFDF5614F0C6FF00CD45F6 /* logo.png */; };
 		0EC8A9BD14D5FAB600EA7C74 /* RSAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8A9BC14D5FAB600EA7C74 /* RSAuthentication.m */; };
 		0EC8A9C114D6504F00EA7C74 /* RSComposeNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8A9C014D6504F00EA7C74 /* RSComposeNoteViewController.m */; };
 		0EC8A9C414D6639500EA7C74 /* RSCreateNoteRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8A9C314D6639500EA7C74 /* RSCreateNoteRequest.m */; };
@@ -135,6 +136,7 @@
 		0EBFDF5014F09BE200CD45F6 /* ReadSocialUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadSocialUI.h; sourceTree = "<group>"; };
 		0EBFDF5114F09BE200CD45F6 /* ReadSocialUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadSocialUI.m; sourceTree = "<group>"; };
 		0EBFDF5414F0B40F00CD45F6 /* notes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notes.png; sourceTree = "<group>"; };
+		0EBFDF5614F0C6FF00CD45F6 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		0EC8A9BB14D5FAB600EA7C74 /* RSAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSAuthentication.h; path = ReadSocial/RSAuthentication.h; sourceTree = "<group>"; };
 		0EC8A9BC14D5FAB600EA7C74 /* RSAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSAuthentication.m; path = ReadSocial/RSAuthentication.m; sourceTree = "<group>"; };
 		0EC8A9BF14D6504E00EA7C74 /* RSComposeNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSComposeNoteViewController.h; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 		0EBFDF5314F0B3F700CD45F6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0EBFDF5614F0C6FF00CD45F6 /* logo.png */,
 				0EBFDF5414F0B40F00CD45F6 /* notes.png */,
 			);
 			name = Resources;
@@ -403,6 +406,7 @@
 				0EE9417E14D79A1400526C36 /* rs.js in Resources */,
 				0E78F65714D4627900DF151B /* index.html in Resources */,
 				0EBFDF5514F0B40F00CD45F6 /* notes.png in Resources */,
+				0EBFDF5714F0C6FF00CD45F6 /* logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
