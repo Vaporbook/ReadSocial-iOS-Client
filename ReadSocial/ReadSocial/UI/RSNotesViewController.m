@@ -11,6 +11,7 @@
 #import "RSGroupViewController.h"
 #import "RSNavigationController.h"
 #import "ReadSocialAPI.h"
+#import "RSDateFormat.h"
 
 @implementation RSNotesViewController
 @synthesize paragraph=_paragraph;
@@ -194,13 +195,18 @@
     return [notes count];
 }
 
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     RSNote *note = [notes objectAtIndex:indexPath.row];
@@ -210,10 +216,15 @@
     [cell.imageView sizeThatFits:CGSizeMake(50, 50)];
     
     // Configure the cell...
-    cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
-    cell.textLabel.numberOfLines = 0;
-    cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:14.0];
+    cell.textLabel.lineBreakMode = UILineBreakModeWordWrap | UILineBreakModeTailTruncation;
+    cell.textLabel.numberOfLines = 2;
+    cell.textLabel.font = [UIFont systemFontOfSize:14];
     cell.textLabel.text = note.body;
+    
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", note.user.name, [RSDateFormat stringFromDate:note.timestamp]];
+    cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
 }
