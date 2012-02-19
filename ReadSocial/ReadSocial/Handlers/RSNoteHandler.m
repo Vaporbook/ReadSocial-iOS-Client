@@ -72,7 +72,6 @@
     }
     
     // TODO: Delete old notes
-    [DataContext save];
 }
 
 + (NSArray *) notesForIds: (NSArray *)ids

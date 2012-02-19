@@ -50,7 +50,7 @@
     return request;
 }
 
-- (void) handleResponse:(id)json error:(NSError *__autoreleasing *)error
+- (BOOL) handleResponse:(id)json error:(NSError *__autoreleasing *)error
 {
     [super handleResponse:json error:error];
     
@@ -58,7 +58,7 @@
     if (![json isKindOfClass:[NSArray class]])
     {
         *error = [NSError errorWithDomain:@"Invalid response from server." code:0 userInfo:nil];
-        return;
+        return NO;
     }
     
     // Create responses
@@ -66,6 +66,8 @@
     
     [RSUserHandler updateOrCreateUsersWithArray:responses];
     [RSResponseHandler updateOrCreateResponsesWithArray:responses];
+    
+    return YES;
 }
 
 @end

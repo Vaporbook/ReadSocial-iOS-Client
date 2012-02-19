@@ -71,8 +71,6 @@
             item = [responseEnumerator nextObject];
         }
     }
-    
-    [DataContext save];
 }
 
 + (NSArray *) usersForIds: (NSArray *)ids
@@ -111,13 +109,12 @@
     {
         if ([user updateUserWithDictionary:args])
         {
-            [DataContext save];
+            
         }
         return user;
     }
     
     user = [RSUser userWithDictionary:args];
-    [DataContext save];
     
     return user;
 }

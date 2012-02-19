@@ -72,8 +72,6 @@
     
     // TODO: Responses that didn't receive an update from the server should probably be deleted from the store
     // Low priority since users cannot delete their own responses.
-    
-    [DataContext save];
 }
 
 + (NSArray *) responsesForIds: (NSArray *)ids

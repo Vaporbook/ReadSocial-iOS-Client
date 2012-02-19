@@ -38,7 +38,9 @@ extern NSString* const ReadSocialAPIURL;
 
 - (NSMutableURLRequest *)createRequest;
 - (void) start;
-- (void) handleResponse: (id)json error: (NSError**)error;
+
+// Returns whether data was changed or not
+- (BOOL) handleResponse: (id)json error: (NSError**)error;
 
 @end
 

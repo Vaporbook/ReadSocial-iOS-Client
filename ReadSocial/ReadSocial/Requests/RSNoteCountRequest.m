@@ -46,11 +46,19 @@
     return request;
 }
 
-- (void) handleResponse:(id)json error:(NSError *__autoreleasing *)error
+- (BOOL) handleResponse:(id)json error:(NSError *__autoreleasing *)error
 {
     [super handleResponse:json error:error];
     
-    self.paragraph.noteCount = noteCount = [json valueForKey:@"count"];
+    noteCount = [json valueForKey:@"count"];
+    
+    if (noteCount!=self.paragraph.noteCount)
+    {
+        self.paragraph.noteCount = noteCount;
+        return YES;
+    }
+    
+    return NO;
 }
 
 @end

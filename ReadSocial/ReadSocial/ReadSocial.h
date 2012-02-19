@@ -91,6 +91,8 @@ extern NSString* const ReadSocialUserDidChangeGroupNotification;
 // Convenience accessors
 + (NSNumber *) networkID;
 + (NSString *) currentGroup;
++ (NSManagedObjectContext *) dataContext;
++ (void) saveContext;
 
 + (ReadSocial *) sharedInstance;
 + (ReadSocial *) initializeWithNetworkID: (NSNumber *)networkID andDefaultGroup: (NSString *)defaultGroup;

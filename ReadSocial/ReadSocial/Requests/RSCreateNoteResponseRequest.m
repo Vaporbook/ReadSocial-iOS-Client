@@ -59,10 +59,11 @@
     return request;
 }
 
-- (void) handleResponse:(id)json error:(NSError *__autoreleasing *)error
+- (BOOL) handleResponse:(id)json error:(NSError *__autoreleasing *)error
 {
     // Create a new response
     rsResponse = [RSResponse responseFromDictionary:json];
+    return YES;
 }
 
 @end

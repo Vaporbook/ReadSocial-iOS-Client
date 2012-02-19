@@ -82,10 +82,11 @@ static NSString *userAgent;
     [NSURLConnection connectionWithRequest:request delegate:self];
 }
 
-- (void) handleResponse: (id)json error: (NSError**)error
+- (BOOL) handleResponse: (id)json error: (NSError**)error
 {
     // Expecting this method to get overridden
     NSLog(@"Response: %@", json);
+    return NO;
 }
 
 - (void) didStartRequest
@@ -169,7 +170,13 @@ static NSString *userAgent;
     id responseJSON = [responseData objectFromJSONData];
     
     NSError *error;
-    [self handleResponse:responseJSON error:&error];
+    BOOL contextChanged = [self handleResponse:responseJSON error:&error];
+    
+    // Save the ReadSocial data context
+    if (contextChanged)
+    {
+        [ReadSocial saveContext];
+    }
     
     if (error)
     {

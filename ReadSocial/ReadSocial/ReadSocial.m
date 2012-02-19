@@ -190,6 +190,16 @@ NSString* const ReadSocialUserDidChangeGroupNotification            =   @"ReadSo
     return [ReadSocial sharedInstance].currentGroup;
 }
 
++ (NSManagedObjectContext *) dataContext
+{
+    return [DataContext defaultContext];
+}
+
++ (void) saveContext
+{
+    [DataContext save];
+}
+
 + (ReadSocial *) sharedInstance
 {
     static ReadSocial *_sharedInstance;

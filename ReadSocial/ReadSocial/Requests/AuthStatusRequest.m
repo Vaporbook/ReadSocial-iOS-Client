@@ -36,11 +36,13 @@
     return request;
 }
 
-- (void) handleResponse:(id)json error:(NSError *__autoreleasing *)error
+- (BOOL) handleResponse:(id)json error:(NSError *__autoreleasing *)error
 {
     [super handleResponse:json error:error];
     
     authed = [[json valueForKey:@"authed"] boolValue];
+    
+    return NO;
 }
 
 @end

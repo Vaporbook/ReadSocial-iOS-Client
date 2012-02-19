@@ -63,12 +63,17 @@
     return request;
 }
 
-- (void) handleResponse:(id)json error:(NSError *__autoreleasing *)error
+- (BOOL) handleResponse:(id)json error:(NSError *__autoreleasing *)error
 {
     [super handleResponse:json error:error];
     
     // Create a new note
     note = [RSNote noteFromDictionary:json];
+    
+    // Update the note count for the paragraph
+    _paragraph.noteCount = [NSNumber numberWithInt:[_paragraph.notes count]];
+    
+    return YES;
 }
 
 @end
