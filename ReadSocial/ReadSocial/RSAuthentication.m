@@ -63,13 +63,13 @@ NSString* const RSAuthenticationLoginWasSuccessful  =   @"RSloginWasSuccessful";
 
 + (NSURL *) loginURL
 {
-    NSString *url = [NSString stringWithFormat:@"%@/v1/%d/auth/login", ReadSocialAPIURL, [ReadSocial networkID]];
+    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/auth/login", ReadSocialAPIURL, [ReadSocial networkID]];
     return [NSURL URLWithString:url];
 }
 
 + (NSURL *) statusURL
 {
-    NSString *url = [NSString stringWithFormat:@"%@/v1/%d/auth/status", ReadSocialAPIURL, [ReadSocial networkID]];
+    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/auth/status", ReadSocialAPIURL, [ReadSocial networkID]];
     return [NSURL URLWithString:url];
 }
 
