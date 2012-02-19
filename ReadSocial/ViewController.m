@@ -61,7 +61,7 @@
     RSNoteCountViewController *noteCount = [ReadSocialUI noteCountViewControllerForParagraph:paragraph];
     
     // Add the note count if it doesn't already have a parent view
-    if (!noteCount.view.superview)
+    if ([paragraph.noteCount intValue]>0 && !noteCount.view.superview)
     {
         NSLog(@"Added note count to view.");
         
@@ -78,7 +78,7 @@
     CGPoint center = paragraphBounds.origin;
     
     // Move the box to the right side of the screen
-    center.x = self.view.bounds.size.width - noteCount.view.bounds.size.width/2;
+    center.x = MIN(paragraphBounds.origin.x + paragraphBounds.size.width + 20, self.view.bounds.size.width - noteCount.view.bounds.size.width/2);
     
     // Move the box to the correct location within the scroll view
     center.y += self.webview.scrollView.contentOffset.y + paragraphBounds.size.height/2;

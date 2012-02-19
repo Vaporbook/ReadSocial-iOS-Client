@@ -46,8 +46,8 @@
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView
 {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    noteCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 35, 35)];
+    noteCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, 25, 20)];
     
     // View hierarchy
     [view addSubview:noteCountLabel];
@@ -64,9 +64,13 @@
 {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor redColor];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"notes.png"]];
+    
+    // Label
     noteCountLabel.backgroundColor = [UIColor clearColor];
     noteCountLabel.textColor = [UIColor whiteColor];
+    noteCountLabel.textAlignment = UITextAlignmentCenter;
+    noteCountLabel.font = [UIFont boldSystemFontOfSize:14];
     
     // Prepare a tap recognizer
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTouchedNoteCount)];
