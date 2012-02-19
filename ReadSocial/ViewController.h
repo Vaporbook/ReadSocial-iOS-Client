@@ -12,7 +12,10 @@
 @class RSAuthentication;
 @interface ViewController : UIViewController <UIWebViewDelegate, ReadSocialDataSource, ReadSocialDelegate>
 {
-    NSMutableArray *noteCounts;
+    /**
+     Keys are paragraph hashes.
+     */
+    NSMutableDictionary *noteCounts;
 }
 @property (strong, nonatomic) IBOutlet UIWebView *webview;
 

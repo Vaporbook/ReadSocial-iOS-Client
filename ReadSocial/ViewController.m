@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "RSNoteCountViewController.h"
+#import "ReadSocialUI.h"
 
 @implementation ViewController
 @synthesize webview=_webview;
@@ -17,7 +17,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    noteCounts = [NSMutableArray array];
+    noteCounts = [NSMutableDictionary dictionary];
     self.webview.delegate = self;
     [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html"]]]];
 }
@@ -25,6 +25,18 @@
 - (void) openReadSocial
 {
     [ReadSocial openReadSocialForSelectionInView:self.view];
+}
+
+- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    // First remove all the note counts
+    [ReadSocialUI removeAllNoteCounts];
+}
+
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    // Then set the current page
+    [ReadSocial setCurrentPage:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -45,19 +57,34 @@
 {
     NSLog(@"Note count updated for paragraph at index: %d", index);
     
-    // Add the note count to the paragraph
-    RSNoteCountViewController *noteCount = [[RSNoteCountViewController alloc] initWithParagraph:paragraph];
-    noteCount.popoverParent = self.view;
-    [self.webview.scrollView addSubview:noteCount.view];
+    // Get the note count for this paragraph
+    RSNoteCountViewController *noteCount = [ReadSocialUI noteCountViewControllerForParagraph:paragraph];
     
-    // Determine where to position the notecount view
-    CGRect paragraphBox = [self rectForParagraphAtIndex:index];
-    CGPoint center = paragraphBox.origin;
-    center.y += self.webview.scrollView.contentOffset.y;
+    // Add the note count if it doesn't already have a parent view
+    if (!noteCount.view.superview)
+    {
+        NSLog(@"Added note count to view.");
+        
+        // Set the popover parent to it's own view
+        noteCount.popoverParent = self.view;
+        
+        // Add the note count to the scroll view so that it scrolls with the content
+        [self.webview.scrollView addSubview:noteCount.view];
+    }
     
+    // Determine where to place the note count
+    // Use the origin of the paragraph's bounding box as a reference point
+    CGRect paragraphBounds = [self rectForParagraphAtIndex:index];
+    CGPoint center = paragraphBounds.origin;
+    
+    // Move the box to the right side of the screen
+    center.x = self.view.bounds.size.width - noteCount.view.bounds.size.width/2;
+    
+    // Move the box to the correct location within the scroll view
+    center.y += self.webview.scrollView.contentOffset.y + paragraphBounds.size.height/2;
+    
+    // Position the box
     noteCount.view.center = center;
-    
-    [noteCounts addObject:noteCount];
 }
 
 # pragma mark - ReadSocial Data Source

@@ -36,13 +36,18 @@
     [ReadSocial openReadSocialForParagraph:paragraph inView:popoverParent];
 }
 
+- (void) onDataChanged
+{
+    noteCountLabel.text = [NSString stringWithFormat:@"%@", paragraph.noteCount];
+}
+
 #pragma mark - View lifecycle
 
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView
 {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-    noteCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    noteCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     
     // View hierarchy
     [view addSubview:noteCountLabel];
@@ -66,6 +71,9 @@
     // Prepare a tap recognizer
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTouchedNoteCount)];
     [self.view addGestureRecognizer:singleTap];
+    
+    // Listen for the data to change on the ReadSocial data context
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onDataChanged) name:NSManagedObjectContextDidSaveNotification object:[ReadSocial dataContext]];
 }
 
 
@@ -85,10 +93,23 @@
     [super viewWillAppear:animated];
 }
 
+- (void) viewDidAppear:(BOOL)animated
+{
+    // popoverParent is required as when the user taps the note count
+    // The RS API needs to be presented in a view.
+    // If the implementing app hasn't specified a popoverparent
+    // Then it will default to it's superview.
+    if (!popoverParent)
+    {
+        popoverParent = self.view.superview;
+    }
+}
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     noteCountLabel = nil;
 }
 
