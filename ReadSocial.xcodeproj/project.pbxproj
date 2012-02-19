@@ -52,6 +52,11 @@
 		0EBFDF5714F0C6FF00CD45F6 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFDF5614F0C6FF00CD45F6 /* logo.png */; };
 		0EBFDF5A14F0CDAE00CD45F6 /* RSDateFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBFDF5914F0CDAC00CD45F6 /* RSDateFormat.m */; };
 		0EBFDF5D14F0E10C00CD45F6 /* RSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBFDF5C14F0E10B00CD45F6 /* RSTableViewCell.m */; };
+		0EBFDF6014F0E33F00CD45F6 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFDF5E14F0E33B00CD45F6 /* Icon-72.png */; };
+		0EBFDF6114F0E33F00CD45F6 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFDF5F14F0E33D00CD45F6 /* iTunesArtwork */; };
+		0EBFDF6314F0E35500CD45F6 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFDF6214F0E35400CD45F6 /* Icon-72.png */; };
+		0EBFDF6514F0E45400CD45F6 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFDF6414F0E45400CD45F6 /* Default-Landscape~ipad.png */; };
+		0EBFDF6714F0E47500CD45F6 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFDF6614F0E47400CD45F6 /* Default-Portrait~ipad.png */; };
 		0EC8A9BD14D5FAB600EA7C74 /* RSAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8A9BC14D5FAB600EA7C74 /* RSAuthentication.m */; };
 		0EC8A9C114D6504F00EA7C74 /* RSComposeNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8A9C014D6504F00EA7C74 /* RSComposeNoteViewController.m */; };
 		0EC8A9C414D6639500EA7C74 /* RSCreateNoteRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8A9C314D6639500EA7C74 /* RSCreateNoteRequest.m */; };
@@ -143,6 +148,11 @@
 		0EBFDF5914F0CDAC00CD45F6 /* RSDateFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSDateFormat.m; path = ReadSocial/RSDateFormat.m; sourceTree = "<group>"; };
 		0EBFDF5B14F0E10A00CD45F6 /* RSTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTableViewCell.h; sourceTree = "<group>"; };
 		0EBFDF5C14F0E10B00CD45F6 /* RSTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTableViewCell.m; sourceTree = "<group>"; };
+		0EBFDF5E14F0E33B00CD45F6 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		0EBFDF5F14F0E33D00CD45F6 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
+		0EBFDF6214F0E35400CD45F6 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		0EBFDF6414F0E45400CD45F6 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		0EBFDF6614F0E47400CD45F6 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		0EC8A9BB14D5FAB600EA7C74 /* RSAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSAuthentication.h; path = ReadSocial/RSAuthentication.h; sourceTree = "<group>"; };
 		0EC8A9BC14D5FAB600EA7C74 /* RSAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSAuthentication.m; path = ReadSocial/RSAuthentication.m; sourceTree = "<group>"; };
 		0EC8A9BF14D6504E00EA7C74 /* RSComposeNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSComposeNoteViewController.h; sourceTree = "<group>"; };
@@ -203,6 +213,9 @@
 		0E61BE3614CB20720017F3E3 = {
 			isa = PBXGroup;
 			children = (
+				0EBFDF6614F0E47400CD45F6 /* Default-Portrait~ipad.png */,
+				0EBFDF6414F0E45400CD45F6 /* Default-Landscape~ipad.png */,
+				0EBFDF6214F0E35400CD45F6 /* Icon-72.png */,
 				0E61BE4D14CB20720017F3E3 /* ReadSocial */,
 				0E61BE4414CB20720017F3E3 /* Frameworks */,
 				0E61BE4214CB20720017F3E3 /* Products */,
@@ -231,6 +244,8 @@
 		0E61BE4D14CB20720017F3E3 /* ReadSocial */ = {
 			isa = PBXGroup;
 			children = (
+				0EBFDF5E14F0E33B00CD45F6 /* Icon-72.png */,
+				0EBFDF5F14F0E33D00CD45F6 /* iTunesArtwork */,
 				0E78F65D14D4704300DF151B /* UI */,
 				0E78F65514D4624100DF151B /* Resources */,
 				0E34D0D014CF296000AAEC1D /* JSONKit */,
@@ -417,6 +432,11 @@
 				0E78F65714D4627900DF151B /* index.html in Resources */,
 				0EBFDF5514F0B40F00CD45F6 /* notes.png in Resources */,
 				0EBFDF5714F0C6FF00CD45F6 /* logo.png in Resources */,
+				0EBFDF6014F0E33F00CD45F6 /* Icon-72.png in Resources */,
+				0EBFDF6114F0E33F00CD45F6 /* iTunesArtwork in Resources */,
+				0EBFDF6314F0E35500CD45F6 /* Icon-72.png in Resources */,
+				0EBFDF6514F0E45400CD45F6 /* Default-Landscape~ipad.png in Resources */,
+				0EBFDF6714F0E47500CD45F6 /* Default-Portrait~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
