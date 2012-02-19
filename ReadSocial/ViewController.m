@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "RSNoteCountViewController.h"
 
 @implementation ViewController
 @synthesize webview=_webview;
@@ -16,6 +17,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    noteCounts = [NSMutableArray array];
     self.webview.delegate = self;
     [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html"]]]];
 }
@@ -42,6 +44,18 @@
 - (void) noteCountUpdatedForParagraph:(RSParagraph *)paragraph atIndex:(NSInteger)index
 {
     NSLog(@"Note count updated for paragraph at index: %d", index);
+    
+    // Add the note count to the paragraph
+    RSNoteCountViewController *noteCount = [[RSNoteCountViewController alloc] initWithParagraph:paragraph];
+    [self.webview.scrollView addSubview:noteCount.view];
+    //[self.view addSubview:noteCount.view];
+    
+    // Determine where to position the notecount view
+    CGRect paragraphBox = [self rectForParagraphAtIndex:index];
+    
+    noteCount.view.center = paragraphBox.origin;
+    
+    [noteCounts addObject:noteCount];
 }
 
 # pragma mark - ReadSocial Data Source
@@ -88,6 +102,13 @@
     if ([[[request URL] scheme] isEqualToString:@"rs"]) 
     {
         // Whenever the page scrolls, we treat that like a new page
+        // Clear out page counts
+        for (RSNoteCountViewController *noteCount in noteCounts) 
+        {
+            [noteCount.view removeFromSuperview];
+        }
+        [noteCounts removeAllObjects];
+        // Set new page
         [ReadSocial setCurrentPage:self];
         return NO;
     }

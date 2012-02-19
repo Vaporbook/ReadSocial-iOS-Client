@@ -11,7 +11,9 @@
 
 @class RSAuthentication;
 @interface ViewController : UIViewController <UIWebViewDelegate, ReadSocialDataSource, ReadSocialDelegate>
-
+{
+    NSMutableArray *noteCounts;
+}
 @property (strong, nonatomic) IBOutlet UIWebView *webview;
 
 @end
