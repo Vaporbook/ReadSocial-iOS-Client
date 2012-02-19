@@ -30,9 +30,25 @@ var RS = {
         return RS.paragraphs[i];
     },
     
+    highlightParagraphAtIndex: function(i)
+    {
+        RS.unhighlightParagraphs();
+        var p = RS.paragraphs[i];
+        p.className += " rs-highlighted";
+    },
+    
+    unhighlightParagraphs: function()
+    {
+        var paragraphs = document.querySelectorAll("p.rs-highlighted");
+        for (var i=0; i<paragraphs.length; ++i)
+        {
+            paragraphs[i].className = paragraphs[i].className.replace("rs-highlighted", "");
+        }
+    },
+    
     indexAtSelection: function()
     {
-        var p = window.getSelection().anchorNode.parentElement; //parentNode
+        var p = window.getSelection().anchorNode.parentElement;
         return RS.paragraphs.indexOf(p);
     },
     

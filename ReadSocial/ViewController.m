@@ -87,9 +87,15 @@
     noteCount.view.center = center;
 }
 
-- (void) userDidSelectParagraph:(RSParagraph *)paragraph
+- (void) userDidSelectParagraph:(RSParagraph *)paragraph atIndex: (NSInteger)index
 {
     NSLog(@"User did select paragraph.");
+    [self.webview stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"RS.highlightParagraphAtIndex(%d)", index]];
+}
+
+- (void) userDidUnselectParagraph
+{
+    [self.webview stringByEvaluatingJavaScriptFromString:@"RS.unhighlightParagraphs();"];
 }
 
 # pragma mark - ReadSocial Data Source
