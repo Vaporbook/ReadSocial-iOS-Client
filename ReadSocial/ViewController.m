@@ -47,13 +47,15 @@
     
     // Add the note count to the paragraph
     RSNoteCountViewController *noteCount = [[RSNoteCountViewController alloc] initWithParagraph:paragraph];
+    noteCount.popoverParent = self.view;
     [self.webview.scrollView addSubview:noteCount.view];
-    //[self.view addSubview:noteCount.view];
     
     // Determine where to position the notecount view
     CGRect paragraphBox = [self rectForParagraphAtIndex:index];
+    CGPoint center = paragraphBox.origin;
+    center.y += self.webview.scrollView.contentOffset.y;
     
-    noteCount.view.center = paragraphBox.origin;
+    noteCount.view.center = center;
     
     [noteCounts addObject:noteCount];
 }
@@ -102,12 +104,6 @@
     if ([[[request URL] scheme] isEqualToString:@"rs"]) 
     {
         // Whenever the page scrolls, we treat that like a new page
-        // Clear out page counts
-        for (RSNoteCountViewController *noteCount in noteCounts) 
-        {
-            [noteCount.view removeFromSuperview];
-        }
-        [noteCounts removeAllObjects];
         // Set new page
         [ReadSocial setCurrentPage:self];
         return NO;

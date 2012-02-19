@@ -10,7 +10,7 @@
 #import "ReadSocialAPI.h"
 
 @implementation RSNoteCountViewController
-@synthesize paragraph;
+@synthesize paragraph, popoverParent;
 
 - (RSNoteCountViewController *) initWithParagraph: (RSParagraph *)theParagraph
 {
@@ -33,7 +33,7 @@
 - (void) onTouchedNoteCount
 {
     NSLog(@"User touched note count.");
-    [ReadSocial openReadSocialForParagraph:paragraph inView:self.view.superview];
+    [ReadSocial openReadSocialForParagraph:paragraph inView:popoverParent];
 }
 
 #pragma mark - View lifecycle

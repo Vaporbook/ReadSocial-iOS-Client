@@ -20,6 +20,11 @@
 @property (nonatomic, strong) RSParagraph *paragraph;
 
 /**
+ The view to present the popover within.
+ */
+@property (nonatomic, strong) UIView *popoverParent;
+
+/**
  Initialize the view controller with a reference to the paragraph it represents.
  */
 - (RSNoteCountViewController *) initWithParagraph: (RSParagraph *)theParagraph;
