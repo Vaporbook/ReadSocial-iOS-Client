@@ -92,6 +92,7 @@
     UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 140)];
     UILabel *paragraphLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 20, 300, 40)];
     paragraphLabel.numberOfLines = 0;
+    paragraphLabel.font = [UIFont systemFontOfSize:14];
     paragraphLabel.text = _note.paragraph.normalized;
     
     UILabel *noteLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 60, 300, 60)];
