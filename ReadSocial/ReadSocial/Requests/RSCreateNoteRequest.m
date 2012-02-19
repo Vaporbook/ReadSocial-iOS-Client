@@ -10,6 +10,9 @@
 #import "RSParagraph+Core.h"
 #import "JSONKit.h"
 #import "RSNote+Core.h"
+#import "ReadSocial.h"
+#import "RSPage.h"
+#import "NSString+RSParagraph.h"
 
 @implementation RSCreateNoteRequest
 @synthesize paragraph=_paragraph, note;
@@ -47,12 +50,18 @@
     NSString *url = [NSString stringWithFormat:@"%@/v1/%@/%@/notes/create", ReadSocialAPIURL, networkID, group];
     [request setURL:[NSURL URLWithString:url]];
     
+    // Try to get more information from the data source
+    NSString *selection = [ReadSocial sharedInstance].currentSelection;
+    
     // Set the headers
     NSDictionary *payload = [NSDictionary dictionaryWithObjectsAndKeys:
-                             networkID,                 @"net_id",
-                             group,                     @"group_name",
-                             noteBody,                  @"note_body",
-                             self.paragraph.par_hash,   @"par_hash", 
+                             networkID,                     @"net_id",
+                             group,                         @"group_name",
+                             noteBody,                      @"note_body",
+                             self.paragraph.par_hash,       @"par_hash",
+                             selection,                     @"hi_raw",
+                             [selection normalize],         @"hi_nrml",
+                             [selection normalizeAndHash],  @"hi_hash",
                              nil];
     
     [request setHTTPBody:[payload JSONData]];

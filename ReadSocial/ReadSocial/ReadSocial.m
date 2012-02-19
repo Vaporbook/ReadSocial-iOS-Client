@@ -13,6 +13,7 @@
 #import "ReadSocialViewController.h"
 #import "DataContext.h"
 #import "RSParagraph+Core.h"
+#import "NSString+RSParagraph.h"
 
 NSString* const ReadSocialUserSelectedParagraphNotification         =   @"ReadSocialUserSelectedParagraphNotification";
 NSString* const ReadSocialUserUnselectedParagraphNotification       =   @"ReadSocialUserUnselectedParagraphNotification";
@@ -27,6 +28,12 @@ NSString* const ReadSocialUserDidChangeGroupNotification            =   @"ReadSo
 {
     @private
     NSString *_currentGroup;
+    
+    /**
+     Saves a record of the selected text when ReadSocial is active
+     because the iPad generally unselects text when the keyboard opens.
+     */
+    NSString *currentSelection;
 }
 /**
  Determines the group with which ReadSocial should intialize.
@@ -41,7 +48,7 @@ NSString* const ReadSocialUserDidChangeGroupNotification            =   @"ReadSo
 
 
 @implementation ReadSocial
-@synthesize delegate, networkID, rsPopover, currentPage, defaultGroup;
+@synthesize delegate, networkID, rsPopover, currentPage, currentSelection, defaultGroup;
 
 - (NSString *) getCurrentGroup
 {
@@ -151,6 +158,17 @@ NSString* const ReadSocialUserDidChangeGroupNotification            =   @"ReadSo
 # pragma mark Delegate and Notification Triggers
 - (void) userDidSelectParagraph:(RSParagraph *)paragraph atIndex: (NSInteger)index
 {
+    // Create a reference the selected text if it is a part of the paragraph that was opened.
+    if ([paragraph.raw rangeOfString:[currentPage.selection normalize]].location != NSNotFound)
+    {
+        NSLog(@"Selected text!");
+        currentSelection = currentPage.selection;
+    }
+    else
+    {
+        currentSelection = @"";
+    }
+    
     if ([delegate respondsToSelector:@selector(userDidSelectParagraph:atIndex:)])
     {
         [delegate userDidSelectParagraph:paragraph atIndex:index];
@@ -159,6 +177,9 @@ NSString* const ReadSocialUserDidChangeGroupNotification            =   @"ReadSo
 }
 - (void) userDidUnselectParagraph
 {
+    // Clear reference to the selected text
+    currentSelection = @"";
+    
     if ([delegate respondsToSelector:@selector(userDidUnselectParagraph)])
     {
         [delegate userDidUnselectParagraph];
@@ -204,6 +225,11 @@ NSString* const ReadSocialUserDidChangeGroupNotification            =   @"ReadSo
 + (NSString *) currentGroup
 {
     return [ReadSocial sharedInstance].currentGroup;
+}
+
++ (RSPage *) currentPage
+{
+    return [ReadSocial sharedInstance].currentPage;
 }
 
 + (NSManagedObjectContext *) dataContext

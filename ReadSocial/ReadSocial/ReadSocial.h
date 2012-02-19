@@ -53,6 +53,11 @@ extern NSString* const ReadSocialUserDidChangeGroupNotification;
 @property (readonly, getter = getCurrentGroup) NSString *currentGroup;
 
 /**
+ Copied reference to the selected text when ReadSocial was activated.
+ */
+@property (strong, readonly) NSString *currentSelection;
+
+/**
  The default group for this app.
  Changing this value will not change the current group.
  This is generally only referred to on initial app launch as once the user sets
@@ -93,6 +98,7 @@ extern NSString* const ReadSocialUserDidChangeGroupNotification;
 // Convenience accessors
 + (NSNumber *) networkID;
 + (NSString *) currentGroup;
++ (RSPage *) currentPage;
 + (NSManagedObjectContext *) dataContext;
 + (void) saveContext;
 
