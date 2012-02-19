@@ -50,6 +50,7 @@
 		0EBFDF5214F09BE200CD45F6 /* ReadSocialUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBFDF5114F09BE200CD45F6 /* ReadSocialUI.m */; };
 		0EBFDF5514F0B40F00CD45F6 /* notes.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFDF5414F0B40F00CD45F6 /* notes.png */; };
 		0EBFDF5714F0C6FF00CD45F6 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFDF5614F0C6FF00CD45F6 /* logo.png */; };
+		0EBFDF5A14F0CDAE00CD45F6 /* RSDateFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBFDF5914F0CDAC00CD45F6 /* RSDateFormat.m */; };
 		0EC8A9BD14D5FAB600EA7C74 /* RSAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8A9BC14D5FAB600EA7C74 /* RSAuthentication.m */; };
 		0EC8A9C114D6504F00EA7C74 /* RSComposeNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8A9C014D6504F00EA7C74 /* RSComposeNoteViewController.m */; };
 		0EC8A9C414D6639500EA7C74 /* RSCreateNoteRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8A9C314D6639500EA7C74 /* RSCreateNoteRequest.m */; };
@@ -137,6 +138,8 @@
 		0EBFDF5114F09BE200CD45F6 /* ReadSocialUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadSocialUI.m; sourceTree = "<group>"; };
 		0EBFDF5414F0B40F00CD45F6 /* notes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notes.png; sourceTree = "<group>"; };
 		0EBFDF5614F0C6FF00CD45F6 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		0EBFDF5814F0CDAA00CD45F6 /* RSDateFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSDateFormat.h; path = ReadSocial/RSDateFormat.h; sourceTree = "<group>"; };
+		0EBFDF5914F0CDAC00CD45F6 /* RSDateFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSDateFormat.m; path = ReadSocial/RSDateFormat.m; sourceTree = "<group>"; };
 		0EC8A9BB14D5FAB600EA7C74 /* RSAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSAuthentication.h; path = ReadSocial/RSAuthentication.h; sourceTree = "<group>"; };
 		0EC8A9BC14D5FAB600EA7C74 /* RSAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSAuthentication.m; path = ReadSocial/RSAuthentication.m; sourceTree = "<group>"; };
 		0EC8A9BF14D6504E00EA7C74 /* RSComposeNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSComposeNoteViewController.h; sourceTree = "<group>"; };
@@ -233,6 +236,8 @@
 				0E78F65414D4568800DF151B /* Data Handlers */,
 				0E34D11E14CF6D5B00AAEC1D /* ViewController.h */,
 				0E34D11F14CF6D5B00AAEC1D /* ViewController.m */,
+				0EBFDF5814F0CDAA00CD45F6 /* RSDateFormat.h */,
+				0EBFDF5914F0CDAC00CD45F6 /* RSDateFormat.m */,
 				0E34D12014CF6D5D00AAEC1D /* ViewController.xib */,
 				0E61BE5614CB20720017F3E3 /* AppDelegate.h */,
 				0E61BE5714CB20720017F3E3 /* AppDelegate.m */,
@@ -455,6 +460,7 @@
 				0E1BAC1414D8580E009F5C69 /* RSNavigationController.m in Sources */,
 				0EBFDF4F14F0718000CD45F6 /* RSNoteCountViewController.m in Sources */,
 				0EBFDF5214F09BE200CD45F6 /* ReadSocialUI.m in Sources */,
+				0EBFDF5A14F0CDAE00CD45F6 /* RSDateFormat.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

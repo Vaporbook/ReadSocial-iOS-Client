@@ -161,7 +161,6 @@ NSString* const ReadSocialUserDidChangeGroupNotification            =   @"ReadSo
     // Create a reference the selected text if it is a part of the paragraph that was opened.
     if ([paragraph.raw rangeOfString:[currentPage.selection normalize]].location != NSNotFound)
     {
-        NSLog(@"Selected text!");
         currentSelection = currentPage.selection;
     }
     else

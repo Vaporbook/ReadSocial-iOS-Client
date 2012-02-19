@@ -156,11 +156,13 @@
     [RSParagraphNotesRequest notesForParagraph:self.paragraph withDelegate:self];
     
     [super viewWillAppear:animated];
+    self.contentSizeForViewInPopover = CGSizeMake(305.0, 300.0);
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    self.contentSizeForViewInPopover = CGSizeMake(300.0, 300.0);
 }
 
 - (void)viewWillDisappear:(BOOL)animated
