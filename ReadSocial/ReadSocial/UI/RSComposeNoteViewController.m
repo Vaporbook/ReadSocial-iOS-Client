@@ -89,6 +89,8 @@
     self.title = @"Compose Note";
     self.navigationItem.leftBarButtonItem = cancelButton;
     self.navigationItem.rightBarButtonItem = submitButton;
+    
+    self.contentSizeForViewInPopover = CGSizeMake(300.0, 300.0);
 }
 
 - (void) viewWillAppear:(BOOL)animated

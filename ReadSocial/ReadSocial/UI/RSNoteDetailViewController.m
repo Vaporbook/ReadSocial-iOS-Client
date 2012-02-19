@@ -14,6 +14,9 @@
 #import "DataContext.h"
 #import "RSNavigationController.h"
 #import "RSNoteResponsesRequest.h"
+#import "RSUser+Core.h"
+#import "RSDateFormat.h"
+#import "RSTableViewCell.h"
 
 @implementation RSNoteDetailViewController
 @synthesize note=_note;
@@ -160,22 +163,38 @@
     return [responses count];
 }
 
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    RSResponse *response = [responses objectAtIndex:indexPath.row];
+    CGSize textsize = [response.body sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(225, 500) lineBreakMode:UILineBreakModeWordWrap];
+    return textsize.height + 50;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    RSTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[RSTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     RSResponse *response = [responses objectAtIndex:indexPath.row];
-    cell.textLabel.numberOfLines = 0;
-    cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:14.0];
-    cell.textLabel.text = response.body;
     
     // Configure the cell...
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    // Set the user image
+    cell.imageView.image = response.user.image;
+    [cell.imageView sizeThatFits:CGSizeMake(50, 50)];
+    
+    cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
+    cell.textLabel.numberOfLines = 0;
+    cell.textLabel.font = [UIFont systemFontOfSize:14];
+    cell.textLabel.text = response.body;
+    
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", response.user.name, [RSDateFormat stringFromDate:response.timestamp]];
+    cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
     
     return cell;
 }
