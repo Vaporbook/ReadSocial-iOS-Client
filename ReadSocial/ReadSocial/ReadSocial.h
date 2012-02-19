@@ -16,6 +16,7 @@
 @protocol ReadSocialDelegate;
 
 extern NSString* const ReadSocialUserSelectedParagraphNotification;
+extern NSString* const ReadSocialUserUnselectedParagraphNotification;
 extern NSString* const ReadSocialUserWillComposeNoteNotification;
 extern NSString* const ReadSocialUserDidComposeNoteNotification;
 extern NSString* const ReadSocialUserWillComposeResponseNotification;
@@ -23,7 +24,7 @@ extern NSString* const ReadSocialUserDidComposeResponseNotification;
 extern NSString* const ReadSocialParagraphNoteCountUpdatedNotification;
 extern NSString* const ReadSocialUserDidChangeGroupNotification;
 
-@interface ReadSocial : NSObject
+@interface ReadSocial : NSObject <UIPopoverControllerDelegate>
 
 /**
  The default network ID for this ReadSocial session.
@@ -72,7 +73,8 @@ extern NSString* const ReadSocialUserDidChangeGroupNotification;
 
 
 # pragma mark Delegate and Notification Triggers
-- (void) userDidSelectParagraph: (RSParagraph *)paragraph;
+- (void) userDidSelectParagraph:(RSParagraph *)paragraph atIndex: (NSInteger)index;
+- (void) userDidUnselectParagraph;
 - (void) userWillComposeNote: (RSNote *)note;
 - (void) userDidComposeNote: (RSNote *)note;
 - (void) userWillComposeResponse: (RSResponse *)response;
@@ -122,7 +124,8 @@ extern NSString* const ReadSocialUserDidChangeGroupNotification;
 @protocol ReadSocialDelegate <NSObject>
 
 @optional
-- (void) userDidSelectParagraph: (RSParagraph *)paragraph;
+- (void) userDidSelectParagraph:(RSParagraph *)paragraph atIndex: (NSInteger)index;
+- (void) userDidUnselectParagraph;
 - (void) userWillComposeNote: (RSNote *)note;
 - (void) userDidComposeNote: (RSNote *)note;
 - (void) userWillComposeResponse: (RSResponse *)response;
