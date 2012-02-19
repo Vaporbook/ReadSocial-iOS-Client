@@ -46,6 +46,7 @@
 		0EAEF53E14D7531C00EA2ECE /* ReadSocial.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EAEF53D14D7531B00EA2ECE /* ReadSocial.m */; };
 		0EAEF54114D7544100EA2ECE /* RSPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EAEF54014D7544100EA2ECE /* RSPage.m */; };
 		0EAEF54414D756C100EA2ECE /* RSNoteCountRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EAEF54314D756C100EA2ECE /* RSNoteCountRequest.m */; };
+		0EBFDF4F14F0718000CD45F6 /* RSNoteCountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBFDF4E14F0718000CD45F6 /* RSNoteCountViewController.m */; };
 		0EC8A9BD14D5FAB600EA7C74 /* RSAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8A9BC14D5FAB600EA7C74 /* RSAuthentication.m */; };
 		0EC8A9C114D6504F00EA7C74 /* RSComposeNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8A9C014D6504F00EA7C74 /* RSComposeNoteViewController.m */; };
 		0EC8A9C414D6639500EA7C74 /* RSCreateNoteRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8A9C314D6639500EA7C74 /* RSCreateNoteRequest.m */; };
@@ -127,6 +128,8 @@
 		0EAEF54214D756C100EA2ECE /* RSNoteCountRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNoteCountRequest.h; sourceTree = "<group>"; };
 		0EAEF54314D756C100EA2ECE /* RSNoteCountRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNoteCountRequest.m; sourceTree = "<group>"; };
 		0EBFDF4A14F0647200CD45F6 /* ReadSocialAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReadSocialAPI.h; path = ReadSocial/ReadSocialAPI.h; sourceTree = "<group>"; };
+		0EBFDF4D14F0718000CD45F6 /* RSNoteCountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNoteCountViewController.h; sourceTree = "<group>"; };
+		0EBFDF4E14F0718000CD45F6 /* RSNoteCountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNoteCountViewController.m; sourceTree = "<group>"; };
 		0EC8A9BB14D5FAB600EA7C74 /* RSAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSAuthentication.h; path = ReadSocial/RSAuthentication.h; sourceTree = "<group>"; };
 		0EC8A9BC14D5FAB600EA7C74 /* RSAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSAuthentication.m; path = ReadSocial/RSAuthentication.m; sourceTree = "<group>"; };
 		0EC8A9BF14D6504E00EA7C74 /* RSComposeNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSComposeNoteViewController.h; sourceTree = "<group>"; };
@@ -320,6 +323,8 @@
 				0EAEF53A14D74D5000EA2ECE /* RSGroupViewController.m */,
 				0E1BAC1214D8580E009F5C69 /* RSNavigationController.h */,
 				0E1BAC1314D8580E009F5C69 /* RSNavigationController.m */,
+				0EBFDF4D14F0718000CD45F6 /* RSNoteCountViewController.h */,
+				0EBFDF4E14F0718000CD45F6 /* RSNoteCountViewController.m */,
 			);
 			name = UI;
 			path = ReadSocial/UI;
@@ -426,6 +431,7 @@
 				0EAEF54114D7544100EA2ECE /* RSPage.m in Sources */,
 				0EAEF54414D756C100EA2ECE /* RSNoteCountRequest.m in Sources */,
 				0E1BAC1414D8580E009F5C69 /* RSNavigationController.m in Sources */,
+				0EBFDF4F14F0718000CD45F6 /* RSNoteCountViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
