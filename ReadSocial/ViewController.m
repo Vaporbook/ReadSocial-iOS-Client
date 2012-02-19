@@ -87,6 +87,11 @@
     noteCount.view.center = center;
 }
 
+- (void) userDidSelectParagraph:(RSParagraph *)paragraph
+{
+    NSLog(@"User did select paragraph.");
+}
+
 # pragma mark - ReadSocial Data Source
 - (NSInteger) numberOfParagraphsOnPage
 {

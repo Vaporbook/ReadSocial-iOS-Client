@@ -127,6 +127,8 @@ NSString* const ReadSocialUserDidChangeGroupNotification            =   @"ReadSo
     
     // Present the UIPopoverController
     [rs.rsPopover presentPopoverFromRect:frame inView:view permittedArrowDirections:(UIPopoverArrowDirectionDown|UIPopoverArrowDirectionUp) animated:YES];
+    
+    [rs userDidSelectParagraph:paragraph];
 }
 
 + (void) openReadSocialForRawParagraph: (NSString *)content inView: (UIView *)view
@@ -148,7 +150,11 @@ NSString* const ReadSocialUserDidChangeGroupNotification            =   @"ReadSo
 # pragma mark Delegate and Notification Triggers
 - (void) userDidSelectParagraph: (RSParagraph *)paragraph
 {
-    
+    if ([delegate respondsToSelector:@selector(userDidSelectParagraph:)])
+    {
+        [delegate userDidSelectParagraph:paragraph];
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:ReadSocialUserSelectedParagraphNotification object:paragraph];
 }
 - (void) userWillComposeNote: (RSNote *)note
 {
