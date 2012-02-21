@@ -17,25 +17,25 @@
 @implementation RSCreateNoteRequest
 @synthesize paragraph=_paragraph, note;
 
-+ (id) createNoteWithString: (NSString *)content forParagarph: (RSParagraph *)paragraph
++ (id) createNoteWithArguments: (NSDictionary *)args forParagarph: (RSParagraph *)paragraph
 {
-    return [RSCreateNoteRequest createNoteWithString:content forParagraph:paragraph withDelegate:nil];
+    return [RSCreateNoteRequest createNoteWithArguments:args forParagraph:paragraph withDelegate:nil];
 }
 
-+ (id) createNoteWithString: (NSString *)content forParagraph: (RSParagraph *)paragraph withDelegate: (id<RSAPIRequestDelegate>)delegate
++ (id) createNoteWithArguments: (NSDictionary *)args forParagraph: (RSParagraph *)paragraph withDelegate: (id<RSAPIRequestDelegate>)delegate
 {
-    RSCreateNoteRequest *request = [[RSCreateNoteRequest alloc] initWithString:content andParagraph:paragraph];
+    RSCreateNoteRequest *request = [[RSCreateNoteRequest alloc] initWithArguments:args andParagraph:paragraph];
     request.delegate = delegate;
     [request start];
     return request;
 }
 
-- (id) initWithString: (NSString *)body andParagraph: (RSParagraph *)paragraph
+- (id) initWithArguments: (NSDictionary *)args andParagraph: (RSParagraph *)paragraph
 {
     self = [super init];
     if (self)
     {
-        noteBody = body;
+        arguments = args;
         _paragraph = paragraph;
     }
     return self;
@@ -54,15 +54,17 @@
     NSString *selection = [ReadSocial sharedInstance].currentSelection;
     
     // Set the headers
-    NSDictionary *payload = [NSDictionary dictionaryWithObjectsAndKeys:
+    NSMutableDictionary *payload = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                              networkID,                     @"net_id",
                              group,                         @"group_name",
-                             noteBody,                      @"note_body",
                              self.paragraph.par_hash,       @"par_hash",
                              selection,                     @"hi_raw",
                              [selection normalize],         @"hi_nrml",
                              [selection normalizeAndHash],  @"hi_hash",
                              nil];
+    
+    // Append to the payload the arguments received from the constructor
+    [payload addEntriesFromDictionary:arguments];
     
     [request setHTTPBody:[payload JSONData]];
     

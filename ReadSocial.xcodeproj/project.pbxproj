@@ -57,6 +57,14 @@
 		0EBFDF6314F0E35500CD45F6 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFDF6214F0E35400CD45F6 /* Icon-72.png */; };
 		0EBFDF6514F0E45400CD45F6 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFDF6414F0E45400CD45F6 /* Default-Landscape~ipad.png */; };
 		0EBFDF6714F0E47500CD45F6 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFDF6614F0E47400CD45F6 /* Default-Portrait~ipad.png */; };
+		0EC7B36814F34F8F0026D97D /* RSLinkNoteTypeComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7B36614F34F8F0026D97D /* RSLinkNoteTypeComposer.m */; };
+		0EC7B36914F34F8F0026D97D /* RSLinkNoteTypeComposer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EC7B36714F34F8F0026D97D /* RSLinkNoteTypeComposer.xib */; };
+		0EC7B36B14F3523C0026D97D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EC7B36A14F3523C0026D97D /* QuartzCore.framework */; };
+		0EC7B36F14F35AD30026D97D /* RSTextNoteTypeComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7B36D14F35AD20026D97D /* RSTextNoteTypeComposer.m */; };
+		0EC7B37014F35AD30026D97D /* RSTextNoteTypeComposer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EC7B36E14F35AD30026D97D /* RSTextNoteTypeComposer.xib */; };
+		0EC7B37714F35F420026D97D /* RSImageNoteTypeComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7B37514F35F420026D97D /* RSImageNoteTypeComposer.m */; };
+		0EC7B37814F35F420026D97D /* RSImageNoteTypeComposer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EC7B37614F35F420026D97D /* RSImageNoteTypeComposer.xib */; };
+		0EC7B37C14F367CF0026D97D /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7B37B14F367CF0026D97D /* NSData+Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		0EC8A9BD14D5FAB600EA7C74 /* RSAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8A9BC14D5FAB600EA7C74 /* RSAuthentication.m */; };
 		0EC8A9C114D6504F00EA7C74 /* RSComposeNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8A9C014D6504F00EA7C74 /* RSComposeNoteViewController.m */; };
 		0EC8A9C414D6639500EA7C74 /* RSCreateNoteRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8A9C314D6639500EA7C74 /* RSCreateNoteRequest.m */; };
@@ -153,6 +161,18 @@
 		0EBFDF6214F0E35400CD45F6 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		0EBFDF6414F0E45400CD45F6 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		0EBFDF6614F0E47400CD45F6 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		0EC7B36514F34F8F0026D97D /* RSLinkNoteTypeComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSLinkNoteTypeComposer.h; sourceTree = "<group>"; };
+		0EC7B36614F34F8F0026D97D /* RSLinkNoteTypeComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSLinkNoteTypeComposer.m; sourceTree = "<group>"; };
+		0EC7B36714F34F8F0026D97D /* RSLinkNoteTypeComposer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RSLinkNoteTypeComposer.xib; sourceTree = "<group>"; };
+		0EC7B36A14F3523C0026D97D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		0EC7B36C14F35AD20026D97D /* RSTextNoteTypeComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTextNoteTypeComposer.h; sourceTree = "<group>"; };
+		0EC7B36D14F35AD20026D97D /* RSTextNoteTypeComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTextNoteTypeComposer.m; sourceTree = "<group>"; };
+		0EC7B36E14F35AD30026D97D /* RSTextNoteTypeComposer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RSTextNoteTypeComposer.xib; sourceTree = "<group>"; };
+		0EC7B37414F35F420026D97D /* RSImageNoteTypeComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSImageNoteTypeComposer.h; sourceTree = "<group>"; };
+		0EC7B37514F35F420026D97D /* RSImageNoteTypeComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSImageNoteTypeComposer.m; sourceTree = "<group>"; };
+		0EC7B37614F35F420026D97D /* RSImageNoteTypeComposer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RSImageNoteTypeComposer.xib; sourceTree = "<group>"; };
+		0EC7B37A14F367CF0026D97D /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		0EC7B37B14F367CF0026D97D /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		0EC8A9BB14D5FAB600EA7C74 /* RSAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSAuthentication.h; path = ReadSocial/RSAuthentication.h; sourceTree = "<group>"; };
 		0EC8A9BC14D5FAB600EA7C74 /* RSAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSAuthentication.m; path = ReadSocial/RSAuthentication.m; sourceTree = "<group>"; };
 		0EC8A9BF14D6504E00EA7C74 /* RSComposeNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSComposeNoteViewController.h; sourceTree = "<group>"; };
@@ -169,6 +189,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EC7B36B14F3523C0026D97D /* QuartzCore.framework in Frameworks */,
 				0E61BE4614CB20720017F3E3 /* UIKit.framework in Frameworks */,
 				0E61BE4814CB20720017F3E3 /* Foundation.framework in Frameworks */,
 				0E61BE4A14CB20720017F3E3 /* CoreGraphics.framework in Frameworks */,
@@ -233,6 +254,7 @@
 		0E61BE4414CB20720017F3E3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0EC7B36A14F3523C0026D97D /* QuartzCore.framework */,
 				0E61BE4514CB20720017F3E3 /* UIKit.framework */,
 				0E61BE4714CB20720017F3E3 /* Foundation.framework */,
 				0E61BE4914CB20720017F3E3 /* CoreGraphics.framework */,
@@ -244,6 +266,7 @@
 		0E61BE4D14CB20720017F3E3 /* ReadSocial */ = {
 			isa = PBXGroup;
 			children = (
+				0EC7B37914F367BB0026D97D /* Base64 */,
 				0EBFDF5E14F0E33B00CD45F6 /* Icon-72.png */,
 				0EBFDF5F14F0E33D00CD45F6 /* iTunesArtwork */,
 				0E78F65D14D4704300DF151B /* UI */,
@@ -360,6 +383,15 @@
 				0EBFDF5114F09BE200CD45F6 /* ReadSocialUI.m */,
 				0EBFDF5B14F0E10A00CD45F6 /* RSTableViewCell.h */,
 				0EBFDF5C14F0E10B00CD45F6 /* RSTableViewCell.m */,
+				0EC7B36514F34F8F0026D97D /* RSLinkNoteTypeComposer.h */,
+				0EC7B36614F34F8F0026D97D /* RSLinkNoteTypeComposer.m */,
+				0EC7B36714F34F8F0026D97D /* RSLinkNoteTypeComposer.xib */,
+				0EC7B36C14F35AD20026D97D /* RSTextNoteTypeComposer.h */,
+				0EC7B36D14F35AD20026D97D /* RSTextNoteTypeComposer.m */,
+				0EC7B36E14F35AD30026D97D /* RSTextNoteTypeComposer.xib */,
+				0EC7B37414F35F420026D97D /* RSImageNoteTypeComposer.h */,
+				0EC7B37514F35F420026D97D /* RSImageNoteTypeComposer.m */,
+				0EC7B37614F35F420026D97D /* RSImageNoteTypeComposer.xib */,
 			);
 			name = UI;
 			path = ReadSocial/UI;
@@ -373,6 +405,15 @@
 			);
 			name = Resources;
 			path = ../Resources;
+			sourceTree = "<group>";
+		};
+		0EC7B37914F367BB0026D97D /* Base64 */ = {
+			isa = PBXGroup;
+			children = (
+				0EC7B37A14F367CF0026D97D /* NSData+Base64.h */,
+				0EC7B37B14F367CF0026D97D /* NSData+Base64.m */,
+			);
+			name = Base64;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -437,6 +478,9 @@
 				0EBFDF6314F0E35500CD45F6 /* Icon-72.png in Resources */,
 				0EBFDF6514F0E45400CD45F6 /* Default-Landscape~ipad.png in Resources */,
 				0EBFDF6714F0E47500CD45F6 /* Default-Portrait~ipad.png in Resources */,
+				0EC7B36914F34F8F0026D97D /* RSLinkNoteTypeComposer.xib in Resources */,
+				0EC7B37014F35AD30026D97D /* RSTextNoteTypeComposer.xib in Resources */,
+				0EC7B37814F35F420026D97D /* RSImageNoteTypeComposer.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,6 +531,10 @@
 				0EBFDF5214F09BE200CD45F6 /* ReadSocialUI.m in Sources */,
 				0EBFDF5A14F0CDAE00CD45F6 /* RSDateFormat.m in Sources */,
 				0EBFDF5D14F0E10C00CD45F6 /* RSTableViewCell.m in Sources */,
+				0EC7B36814F34F8F0026D97D /* RSLinkNoteTypeComposer.m in Sources */,
+				0EC7B36F14F35AD30026D97D /* RSTextNoteTypeComposer.m in Sources */,
+				0EC7B37714F35F420026D97D /* RSImageNoteTypeComposer.m in Sources */,
+				0EC7B37C14F367CF0026D97D /* NSData+Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

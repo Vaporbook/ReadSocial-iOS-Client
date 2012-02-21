@@ -12,14 +12,14 @@
 @class RSNote;
 @interface RSCreateNoteRequest : RSAPIRequest
 {
-    NSString *noteBody;
+    NSDictionary *arguments;
 }
 
 @property (strong, nonatomic) RSParagraph *paragraph;
 @property (strong, nonatomic) RSNote *note;
 
-+ (id) createNoteWithString: (NSString *)content forParagarph: (RSParagraph *)paragraph;
-+ (id) createNoteWithString: (NSString *)content forParagraph: (RSParagraph *)paragraph withDelegate: (id<RSAPIRequestDelegate>)delegate;
-- (id) initWithString: (NSString *)body andParagraph: (RSParagraph *)paragraph;
++ (id) createNoteWithArguments: (NSDictionary *)args forParagarph: (RSParagraph *)paragraph;
++ (id) createNoteWithArguments: (NSDictionary *)args forParagraph: (RSParagraph *)paragraph withDelegate: (id<RSAPIRequestDelegate>)delegate;
+- (id) initWithArguments: (NSDictionary *)args andParagraph: (RSParagraph *)paragraph;
 
 @end
