@@ -133,6 +133,14 @@ static NSString *userAgent;
     [self requestDidFailWithError:error];
 }
 
+- (void) connection:(NSURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
+{
+    if ([delegate respondsToSelector:@selector(requestMadeProgress:)])
+    {
+        [delegate requestMadeProgress:[NSNumber numberWithFloat:((float)totalBytesWritten/(float)totalBytesExpectedToWrite)]];
+    }
+}
+
 - (void) connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     [responseData appendData:data];

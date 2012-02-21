@@ -25,6 +25,8 @@ enum {
     UIBarButtonItem *submitButton;
     UIBarButtonItem *cancelButton;
     
+    UIProgressView *progressView;
+    
     // Note types
     NSArray *composers;
     UIScrollView *composerViews;

@@ -48,6 +48,7 @@ extern NSString* const ReadSocialAPIURL;
 
 @optional
 - (void) didStartRequest: (RSAPIRequest *)request;
+- (void) requestMadeProgress: (NSNumber *)percentComplete;
 - (void) requestDidSucceed: (RSAPIRequest *)request;
 - (void) requestDidFail: (RSAPIRequest *)request withError: (NSError *)error;
 

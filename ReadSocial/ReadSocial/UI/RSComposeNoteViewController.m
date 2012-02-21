@@ -55,6 +55,10 @@
     [self.view endEditing:YES];
     [self disableSubmitButton];
     
+    // Show progress bar in nav bar
+    progressView.progress = 0;
+    self.navigationItem.titleView = progressView;
+    
     [RSCreateNoteRequest createNoteWithArguments:args forParagraph:_paragraph withDelegate:self];
 }
 
@@ -83,6 +87,8 @@
     
     // Create the view
     UIView *view = [UIView new];
+    
+    progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
     
     composerViews = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 300, 250)];
     
@@ -177,6 +183,7 @@
     NSLog(@"Note created!");
     note = request.note;
     [self finishNoteCompositionWithResult:RSNoteCompositionSucceeded error:nil];
+    self.navigationItem.titleView = nil;
 }
 
 - (void) requestDidFail:(RSAPIRequest *)request withError:(NSError *)error
@@ -184,6 +191,11 @@
     NSLog(@"Note failed to create.");
     [self enableSubmitButton];
     [self finishNoteCompositionWithResult:RSNoteCompositionFailed error:error];
+    self.navigationItem.titleView = nil;
+}
+- (void) requestMadeProgress:(NSNumber *)percentComplete
+{
+    [progressView setProgress:[percentComplete floatValue] animated:YES];
 }
 
 @end
