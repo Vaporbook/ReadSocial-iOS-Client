@@ -37,6 +37,12 @@
 {
     // Then set the current page
     [ReadSocial setCurrentPage:self];
+    
+    // Add the note counts to the screen
+    for (int i=0; i<[[ReadSocial currentPage].paragraphs count]; ++i) 
+    {
+        [self noteCountUpdatedForParagraph:[[ReadSocial currentPage].paragraphs objectAtIndex:i] atIndex:i];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -51,6 +57,7 @@
     // Return YES for supported orientations
 	return YES;
 }
+
 
 #pragma mark - ReadSocial Delegate Methods
 - (void) noteCountUpdatedForParagraph:(RSParagraph *)paragraph atIndex:(NSInteger)index
@@ -161,6 +168,12 @@
     
     [webView stringByEvaluatingJavaScriptFromString:js];
     [ReadSocial setCurrentPageAndDelegate:self];
+    
+    // Add the note counts to the screen
+    for (int i=0; i<[[ReadSocial currentPage].paragraphs count]; ++i) 
+    {
+        [self noteCountUpdatedForParagraph:[[ReadSocial currentPage].paragraphs objectAtIndex:i] atIndex:i];
+    }
 }
 
 @end
