@@ -80,6 +80,18 @@
     }
 }
 
+- (void) onOpenLink
+{
+    NSLog(@"Open link: %@", self.note.link);
+    NSURL *url = [NSURL URLWithString:self.note.link];
+    if (![url scheme])
+    {
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", self.note.link]];
+    }
+    
+    [[UIApplication sharedApplication] openURL:url];
+}
+
 - (void) resizeLabelToFitContent: (UILabel *)label
 {
     CGSize contentSize = [label.text sizeWithFont:label.font constrainedToSize:label.frame.size lineBreakMode:label.lineBreakMode];
@@ -152,11 +164,25 @@
     
     [noteView addSubview:noteLabel];
     
+    UIButton *link;
+    if (self.note.link)
+    {
+        link = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [link setTitle:self.note.link forState:UIControlStateNormal];
+        [link addTarget:self action:@selector(onOpenLink) forControlEvents:UIControlEventTouchUpInside];
+        [noteView addSubview:link];
+        link.frame = CGRectMake(60, noteLabel.frame.size.height+5, 220, 35);
+    }
+    
     // Resize the note view
     bottom = MAX(uImg.frame.size.height, noteLabel.frame.size.height);
     if (imageView)
     {
         bottom = MAX(bottom, imageView.frame.size.height);
+    }
+    if (link)
+    {
+        bottom = MAX(bottom, link.frame.origin.y + link.frame.size.height);
     }
     contentFrame = noteView.frame;
     contentFrame.size.height = bottom;
