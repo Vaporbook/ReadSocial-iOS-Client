@@ -14,7 +14,6 @@
 		0E34D0CB14CF14EA00AAEC1D /* RSParagraphNotesRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0CA14CF14EA00AAEC1D /* RSParagraphNotesRequest.m */; };
 		0E34D0CF14CF1D4100AAEC1D /* RSAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0CE14CF1D4100AAEC1D /* RSAPIRequest.m */; };
 		0E34D0D314CF296000AAEC1D /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0D214CF296000AAEC1D /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		0E34D0D614CF323800AAEC1D /* RSNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0D514CF323800AAEC1D /* RSNote.m */; };
 		0E34D0D914CF324C00AAEC1D /* RSNote+Core.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0D814CF324C00AAEC1D /* RSNote+Core.m */; };
 		0E34D0DC14CF3D3400AAEC1D /* DataContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0DB14CF3D3300AAEC1D /* DataContext.m */; };
 		0E34D0DF14CF4F2B00AAEC1D /* RSNoteHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0DE14CF4F2A00AAEC1D /* RSNoteHandler.m */; };
@@ -51,7 +50,6 @@
 		0EBFDF5514F0B40F00CD45F6 /* notes.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFDF5414F0B40F00CD45F6 /* notes.png */; };
 		0EBFDF5714F0C6FF00CD45F6 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFDF5614F0C6FF00CD45F6 /* logo.png */; };
 		0EBFDF5A14F0CDAE00CD45F6 /* RSDateFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBFDF5914F0CDAC00CD45F6 /* RSDateFormat.m */; };
-		0EBFDF5D14F0E10C00CD45F6 /* RSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBFDF5C14F0E10B00CD45F6 /* RSTableViewCell.m */; };
 		0EBFDF6014F0E33F00CD45F6 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFDF5E14F0E33B00CD45F6 /* Icon-72.png */; };
 		0EBFDF6114F0E33F00CD45F6 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFDF5F14F0E33D00CD45F6 /* iTunesArtwork */; };
 		0EBFDF6314F0E35500CD45F6 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFDF6214F0E35400CD45F6 /* Icon-72.png */; };
@@ -65,6 +63,10 @@
 		0EC7B37714F35F420026D97D /* RSImageNoteTypeComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7B37514F35F420026D97D /* RSImageNoteTypeComposer.m */; };
 		0EC7B37814F35F420026D97D /* RSImageNoteTypeComposer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EC7B37614F35F420026D97D /* RSImageNoteTypeComposer.xib */; };
 		0EC7B37C14F367CF0026D97D /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7B37B14F367CF0026D97D /* NSData+Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		0EC7B38214F371E90026D97D /* RSNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7B38114F371E90026D97D /* RSNote.m */; };
+		0EC7B38514F372510026D97D /* RSNoteImageRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7B38414F372510026D97D /* RSNoteImageRequest.m */; };
+		0EC7B39214F37B380026D97D /* RSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7B39114F37B380026D97D /* RSTableViewCell.m */; };
+		0EC7B39914F38ABF0026D97D /* UILazyImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7B39814F38ABF0026D97D /* UILazyImageView.m */; };
 		0EC8A9BD14D5FAB600EA7C74 /* RSAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8A9BC14D5FAB600EA7C74 /* RSAuthentication.m */; };
 		0EC8A9C114D6504F00EA7C74 /* RSComposeNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8A9C014D6504F00EA7C74 /* RSComposeNoteViewController.m */; };
 		0EC8A9C414D6639500EA7C74 /* RSCreateNoteRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8A9C314D6639500EA7C74 /* RSCreateNoteRequest.m */; };
@@ -87,8 +89,6 @@
 		0E34D0CE14CF1D4100AAEC1D /* RSAPIRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAPIRequest.m; sourceTree = "<group>"; };
 		0E34D0D114CF296000AAEC1D /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		0E34D0D214CF296000AAEC1D /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
-		0E34D0D414CF323800AAEC1D /* RSNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNote.h; sourceTree = "<group>"; };
-		0E34D0D514CF323800AAEC1D /* RSNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNote.m; sourceTree = "<group>"; };
 		0E34D0D714CF324C00AAEC1D /* RSNote+Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RSNote+Core.h"; sourceTree = "<group>"; };
 		0E34D0D814CF324C00AAEC1D /* RSNote+Core.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RSNote+Core.m"; sourceTree = "<group>"; };
 		0E34D0DA14CF3D3300AAEC1D /* DataContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataContext.h; sourceTree = "<group>"; };
@@ -155,7 +155,6 @@
 		0EBFDF5814F0CDAA00CD45F6 /* RSDateFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSDateFormat.h; path = ReadSocial/RSDateFormat.h; sourceTree = "<group>"; };
 		0EBFDF5914F0CDAC00CD45F6 /* RSDateFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSDateFormat.m; path = ReadSocial/RSDateFormat.m; sourceTree = "<group>"; };
 		0EBFDF5B14F0E10A00CD45F6 /* RSTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTableViewCell.h; sourceTree = "<group>"; };
-		0EBFDF5C14F0E10B00CD45F6 /* RSTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTableViewCell.m; sourceTree = "<group>"; };
 		0EBFDF5E14F0E33B00CD45F6 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		0EBFDF5F14F0E33D00CD45F6 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		0EBFDF6214F0E35400CD45F6 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
@@ -173,6 +172,13 @@
 		0EC7B37614F35F420026D97D /* RSImageNoteTypeComposer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RSImageNoteTypeComposer.xib; sourceTree = "<group>"; };
 		0EC7B37A14F367CF0026D97D /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
 		0EC7B37B14F367CF0026D97D /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		0EC7B38014F371E90026D97D /* RSNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNote.h; sourceTree = "<group>"; };
+		0EC7B38114F371E90026D97D /* RSNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNote.m; sourceTree = "<group>"; };
+		0EC7B38314F372510026D97D /* RSNoteImageRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNoteImageRequest.h; sourceTree = "<group>"; };
+		0EC7B38414F372510026D97D /* RSNoteImageRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNoteImageRequest.m; sourceTree = "<group>"; };
+		0EC7B39114F37B380026D97D /* RSTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTableViewCell.m; sourceTree = "<group>"; };
+		0EC7B39714F38ABF0026D97D /* UILazyImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILazyImageView.h; sourceTree = "<group>"; };
+		0EC7B39814F38ABF0026D97D /* UILazyImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILazyImageView.m; sourceTree = "<group>"; };
 		0EC8A9BB14D5FAB600EA7C74 /* RSAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSAuthentication.h; path = ReadSocial/RSAuthentication.h; sourceTree = "<group>"; };
 		0EC8A9BC14D5FAB600EA7C74 /* RSAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSAuthentication.m; path = ReadSocial/RSAuthentication.m; sourceTree = "<group>"; };
 		0EC8A9BF14D6504E00EA7C74 /* RSComposeNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSComposeNoteViewController.h; sourceTree = "<group>"; };
@@ -217,6 +223,8 @@
 				0EC8A9C314D6639500EA7C74 /* RSCreateNoteRequest.m */,
 				0EAEF54214D756C100EA2ECE /* RSNoteCountRequest.h */,
 				0EAEF54314D756C100EA2ECE /* RSNoteCountRequest.m */,
+				0EC7B38314F372510026D97D /* RSNoteImageRequest.h */,
+				0EC7B38414F372510026D97D /* RSNoteImageRequest.m */,
 			);
 			name = "API Requests";
 			path = ReadSocial/Requests;
@@ -293,6 +301,8 @@
 				0EAEF53C14D7531A00EA2ECE /* ReadSocial.h */,
 				0EBFDF4A14F0647200CD45F6 /* ReadSocialAPI.h */,
 				0EAEF53D14D7531B00EA2ECE /* ReadSocial.m */,
+				0EC7B39714F38ABF0026D97D /* UILazyImageView.h */,
+				0EC7B39814F38ABF0026D97D /* UILazyImageView.m */,
 			);
 			path = ReadSocial;
 			sourceTree = "<group>";
@@ -315,8 +325,6 @@
 				0E34D0C114CF097A00AAEC1D /* RSParagraph+Core.m */,
 				0E34D0C314CF0C1E00AAEC1D /* RSParagraph.h */,
 				0E34D0C414CF0C1E00AAEC1D /* RSParagraph.m */,
-				0E34D0D414CF323800AAEC1D /* RSNote.h */,
-				0E34D0D514CF323800AAEC1D /* RSNote.m */,
 				0E34D0D714CF324C00AAEC1D /* RSNote+Core.h */,
 				0E34D0D814CF324C00AAEC1D /* RSNote+Core.m */,
 				0E34D0E914CF5E3600AAEC1D /* RSResponse+Core.h */,
@@ -329,6 +337,8 @@
 				0E78F67314D5CC2E00DF151B /* RSUser.m */,
 				0EAEF53F14D7544100EA2ECE /* RSPage.h */,
 				0EAEF54014D7544100EA2ECE /* RSPage.m */,
+				0EC7B38014F371E90026D97D /* RSNote.h */,
+				0EC7B38114F371E90026D97D /* RSNote.m */,
 			);
 			name = Models;
 			path = ReadSocial/Models;
@@ -382,7 +392,7 @@
 				0EBFDF5014F09BE200CD45F6 /* ReadSocialUI.h */,
 				0EBFDF5114F09BE200CD45F6 /* ReadSocialUI.m */,
 				0EBFDF5B14F0E10A00CD45F6 /* RSTableViewCell.h */,
-				0EBFDF5C14F0E10B00CD45F6 /* RSTableViewCell.m */,
+				0EC7B39114F37B380026D97D /* RSTableViewCell.m */,
 				0EC7B36514F34F8F0026D97D /* RSLinkNoteTypeComposer.h */,
 				0EC7B36614F34F8F0026D97D /* RSLinkNoteTypeComposer.m */,
 				0EC7B36714F34F8F0026D97D /* RSLinkNoteTypeComposer.xib */,
@@ -500,7 +510,6 @@
 				0E34D0CB14CF14EA00AAEC1D /* RSParagraphNotesRequest.m in Sources */,
 				0E34D0CF14CF1D4100AAEC1D /* RSAPIRequest.m in Sources */,
 				0E34D0D314CF296000AAEC1D /* JSONKit.m in Sources */,
-				0E34D0D614CF323800AAEC1D /* RSNote.m in Sources */,
 				0E34D0D914CF324C00AAEC1D /* RSNote+Core.m in Sources */,
 				0E34D0DC14CF3D3400AAEC1D /* DataContext.m in Sources */,
 				0E34D0DF14CF4F2B00AAEC1D /* RSNoteHandler.m in Sources */,
@@ -530,11 +539,14 @@
 				0EBFDF4F14F0718000CD45F6 /* RSNoteCountViewController.m in Sources */,
 				0EBFDF5214F09BE200CD45F6 /* ReadSocialUI.m in Sources */,
 				0EBFDF5A14F0CDAE00CD45F6 /* RSDateFormat.m in Sources */,
-				0EBFDF5D14F0E10C00CD45F6 /* RSTableViewCell.m in Sources */,
 				0EC7B36814F34F8F0026D97D /* RSLinkNoteTypeComposer.m in Sources */,
 				0EC7B36F14F35AD30026D97D /* RSTextNoteTypeComposer.m in Sources */,
 				0EC7B37714F35F420026D97D /* RSImageNoteTypeComposer.m in Sources */,
 				0EC7B37C14F367CF0026D97D /* NSData+Base64.m in Sources */,
+				0EC7B38214F371E90026D97D /* RSNote.m in Sources */,
+				0EC7B38514F372510026D97D /* RSNoteImageRequest.m in Sources */,
+				0EC7B39214F37B380026D97D /* RSTableViewCell.m in Sources */,
+				0EC7B39914F38ABF0026D97D /* UILazyImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

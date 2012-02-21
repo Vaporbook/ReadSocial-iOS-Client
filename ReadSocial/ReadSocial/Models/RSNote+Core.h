@@ -14,7 +14,10 @@
 
 extern NSString* const kNoteId;
 extern NSString* const kNoteBody;
+extern NSString* const kNoteType;
 extern NSString* const kNoteLink;
+extern NSString* const kNoteThumbnail;
+extern NSString* const kNoteImage;
 extern NSString* const kNoteCreated;
 extern NSString* const kNoteParagraphHash;
 

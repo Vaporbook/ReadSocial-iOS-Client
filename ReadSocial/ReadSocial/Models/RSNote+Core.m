@@ -11,10 +11,14 @@
 #import "RSUser+Core.h"
 #import "DataContext.h"
 #import "RSUserHandler.h"
+#import "RSNoteImageRequest.h"
 
 NSString* const kNoteId             = @"_id";
 NSString* const kNoteBody           = @"body";
+NSString* const kNoteType           = @"mtype";
 NSString* const kNoteLink           = @"link";
+NSString* const kNoteThumbnail      = @"img_small";
+NSString* const kNoteImage          = @"img";
 NSString* const kNoteCreated        = @"crstamp";
 NSString* const kNoteParagraphHash  = @"par_hash";
 
@@ -34,11 +38,14 @@ NSString* const kNoteParagraphHash  = @"par_hash";
 - (void) updateNoteWithDictionary: (NSDictionary *)args
 {
     // Set note values
-    self.body       = [args valueForKey:kNoteBody];
-    self.link       = [NSString stringWithFormat:@"%@", [args valueForKey:kNoteLink]];
-    self.timestamp  = [NSDate dateWithTimeIntervalSince1970:([[args valueForKey:kNoteCreated] floatValue]/1000)];
-    self.paragraph  = [RSParagraph paragraphFromHash:[args valueForKey:kNoteParagraphHash]];
-    self.user       = [RSUserHandler userForID:[args valueForKey:kUserId]];
+    self.type           = [args valueForKey:kNoteType];
+    self.body           = [args valueForKey:kNoteBody];
+    self.link           = [[args valueForKey:kNoteLink] isKindOfClass:[NSString class]] ? [args valueForKey:kNoteLink] : nil;
+    self.timestamp      = [NSDate dateWithTimeIntervalSince1970:([[args valueForKey:kNoteCreated] floatValue]/1000)];
+    self.paragraph      = [RSParagraph paragraphFromHash:[args valueForKey:kNoteParagraphHash]];
+    self.user           = [RSUserHandler userForID:[args valueForKey:kUserId]];
+    self.imageURL       = [[RSNoteImageRequest URLForImageName:[args valueForKey:kNoteImage]] absoluteString];
+    self.thumbnailURL   = [[RSNoteImageRequest URLForImageName:[args valueForKey:kNoteThumbnail]] absoluteString];
 }
 
 - (NSString *) description
