@@ -21,6 +21,7 @@ NSString* const kNoteThumbnail      = @"img_small";
 NSString* const kNoteImage          = @"img";
 NSString* const kNoteCreated        = @"crstamp";
 NSString* const kNoteParagraphHash  = @"par_hash";
+NSString* const kHighlightedText    = @"hi_nrml";
 
 @implementation RSNote (Core)
 
@@ -43,6 +44,7 @@ NSString* const kNoteParagraphHash  = @"par_hash";
     self.link           = [[args valueForKey:kNoteLink] isKindOfClass:[NSString class]] ? [args valueForKey:kNoteLink] : nil;
     self.timestamp      = [NSDate dateWithTimeIntervalSince1970:([[args valueForKey:kNoteCreated] floatValue]/1000)];
     self.paragraph      = [RSParagraph paragraphFromHash:[args valueForKey:kNoteParagraphHash]];
+    self.highlightedText= [args valueForKey:kHighlightedText];
     self.user           = [RSUserHandler userForID:[args valueForKey:kUserId]];
     self.imageURL       = [[RSNoteImageRequest URLForImageName:[args valueForKey:kNoteImage]] absoluteString];
     self.thumbnailURL   = [[RSNoteImageRequest URLForImageName:[args valueForKey:kNoteThumbnail]] absoluteString];

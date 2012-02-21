@@ -80,6 +80,14 @@
     }
 }
 
+- (void) resizeLabelToFitContent: (UILabel *)label
+{
+    CGSize contentSize = [label.text sizeWithFont:label.font constrainedToSize:label.frame.size lineBreakMode:label.lineBreakMode];
+    CGRect contentFrame = label.frame;
+    contentFrame.size = contentSize;
+    label.frame = contentFrame;
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -89,18 +97,80 @@
     self.title = @"Note";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(presentResponseComposer)];
     
-    UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 140)];
-    UILabel *paragraphLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 20, 300, 40)];
-    paragraphLabel.numberOfLines = 0;
-    paragraphLabel.font = [UIFont systemFontOfSize:14];
-    paragraphLabel.text = _note.paragraph.normalized;
+    UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 200)];
+    //containerView.backgroundColor = [UIColor blueColor];
     
-    UILabel *noteLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 60, 300, 60)];
+    NSString *content = [_note.highlightedText length]>0 ? _note.highlightedText : _note.paragraph.normalized;
+
+    UILabel *paragraphLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 280, 100)];
+    paragraphLabel.numberOfLines = 0;
+    paragraphLabel.lineBreakMode = UILineBreakModeWordWrap | UILineBreakModeMiddleTruncation;
+    paragraphLabel.font = [UIFont fontWithName:@"Baskerville" size:14];
+    paragraphLabel.textColor = [UIColor darkGrayColor];
+    paragraphLabel.text = content;
+    
+    // Resize the label to fit the content
+    CGSize contentSize = [content sizeWithFont:paragraphLabel.font constrainedToSize:paragraphLabel.frame.size lineBreakMode:paragraphLabel.lineBreakMode];
+    CGRect contentFrame = paragraphLabel.frame;
+    contentFrame.size = contentSize;
+    paragraphLabel.frame = contentFrame;
+    
+    // Find the bottom of the content frame
+    CGFloat bottom = contentFrame.origin.y + contentFrame.size.height;
+    
+    // Add a separator line
+    UIImageView *separator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separator.png"]];
+    separator.center = CGPointMake(150, bottom + 10);
+    
+    // Create a note view
+    UIView *noteView = [[UIView alloc] initWithFrame:CGRectMake(10, bottom+20, contentFrame.size.width, 400)];
+    
+    UIImageView *uImg = [[UIImageView alloc] initWithImage:self.note.user.image];
+    [uImg sizeThatFits:CGSizeMake(50, 50)];
+    [noteView addSubview:uImg];
+    
+    UILabel *noteLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, 220, 100)];
     noteLabel.numberOfLines = 0;
-    noteLabel.text = _note.body;
+    noteLabel.font = [UIFont fontWithName:@"Baskerville" size:16];
+    noteLabel.text = self.note.body;
+    
+    // Resize the label to fit the content
+    [self resizeLabelToFitContent:noteLabel];
+    
+    UILazyImageView *imageView;
+    if (self.note.imageURL)
+    {
+        imageView = [[UILazyImageView alloc] initWithFrame:CGRectMake(60, 0, 220, 220)];
+        [imageView loadWithURL:[NSURL URLWithString:self.note.imageURL]];
+        [noteView addSubview:imageView];
+        
+        noteLabel.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+        noteLabel.textColor = [UIColor whiteColor];
+        noteLabel.frame = CGRectMake(60, 0, 220, noteLabel.frame.size.height);
+        noteLabel.textAlignment = UITextAlignmentCenter;
+    }
+    
+    [noteView addSubview:noteLabel];
+    
+    // Resize the note view
+    bottom = MAX(uImg.frame.size.height, noteLabel.frame.size.height);
+    if (imageView)
+    {
+        bottom = MAX(bottom, imageView.frame.size.height);
+    }
+    contentFrame = noteView.frame;
+    contentFrame.size.height = bottom;
+    noteView.frame = contentFrame;
     
     [containerView addSubview:paragraphLabel];
-    [containerView addSubview:noteLabel];
+    [containerView addSubview:separator];
+    [containerView addSubview:noteView];
+    
+    // Resize the container view
+    bottom = noteView.frame.origin.y + noteView.frame.size.height + 10;
+    contentFrame = containerView.frame;
+    contentFrame.size.height = bottom;
+    containerView.frame = contentFrame;
     
     self.tableView.tableHeaderView = containerView;
     

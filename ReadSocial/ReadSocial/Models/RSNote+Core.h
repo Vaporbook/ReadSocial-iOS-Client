@@ -20,6 +20,7 @@ extern NSString* const kNoteThumbnail;
 extern NSString* const kNoteImage;
 extern NSString* const kNoteCreated;
 extern NSString* const kNoteParagraphHash;
+extern NSString* const kHighlightedText;
 
 @interface RSNote (Core)
 

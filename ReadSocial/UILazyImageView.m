@@ -47,15 +47,20 @@
         self.image = [UIImage imageWithData:[cache objectForKey:[url absoluteString]]];
         return;
     }
-    
+
     self.url = url;
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.hidesWhenStopped = YES;
+    activityIndicator.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+    [self addSubview:activityIndicator];
+    
     receivedData = [NSMutableData data];
     
     [cache setObject:receivedData forKey:[url absoluteString]];
     
-	self.alpha = 0;
     NSURLConnection *connection = [NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:url] delegate:self];
     [connection start];
+    [activityIndicator startAnimating];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
@@ -70,6 +75,8 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    self.alpha = 0;
+    [activityIndicator stopAnimating];
     self.image = [[UIImage alloc] initWithData:receivedData];
     [UIView beginAnimations:@"fadeIn" context:NULL];
     [UIView setAnimationDuration:0.5];

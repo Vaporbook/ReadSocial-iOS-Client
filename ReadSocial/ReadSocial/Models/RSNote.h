@@ -17,11 +17,12 @@
 @property (nonatomic, retain) NSString * group;
 @property (nonatomic, retain) NSString * id;
 @property (nonatomic, retain) NSData * image;
+@property (nonatomic, retain) NSString * imageURL;
 @property (nonatomic, retain) NSString * link;
+@property (nonatomic, retain) NSString * thumbnailURL;
 @property (nonatomic, retain) NSDate * timestamp;
 @property (nonatomic, retain) NSString * type;
-@property (nonatomic, retain) NSString * thumbnailURL;
-@property (nonatomic, retain) NSString * imageURL;
+@property (nonatomic, retain) NSString * highlightedText;
 @property (nonatomic, retain) RSParagraph *paragraph;
 @property (nonatomic, retain) NSSet *responses;
 @property (nonatomic, retain) RSUser *user;

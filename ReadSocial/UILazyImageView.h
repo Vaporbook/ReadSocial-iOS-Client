@@ -11,6 +11,7 @@
 @interface UILazyImageView : UIImageView
 {
     NSMutableData *receivedData;
+    UIActivityIndicatorView *activityIndicator;
 }
 
 @property (nonatomic, strong) NSURL *url;

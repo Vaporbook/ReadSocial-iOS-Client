@@ -18,11 +18,12 @@
 @dynamic group;
 @dynamic id;
 @dynamic image;
+@dynamic imageURL;
 @dynamic link;
+@dynamic thumbnailURL;
 @dynamic timestamp;
 @dynamic type;
-@dynamic thumbnailURL;
-@dynamic imageURL;
+@dynamic highlightedText;
 @dynamic paragraph;
 @dynamic responses;
 @dynamic user;
