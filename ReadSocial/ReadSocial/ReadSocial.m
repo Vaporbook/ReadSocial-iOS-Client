@@ -135,7 +135,8 @@ NSString* const ReadSocialUserDidChangeGroupNotification            =   @"ReadSo
     rs.rsPopover.delegate = rs;
     
     // Present the UIPopoverController
-    [rs.rsPopover presentPopoverFromRect:frame inView:view permittedArrowDirections:(UIPopoverArrowDirectionDown|UIPopoverArrowDirectionUp) animated:YES];
+    UIPopoverArrowDirection arrowDirection = (frame.origin.y + frame.size.height) < (view.frame.size.height-550) ? UIPopoverArrowDirectionUp : UIPopoverArrowDirectionDown;
+    [rs.rsPopover presentPopoverFromRect:frame inView:view permittedArrowDirections:arrowDirection animated:YES];
     [rs userDidSelectParagraph:paragraph atIndex:index];
 }
 
