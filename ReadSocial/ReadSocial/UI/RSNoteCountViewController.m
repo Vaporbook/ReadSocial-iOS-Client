@@ -39,6 +39,14 @@
 - (void) onDataChanged
 {
     noteCountLabel.text = [NSString stringWithFormat:@"%@", paragraph.noteCount];
+    if ([paragraph.noteCount intValue]==0)
+    {
+        self.view.hidden = YES;
+    }
+    else
+    {
+        self.view.hidden = NO;
+    }
 }
 
 #pragma mark - View lifecycle
@@ -71,6 +79,11 @@
     noteCountLabel.textColor = [UIColor whiteColor];
     noteCountLabel.textAlignment = UITextAlignmentCenter;
     noteCountLabel.font = [UIFont boldSystemFontOfSize:14];
+    
+    if ([paragraph.noteCount intValue]==0)
+    {
+        self.view.hidden = YES;
+    }
     
     // Prepare a tap recognizer
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTouchedNoteCount)];

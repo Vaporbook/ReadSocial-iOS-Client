@@ -61,7 +61,7 @@
     RSNoteCountViewController *noteCount = [ReadSocialUI noteCountViewControllerForParagraph:paragraph];
     
     // Add the note count if it doesn't already have a parent view
-    if ([paragraph.noteCount intValue]>0 && !noteCount.view.superview)
+    if (!noteCount.view.superview)
     {
         NSLog(@"Added note count to view.");
         
