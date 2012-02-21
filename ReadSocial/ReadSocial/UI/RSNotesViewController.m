@@ -12,6 +12,7 @@
 #import "RSNavigationController.h"
 #import "ReadSocialAPI.h"
 #import "RSDateFormat.h"
+#import "RSTableViewCell.h"
 
 @implementation RSNotesViewController
 @synthesize paragraph=_paragraph;
@@ -206,9 +207,9 @@
 {
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    RSTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[RSTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     RSNote *note = [notes objectAtIndex:indexPath.row];
@@ -227,6 +228,21 @@
     cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    if (note.thumbnailURL)
+    {
+        //cell.thumbnail.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:note.thumbnailURL]]];
+        [cell.thumbnail loadWithURL:[NSURL URLWithString:note.thumbnailURL]];
+    }
+    
+    if (note.link)
+    {
+        cell.isLink = YES;
+    }
+    else
+    {
+        cell.isLink = NO;
+    }
     
     return cell;
 }
