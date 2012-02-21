@@ -14,6 +14,10 @@
 #import "RSDateFormat.h"
 #import "RSTableViewCell.h"
 
+@interface RSNotesViewController()
+- (void) checkForNoComments;
+@end
+
 @implementation RSNotesViewController
 @synthesize paragraph=_paragraph;
 
@@ -56,6 +60,7 @@
     notes = [RSNoteHandler notesForParagraph:_paragraph];
     [self.tableView reloadData];
     [self.tableView flashScrollIndicators];
+    [self checkForNoComments];
 }
 - (void) presentNoteComposer
 {
@@ -71,6 +76,28 @@
     groupViewController.delegate = self;
     
     [self.navigationController presentModalViewController:[RSNavigationController wrapViewController:groupViewController withInputEnabled:NO] animated:YES];
+}
+
+- (void) checkForNoComments
+{
+    if ([notes count]<=0 && [self.paragraph.noteCount intValue]<=0)
+    {
+        NSLog(@"No comments!");
+        if (!noComments)
+        {
+            noComments = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"no-comments.png"]];
+        }
+        [self.view addSubview:noComments];
+        self.tableView.scrollEnabled = NO;
+    }
+    else
+    {
+        if (noComments)
+        {
+            [noComments removeFromSuperview];
+        }
+        self.tableView.scrollEnabled = YES;
+    }
 }
 
 # pragma mark - Note Composer Delegate methods
@@ -155,6 +182,8 @@
     
     // Request updated notes
     [RSParagraphNotesRequest notesForParagraph:self.paragraph withDelegate:self];
+    
+    [self checkForNoComments];
     
     [super viewWillAppear:animated];
     self.contentSizeForViewInPopover = CGSizeMake(305.0, 300.0);
