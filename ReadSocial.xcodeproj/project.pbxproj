@@ -24,7 +24,7 @@
 		0E34D0F114CF662400AAEC1D /* RSCreateNoteResponseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0F014CF662400AAEC1D /* RSCreateNoteResponseRequest.m */; };
 		0E34D12114CF6D5D00AAEC1D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D11F14CF6D5B00AAEC1D /* ViewController.m */; };
 		0E34D12214CF6D5D00AAEC1D /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E34D12014CF6D5D00AAEC1D /* ViewController.xib */; };
-		0E34D12514CF7B5F00AAEC1D /* AuthStatusRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D12414CF7B5F00AAEC1D /* AuthStatusRequest.m */; };
+		0E34D12514CF7B5F00AAEC1D /* RSAuthStatusRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D12414CF7B5F00AAEC1D /* RSAuthStatusRequest.m */; };
 		0E61BE4614CB20720017F3E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E61BE4514CB20720017F3E3 /* UIKit.framework */; };
 		0E61BE4814CB20720017F3E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E61BE4714CB20720017F3E3 /* Foundation.framework */; };
 		0E61BE4A14CB20720017F3E3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E61BE4914CB20720017F3E3 /* CoreGraphics.framework */; };
@@ -110,8 +110,8 @@
 		0E34D11E14CF6D5B00AAEC1D /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		0E34D11F14CF6D5B00AAEC1D /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		0E34D12014CF6D5D00AAEC1D /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
-		0E34D12314CF7B5E00AAEC1D /* AuthStatusRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthStatusRequest.h; sourceTree = "<group>"; };
-		0E34D12414CF7B5F00AAEC1D /* AuthStatusRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthStatusRequest.m; sourceTree = "<group>"; };
+		0E34D12314CF7B5E00AAEC1D /* RSAuthStatusRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAuthStatusRequest.h; sourceTree = "<group>"; };
+		0E34D12414CF7B5F00AAEC1D /* RSAuthStatusRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAuthStatusRequest.m; sourceTree = "<group>"; };
 		0E61BE4114CB20720017F3E3 /* ReadSocial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReadSocial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E61BE4514CB20720017F3E3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0E61BE4714CB20720017F3E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -221,8 +221,8 @@
 				0E34D0E414CF56A700AAEC1D /* RSNoteResponsesRequest.m */,
 				0E34D0EF14CF662400AAEC1D /* RSCreateNoteResponseRequest.h */,
 				0E34D0F014CF662400AAEC1D /* RSCreateNoteResponseRequest.m */,
-				0E34D12314CF7B5E00AAEC1D /* AuthStatusRequest.h */,
-				0E34D12414CF7B5F00AAEC1D /* AuthStatusRequest.m */,
+				0E34D12314CF7B5E00AAEC1D /* RSAuthStatusRequest.h */,
+				0E34D12414CF7B5F00AAEC1D /* RSAuthStatusRequest.m */,
 				0EC8A9C214D6639500EA7C74 /* RSCreateNoteRequest.h */,
 				0EC8A9C314D6639500EA7C74 /* RSCreateNoteRequest.m */,
 				0EAEF54214D756C100EA2ECE /* RSNoteCountRequest.h */,
@@ -527,7 +527,7 @@
 				0E34D0EE14CF5F4700AAEC1D /* RSResponse.m in Sources */,
 				0E34D0F114CF662400AAEC1D /* RSCreateNoteResponseRequest.m in Sources */,
 				0E34D12114CF6D5D00AAEC1D /* ViewController.m in Sources */,
-				0E34D12514CF7B5F00AAEC1D /* AuthStatusRequest.m in Sources */,
+				0E34D12514CF7B5F00AAEC1D /* RSAuthStatusRequest.m in Sources */,
 				0E78F66014D470DD00DF151B /* RSNotesViewController.m in Sources */,
 				0E78F66314D48C1400DF151B /* ReadSocialViewController.m in Sources */,
 				0E78F66614D4915000DF151B /* RSNoteDetailViewController.m in Sources */,
@@ -578,7 +578,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Daniel Pfeiffer (AFB6C3FW73)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -593,6 +593,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8055DD21-8D6A-4226-85C0-EEDD1354F30A";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -604,7 +605,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Daniel Pfeiffer (AFB6C3FW73)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -613,6 +614,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8055DD21-8D6A-4226-85C0-EEDD1354F30A";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;

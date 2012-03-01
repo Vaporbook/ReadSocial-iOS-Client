@@ -7,7 +7,6 @@
 //
 
 #import "RSLoginViewController.h"
-#import "AuthStatusRequest.h"
 #import "JSONKit.h"
 
 @implementation RSLoginViewController

@@ -7,9 +7,7 @@
 //
 
 #import "RSAuthentication.h"
-#import "RSAPIRequest.h"
 #import "RSLoginViewController.h"
-#import "JSONKit.h"
 #import "RSUser+Core.h"
 #import "RSUserHandler.h"
 #import "ReadSocial.h"
@@ -21,8 +19,6 @@ NSString* const RSAuthenticationLoginWasSuccessful  =   @"RSloginWasSuccessful";
 - (void) openModalView;
 - (void) closeModalView;
 - (void) loginWasSuccessfulForUser: (RSUser *)user;
-+ (BOOL) isLoginOrStatusURL: (NSURL *) url;
-+ (BOOL) isStatusURL: (NSURL *)url;
 
 @end
 
@@ -68,9 +64,9 @@ NSString* const RSAuthenticationLoginWasSuccessful  =   @"RSloginWasSuccessful";
     return [NSURL URLWithString:url];
 }
 
-+ (NSURL *) statusURL
++ (NSURL *) completeURL
 {
-    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/auth/status", ReadSocialAPIURL, [ReadSocial networkID]];
+    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/auth/complete", ReadSocialAPIURL, [ReadSocial networkID]];
     return [NSURL URLWithString:url];
 }
 
@@ -81,84 +77,31 @@ NSString* const RSAuthenticationLoginWasSuccessful  =   @"RSloginWasSuccessful";
 }
 
 # pragma mark UIWebView Delegate Methods
-- (BOOL) webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
-{
-    // If the request is a login or status URL and was not the last inspected request, intercept and inspect it
-    if ([RSAuthentication isStatusURL:[request URL]] &&
-        ![[request URL] isEqual:[lastInspectedRequest URL]])
-    {
-        // Intercept the request for inspection
-//        NSLog(@"Intercepted: %@", [request URL]);
-//        responseData = [NSMutableData data];
-//        [NSURLConnection connectionWithRequest:request delegate:self];
-//        return NO;
-        responseData = [NSMutableData data];
-        [NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:[RSAuthentication statusURL]] delegate:self];
-    }
-    NSLog(@"Loading: %@", [request URL]);
-    return YES;
-}
-
 - (void) webViewDidFinishLoad:(UIWebView *)webView
 {
     NSLog(@"Finished loading: %@", [[webView request] URL]);
+    NSLog(@"Headers: %@", [[webView request] allHTTPHeaderFields]);
     
-    // Check the URL query for oauth_token and oauth_verifier
-    // If these paramters are found, then the user has authenticated from Twitter.
-//    NSString *query = [[[webView request] URL] query];
-//    
-//    if (query && [query rangeOfString:@"oauth_token"].location!=NSNotFound
-//        && [query rangeOfString:@"oauth_verifier"].location!=NSNotFound)
-//    {
-//        NSLog(@"Query: %@", query);
-//        NSLog(@"Authentication detected...checking auth status");
-//        responseData = [NSMutableData data];
-//        [NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:[RSAuthentication statusURL]] delegate:self];
-//    }
-}
-
-# pragma mark NSURLConnection Delegate Methods
-- (void) connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    [responseData appendData:data];
-}
-
-- (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    // Received HTTP response (will contain the status code)
-    // Reset data
-    [responseData setLength:0];
-    
-    // Set the response
-    urlResponse = (NSHTTPURLResponse *) response;
-}
-
-- (void) connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    lastInspectedRequest = connection.currentRequest;
-    
-    // Inspect the response and see if it looks like JSON
-    // Attempt to convert it to JSON
-    NSError *error;
-    id jsonResponse = [responseData objectFromJSONDataWithParseOptions:JKParseOptionStrict error:&error];
-    
-    // If the conversion to JSON failed, then this isn't what we're looking for--pass it through to the webview.
-    if (error || !jsonResponse)
+    // Check if the current URL path is the expected complete URL path
+    if ([[[[webView request] URL] path] isEqual:[[RSAuthentication completeURL] path]])
     {
-        NSLog(@"Not JSON--sending back to webview. Error: %@\nJSON: %@", error, jsonResponse);
-        NSLog(@"Data: %@", [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
-        //[loginViewController.webview loadData:responseData MIMEType:urlResponse.MIMEType textEncodingName:urlResponse.textEncodingName baseURL:[connection.currentRequest URL]];
-        // Make the request again
-        //[loginViewController.webview loadRequest:connection.currentRequest];
-        
+        NSLog(@"Reached complete URL!");
+        // If we've reached the complete URL, check the authentication status
+        [RSAuthStatusRequest requestAuthStatusWithDelegate:self];
     }
-    else
-    {
-        NSDictionary *user = [jsonResponse valueForKey:@"user"];
-        
-        RSUser *authenticatedUser = [RSUserHandler retrieveOrCreateUser:user];
-        [self loginWasSuccessfulForUser:authenticatedUser];
-    }
+}
+
+# pragma mark RSAPIRequest delegate methods
+- (void) requestDidSucceed:(RSAuthStatusRequest *)request
+{
+    NSLog(@"Status check succeeded! Authed: %d", request.authed);
+    RSUser *user = [RSUser userWithDictionary:request.user];
+    [self loginWasSuccessfulForUser:user];
+}
+
+- (void) requestDidFail:(RSAuthStatusRequest *)request withError:(NSError *)error
+{
+    NSLog(@"Status check failed.");
 }
 
 # pragma mark Private Methods
@@ -201,16 +144,6 @@ NSString* const RSAuthenticationLoginWasSuccessful  =   @"RSloginWasSuccessful";
     
     // Notify the application that the user has logged in
     [[NSNotificationCenter defaultCenter] postNotificationName:RSAuthenticationLoginWasSuccessful object:user];
-}
-
-+ (BOOL) isLoginOrStatusURL: (NSURL *) url;
-{
-    return [url isEqual:[RSAuthentication loginURL]] || [url isEqual:[RSAuthentication statusURL]];
-}
-
-+ (BOOL) isStatusURL: (NSURL *) url
-{
-    return [url isEqual:[RSAuthentication statusURL]];
 }
 
 @end

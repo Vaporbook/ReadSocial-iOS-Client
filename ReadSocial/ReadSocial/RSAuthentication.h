@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "RSLoginViewController.h"
+#import "RSAuthStatusRequest.h"
 
 extern NSString* const RSAuthenticationLoginWasSuccessful;
 
 @class RSAPIRequest;
 @class RSLoginViewController;
-@interface RSAuthentication : NSObject <UIWebViewDelegate, NSURLConnectionDataDelegate, NSURLConnectionDelegate, RSLoginViewControllerDelegate>
+@interface RSAuthentication : NSObject <UIWebViewDelegate, RSAPIRequestDelegate, RSLoginViewControllerDelegate>
 {
     RSLoginViewController *loginViewController;
     NSURLRequest *lastInspectedRequest;
@@ -59,22 +60,8 @@ extern NSString* const RSAuthenticationLoginWasSuccessful;
  */
 + (id) login;
 
-/**
- The login URL the user should use to login.
- Defaults to the login url for the network ID in the current context.
- This can be overriden by [RSAuthentication loginAtURL: url AndReattemptRequest: request].
- 
- @return NSURL containing the URL the user needs to login at.
- */
 + (NSURL *) loginURL;
-
-/**
- The URL for determining the user's status.
- Always uses the network ID in the current context.
- 
- @return NSURL containing the URL the user needs to login at.
- */
-+ (NSURL *) statusURL;
++ (NSURL *) completeURL;
 
 @property (strong, nonatomic) RSAPIRequest *failedRequest;
 @property (strong, nonatomic) NSURL *loginURL;

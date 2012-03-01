@@ -1,19 +1,19 @@
 //
-//  AuthStatusRequest.m
+//  RSAuthStatusRequest.m
 //  ReadSocial
 //
 //  Created by Daniel Pfeiffer on 1/24/12.
 //  Copyright (c) 2012 Float Mobile Learning. All rights reserved.
 //
 
-#import "AuthStatusRequest.h"
+#import "RSAuthStatusRequest.h"
 
-@implementation AuthStatusRequest
-@synthesize authed;
+@implementation RSAuthStatusRequest
+@synthesize authed, user;
 
 + (id) requestAuthStatusWithDelegate: (id<RSAPIRequestDelegate>) delegate
 {
-    AuthStatusRequest *request = [AuthStatusRequest new];
+    RSAuthStatusRequest *request = [RSAuthStatusRequest new];
     request.delegate = delegate;
     [request start];
     return request;
@@ -21,7 +21,7 @@
 
 + (id) requestAuthStatus
 {
-    return [AuthStatusRequest requestAuthStatusWithDelegate:nil];
+    return [RSAuthStatusRequest requestAuthStatusWithDelegate:nil];
 }
 
 # pragma mark - RSAPIRequest Overriden Methods
@@ -40,7 +40,8 @@
 {
     [super handleResponse:json error:error];
     
-    authed = [[json valueForKey:@"authed"] boolValue];
+    authed  =   [[json valueForKey:@"authed"] boolValue];
+    user    =   [json objectForKey:@"user"];
     
     return NO;
 }

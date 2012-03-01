@@ -26,7 +26,7 @@
 #import "RSNoteResponsesRequest.h"
 #import "RSCreateNoteRequest.h"
 #import "RSCreateNoteResponseRequest.h"
-#import "AuthStatusRequest.h"
+#import "RSAuthStatusRequest.h"
 #import "RSNoteCountRequest.h"
 
 // Core methods
