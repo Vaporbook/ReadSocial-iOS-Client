@@ -95,7 +95,7 @@ NSString* const RSAuthenticationLoginWasSuccessful  =   @"RSloginWasSuccessful";
 - (void) requestDidSucceed:(RSAuthStatusRequest *)request
 {
     NSLog(@"Status check succeeded! Authed: %d", request.authed);
-    RSUser *user = [RSUser userWithDictionary:request.user];
+    RSUser *user = [RSUserHandler retrieveOrCreateUser: request.user];
     [self loginWasSuccessfulForUser:user];
 }
 
