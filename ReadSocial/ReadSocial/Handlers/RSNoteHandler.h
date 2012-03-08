@@ -30,13 +30,14 @@
 + (NSArray *) notesForParagraph: (RSParagraph *)paragraph;
 
 /**
- Initiates a request to the API and updates the local store with the latest information
- from the server. Once the data is available, it saves the data context initiating
- a notification so that all active views can update their content.
+ 
+ Note that this does not save the context! It is the responsibility of the caller to save the context.
  
  @param paragraph The paragraph for which to fetch responses.
  */
 + (void) updateNotesForParagraph: (RSParagraph *)paragraph;
+
++ (RSNote *) updateOrCreateNoteWithDictionary: (NSDictionary *)data;
 
 /**
  Updates/creates Note objects in the persistent store with the contents of an NSArray.

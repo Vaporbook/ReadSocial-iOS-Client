@@ -13,6 +13,13 @@
 #import "RSParagraphNotesRequest.h"
 #import "RSCreateNoteRequest.h"
 
+@interface RSNoteHandler()
+
++ (NSArray *) notesCreatedBefore: (NSDate *) timestamp;
++ (NSArray *) notesCreatedOnParagraph: (RSParagraph *) paragraph before: (NSDate *) timestamp;
+
+@end;
+
 @implementation RSNoteHandler
 
 + (NSArray *) notesForParagraph: (RSParagraph *)paragraph
@@ -27,51 +34,82 @@
     [RSParagraphNotesRequest notesForParagraph:paragraph];
 }
 
++ (RSNote *) updateOrCreateNoteWithDictionary: (NSDictionary *)data
+{
+    // Attempt to get the note from the store with a matching ID
+    RSNote *note = [RSNoteHandler noteForId:[data valueForKey:kNoteId]];
+    
+    // If no note was found, create a new one
+    if (!note) 
+    {
+        note = [RSNote noteFromDictionary:data];
+    }
+    
+    // Otherwise update the existing note
+    else
+    {
+        [note updateNoteWithDictionary:data];
+    }
+    
+    return note;
+}
+
 + (void) updateOrCreateNotesWithArray: (NSArray *)notes
 {
-    // Get an array of all the note IDs that need to be saved
-    NSMutableArray *note_ids = [NSMutableArray array];
-    for (NSDictionary *pNote in notes)
+    // Make sure that there are notes
+    if ([notes count]==0)
     {
-        [note_ids addObject:[pNote valueForKey:kNoteId]];
+        return;
     }
     
-    // Fetch notes currently in the store with the same ID
-    NSArray *fetchedNotes = [RSNoteHandler notesForIds:note_ids];
+    // Delete all stored notes with a date prior to the date on the
+    // first note received from the API.
     
-    // Retrieve the first object in each array
-    NSEnumerator *fetchedNoteEnumerator = [fetchedNotes objectEnumerator];
-    NSEnumerator *noteEnumerator = [notes objectEnumerator];
-    RSNote *fetchedNote = [fetchedNoteEnumerator nextObject];
-    NSDictionary *note  = [noteEnumerator nextObject];
+    // Retrieve the note data for the last updated note
+    NSDictionary *lastUpdatedNoteData = [notes objectAtIndex:0];
+    RSNote *lastUpdatedNote = [RSNoteHandler updateOrCreateNoteWithDictionary:lastUpdatedNoteData];
     
-    // Walk through the arrays
-    while (note || fetchedNote)
+    // Fetch all the notes with a created date prior to this note
+    NSArray *oldNotes = [RSNoteHandler notesCreatedOnParagraph:lastUpdatedNote.paragraph before:lastUpdatedNote.timestamp];
+    
+    // Delete all the old notes
+    for (RSNote *oldNote in oldNotes) 
     {
-        // If the IDs are equal on the fetched note (the one from the store) and the note
-        // received from the API, then the note is already stored--just need to update it.
-        if ([fetchedNote.id isEqualToString:[note valueForKey:kNoteId]]) 
-        {
-            NSLog(@"Update note: %@", fetchedNote.id);
-            [fetchedNote updateNoteWithDictionary:note];
-            
-            // Next notes
-            note        = [noteEnumerator nextObject];
-            fetchedNote = [fetchedNoteEnumerator nextObject];
-        }
-        
-        // If there is a note object that doesn't match the current fetchedNote
-        // then it is a new note; insert it into the context.
-        else if (note)
-        {
-            NSLog(@"Create a new note: %@", [note valueForKey:kNoteId]);
-            [RSNote noteFromDictionary:note];
-            
-            note = [noteEnumerator nextObject];
-        }
+        [[DataContext defaultContext] deleteObject:oldNote];
     }
     
-    // TODO: Delete old notes
+    NSLog(@"Deleted %d old notes.", [oldNotes count]);
+    
+    // Create new notes
+    for (NSDictionary *noteData in notes) 
+    {
+        [RSNote noteFromDictionary:noteData];
+    }
+    
+    NSLog(@"Created %d new notes.", [notes count]);
+    
+    // The caller MUST save the context otherwise the update will not complete.
+}
+
++ (NSArray *) notesCreatedBefore: (NSDate *) timestamp
+{
+    NSFetchRequest *request = [NSFetchRequest new];
+    [request setEntity:[NSEntityDescription entityForName:@"RSNote" inManagedObjectContext:[DataContext defaultContext]]];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"timestamp <= %@", timestamp]];
+    
+    NSArray *notes = [[DataContext defaultContext] executeFetchRequest:request error:nil];
+    return notes;
+}
+
++ (NSArray *) notesCreatedOnParagraph:(RSParagraph *) paragraph before:(NSDate *) timestamp
+{
+    NSFetchRequest *request = [NSFetchRequest new];
+    [request setEntity:[NSEntityDescription entityForName:@"RSNote" inManagedObjectContext:[DataContext defaultContext]]];
+    
+    [request setPredicate:[NSPredicate predicateWithFormat:@"timestamp <= %@ AND paragraph==%@", timestamp, paragraph]];
+    
+    NSArray *notes = [[DataContext defaultContext] executeFetchRequest:request error:nil];
+    return notes;
 }
 
 + (NSArray *) notesForIds: (NSArray *)ids
