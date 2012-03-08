@@ -15,6 +15,16 @@
 #import "RSTableViewCell.h"
 
 @interface RSNotesViewController()
+/**
+ Determines if there are more notes that are not currently loaded in the view.
+ Compares the number of notes on the paragraph with the number of notes loaded in the view.
+ 
+ @return YES if there are more notes; NO if there are no more notes.
+ */
+- (BOOL) areMoreNotes;
+
+- (void) loadMoreNotes;
+
 - (void) checkForNoComments;
 @end
 
@@ -62,6 +72,17 @@
     [self.tableView flashScrollIndicators];
     [self checkForNoComments];
 }
+
+- (void) loadMoreNotes
+{
+    NSLog(@"Loading more notes");
+    // Find the last loaded note
+    RSNote *lastNote = [notes lastObject];
+    
+    // Load notes before the last loaded note
+    [RSParagraphNotesRequest notesForParagraph:self.paragraph beforeDate:lastNote.timestamp withDelegate:self];
+}
+
 - (void) presentNoteComposer
 {
     RSComposeNoteViewController *noteComposer = [[RSComposeNoteViewController alloc] initWithParagraph:self.paragraph];
@@ -76,6 +97,11 @@
     groupViewController.delegate = self;
     
     [self.navigationController presentModalViewController:[RSNavigationController wrapViewController:groupViewController withInputEnabled:NO] animated:YES];
+}
+
+- (BOOL) areMoreNotes
+{
+    return [self.paragraph.noteCount integerValue] > [notes count];
 }
 
 - (void) checkForNoComments
@@ -223,8 +249,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return [notes count];
+    // If there are more notes to be loaded, then load the number of notes plus one (for the "Load More" row)
+    if ([self areMoreNotes])
+    {
+        return [notes count] + 1;
+    }
+    
+    // If all the notes for the paragraph are loaded in the view, then do not add a row for the "Load More" row
+    else
+    {
+        return [notes count];
+    }
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -239,6 +274,17 @@
     RSTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[RSTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    
+    if (indexPath.row >= [notes count])
+    {
+        cell.textLabel.text = @"Load More";
+        cell.detailTextLabel.text = nil;
+        cell.imageView.image = nil;
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.isLink = NO;
+        cell.thumbnail.image = nil;
+        return cell;
     }
     
     RSNote *note = [notes objectAtIndex:indexPath.row];
@@ -260,8 +306,11 @@
     
     if (note.thumbnailURL)
     {
-        //cell.thumbnail.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:note.thumbnailURL]]];
         [cell.thumbnail loadWithURL:[NSURL URLWithString:note.thumbnailURL]];
+    }
+    else
+    {
+        cell.thumbnail.image = nil;
     }
     
     if (note.link)
@@ -319,11 +368,23 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    RSNote *note = [notes objectAtIndex:indexPath.row];
-    RSNoteDetailViewController *detailViewController = [[RSNoteDetailViewController alloc] initWithNote:note];
+    if (indexPath.row >= [notes count])
+    {
+        NSLog(@"Load more!");
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        if (!loadingNewItems)
+        {
+            [self loadMoreNotes];
+        }
+    }
     
-    [self.navigationController pushViewController:detailViewController animated:YES];
+    else
+    {
+        RSNote *note = [notes objectAtIndex:indexPath.row];
+        RSNoteDetailViewController *detailViewController = [[RSNoteDetailViewController alloc] initWithNote:note];
+        
+        [self.navigationController pushViewController:detailViewController animated:YES];
+    }
 }
 
 #pragma mark - RSAPIRequest Delegate Methods
@@ -333,17 +394,20 @@
     [activityIndicator startAnimating];
     // Listen for the data context to change
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadNotes) name:NSManagedObjectContextObjectsDidChangeNotification object:[DataContext defaultContext]];
+    loadingNewItems = YES;
 }
 - (void) requestDidSucceed:(RSAPIRequest *)request
 {
     NSLog(@"Notes updated.");
     [activityIndicator stopAnimating];
+    loadingNewItems = NO;
 }
 
 - (void) requestDidFail:(RSAPIRequest *)request withError:(NSError *)error
 {
     NSLog(@"Notes could not be updated.");
     [activityIndicator stopAnimating];
+    loadingNewItems = NO;
 }
 
 @end

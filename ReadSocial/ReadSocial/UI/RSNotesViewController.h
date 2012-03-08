@@ -29,6 +29,8 @@
     // Toolbar items
     UIActivityIndicatorView *activityIndicator;
     UIBarButtonItem *status; // The status is implemented as a bar button item because all items on the toolbar must be buttons.
+    
+    BOOL loadingNewItems;
 }
 
 @property (strong, nonatomic) RSParagraph *paragraph;
