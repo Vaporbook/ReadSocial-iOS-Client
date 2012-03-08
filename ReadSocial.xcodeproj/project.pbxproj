@@ -191,6 +191,7 @@
 		0EC8A9C314D6639500EA7C74 /* RSCreateNoteRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSCreateNoteRequest.m; sourceTree = "<group>"; };
 		0EC8A9C514D66E3C00EA7C74 /* RSComposeResponseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSComposeResponseViewController.h; sourceTree = "<group>"; };
 		0EC8A9C614D66E3C00EA7C74 /* RSComposeResponseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSComposeResponseViewController.m; sourceTree = "<group>"; };
+		0EE63EC6150910B80057EA9C /* ReadSocial.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ReadSocial.entitlements; sourceTree = "<group>"; };
 		0EE9417B14D794FE00526C36 /* rs.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = rs.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -278,6 +279,7 @@
 		0E61BE4D14CB20720017F3E3 /* ReadSocial */ = {
 			isa = PBXGroup;
 			children = (
+				0EE63EC6150910B80057EA9C /* ReadSocial.entitlements */,
 				0EC7B37914F367BB0026D97D /* Base64 */,
 				0EBFDF5E14F0E33B00CD45F6 /* Icon-72.png */,
 				0EBFDF5F14F0E33D00CD45F6 /* iTunesArtwork */,
@@ -628,6 +630,7 @@
 		0E61BE5F14CB20720017F3E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ReadSocial/ReadSocial-Prefix.pch";
 				INFOPLIST_FILE = "ReadSocial/ReadSocial-Info.plist";
@@ -639,6 +642,7 @@
 		0E61BE6014CB20720017F3E3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ReadSocial/ReadSocial.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ReadSocial/ReadSocial-Prefix.pch";
 				INFOPLIST_FILE = "ReadSocial/ReadSocial-Info.plist";
