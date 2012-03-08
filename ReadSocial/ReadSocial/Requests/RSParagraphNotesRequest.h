@@ -14,7 +14,9 @@
 @interface RSParagraphNotesRequest : RSAPIRequest
 
 @property (strong, nonatomic) RSParagraph *paragraph;
+@property (strong, nonatomic) NSDate *before;
 
++ (RSParagraphNotesRequest *) notesForParagraph: (RSParagraph *)paragraph beforeDate:(NSDate *)before withDelegate: (id<RSAPIRequestDelegate>)delegate;
 + (RSParagraphNotesRequest *) notesForParagraph: (RSParagraph *)paragraph withDelegate: (id<RSAPIRequestDelegate>)delegate;
 + (RSParagraphNotesRequest *) notesForParagraph: (RSParagraph *)paragraph;
 - (RSParagraphNotesRequest *) initWithParagraph: (RSParagraph *)paragraph;

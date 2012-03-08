@@ -13,14 +13,20 @@
 #import "RSUserHandler.h"
 
 @implementation RSParagraphNotesRequest
-@synthesize paragraph=_paragraph;
+@synthesize paragraph=_paragraph, before;
 
-+ (RSParagraphNotesRequest *) notesForParagraph: (RSParagraph *)paragraph withDelegate: (id<RSAPIRequestDelegate>)delegate
++ (RSParagraphNotesRequest *) notesForParagraph: (RSParagraph *)paragraph beforeDate:(NSDate *)before withDelegate: (id<RSAPIRequestDelegate>)delegate
 {
     RSParagraphNotesRequest *request = [[RSParagraphNotesRequest alloc] initWithParagraph:paragraph];
+    request.before = before;
     request.delegate = delegate;
     [request start];
     return request;
+}
+
++ (RSParagraphNotesRequest *) notesForParagraph: (RSParagraph *)paragraph withDelegate: (id<RSAPIRequestDelegate>)delegate
+{
+    return [RSParagraphNotesRequest notesForParagraph:paragraph beforeDate:nil withDelegate:delegate];
 }
 
 + (RSParagraphNotesRequest *) notesForParagraph: (RSParagraph *)paragraph
@@ -45,6 +51,12 @@
     
     // Determine the URL
     NSString *url = [NSString stringWithFormat:@"%@/v1/%@/%@/notes?par_hash=%@", ReadSocialAPIURL, networkID, group, self.paragraph.par_hash];
+    
+    if (before) 
+    {
+        // The before parameter expects the number to be in microseconds (seconds * 1000).
+        url = [url stringByAppendingFormat:@"&before=%.0f",[before timeIntervalSince1970]*1000];
+    }
     
     [request setURL:[NSURL URLWithString:url]];
     
