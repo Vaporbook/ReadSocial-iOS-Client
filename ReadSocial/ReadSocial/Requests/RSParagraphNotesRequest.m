@@ -7,6 +7,7 @@
 //
 
 #import "RSParagraphNotesRequest.h"
+#import "RSNoteCountRequest.h"
 #import "RSParagraph+Core.h"
 #import "RSNoteHandler.h"
 #import "RSUserHandler.h"
@@ -64,14 +65,14 @@
     // Create notes
     NSArray *notes = (NSArray *)json;
     
-    // Update the note count for the paragraph
-    self.paragraph.noteCount = [NSNumber numberWithInt:[notes count]];
-    
     // First, update user data
     [RSUserHandler updateOrCreateUsersWithArray:notes];
     
     // Then update the note data
     [RSNoteHandler updateOrCreateNotesWithArray:notes];
+    
+    // Request an update for the note count
+    [RSNoteCountRequest retrieveNoteCountOnParagraph:self.paragraph];
     
     return YES;
 }
