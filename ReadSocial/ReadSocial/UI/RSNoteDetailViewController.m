@@ -18,6 +18,13 @@
 #import "RSDateFormat.h"
 #import "RSTableViewCell.h"
 
+@interface RSNoteDetailViewController()
+
+- (BOOL) shouldShowLoadMoreRow;
+- (void) loadMoreResponses;
+
+@end
+
 @implementation RSNoteDetailViewController
 @synthesize note=_note;
 
@@ -36,6 +43,7 @@
     if (self)
     {
         self.note = note;
+        loadingNewData = loadMoreRowVisible = NO;
     }
     return self;
 }
@@ -46,6 +54,22 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+}
+
+- (BOOL) shouldShowLoadMoreRow
+{
+    // The "Load More" row should appear if the response count is higher than the number of responses
+    // that are currently loaded on the table
+    return [self.note.responseCount integerValue] > [responses count];
+}
+
+- (void) loadMoreResponses
+{
+    NSLog(@"Loading more responses.");
+    // Determine the timestamp of the last displayed response
+    // and load all responses prior to that date
+    RSResponse *lastResponse = [responses lastObject];
+    [RSNoteResponsesRequest responsesForNote:self.note before:lastResponse.timestamp withDelegate:self];
 }
 
 // This method will be triggered when the data context detects a change
@@ -200,6 +224,13 @@
     
     self.tableView.tableHeaderView = containerView;
     
+    // Get the responses for the note sorted by timestamp descending
+    // This is what the data for the table is based on
+    responses = [RSResponseHandler responsesForNote:self.note];
+    
+    // Request an update from the API
+    [RSNoteResponsesRequest responsesForNote:self.note withDelegate:self];
+    
     // Listen for the data context to change
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadResponses) name:NSManagedObjectContextObjectsDidChangeNotification object:nil];
     self.contentSizeForViewInPopover = CGSizeMake(300.0, 300.0);
@@ -212,13 +243,6 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    // Get the responses for the note sorted by timestamp descending
-    // This is what the data for the table is based on
-    responses = [RSResponseHandler responsesForNote:self.note];
-    
-    // Request an update from the API
-    [RSNoteResponsesRequest responsesForNote:self.note withDelegate:self];
-    
     [super viewWillAppear:animated];
 }
 
@@ -257,11 +281,28 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [responses count];
+    if ([self shouldShowLoadMoreRow])
+    {
+        loadMoreRowVisible = YES;
+        loadMoreRowIndex = [responses count]; // The "Load More" row index will be equal to the number of responses
+        return [responses count] + 1;
+    }
+    
+    else
+    {
+        loadMoreRowIndex = -1; // Clear out the reference to an row
+        loadMoreRowVisible = NO;
+        return [responses count];
+    }
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == loadMoreRowIndex)
+    {
+        return 60;
+    }
+    
     RSResponse *response = [responses objectAtIndex:indexPath.row];
     CGSize textsize = [response.body sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(225, 500) lineBreakMode:UILineBreakModeWordWrap];
     return textsize.height + 50;
@@ -274,6 +315,16 @@
     RSTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[RSTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    
+    // Check if this is the Load More row
+    if (indexPath.row == loadMoreRowIndex)
+    {
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+        cell.imageView.image = nil;
+        cell.textLabel.text = @"Load More";
+        cell.detailTextLabel.text = @"";
+        return cell;
     }
     
     RSResponse *response = [responses objectAtIndex:indexPath.row];
@@ -296,67 +347,36 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 #pragma mark - Table view delegate
-/*
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
+    // If the user selects the "Load More" row, load more responses
+    // But only load more responses if data is not already being loaded
+    if (indexPath.row == loadMoreRowIndex && !loadingNewData)
+    {
+        [self loadMoreResponses];
+        
+        // Deselect the table row
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
 
-}*/
+}
 
 #pragma mark - RSAPIRequest Delegate Methods
 - (void) didStartRequest:(RSAPIRequest *)request
 {
-    
+    loadingNewData = YES;
 }
 - (void) requestDidSucceed:(RSAPIRequest *)request
 {
     NSLog(@"Responses updated.");
-    
+    loadingNewData = NO;
 }
 
 - (void) requestDidFail:(RSAPIRequest *)request withError:(NSError *)error
 {
     NSLog(@"Responses could not be updated: %@", error);
+    loadingNewData = NO;
 }
 
 @end

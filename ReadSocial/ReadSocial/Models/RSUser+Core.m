@@ -7,6 +7,7 @@
 //
 
 #import "RSUser+Core.h"
+#import "RSUserImageRequest.h"
 #import "DataContext.h"
 
 NSString* const kUserId     =   @"uid";
@@ -18,7 +19,42 @@ NSString* const kUserDomain =   @"udom";
 
 - (UIImage *) getImage
 {
-    return [UIImage imageWithData: self.imageData];
+    // If the image is already downloaded, then just use that
+    if (self.imageIsDownloaded)
+    {
+        imageIsDownloading = NO;
+        return [UIImage imageWithData: self.imageData];
+    }
+    
+    // If the image is not downloaded, return a placeholder image
+    // and start downloading the image.
+    else
+    {
+        if (!imageIsDownloading)
+        {
+            [RSUserImageRequest downloadImageForUser:self];
+            imageIsDownloading = YES;
+        }
+        
+        return [UIImage imageNamed:@"default_user"];
+    }
+}
+
+- (BOOL) getImageIsDownloaded
+{
+    // Checks for the existence of image data and how old it is
+    // If the data doesn't exist or the existing data is more than a week old
+    // the image is not considered "downloaded"--it should be re-retrieved.
+    if (!self.imageData || 
+        !self.updated || 
+        [[NSDate date] timeIntervalSinceDate:self.updated] > 604800)
+    {
+        return NO;
+    }
+    else
+    {
+        return YES;
+    }
 }
 
 + (RSUser *) userWithDictionary: (NSDictionary *)args
@@ -32,23 +68,18 @@ NSString* const kUserDomain =   @"udom";
     return user;
 }
 
-#warning This method always returns YES even if no changes were made.
 - (BOOL) updateUserWithDictionary: (NSDictionary *)args
 {
     self.name       =   [args valueForKey:kUserName];
     self.udom       =   [args valueForKey:kUserDomain];
-    self.imageURL   =   [args valueForKey:kUserImage];
     
-    // Only update the image if it is over a week old
-    if (!self.updated || [[NSDate date] timeIntervalSinceDate:self.updated] > 604800) // 604800 is the number of seconds in one week
+    // Check if the image URL has changed; if it has, then the image needs to be re-downloaded
+    if (![[args valueForKey:kUserImage] isEqualToString:self.imageURL])
     {
-        NSLog(@"Updating user image.");
-        self.imageData  =   [NSData dataWithContentsOfURL:[NSURL URLWithString:[args valueForKey:kUserImage]]];
-        self.updated    =   [NSDate date];
-    }
-    else
-    {
-        NSLog(@"Not updating image--using cached version.");
+        NSLog(@"New image!");
+        imageIsDownloading = NO;
+        self.imageURL   =   [args valueForKey:kUserImage];
+        self.imageData  =   nil;
     }
     
     return YES;

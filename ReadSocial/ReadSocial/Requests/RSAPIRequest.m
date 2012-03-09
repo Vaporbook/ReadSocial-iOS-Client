@@ -57,6 +57,7 @@ static NSString *userAgent;
     [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request addValue:userAgent forHTTPHeaderField:@"User-Agent"];
+    assumeJSONResponse = YES;
     
     return request;
 }
@@ -82,10 +83,10 @@ static NSString *userAgent;
     [NSURLConnection connectionWithRequest:request delegate:self];
 }
 
-- (BOOL) handleResponse: (id)json error: (NSError**)error
+- (BOOL) handleResponse: (id)data error: (NSError**)error
 {
     // Expecting this method to get overridden
-    NSLog(@"Response: %@", json);
+    NSLog(@"Response: %@", data);
     return NO;
 }
 
@@ -175,10 +176,18 @@ static NSString *userAgent;
     }
     
     // Save JSON response
-    id responseJSON = [responseData objectFromJSONData];
+    id response;
+    if (assumeJSONResponse) 
+    {
+        response = [responseData objectFromJSONData];
+    }
+    else
+    {
+        response = responseData;
+    }
     
     NSError *error;
-    BOOL contextChanged = [self handleResponse:responseJSON error:&error];
+    BOOL contextChanged = [self handleResponse:response error:&error];
     
     // Save the ReadSocial data context
     if (contextChanged)

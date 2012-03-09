@@ -12,6 +12,9 @@
 @class RSNote, RSResponse;
 
 @interface RSUser : NSManagedObject
+{
+    BOOL imageIsDownloading;
+}
 
 @property (nonatomic, retain) NSNumber * uid;
 @property (nonatomic, retain) NSData * imageData;

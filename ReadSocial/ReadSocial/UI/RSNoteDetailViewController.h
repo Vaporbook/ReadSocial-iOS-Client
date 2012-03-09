@@ -14,6 +14,10 @@
 @interface RSNoteDetailViewController : UITableViewController <RSResponseCompositionDelegate, RSAPIRequestDelegate>
 {
     NSArray *responses;
+    
+    int loadMoreRowIndex;
+    BOOL loadMoreRowVisible;
+    BOOL loadingNewData;
 }
 
 - (id) initWithNote: (RSNote *)note;

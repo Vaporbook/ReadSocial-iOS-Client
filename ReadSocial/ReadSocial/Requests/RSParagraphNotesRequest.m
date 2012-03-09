@@ -81,7 +81,7 @@
     [RSUserHandler updateOrCreateUsersWithArray:notes];
     
     // Then update the note data
-    [RSNoteHandler updateOrCreateNotesWithArray:notes];
+    [RSNoteHandler updateOrCreateNotesWithArray:notes forParagraph:self.paragraph];
     
     // Request an update for the note count
     [RSNoteCountRequest retrieveNoteCountOnParagraph:self.paragraph];

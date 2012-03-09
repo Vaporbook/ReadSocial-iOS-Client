@@ -45,6 +45,10 @@
 		0EAEF53E14D7531C00EA2ECE /* ReadSocial.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EAEF53D14D7531B00EA2ECE /* ReadSocial.m */; };
 		0EAEF54114D7544100EA2ECE /* RSPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EAEF54014D7544100EA2ECE /* RSPage.m */; };
 		0EAEF54414D756C100EA2ECE /* RSNoteCountRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EAEF54314D756C100EA2ECE /* RSNoteCountRequest.m */; };
+		0EBB23D2150A742B0060E8FB /* RSNoteResponseCountRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBB23D1150A742B0060E8FB /* RSNoteResponseCountRequest.m */; };
+		0EBB23D6150A8CDB0060E8FB /* RSNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBB23D5150A8CDB0060E8FB /* RSNote.m */; };
+		0EBB23D8150A9DBD0060E8FB /* default_user.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBB23D7150A9DBD0060E8FB /* default_user.png */; };
+		0EBB23DB150A9EBB0060E8FB /* RSUserImageRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBB23DA150A9EBB0060E8FB /* RSUserImageRequest.m */; };
 		0EBFDF4F14F0718000CD45F6 /* RSNoteCountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBFDF4E14F0718000CD45F6 /* RSNoteCountViewController.m */; };
 		0EBFDF5214F09BE200CD45F6 /* ReadSocialUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBFDF5114F09BE200CD45F6 /* ReadSocialUI.m */; };
 		0EBFDF5514F0B40F00CD45F6 /* notes.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFDF5414F0B40F00CD45F6 /* notes.png */; };
@@ -66,7 +70,6 @@
 		0EC7B38514F372510026D97D /* RSNoteImageRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7B38414F372510026D97D /* RSNoteImageRequest.m */; };
 		0EC7B39214F37B380026D97D /* RSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7B39114F37B380026D97D /* RSTableViewCell.m */; };
 		0EC7B39914F38ABF0026D97D /* UILazyImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7B39814F38ABF0026D97D /* UILazyImageView.m */; };
-		0EC7B39C14F394720026D97D /* RSNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7B39B14F394720026D97D /* RSNote.m */; };
 		0EC7B39E14F39AB00026D97D /* separator.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EC7B39D14F39AB00026D97D /* separator.png */; };
 		0EC7B3A014F3AAE10026D97D /* no-comments.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EC7B39F14F3AAE10026D97D /* no-comments.png */; };
 		0EC8A9BD14D5FAB600EA7C74 /* RSAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8A9BC14D5FAB600EA7C74 /* RSAuthentication.m */; };
@@ -147,6 +150,13 @@
 		0EAEF54014D7544100EA2ECE /* RSPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSPage.m; sourceTree = "<group>"; };
 		0EAEF54214D756C100EA2ECE /* RSNoteCountRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNoteCountRequest.h; sourceTree = "<group>"; };
 		0EAEF54314D756C100EA2ECE /* RSNoteCountRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNoteCountRequest.m; sourceTree = "<group>"; };
+		0EBB23D0150A742B0060E8FB /* RSNoteResponseCountRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNoteResponseCountRequest.h; sourceTree = "<group>"; };
+		0EBB23D1150A742B0060E8FB /* RSNoteResponseCountRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNoteResponseCountRequest.m; sourceTree = "<group>"; };
+		0EBB23D4150A8CDB0060E8FB /* RSNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNote.h; sourceTree = "<group>"; };
+		0EBB23D5150A8CDB0060E8FB /* RSNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNote.m; sourceTree = "<group>"; };
+		0EBB23D7150A9DBD0060E8FB /* default_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default_user.png; path = ../ReadSocial/Resources/default_user.png; sourceTree = "<group>"; };
+		0EBB23D9150A9EBA0060E8FB /* RSUserImageRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSUserImageRequest.h; sourceTree = "<group>"; };
+		0EBB23DA150A9EBB0060E8FB /* RSUserImageRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSUserImageRequest.m; sourceTree = "<group>"; };
 		0EBFDF4A14F0647200CD45F6 /* ReadSocialAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReadSocialAPI.h; path = ReadSocial/ReadSocialAPI.h; sourceTree = "<group>"; };
 		0EBFDF4D14F0718000CD45F6 /* RSNoteCountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNoteCountViewController.h; sourceTree = "<group>"; };
 		0EBFDF4E14F0718000CD45F6 /* RSNoteCountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNoteCountViewController.m; sourceTree = "<group>"; };
@@ -179,8 +189,6 @@
 		0EC7B39114F37B380026D97D /* RSTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTableViewCell.m; sourceTree = "<group>"; };
 		0EC7B39714F38ABF0026D97D /* UILazyImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILazyImageView.h; sourceTree = "<group>"; };
 		0EC7B39814F38ABF0026D97D /* UILazyImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILazyImageView.m; sourceTree = "<group>"; };
-		0EC7B39A14F394720026D97D /* RSNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNote.h; sourceTree = "<group>"; };
-		0EC7B39B14F394720026D97D /* RSNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNote.m; sourceTree = "<group>"; };
 		0EC7B39D14F39AB00026D97D /* separator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = separator.png; sourceTree = "<group>"; };
 		0EC7B39F14F3AAE10026D97D /* no-comments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no-comments.png"; sourceTree = "<group>"; };
 		0EC8A9BB14D5FAB600EA7C74 /* RSAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSAuthentication.h; path = ReadSocial/RSAuthentication.h; sourceTree = "<group>"; };
@@ -228,8 +236,12 @@
 				0EC8A9C314D6639500EA7C74 /* RSCreateNoteRequest.m */,
 				0EAEF54214D756C100EA2ECE /* RSNoteCountRequest.h */,
 				0EAEF54314D756C100EA2ECE /* RSNoteCountRequest.m */,
+				0EBB23D0150A742B0060E8FB /* RSNoteResponseCountRequest.h */,
+				0EBB23D1150A742B0060E8FB /* RSNoteResponseCountRequest.m */,
 				0EC7B38314F372510026D97D /* RSNoteImageRequest.h */,
 				0EC7B38414F372510026D97D /* RSNoteImageRequest.m */,
+				0EBB23D9150A9EBA0060E8FB /* RSUserImageRequest.h */,
+				0EBB23DA150A9EBB0060E8FB /* RSUserImageRequest.m */,
 			);
 			name = "API Requests";
 			path = ReadSocial/Requests;
@@ -343,8 +355,8 @@
 				0E78F67314D5CC2E00DF151B /* RSUser.m */,
 				0EAEF53F14D7544100EA2ECE /* RSPage.h */,
 				0EAEF54014D7544100EA2ECE /* RSPage.m */,
-				0EC7B39A14F394720026D97D /* RSNote.h */,
-				0EC7B39B14F394720026D97D /* RSNote.m */,
+				0EBB23D4150A8CDB0060E8FB /* RSNote.h */,
+				0EBB23D5150A8CDB0060E8FB /* RSNote.m */,
 			);
 			name = Models;
 			path = ReadSocial/Models;
@@ -367,6 +379,7 @@
 		0E78F65514D4624100DF151B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0EBB23D7150A9DBD0060E8FB /* default_user.png */,
 				0E78F65614D4627900DF151B /* index.html */,
 				0EE9417B14D794FE00526C36 /* rs.js */,
 			);
@@ -501,6 +514,7 @@
 				0EC7B37814F35F420026D97D /* RSImageNoteTypeComposer.xib in Resources */,
 				0EC7B39E14F39AB00026D97D /* separator.png in Resources */,
 				0EC7B3A014F3AAE10026D97D /* no-comments.png in Resources */,
+				0EBB23D8150A9DBD0060E8FB /* default_user.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,7 +570,9 @@
 				0EC7B38514F372510026D97D /* RSNoteImageRequest.m in Sources */,
 				0EC7B39214F37B380026D97D /* RSTableViewCell.m in Sources */,
 				0EC7B39914F38ABF0026D97D /* UILazyImageView.m in Sources */,
-				0EC7B39C14F394720026D97D /* RSNote.m in Sources */,
+				0EBB23D2150A742B0060E8FB /* RSNoteResponseCountRequest.m in Sources */,
+				0EBB23D6150A8CDB0060E8FB /* RSNote.m in Sources */,
+				0EBB23DB150A9EBB0060E8FB /* RSUserImageRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

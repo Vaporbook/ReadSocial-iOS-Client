@@ -10,14 +10,21 @@
 #import "RSNote+Core.h"
 #import "RSResponseHandler.h"
 #import "RSUserHandler.h"
+#import "RSNoteResponseCountRequest.h"
 
 @implementation RSNoteResponsesRequest
-@synthesize note=_note;
+@synthesize note=_note, before;
 
 + (RSNoteResponsesRequest *) responsesForNote: (RSNote *)note withDelegate: (id<RSAPIRequestDelegate>)delegate
 {
+    return [RSNoteResponsesRequest responsesForNote:note before:nil withDelegate:delegate];
+}
+
++ (RSNoteResponsesRequest *) responsesForNote: (RSNote *)note before:(NSDate *)before withDelegate: (id<RSAPIRequestDelegate>)delegate
+{
     RSNoteResponsesRequest *request = [[RSNoteResponsesRequest alloc] initWithNote:note];
     request.delegate = delegate;
+    request.before = before;
     [request start];
     return request;
 }
@@ -45,6 +52,13 @@
     // Determine the URL
     NSString *url = [NSString stringWithFormat:@"%@/v1/%@/notes/%@/responses", ReadSocialAPIURL, networkID, self.note.id];
     
+    // Append the before parameter if before has been specified
+    if (before)
+    {
+        // The before parameter expects the value in microseconds (seconds * 1000)
+        url = [url stringByAppendingFormat:@"?before=%.0f", [before timeIntervalSince1970] * 1000];
+    }
+    
     [request setURL:[NSURL URLWithString:url]];
     
     return request;
@@ -66,6 +80,9 @@
     
     [RSUserHandler updateOrCreateUsersWithArray:responses];
     [RSResponseHandler updateOrCreateResponsesWithArray:responses];
+    
+    // Retrieve an updated number of responses on this note
+    [RSNoteResponseCountRequest retrieveNoteResponseCountOnNote:self.note];
     
     return YES;
 }

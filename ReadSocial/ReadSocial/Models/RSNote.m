@@ -2,7 +2,7 @@
 //  RSNote.m
 //  ReadSocial
 //
-//  Created by Daniel Pfeiffer on 2/21/12.
+//  Created by Daniel Pfeiffer on 3/9/12.
 //  Copyright (c) 2012 Float Mobile Learning. All rights reserved.
 //
 
@@ -16,6 +16,7 @@
 
 @dynamic body;
 @dynamic group;
+@dynamic highlightedText;
 @dynamic id;
 @dynamic image;
 @dynamic imageURL;
@@ -23,7 +24,7 @@
 @dynamic thumbnailURL;
 @dynamic timestamp;
 @dynamic type;
-@dynamic highlightedText;
+@dynamic responseCount;
 @dynamic paragraph;
 @dynamic responses;
 @dynamic user;

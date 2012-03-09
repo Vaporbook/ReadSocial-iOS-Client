@@ -17,9 +17,11 @@ extern NSString* const kUserName;
 extern NSString* const kUserImage;
 extern NSString* const kUserDomain;
 
+@class RSUserImageRequest;
 @interface RSUser (Core)
 
 @property (nonatomic, readonly, getter = getImage) UIImage *image;
+@property (readonly, getter = getImageIsDownloaded) BOOL imageIsDownloaded;
 
 /**
  Creates a RSUser object from data in an NSDictionary.

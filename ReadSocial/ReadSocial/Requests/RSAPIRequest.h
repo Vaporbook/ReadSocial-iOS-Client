@@ -27,6 +27,7 @@ extern NSString* const ReadSocialAPIURL;
     NSDate *sentTime;
     
     // Response
+    BOOL assumeJSONResponse;
     NSMutableData *responseData;
     NSHTTPURLResponse *apiResponse;
     
@@ -40,7 +41,7 @@ extern NSString* const ReadSocialAPIURL;
 - (void) start;
 
 // Returns whether data was changed or not
-- (BOOL) handleResponse: (id)json error: (NSError**)error;
+- (BOOL) handleResponse: (id)data error: (NSError**)error;
 
 @end
 

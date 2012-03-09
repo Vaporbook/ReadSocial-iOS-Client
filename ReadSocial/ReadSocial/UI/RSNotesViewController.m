@@ -101,7 +101,7 @@
 
 - (BOOL) areMoreNotes
 {
-    return [self.paragraph.noteCount integerValue] > [notes count];
+    return [self.paragraph.noteCount integerValue] > [notes count] && [notes count]>0;
 }
 
 - (void) checkForNoComments
@@ -192,6 +192,12 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(presentNoteComposer)];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Notes" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.contentSizeForViewInPopover = CGSizeMake(300.0, 300.0);
+    
+    // Pull data from the persistent store so that the interface can immediately open
+    notes = [RSNoteHandler notesForParagraph:_paragraph];
+    
+    // Request updated notes
+    [RSParagraphNotesRequest notesForParagraph:self.paragraph withDelegate:self];
 }
 
 - (void)viewDidUnload
@@ -203,12 +209,6 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    // Pull data from the persistent store so that the interface can immediately open
-    notes = [RSNoteHandler notesForParagraph:_paragraph];
-    
-    // Request updated notes
-    [RSParagraphNotesRequest notesForParagraph:self.paragraph withDelegate:self];
-    
     [self checkForNoComments];
     
     [super viewWillAppear:animated];

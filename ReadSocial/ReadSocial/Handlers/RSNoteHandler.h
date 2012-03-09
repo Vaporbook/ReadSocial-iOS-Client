@@ -44,8 +44,9 @@
  Expects that each NSDictionary object declares the "_id" property.
  
  @param notes The NSArray should contain NSDictionary elements with data retrieved from the API.
+ @param paragraph The RSParagraph the notes belong to.
  */
-+ (void) updateOrCreateNotesWithArray: (NSArray *)notes;
++ (void) updateOrCreateNotesWithArray: (NSArray *)notes forParagraph:(RSParagraph *)paragraph;
 
 /**
  Retrieves an NSArray of RSNote objects for each note ID specified.

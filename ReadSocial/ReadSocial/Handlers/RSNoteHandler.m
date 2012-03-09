@@ -16,7 +16,7 @@
 @interface RSNoteHandler()
 
 + (NSArray *) notesCreatedBefore: (NSDate *) timestamp;
-+ (NSArray *) notesCreatedOnParagraph: (RSParagraph *) paragraph before: (NSDate *) timestamp;
++ (NSArray *) notesForParagraph: (RSParagraph *) paragraph before: (NSDate *) timestamp;
 
 @end;
 
@@ -54,23 +54,30 @@
     return note;
 }
 
-+ (void) updateOrCreateNotesWithArray: (NSArray *)notes
++ (void) updateOrCreateNotesWithArray: (NSArray *)notes forParagraph:(RSParagraph *)paragraph
 {
-    // Make sure that there are notes
-    if ([notes count]==0)
-    {
-        return;
-    }
-    
     // Delete all stored notes with a date prior to the date on the
     // first note received from the API.
     
-    // Retrieve the note data for the last updated note
-    NSDictionary *lastUpdatedNoteData = [notes objectAtIndex:0];
-    RSNote *lastUpdatedNote = [RSNoteHandler updateOrCreateNoteWithDictionary:lastUpdatedNoteData];
+    // Get a reference to all the cached notes on this paragraph
+    NSArray *oldNotes;
     
-    // Fetch all the notes with a created date prior to this note
-    NSArray *oldNotes = [RSNoteHandler notesCreatedOnParagraph:lastUpdatedNote.paragraph before:lastUpdatedNote.timestamp];
+    // Check if there are new notes to be downloaded for the paragraph
+    if ([notes count]>0)
+    {
+        // Retrieve the note data for the last updated note
+        NSDictionary *lastUpdatedNoteData = [notes objectAtIndex:0];
+        RSNote *lastUpdatedNote = [RSNoteHandler updateOrCreateNoteWithDictionary:lastUpdatedNoteData];
+        
+        // Fetch all the notes with a created date prior to this note
+        oldNotes = [RSNoteHandler notesForParagraph:paragraph before:lastUpdatedNote.timestamp];
+    }
+    
+    // If notes is nil or empty, then erase all the notes on this paragraph (created before right now...which should be all of them).
+    else
+    {
+        oldNotes = [RSNoteHandler notesForParagraph:paragraph before:[NSDate date]];
+    }
     
     // Delete all the old notes
     for (RSNote *oldNote in oldNotes) 
@@ -83,7 +90,7 @@
     // Create new notes
     for (NSDictionary *noteData in notes) 
     {
-        [RSNote noteFromDictionary:noteData];
+        [RSNoteHandler updateOrCreateNoteWithDictionary:noteData];
     }
     
     NSLog(@"Created %d new notes.", [notes count]);
@@ -95,18 +102,18 @@
 {
     NSFetchRequest *request = [NSFetchRequest new];
     [request setEntity:[NSEntityDescription entityForName:@"RSNote" inManagedObjectContext:[DataContext defaultContext]]];
-    [request setPredicate:[NSPredicate predicateWithFormat:@"timestamp <= %@", timestamp]];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"timestamp < %@", timestamp]];
     
     NSArray *notes = [[DataContext defaultContext] executeFetchRequest:request error:nil];
     return notes;
 }
 
-+ (NSArray *) notesCreatedOnParagraph:(RSParagraph *) paragraph before:(NSDate *) timestamp
++ (NSArray *) notesForParagraph:(RSParagraph *) paragraph before:(NSDate *) timestamp
 {
     NSFetchRequest *request = [NSFetchRequest new];
     [request setEntity:[NSEntityDescription entityForName:@"RSNote" inManagedObjectContext:[DataContext defaultContext]]];
     
-    [request setPredicate:[NSPredicate predicateWithFormat:@"timestamp <= %@ AND paragraph==%@", timestamp, paragraph]];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"timestamp < %@ AND paragraph==%@", timestamp, paragraph]];
     
     NSArray *notes = [[DataContext defaultContext] executeFetchRequest:request error:nil];
     return notes;
