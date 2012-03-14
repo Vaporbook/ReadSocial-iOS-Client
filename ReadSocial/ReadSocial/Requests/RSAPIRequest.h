@@ -43,6 +43,11 @@ extern NSString* const ReadSocialAPIURL;
 - (void) start;
 - (void) cancel;
 
+/**
+ Force a request to fail.
+ */
+- (void) failRequestWithError: (NSError*)error;
+
 // Returns whether data was changed or not
 - (BOOL) handleResponse: (id)data error: (NSError**)error;
 

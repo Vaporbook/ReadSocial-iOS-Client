@@ -74,6 +74,13 @@ NSString* const RSAuthenticationLoginWasSuccessful  =   @"RSloginWasSuccessful";
 - (void) didCancelLogin
 {
     [self closeModalView];
+    
+    // If there is a failed request and the user cancelled the login,
+    // Mark the request as failed
+    if (failedRequest)
+    {
+        [failedRequest failRequestWithError:[NSError errorWithDomain:@"User needs to log in." code:0 userInfo:nil]];
+    }
 }
 
 # pragma mark UIWebView Delegate Methods
@@ -102,6 +109,7 @@ NSString* const RSAuthenticationLoginWasSuccessful  =   @"RSloginWasSuccessful";
 - (void) requestDidFail:(RSAuthStatusRequest *)request withError:(NSError *)error
 {
     NSLog(@"Status check failed.");
+    [self didCancelLogin];
 }
 
 # pragma mark Private Methods

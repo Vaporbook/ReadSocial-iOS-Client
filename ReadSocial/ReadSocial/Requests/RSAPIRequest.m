@@ -96,6 +96,13 @@ static NSString *userAgent;
     
     NSLog(@"Connection cancelled.");
     [connection cancel];
+    active = NO;
+}
+
+- (void) failRequestWithError:(NSError *)error
+{
+    [self requestDidFailWithError:error];
+    [self cancel];
 }
 
 - (BOOL) handleResponse: (id)data error: (NSError**)error
