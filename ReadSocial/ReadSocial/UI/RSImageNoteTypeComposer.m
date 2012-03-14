@@ -8,6 +8,7 @@
 
 #import "RSImageNoteTypeComposer.h"
 #import "NSData+Base64.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface RSImageNoteTypeComposer ()
 - (NSData *) getImageData;
@@ -43,7 +44,6 @@
     picker.allowsEditing = YES;
     picker.delegate = self;
     picker.modalPresentationStyle = UIModalPresentationCurrentContext;
-    //picker.contentSizeForViewInPopover = CGSizeMake(300.0, 300.0);
     
     [rootComposerController.navigationController presentModalViewController:picker animated:YES];
 }
@@ -90,7 +90,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    // Add a border to the note body
+    description.layer.cornerRadius = 5.0f;
+    imagePreview.layer.cornerRadius = 5.0f;
+    imagePreview.clipsToBounds = YES;
 }
 
 - (void)viewDidUnload

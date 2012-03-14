@@ -54,7 +54,7 @@
 {   
     [super layoutSubviews];
     self.imageView.frame = CGRectMake( 5, 5, 50, 50 );
-    self.thumbnail.center = CGPointMake(260, 30);
+    self.thumbnail.center = CGPointMake(280, 30);
     
     if (thumbnail.url)
     {

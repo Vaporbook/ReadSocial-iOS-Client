@@ -10,7 +10,7 @@
 #import "ReadSocial.h"
 
 @implementation RSGroupViewController
-@synthesize groups, delegate;
+@synthesize groups, delegate, paragraph;
 
 - (id) init
 {
@@ -19,18 +19,105 @@
     {
         oldGroup = [ReadSocial currentGroup];
         selectedGroup = oldGroup;
+        
+        customGroup = [[UITextField alloc] initWithFrame:CGRectMake(10, 10, 280, 25)];
+        customGroup.borderStyle = UITextBorderStyleRoundedRect;
+        customGroup.autocorrectionType = UITextAutocorrectionTypeNo;
+        customGroup.delegate = self;
+        customGroup.placeholder = @"Create a new group";
+        
+        activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        activityIndicator.hidesWhenStopped = YES;
     }
     return self;
 }
 
 - (void) selectedGroup
 {
+    // Close the keyboard (if it's open)
+    [customGroup resignFirstResponder];
+    
+    // Check if the name of the group changed
     if (![oldGroup isEqualToString:selectedGroup] && [delegate respondsToSelector:@selector(didChangeToGroup:)])
     {
         [[ReadSocial sharedInstance] changeToGroupWithString:selectedGroup];
         [delegate didChangeToGroup:selectedGroup];
     }
+    
+    // Close the modal view
     [self dismissModalViewControllerAnimated:YES];
+}
+
+- (NSString *) groupNameAtIndexPath: (NSIndexPath *)indexPath
+{
+    switch (indexPath.row) 
+    {
+        case 0:
+            return customGroup.text;
+            break;
+        default:
+        {
+            NSInteger index = indexPath.row - 1;
+            if (index>=0 && index<[groups count])
+            {
+                return [groups objectAtIndex:index];
+            }
+            break;
+        }
+    }
+    
+    return nil;
+}
+
+#pragma mark - UITextView Delegate Methods
+
+- (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    // Users are NOT allowed to put a space in a group name
+    if ([string isEqualToString:@" "]) 
+    {
+        return NO;
+    }
+    
+    // Determine what the new value of the text field is going to be
+    NSString *newValue = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    
+    // If the field is about to be empty (user clearing out the last text)
+    // set the selected group to the old group
+    if (newValue.length==0)
+    {
+        selectedGroup = oldGroup;
+    }
+    
+    // Otherwise update the selected group to this group
+    else
+    {
+        // As the user edits the text field, select the first row
+        selectedGroup = newValue;
+    }
+    return YES;
+}
+
+- (void) textFieldDidEndEditing:(UITextField *)textField
+{
+    [self.tableView reloadData];
+}
+
+#pragma mark - RSAPIRequest Delegate Methods
+- (void) didStartRequest:(RSAPIRequest *)request
+{
+    [activityIndicator startAnimating];
+}
+- (void) requestDidSucceed:(RSActiveGroupsRequest *)request
+{
+    groups = request.groups;
+    [self.tableView reloadData];
+    [activityIndicator stopAnimating];
+}
+- (void) requestDidFail:(RSAPIRequest *)request withError:(NSError *)error
+{
+    [[[UIAlertView alloc] initWithTitle:[error localizedDescription] message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+    [activityIndicator stopAnimating];
 }
 
 #pragma mark - View lifecycle
@@ -38,38 +125,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Temporarily hard-coded
-    groups = [NSArray arrayWithObjects:@"float-mobile-learning", @"partner-testing-channel", nil];
     
+    // Request active groups
+    [RSActiveGroupsRequest requestActiveGroupsForParagraph:self.paragraph withDelegate:self];
+    
+    self.title = @"Change Group";
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(selectedGroup)];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
+    self.contentSizeForViewInPopover = CGSizeMake(320.0, 300.0);
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -89,7 +153,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [groups count];
+    return [groups count]+1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -101,11 +165,27 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
+    // Reset cell properties
+    cell.textLabel.text = @"";
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    
+    // Create the cell based on the index path
+    switch (indexPath.row) 
+    {
+        case 0:
+            [cell.contentView addSubview:customGroup];
+            break;
+            
+        default:
+            cell.textLabel.text = [self groupNameAtIndexPath:indexPath];
+            break;
+    }
+    
     // Configure the cell...
-    cell.textLabel.text = [groups objectAtIndex:indexPath.row];
+    
     
     // If the group name is the same as the current group, place a check mark in the cell
-    if ([[groups objectAtIndex:indexPath.row] isEqualToString:selectedGroup]) 
+    if ([[self groupNameAtIndexPath:indexPath]  isEqualToString:selectedGroup]) 
     {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
@@ -117,52 +197,18 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    selectedGroup = [groups objectAtIndex:indexPath.row];
+    selectedGroup = [self groupNameAtIndexPath:indexPath];
     
     [self.tableView reloadData]; // Moves the checkmark to the proper place
+    
+    // Animate selecting the row
+    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

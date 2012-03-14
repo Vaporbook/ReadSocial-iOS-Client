@@ -60,8 +60,7 @@
     [super viewDidLoad];
     
     // Add a border to the note body
-    noteBody.layer.borderWidth = 3.0f;
-    noteBody.layer.borderColor = [[UIColor grayColor] CGColor];
+    noteBody.layer.cornerRadius = 5.0f;
 }
 
 - (void)viewDidUnload

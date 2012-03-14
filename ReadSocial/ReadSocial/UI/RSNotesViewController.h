@@ -26,9 +26,8 @@
     // No comments image
     UIImageView *noComments;
     
-    // Toolbar items
     UIActivityIndicatorView *activityIndicator;
-    UIBarButtonItem *status; // The status is implemented as a bar button item because all items on the toolbar must be buttons.
+    UIButton *currentGroup;
     
     BOOL loadingNewItems;
 }

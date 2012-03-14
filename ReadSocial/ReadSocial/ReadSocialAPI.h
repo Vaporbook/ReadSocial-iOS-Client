@@ -28,6 +28,7 @@
 #import "RSCreateNoteResponseRequest.h"
 #import "RSAuthStatusRequest.h"
 #import "RSNoteCountRequest.h"
+#import "RSActiveGroupsRequest.h"
 
 // Core methods
 #import "ReadSocial.h"

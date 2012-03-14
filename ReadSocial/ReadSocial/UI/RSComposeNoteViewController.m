@@ -11,15 +11,27 @@
 #import "RSTextNoteTypeComposer.h"
 #import "RSLinkNoteTypeComposer.h"
 #import "RSImageNoteTypeComposer.h"
+#import "RSNavigationController.h"
+#import "NSString+RSParagraph.h"
 
 @interface RSComposeNoteViewController ()
 
 - (void) finishNoteCompositionWithResult: (NSInteger)result error:(NSError *)error;
+- (void) changeGroup;
 
 @end
 
 @implementation RSComposeNoteViewController
 @synthesize delegate, note, currentComposer;
+
+- (void) changeGroup
+{
+    RSGroupViewController *groupViewController = [RSGroupViewController new];
+    groupViewController.delegate = self;
+    groupViewController.paragraph = _paragraph;
+    
+    [self.navigationController presentModalViewController:[RSNavigationController wrapViewController:groupViewController withInputEnabled:NO] animated:YES];
+}
 
 - (RSComposeNoteViewController *) initWithParagraph: (RSParagraph *)paragraph
 {
@@ -27,6 +39,7 @@
     if (self)
     {
         _paragraph = paragraph;
+        raw = paragraph.raw;
         
         // Create the array of composers
         composers = [NSArray arrayWithObjects:
@@ -34,6 +47,29 @@
                      [RSLinkNoteTypeComposer new],
                      [RSImageNoteTypeComposer composerWithRootComposerController:self],
                      nil];
+        
+        UIButton *noteButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [noteButton setImage:[UIImage imageNamed:@"note-btn"] forState:UIControlStateNormal];
+        [noteButton setImage:[UIImage imageNamed:@"note-active-btn"] forState:UIControlStateSelected];
+        noteButton.selected = YES;
+        noteButton.tag = 0;
+        
+        UIButton *linkButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [linkButton setImage:[UIImage imageNamed:@"link-btn"] forState:UIControlStateNormal];
+        [linkButton setImage:[UIImage imageNamed:@"link-active-btn"] forState:UIControlStateSelected];
+        linkButton.tag = 1;
+        
+        UIButton *imageButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [imageButton setImage:[UIImage imageNamed:@"image-btn"] forState:UIControlStateNormal];
+        [imageButton setImage:[UIImage imageNamed:@"image-active-btn"] forState:UIControlStateSelected];
+        imageButton.tag = 2;
+        
+        // Create the array of composer buttons
+        composerButtons = [NSArray arrayWithObjects:
+                           noteButton,
+                           linkButton,
+                           imageButton,
+                           nil];
     }
     return self;
 }
@@ -76,6 +112,18 @@
     }
 }
 
+#pragma mark - Group Selection delegate
+- (void) didChangeToGroup:(NSString *)group
+{
+    NSLog(@"Did change group.");
+    
+    // Re-create the current paragraph because changing the group will have cleared out the paragraph
+    _paragraph = [RSParagraph paragraphFromHash:[raw normalizeAndHash]];
+    
+    // Update the group name in the group selector
+    [currentGroup setTitle:[NSString stringWithFormat:@"#%@",group] forState:UIControlStateNormal];
+}
+
 #pragma mark - View lifecycle
 
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
@@ -85,16 +133,26 @@
     submitButton = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStyleDone target:self action:@selector(submitNote)];
     cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancelNoteComposition)];
     
+    
     // Create the view
     UIView *view = [UIView new];
     
     progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
     
-    composerViews = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 300, 250)];
+    composerViews = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 70, 320, 220)];
+    
+    currentGroup = [UIButton buttonWithType:UIButtonTypeCustom];
+    currentGroup.frame = CGRectMake(0, 0, 320, 30);
+    [view addSubview:currentGroup];
     
     for (id<RSNoteTypeComposer> composer in composers) 
     {
         [composerViews addSubview:((UIViewController*)composer).view];
+    }
+    
+    for (UIButton *button in composerButtons) 
+    {
+        [view addSubview:button];
     }
     
     [view addSubview:composerViews];
@@ -102,6 +160,10 @@
     self.view = view;
 }
 
+- (void) handleComposerButton: (UIButton *)sender
+{
+    [composerViews scrollRectToVisible:CGRectMake(320*sender.tag, 0, 320, 220) animated:YES];
+}
 
 - (void)viewDidLoad
 {
@@ -109,22 +171,38 @@
     
     self.navigationController.navigationBarHidden = NO;
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor grayColor];
+    
+    // Prepare the group button
+    currentGroup.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"group-background"]];
+    currentGroup.titleLabel.textColor = [UIColor whiteColor];
+    currentGroup.titleLabel.font = [UIFont boldSystemFontOfSize:14.0f];
+    currentGroup.titleLabel.textAlignment = UITextAlignmentCenter;
+    currentGroup.showsTouchWhenHighlighted = YES;
+    [currentGroup setTitle:[NSString stringWithFormat:@"#%@", [ReadSocial currentGroup]] forState:UIControlStateNormal];
+    [currentGroup addTarget:self action:@selector(changeGroup) forControlEvents:UIControlEventTouchUpInside];
     
     // Prepare the composers view
-    // The scroll view that contains each composer is 250px high 
+    // The scroll view that contains each composer is 200px high 
     // and 300px wide multiplied by the number of composers
-    [composerViews setContentSize:CGSizeMake(300*[composers count], 250)];
+    [composerViews setContentSize:CGSizeMake(320*[composers count], 220)];
     
     // Enable paging on the composers scroll view
     composerViews.pagingEnabled = YES;
     composerViews.showsHorizontalScrollIndicator = NO;
     composerViews.delegate = self;
     
-    // Position each composer
+    // Position each composer and it's button
+    UIButton *composerButton;
     for (int i=0; i<[composers count]; ++i) 
     {
-        ((UIViewController *)[composers objectAtIndex:i]).view.center = CGPointMake(300*i+150,125);
+        ((UIViewController *)[composers objectAtIndex:i]).view.center = CGPointMake(320*i+160,110);
+        
+        composerButton = [composerButtons objectAtIndex:i];
+        composerButton.showsTouchWhenHighlighted = YES;
+        [composerButton addTarget:self action:@selector(handleComposerButton:) forControlEvents:UIControlEventTouchUpInside];
+        composerButton.frame = CGRectMake(0, 0, 44, 44);
+        composerButton.center = CGPointMake(40 + i*110, 55);
     }
     
     // Set the current composer to the first item in composers
@@ -134,7 +212,7 @@
     self.navigationItem.leftBarButtonItem = cancelButton;
     self.navigationItem.rightBarButtonItem = submitButton;
     
-    self.contentSizeForViewInPopover = CGSizeMake(300.0, 300.0);
+    self.contentSizeForViewInPopover = CGSizeMake(320.0, 300.0);
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -169,11 +247,23 @@
     // xPos should be divisible by 300 (the width of the view)
     // and whatever the product is maps to the index in composers
     // which is the currentComposer
-    if (xPos % 300==0)
+    if (xPos % 320==0)
     {
-        int index = xPos/300;
+        int index = xPos/320;
         currentComposer = [composers objectAtIndex:index];
         NSLog(@"Updated current composer!");
+        
+        for (int i=0; i<[composerButtons count]; ++i) 
+        {
+            if (i==index) 
+            {
+                [[composerButtons objectAtIndex:i] setSelected:YES];
+            }
+            else
+            {
+                [[composerButtons objectAtIndex:i] setSelected:NO];
+            }
+        }
     }
 }
 

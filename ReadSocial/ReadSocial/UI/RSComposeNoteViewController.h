@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ReadSocialAPI.h"
+#import "RSGroupViewController.h"
 
 enum {
     RSNoteCompositionSucceeded  =   0,
@@ -19,16 +20,21 @@ enum {
 @protocol RSNoteTypeComposer;
 @class RSNote;
 
-@interface RSComposeNoteViewController : UIViewController <RSAPIRequestDelegate, UIScrollViewDelegate>
+@interface RSComposeNoteViewController : UIViewController <RSAPIRequestDelegate, UIScrollViewDelegate, RSGroupSelectionDelegate>
 {
     RSParagraph *_paragraph;
+    NSString *raw;
     UIBarButtonItem *submitButton;
     UIBarButtonItem *cancelButton;
     
     UIProgressView *progressView;
     
+    // Current group
+    UIButton *currentGroup;
+    
     // Note types
     NSArray *composers;
+    NSArray *composerButtons;
     UIScrollView *composerViews;
 }
 

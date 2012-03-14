@@ -233,7 +233,7 @@
     
     // Listen for the data context to change
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadResponses) name:NSManagedObjectContextObjectsDidChangeNotification object:nil];
-    self.contentSizeForViewInPopover = CGSizeMake(300.0, 300.0);
+    self.contentSizeForViewInPopover = CGSizeMake(320.0, 300.0);
 }
 
 - (void)viewDidUnload

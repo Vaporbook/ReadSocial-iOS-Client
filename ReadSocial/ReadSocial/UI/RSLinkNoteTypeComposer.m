@@ -63,8 +63,7 @@ static NSString *linkDescriptionPlaceholder = @"Tell us about the link...";
     [super viewDidLoad];
     
     // Add a border to the link description
-    linkDescription.layer.borderWidth = 3.0f;
-    linkDescription.layer.borderColor = [[UIColor grayColor] CGColor];
+    linkDescription.layer.cornerRadius = 5.0f;
     
     // Set the link description to the placeholder
     linkDescription.text = linkDescriptionPlaceholder;

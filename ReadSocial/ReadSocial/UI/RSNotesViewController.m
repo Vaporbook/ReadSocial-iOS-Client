@@ -95,6 +95,7 @@
 {
     RSGroupViewController *groupViewController = [RSGroupViewController new];
     groupViewController.delegate = self;
+    groupViewController.paragraph = self.paragraph;
     
     [self.navigationController presentModalViewController:[RSNavigationController wrapViewController:groupViewController withInputEnabled:NO] animated:YES];
 }
@@ -108,20 +109,12 @@
 {
     if ([notes count]<=0 && [self.paragraph.noteCount intValue]<=0)
     {
-        NSLog(@"No comments!");
-        if (!noComments)
-        {
-            noComments = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"no-comments.png"]];
-        }
-        [self.view addSubview:noComments];
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"no-comments"]];
         self.tableView.scrollEnabled = NO;
     }
     else
     {
-        if (noComments)
-        {
-            [noComments removeFromSuperview];
-        }
+        self.view.backgroundColor = [UIColor whiteColor];
         self.tableView.scrollEnabled = YES;
     }
 }
@@ -155,6 +148,9 @@
     // Pull data from the persistent store so that the interface can immediately open
     [self reloadNotes];
     
+    // Update the group name in the group selector
+    [currentGroup setTitle:[NSString stringWithFormat:@"#%@",group] forState:UIControlStateNormal];
+    
     // Recreate the current paragraph
     self.paragraph = [RSParagraph createParagraphInDefaultContextForString:raw];
     
@@ -168,36 +164,38 @@
 {
     [super viewDidLoad];
     
-    status = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-    status.enabled = NO;
-    status.tintColor = [UIColor whiteColor];
-    
     activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     activityIndicator.hidesWhenStopped = YES;
     
-    // Add a toolbar to the bottom
-    self.navigationController.toolbarHidden = NO;
-    self.toolbarItems = [NSArray arrayWithObjects:
-                         [[UIBarButtonItem alloc] initWithCustomView: activityIndicator],
-                         [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-                         status,
-                         nil];
+    currentGroup = [UIButton buttonWithType:UIButtonTypeCustom];
+    currentGroup.frame = CGRectMake(0, 0, 320, 30);
+    currentGroup.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"group-background"]];
+    currentGroup.titleLabel.textColor = [UIColor whiteColor];
+    currentGroup.titleLabel.font = [UIFont boldSystemFontOfSize:14.0f];
+    currentGroup.titleLabel.textAlignment = UITextAlignmentCenter;
+    currentGroup.showsTouchWhenHighlighted = YES;
+    [currentGroup addTarget:self action:@selector(changeGroup) forControlEvents:UIControlEventTouchUpInside];
+    [currentGroup setTitle:[NSString stringWithFormat:@"#%@", [ReadSocial currentGroup]] forState:UIControlStateNormal];
     
     // Set the title and the back button for the notes listing
     UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]];
     self.navigationItem.titleView = logo;
     
-    //Removed to add image title; will be added later as a custom view
-    //self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:[ReadSocial sharedInstance].currentGroup style:UIBarButtonItemStyleBordered target:self action:@selector(changeGroup)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView: activityIndicator];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(presentNoteComposer)];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Notes" style:UIBarButtonItemStylePlain target:nil action:nil];
-    self.contentSizeForViewInPopover = CGSizeMake(300.0, 300.0);
+    self.contentSizeForViewInPopover = CGSizeMake(320.0, 300.0);
     
     // Pull data from the persistent store so that the interface can immediately open
     notes = [RSNoteHandler notesForParagraph:_paragraph];
     
     // Request updated notes
     [RSParagraphNotesRequest notesForParagraph:self.paragraph withDelegate:self];
+    
+    // Hide filler rows on table
+    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 5)];
+    v.backgroundColor = [UIColor clearColor];
+    self.tableView.tableFooterView = v;
 }
 
 - (void)viewDidUnload
@@ -212,13 +210,11 @@
     [self checkForNoComments];
     
     [super viewWillAppear:animated];
-    self.contentSizeForViewInPopover = CGSizeMake(305.0, 300.0);
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.contentSizeForViewInPopover = CGSizeMake(300.0, 300.0);
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -240,6 +236,14 @@
 }
 
 #pragma mark - Table view data source
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    return currentGroup;
+}
+- (float) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return currentGroup.frame.size.height;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
