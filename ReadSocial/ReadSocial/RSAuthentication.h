@@ -10,13 +10,16 @@
 #import "RSLoginViewController.h"
 #import "RSAuthStatusRequest.h"
 
-extern NSString* const RSAuthenticationLoginWasSuccessful;
-
 @class RSAPIRequest;
 @class RSLoginViewController;
+
+@protocol RSLoginViewControllerDelegate <NSObject>
+- (void) didCancelLogin;
+@end
+
 @interface RSAuthentication : NSObject <UIWebViewDelegate, RSAPIRequestDelegate, RSLoginViewControllerDelegate>
 {
-    RSLoginViewController *loginViewController;
+    UIViewController *loginViewController;
     NSURLRequest *lastInspectedRequest;
     NSHTTPURLResponse *urlResponse;
     NSMutableData *responseData;

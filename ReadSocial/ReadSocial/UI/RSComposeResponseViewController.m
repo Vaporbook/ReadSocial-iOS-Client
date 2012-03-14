@@ -64,6 +64,7 @@
 {
     // Create the textview
     textview = [[UITextView alloc] init];
+    textview.delegate = self;
     
     // Create the buttons
     submitButton = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStyleDone target:self action:@selector(submitResponse)];
@@ -86,6 +87,10 @@
     self.title = @"Add Response";
     self.navigationItem.leftBarButtonItem = cancelButton;
     self.navigationItem.rightBarButtonItem = submitButton;
+    
+    submitButton.enabled = NO;
+    
+    self.contentSizeForViewInPopover = CGSizeMake(320.0, 300.0);
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -115,6 +120,18 @@
 {
     // Return YES for supported orientations
 	return YES;
+}
+
+#pragma mark - UITextView Delegate methods
+- (BOOL) textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    // Determine what the new value of the text field is going to be
+    NSString *newValue = [textView.text stringByReplacingCharactersInRange:range withString:text];
+    
+    // Disable the submit button if there is no text in the field.
+    submitButton.enabled = (BOOL)newValue.length!=0;
+    
+    return YES;
 }
 
 #pragma mark - RSAPIRequest Delegate Methods

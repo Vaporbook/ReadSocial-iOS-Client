@@ -7,13 +7,7 @@
 //
 
 #import "RSImageNoteTypeComposer.h"
-#import "NSData+Base64.h"
 #import <QuartzCore/QuartzCore.h>
-
-@interface RSImageNoteTypeComposer ()
-- (NSData *) getImageData;
-- (NSString *) getImageURIData;
-@end
 
 @implementation RSImageNoteTypeComposer
 @synthesize imagePreview, description, rootComposerController;
@@ -22,7 +16,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        imageIsSet = NO;
     }
     return self;
 }
@@ -48,18 +42,6 @@
     [rootComposerController.navigationController presentModalViewController:picker animated:YES];
 }
 
-- (NSData *) getImageData
-{
-    NSData *data = UIImageJPEGRepresentation(imagePreview.imageView.image, 80);
-    return data;
-}
-
-- (NSString *) getImageURIData
-{
-    NSData *data = [self getImageData];
-    return [NSString stringWithFormat:@"data:image/jpeg;base64,%@", [data base64EncodedString]];
-}
-
 #pragma mark - RSNoteTypeComposer Methods
 - (id) initWithRootComposerController: (RSComposeNoteViewController *) composerController
 {
@@ -79,10 +61,17 @@
 
 - (NSDictionary *) prepareRequestArguments
 {
+    UIImage *image = self.imagePreview.imageView.image;
+    
     return [NSDictionary dictionaryWithObjectsAndKeys:
-            description.text,           @"note_body",
-            [self getImageURIData],     @"note_img",
+            description.text,                                   @"note_body",
+            [RSCreateNoteRequest imageURIDataWithImage:image],  @"note_img",
             nil];
+}
+
+- (BOOL) shouldEnableSubmitButton
+{
+    return imageIsSet;
 }
 
 #pragma mark - View lifecycle
@@ -95,6 +84,7 @@
     description.layer.cornerRadius = 5.0f;
     imagePreview.layer.cornerRadius = 5.0f;
     imagePreview.clipsToBounds = YES;
+    imagePreview.imageView.contentMode = UIViewContentModeScaleAspectFill;
 }
 
 - (void)viewDidUnload
@@ -116,6 +106,8 @@
     [picker dismissModalViewControllerAnimated:YES];
     [imagePreview setImage:image forState:UIControlStateNormal];
     [rootComposerController.view setNeedsDisplay];
+    imageIsSet = YES;
+    [rootComposerController enableSubmitButton];
 }
 
 @end

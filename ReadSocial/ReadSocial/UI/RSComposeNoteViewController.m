@@ -12,7 +12,6 @@
 #import "RSLinkNoteTypeComposer.h"
 #import "RSImageNoteTypeComposer.h"
 #import "RSNavigationController.h"
-#import "NSString+RSParagraph.h"
 
 @interface RSComposeNoteViewController ()
 
@@ -43,8 +42,8 @@
         
         // Create the array of composers
         composers = [NSArray arrayWithObjects:
-                     [RSTextNoteTypeComposer new],
-                     [RSLinkNoteTypeComposer new],
+                     [RSTextNoteTypeComposer composerWithRootComposerController:self],
+                     [RSLinkNoteTypeComposer composerWithRootComposerController:self],
                      [RSImageNoteTypeComposer composerWithRootComposerController:self],
                      nil];
         
@@ -132,7 +131,7 @@
     // Create the buttons
     submitButton = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStyleDone target:self action:@selector(submitNote)];
     cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancelNoteComposition)];
-    
+    [self disableSubmitButton];
     
     // Create the view
     UIView *view = [UIView new];
@@ -251,7 +250,7 @@
     {
         int index = xPos/320;
         currentComposer = [composers objectAtIndex:index];
-        NSLog(@"Updated current composer!");
+        submitButton.enabled = [currentComposer shouldEnableSubmitButton];
         
         for (int i=0; i<[composerButtons count]; ++i) 
         {

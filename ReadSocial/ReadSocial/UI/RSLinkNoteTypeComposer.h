@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RSComposeNoteViewController.h"
 
-@interface RSLinkNoteTypeComposer : UIViewController <RSNoteTypeComposer, UITextViewDelegate>
+@interface RSLinkNoteTypeComposer : UIViewController <RSNoteTypeComposer, UITextViewDelegate, UITextFieldDelegate>
 
 /**
  The link the user wants to share.

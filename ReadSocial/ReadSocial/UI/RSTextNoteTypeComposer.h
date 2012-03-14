@@ -9,8 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RSComposeNoteViewController.h"
 
-@interface RSTextNoteTypeComposer : UIViewController <RSNoteTypeComposer>
-
+@interface RSTextNoteTypeComposer : UIViewController <RSNoteTypeComposer, UITextViewDelegate>
 /**
  The note composition controller.
  */

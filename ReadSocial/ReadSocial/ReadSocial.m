@@ -10,7 +10,6 @@
 
 #import "ReadSocial.h"
 #import "RSPage.h"
-#import "ReadSocialViewController.h"
 #import "DataContext.h"
 #import "RSParagraph+Core.h"
 #import "NSString+RSParagraph.h"
@@ -23,6 +22,7 @@ NSString* const ReadSocialUserWillComposeResponseNotification       =   @"ReadSo
 NSString* const ReadSocialUserDidComposeResponseNotification        =   @"ReadSocialUserDidComposeResponseNotification";
 NSString* const ReadSocialParagraphNoteCountUpdatedNotification     =   @"ReadSocialParagraphNoteCountUpdatedNotification";
 NSString* const ReadSocialUserDidChangeGroupNotification            =   @"ReadSocialUserDidChangeGroupNotification";
+NSString* const ReadSocialUserDidLoginNotification                  =   @"ReadSocialUserDidLogin";
 
 @interface ReadSocial()
 {
@@ -48,7 +48,7 @@ NSString* const ReadSocialUserDidChangeGroupNotification            =   @"ReadSo
 
 
 @implementation ReadSocial
-@synthesize delegate, networkID, rsPopover, currentPage, currentSelection, defaultGroup;
+@synthesize delegate, networkID, rsPopover, currentPage, currentSelection, defaultGroup, readSocialUI;
 
 - (NSString *) getCurrentGroup
 {
@@ -71,6 +71,9 @@ NSString* const ReadSocialUserDidChangeGroupNotification            =   @"ReadSo
     
     // Clear out the persistent store
     [DataContext erase];
+    
+    // Trigger delegate method
+    [self userDidChangeGroup:groupName];
     
     // Update the current page
     [currentPage createParagraphs];
@@ -138,15 +141,8 @@ NSString* const ReadSocialUserDidChangeGroupNotification            =   @"ReadSo
     // Determine the bounding rectangle for the paragraph
     CGRect frame = [rs.currentPage.datasource rectForParagraphAtIndex:index];
     
-    // Open the UI
-    // TODO: Add another level of abstraction between the API and UI so that the UI could be overridden.
-    ReadSocialViewController *rsvc = [[ReadSocialViewController alloc] initWithParagraph:paragraph];
-    rs.rsPopover = [[UIPopoverController alloc] initWithContentViewController:rsvc];
-    rs.rsPopover.delegate = rs;
+    [rs.readSocialUI openReadSocialForParagraph:paragraph frame:frame view:view];
     
-    // Present the UIPopoverController
-    UIPopoverArrowDirection arrowDirection = (frame.origin.y + frame.size.height) < (view.frame.size.height-550) ? UIPopoverArrowDirectionUp : UIPopoverArrowDirectionDown;
-    [rs.rsPopover presentPopoverFromRect:frame inView:view permittedArrowDirections:arrowDirection animated:YES];
     [rs userDidSelectParagraph:paragraph atIndex:index];
 }
 
@@ -197,22 +193,24 @@ NSString* const ReadSocialUserDidChangeGroupNotification            =   @"ReadSo
     [[NSNotificationCenter defaultCenter] postNotificationName:ReadSocialUserUnselectedParagraphNotification object:nil];
 }
 
-- (void) userWillComposeNote: (RSNote *)note
-{
-    
-}
 - (void) userDidComposeNote: (RSNote *)note
 {
-    
+    if ([delegate respondsToSelector:@selector(userDidComposeNote:)])
+    {
+        [delegate userDidComposeNote:note];
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:ReadSocialUserDidComposeNoteNotification object:note];
 }
-- (void) userWillComposeResponse: (RSResponse *)response
-{
-    
-}
+
 - (void) userDidComposeResponse: (RSResponse *)response
 {
-    
+    if ([delegate respondsToSelector:@selector(userDidComposeResponse:)])
+    {
+        [delegate userDidComposeResponse:response];
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:ReadSocialUserDidComposeResponseNotification object:response];
 }
+
 - (void) noteCountUpdatedForParagraph: (RSParagraph *)paragraph atIndex: (NSInteger)index
 {
     if ([delegate respondsToSelector:@selector(noteCountUpdatedForParagraph:atIndex:)])
@@ -221,11 +219,24 @@ NSString* const ReadSocialUserDidChangeGroupNotification            =   @"ReadSo
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:ReadSocialParagraphNoteCountUpdatedNotification object:paragraph];
 }
+
 - (void) userDidChangeGroup: (NSString *)newGroup
 {
-    
+    if ([delegate respondsToSelector:@selector(userDidChangeGroup:)])
+    {
+        [delegate userDidChangeGroup:newGroup];
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:ReadSocialUserDidChangeGroupNotification object:newGroup];
 }
 
+- (void) userDidLogin:(RSUser *)user
+{
+    if ([delegate respondsToSelector:@selector(userDidLogin:)])
+    {
+        [delegate userDidLogin:user];
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:ReadSocialUserDidLoginNotification object:user];
+}
 
 + (NSNumber *) networkID
 {
@@ -265,7 +276,7 @@ NSString* const ReadSocialUserDidChangeGroupNotification            =   @"ReadSo
     }
 }
 
-+ (ReadSocial *) initializeWithNetworkID: (NSNumber *)networkID andDefaultGroup: (NSString *)defaultGroup
++ (ReadSocial *) initializeWithNetworkID: (NSNumber *)networkID defaultGroup: (NSString *)defaultGroup andUILibrary:(id<ReadSocialUILibrary>)ui
 {
     static BOOL initialized;
     
@@ -279,17 +290,11 @@ NSString* const ReadSocialUserDidChangeGroupNotification            =   @"ReadSo
     ReadSocial *rs = [ReadSocial sharedInstance];
     rs.networkID    =   networkID;
     rs.defaultGroup =   defaultGroup;
+    rs.readSocialUI =   ui;
     
     initialized = true;
     
     return rs;
-}
-
-# pragma mark - UIPopoverViewControllerDelegate methods
-- (void) popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
-{
-    [self userDidUnselectParagraph];
-    self.rsPopover.delegate = nil;
 }
 
 @end

@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ReadSocialAPI.h"
 #import "RSComposeNoteViewController.h"
-#import "RSCreateNoteRequest.h"
 #import "RSGroupViewController.h"
 
 @class RSParagraph;

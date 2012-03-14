@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RSCreateNoteResponseRequest.h"
+#import "ReadSocialAPI.h"
 
 enum {
     RSResponseCompositionSucceeded  =   0,
@@ -19,7 +19,7 @@ enum {
 @protocol RSResponseCompositionDelegate;
 @class RSResponse;
 
-@interface RSComposeResponseViewController : UIViewController <RSAPIRequestDelegate>
+@interface RSComposeResponseViewController : UIViewController <RSAPIRequestDelegate, UITextViewDelegate>
 {
     RSNote *_note;
     UITextView *textview;

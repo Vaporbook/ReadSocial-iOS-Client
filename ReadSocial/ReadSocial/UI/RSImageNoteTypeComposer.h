@@ -10,7 +10,9 @@
 #import "RSComposeNoteViewController.h"
 
 @interface RSImageNoteTypeComposer : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, RSNoteTypeComposer>
-
+{
+    BOOL imageIsSet;
+}
 
 /**
  The note composition controller.

@@ -7,11 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ReadSocialAPI.h"
 #import "RSNoteCountViewController.h"
 
 @class RSParagraph;
-@interface ReadSocialUI : NSObject
+@interface ReadSocialUI : NSObject <ReadSocialUILibrary, UIPopoverControllerDelegate>
+{
+    UIPopoverController *rsPopover;
+}
 
++ (ReadSocialUI *) library;
 + (RSNoteCountViewController *) noteCountViewControllerForParagraph: (RSParagraph *)paragraph;
 + (void) removeAllNoteCounts;
 

@@ -8,7 +8,8 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
-#import "ReadSocial.h"
+#import "ReadSocialAPI.h"
+#import "ReadSocialUI.h"
 
 @implementation AppDelegate
 
@@ -23,7 +24,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     // Initialize ReadSocial
-    [ReadSocial initializeWithNetworkID:[NSNumber numberWithInt:8] andDefaultGroup:@"partner-testing-channel"];
+    [ReadSocial initializeWithNetworkID:[NSNumber numberWithInt:8] defaultGroup:@"partner-testing-channel" andUILibrary:[ReadSocialUI library]];
     
     self.window.backgroundColor = [UIColor whiteColor];
     

@@ -7,9 +7,10 @@
 //
 
 #import "RSCreateNoteResponseRequest.h"
+#import "ReadSocial.h"
 #import "RSNote+Core.h"
-#import "JSONKit.h"
 #import "RSResponse+Core.h"
+#import "JSONKit.h"
 
 @implementation RSCreateNoteResponseRequest
 @synthesize note=_note, rsResponse;
@@ -63,6 +64,10 @@
 {
     // Create a new response
     rsResponse = [RSResponse responseFromDictionary:json];
+    
+    // Trigger delegate/notification
+    [[ReadSocial sharedInstance] userDidComposeResponse:rsResponse];
+    
     return YES;
 }
 

@@ -82,4 +82,9 @@ enum {
  */
 - (NSDictionary *) prepareRequestArguments;
 
+/**
+ Determines if the submit button should be enabled.
+ */
+- (BOOL) shouldEnableSubmitButton;
+
 @end

@@ -74,7 +74,7 @@
 		0EC7B37014F35AD30026D97D /* RSTextNoteTypeComposer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EC7B36E14F35AD30026D97D /* RSTextNoteTypeComposer.xib */; };
 		0EC7B37714F35F420026D97D /* RSImageNoteTypeComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7B37514F35F420026D97D /* RSImageNoteTypeComposer.m */; };
 		0EC7B37814F35F420026D97D /* RSImageNoteTypeComposer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EC7B37614F35F420026D97D /* RSImageNoteTypeComposer.xib */; };
-		0EC7B37C14F367CF0026D97D /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7B37B14F367CF0026D97D /* NSData+Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		0EC7B37C14F367CF0026D97D /* NSData+RSBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7B37B14F367CF0026D97D /* NSData+RSBase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		0EC7B38514F372510026D97D /* RSNoteImageRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7B38414F372510026D97D /* RSNoteImageRequest.m */; };
 		0EC7B39214F37B380026D97D /* RSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7B39114F37B380026D97D /* RSTableViewCell.m */; };
 		0EC7B39914F38ABF0026D97D /* UILazyImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7B39814F38ABF0026D97D /* UILazyImageView.m */; };
@@ -200,17 +200,17 @@
 		0EC7B37414F35F420026D97D /* RSImageNoteTypeComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSImageNoteTypeComposer.h; sourceTree = "<group>"; };
 		0EC7B37514F35F420026D97D /* RSImageNoteTypeComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSImageNoteTypeComposer.m; sourceTree = "<group>"; };
 		0EC7B37614F35F420026D97D /* RSImageNoteTypeComposer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RSImageNoteTypeComposer.xib; sourceTree = "<group>"; };
-		0EC7B37A14F367CF0026D97D /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
-		0EC7B37B14F367CF0026D97D /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		0EC7B37A14F367CF0026D97D /* NSData+RSBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+RSBase64.h"; sourceTree = "<group>"; };
+		0EC7B37B14F367CF0026D97D /* NSData+RSBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+RSBase64.m"; sourceTree = "<group>"; };
 		0EC7B38314F372510026D97D /* RSNoteImageRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNoteImageRequest.h; sourceTree = "<group>"; };
 		0EC7B38414F372510026D97D /* RSNoteImageRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNoteImageRequest.m; sourceTree = "<group>"; };
 		0EC7B39114F37B380026D97D /* RSTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTableViewCell.m; sourceTree = "<group>"; };
-		0EC7B39714F38ABF0026D97D /* UILazyImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILazyImageView.h; sourceTree = "<group>"; };
-		0EC7B39814F38ABF0026D97D /* UILazyImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILazyImageView.m; sourceTree = "<group>"; };
+		0EC7B39714F38ABF0026D97D /* UILazyImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UILazyImageView.h; path = ../../UILazyImageView.h; sourceTree = "<group>"; };
+		0EC7B39814F38ABF0026D97D /* UILazyImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UILazyImageView.m; path = ../../UILazyImageView.m; sourceTree = "<group>"; };
 		0EC7B39D14F39AB00026D97D /* separator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = separator.png; sourceTree = "<group>"; };
 		0EC7B39F14F3AAE10026D97D /* no-comments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no-comments.png"; sourceTree = "<group>"; };
-		0EC8A9BB14D5FAB600EA7C74 /* RSAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSAuthentication.h; path = ReadSocial/RSAuthentication.h; sourceTree = "<group>"; };
-		0EC8A9BC14D5FAB600EA7C74 /* RSAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSAuthentication.m; path = ReadSocial/RSAuthentication.m; sourceTree = "<group>"; };
+		0EC8A9BB14D5FAB600EA7C74 /* RSAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSAuthentication.h; path = ../RSAuthentication.h; sourceTree = "<group>"; };
+		0EC8A9BC14D5FAB600EA7C74 /* RSAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSAuthentication.m; path = ../RSAuthentication.m; sourceTree = "<group>"; };
 		0EC8A9BF14D6504E00EA7C74 /* RSComposeNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSComposeNoteViewController.h; sourceTree = "<group>"; };
 		0EC8A9C014D6504F00EA7C74 /* RSComposeNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSComposeNoteViewController.m; sourceTree = "<group>"; };
 		0EC8A9C214D6639500EA7C74 /* RSCreateNoteRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSCreateNoteRequest.h; sourceTree = "<group>"; };
@@ -334,13 +334,9 @@
 				0E34D0C714CF0C7100AAEC1D /* NSString+RSParagraph.m */,
 				0E34D0DA14CF3D3300AAEC1D /* DataContext.h */,
 				0E34D0DB14CF3D3300AAEC1D /* DataContext.m */,
-				0EC8A9BB14D5FAB600EA7C74 /* RSAuthentication.h */,
-				0EC8A9BC14D5FAB600EA7C74 /* RSAuthentication.m */,
 				0EAEF53C14D7531A00EA2ECE /* ReadSocial.h */,
 				0EBFDF4A14F0647200CD45F6 /* ReadSocialAPI.h */,
 				0EAEF53D14D7531B00EA2ECE /* ReadSocial.m */,
-				0EC7B39714F38ABF0026D97D /* UILazyImageView.h */,
-				0EC7B39814F38ABF0026D97D /* UILazyImageView.m */,
 			);
 			path = ReadSocial;
 			sourceTree = "<group>";
@@ -385,6 +381,8 @@
 		0E78F65414D4568800DF151B /* Data Handlers */ = {
 			isa = PBXGroup;
 			children = (
+				0EC8A9BB14D5FAB600EA7C74 /* RSAuthentication.h */,
+				0EC8A9BC14D5FAB600EA7C74 /* RSAuthentication.m */,
 				0E34D0DD14CF4F2A00AAEC1D /* RSNoteHandler.h */,
 				0E34D0DE14CF4F2A00AAEC1D /* RSNoteHandler.m */,
 				0E34D0E014CF559200AAEC1D /* RSResponseHandler.h */,
@@ -441,6 +439,8 @@
 				0EC7B37414F35F420026D97D /* RSImageNoteTypeComposer.h */,
 				0EC7B37514F35F420026D97D /* RSImageNoteTypeComposer.m */,
 				0EC7B37614F35F420026D97D /* RSImageNoteTypeComposer.xib */,
+				0EC7B39714F38ABF0026D97D /* UILazyImageView.h */,
+				0EC7B39814F38ABF0026D97D /* UILazyImageView.m */,
 			);
 			name = UI;
 			path = ReadSocial/UI;
@@ -469,8 +469,8 @@
 		0EC7B37914F367BB0026D97D /* Base64 */ = {
 			isa = PBXGroup;
 			children = (
-				0EC7B37A14F367CF0026D97D /* NSData+Base64.h */,
-				0EC7B37B14F367CF0026D97D /* NSData+Base64.m */,
+				0EC7B37A14F367CF0026D97D /* NSData+RSBase64.h */,
+				0EC7B37B14F367CF0026D97D /* NSData+RSBase64.m */,
 			);
 			name = Base64;
 			sourceTree = "<group>";
@@ -601,7 +601,7 @@
 				0EC7B36814F34F8F0026D97D /* RSLinkNoteTypeComposer.m in Sources */,
 				0EC7B36F14F35AD30026D97D /* RSTextNoteTypeComposer.m in Sources */,
 				0EC7B37714F35F420026D97D /* RSImageNoteTypeComposer.m in Sources */,
-				0EC7B37C14F367CF0026D97D /* NSData+Base64.m in Sources */,
+				0EC7B37C14F367CF0026D97D /* NSData+RSBase64.m in Sources */,
 				0EC7B38514F372510026D97D /* RSNoteImageRequest.m in Sources */,
 				0EC7B39214F37B380026D97D /* RSTableViewCell.m in Sources */,
 				0EC7B39914F38ABF0026D97D /* UILazyImageView.m in Sources */,

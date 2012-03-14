@@ -12,8 +12,11 @@
 @class RSParagraph;
 @class RSNote;
 @class RSResponse;
+@class RSUser;
+
 @protocol ReadSocialDataSource;
 @protocol ReadSocialDelegate;
+@protocol ReadSocialUILibrary;
 
 extern NSString* const ReadSocialUserSelectedParagraphNotification;
 extern NSString* const ReadSocialUserUnselectedParagraphNotification;
@@ -23,8 +26,9 @@ extern NSString* const ReadSocialUserWillComposeResponseNotification;
 extern NSString* const ReadSocialUserDidComposeResponseNotification;
 extern NSString* const ReadSocialParagraphNoteCountUpdatedNotification;
 extern NSString* const ReadSocialUserDidChangeGroupNotification;
+extern NSString* const ReadSocialUserDidLoginNotification;
 
-@interface ReadSocial : NSObject <UIPopoverControllerDelegate>
+@interface ReadSocial : NSObject
 
 /**
  The default network ID for this ReadSocial session.
@@ -71,6 +75,11 @@ extern NSString* const ReadSocialUserDidChangeGroupNotification;
 @property (nonatomic, strong) id<ReadSocialDelegate> delegate;
 
 /**
+ UI Library
+ */
+@property (nonatomic, strong) id<ReadSocialUILibrary> readSocialUI;
+
+/**
  Change the group frmo which the user is posting and receiving data.
  Changing the group will empty out the persistent store in preparation for the new content from the server.
  */
@@ -80,12 +89,13 @@ extern NSString* const ReadSocialUserDidChangeGroupNotification;
 # pragma mark Delegate and Notification Triggers
 - (void) userDidSelectParagraph:(RSParagraph *)paragraph atIndex: (NSInteger)index;
 - (void) userDidUnselectParagraph;
-- (void) userWillComposeNote: (RSNote *)note;
+//- (void) userWillComposeNote: (RSNote *)note;
 - (void) userDidComposeNote: (RSNote *)note;
-- (void) userWillComposeResponse: (RSResponse *)response;
+//- (void) userWillComposeResponse: (RSResponse *)response;
 - (void) userDidComposeResponse: (RSResponse *)response;
 - (void) noteCountUpdatedForParagraph: (RSParagraph *)paragraph atIndex: (NSInteger)index;
 - (void) userDidChangeGroup: (NSString *)newGroup;
+- (void) userDidLogin: (RSUser *)user;
 
 # pragma mark Methods
 - (RSPage *) initializeView: (id<ReadSocialDataSource>)view;
@@ -103,7 +113,7 @@ extern NSString* const ReadSocialUserDidChangeGroupNotification;
 + (void) saveContext;
 
 + (ReadSocial *) sharedInstance;
-+ (ReadSocial *) initializeWithNetworkID: (NSNumber *)networkID andDefaultGroup: (NSString *)defaultGroup;
++ (ReadSocial *) initializeWithNetworkID: (NSNumber *)networkID defaultGroup: (NSString *)defaultGroup andUILibrary:(id<ReadSocialUILibrary>)ui;
 
 // API Methods //TODO: Implement API Methods
 //- (NSNumber *) noteCountForRawParagraph: (NSString *)raw;
@@ -132,12 +142,13 @@ extern NSString* const ReadSocialUserDidChangeGroupNotification;
 @optional
 - (void) userDidSelectParagraph:(RSParagraph *)paragraph atIndex: (NSInteger)index;
 - (void) userDidUnselectParagraph;
-- (void) userWillComposeNote: (RSNote *)note;
+//- (void) userWillComposeNote: (RSNote *)note;
 - (void) userDidComposeNote: (RSNote *)note;
-- (void) userWillComposeResponse: (RSResponse *)response;
+//- (void) userWillComposeResponse: (RSResponse *)response;
 - (void) userDidComposeResponse: (RSResponse *)response;
 - (void) noteCountUpdatedForParagraph: (RSParagraph *)paragraph atIndex: (NSInteger)index;
 - (void) userDidChangeGroup: (NSString *)newGroup;
+- (void) userDidLogin: (RSUser *)user;
 
 @end
 
@@ -185,5 +196,12 @@ extern NSString* const ReadSocialUserDidChangeGroupNotification;
  highlighted when the user selected the ReadSocial UIMenuItem.
  */
 - (NSString *) selectedText;
+
+@end
+
+@protocol ReadSocialUILibrary <NSObject>
+
+- (void) openReadSocialForParagraph:(RSParagraph *)paragraph frame:(CGRect)frame view:(UIView *)view;
+- (UIViewController *) getLoginViewControllerWithDelegate:(id)delegate;
 
 @end

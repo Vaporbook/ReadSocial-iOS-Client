@@ -7,12 +7,9 @@
 //
 
 #import "RSAuthentication.h"
-#import "RSLoginViewController.h"
 #import "RSUser+Core.h"
 #import "RSUserHandler.h"
 #import "ReadSocial.h"
-
-NSString* const RSAuthenticationLoginWasSuccessful  =   @"RSloginWasSuccessful";
 
 @interface RSAuthentication ()
 
@@ -51,9 +48,7 @@ NSString* const RSAuthenticationLoginWasSuccessful  =   @"RSloginWasSuccessful";
     self = [super init];
     if (self)
     {
-        loginViewController = [RSLoginViewController new];
-        loginViewController.delegate = self;
-        loginViewController.webview.delegate = self;
+        loginViewController = [[ReadSocial sharedInstance].readSocialUI getLoginViewControllerWithDelegate:self];
     }
     return self;
 }
@@ -115,8 +110,6 @@ NSString* const RSAuthenticationLoginWasSuccessful  =   @"RSloginWasSuccessful";
 # pragma mark Private Methods
 - (void) openModalView
 {
-    loginViewController.loginURL = loginURL;
-    
     // Find the root view controller
     UIViewController *rootViewController = [UIApplication sharedApplication].delegate.window.rootViewController;
     
@@ -151,7 +144,7 @@ NSString* const RSAuthenticationLoginWasSuccessful  =   @"RSloginWasSuccessful";
     }
     
     // Notify the application that the user has logged in
-    [[NSNotificationCenter defaultCenter] postNotificationName:RSAuthenticationLoginWasSuccessful object:user];
+    [[ReadSocial sharedInstance] userDidLogin:user];
 }
 
 @end

@@ -1,9 +1,11 @@
 //
-//  NSData+Base64.h
+//  NSData+RSBase64.h
 //  base64
 //
 //  Created by Matt Gallagher on 2009/06/03.
 //  Copyright 2009 Matt Gallagher. All rights reserved.
+//
+//  Added ReadSocial namespace to prevent collisions with other libraries.
 //
 //  This software is provided 'as-is', without any express or implied
 //  warranty. In no event will the authors be held liable for any damages
@@ -34,7 +36,7 @@ char *NewBase64Encode(
 	bool separateLines,
 	size_t *outputLength);
 
-@interface NSData (Base64)
+@interface NSData (RSBase64)
 
 + (NSData *)dataFromBase64String:(NSString *)aString;
 - (NSString *)base64EncodedString;

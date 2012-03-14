@@ -8,6 +8,9 @@
 //  Copyright (c) 2012 Float Mobile Learning. All rights reserved.
 //
 
+// Core methods
+#import "ReadSocial.h"
+
 // Models
 #import "RSParagraph+Core.h"
 #import "RSNote+Core.h"
@@ -19,6 +22,7 @@
 #import "RSNoteHandler.h"
 #import "RSResponseHandler.h"
 #import "RSUserHandler.h"
+#import "RSAuthentication.h"
 
 // API Requests
 #import "RSAPIRequest.h"
@@ -30,8 +34,9 @@
 #import "RSNoteCountRequest.h"
 #import "RSActiveGroupsRequest.h"
 
-// Core methods
-#import "ReadSocial.h"
+// Helpers
+#import "NSString+RSParagraph.h"
+#import "RSDateFormat.h"
 
 // Context
 // TODO: Determine if DataContext should be a public header--in theory, implementing apps shouldn't be directly accessing the data context.

@@ -7,7 +7,6 @@
 //
 
 #import "RSLoginViewController.h"
-#import "JSONKit.h"
 
 @implementation RSLoginViewController
 @synthesize loginURL, webview, delegate;
@@ -51,7 +50,7 @@
     // Cancel button
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(didCancelLogin)];
     
-    [webview loadRequest:[NSURLRequest requestWithURL:loginURL]];
+    [webview loadRequest:[NSURLRequest requestWithURL:[RSAuthentication loginURL]]];
     [self.view addSubview:webview];
 }
 

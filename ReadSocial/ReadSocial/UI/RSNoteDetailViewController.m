@@ -7,15 +7,7 @@
 //
 
 #import "RSNoteDetailViewController.h"
-#import "RSNote+Core.h"
-#import "RSResponse+Core.h"
-#import "RSParagraph+Core.h"
-#import "RSResponseHandler.h"
-#import "DataContext.h"
 #import "RSNavigationController.h"
-#import "RSNoteResponsesRequest.h"
-#import "RSUser+Core.h"
-#import "RSDateFormat.h"
 #import "RSTableViewCell.h"
 
 @interface RSNoteDetailViewController()
@@ -133,12 +125,12 @@
     self.title = @"Note";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(presentResponseComposer)];
     
-    UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 200)];
+    UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
     //containerView.backgroundColor = [UIColor blueColor];
     
     NSString *content = [_note.highlightedText length]>0 ? _note.highlightedText : _note.paragraph.normalized;
 
-    UILabel *paragraphLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 280, 100)];
+    UILabel *paragraphLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 300, 100)];
     paragraphLabel.numberOfLines = 0;
     paragraphLabel.lineBreakMode = UILineBreakModeWordWrap | UILineBreakModeMiddleTruncation;
     paragraphLabel.font = [UIFont fontWithName:@"Baskerville" size:14];
@@ -156,16 +148,17 @@
     
     // Add a separator line
     UIImageView *separator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separator.png"]];
-    separator.center = CGPointMake(150, bottom + 10);
+    separator.center = CGPointMake(160, bottom + 10);
     
     // Create a note view
     UIView *noteView = [[UIView alloc] initWithFrame:CGRectMake(10, bottom+20, contentFrame.size.width, 400)];
     
     UIImageView *uImg = [[UIImageView alloc] initWithImage:self.note.user.image];
     [uImg sizeThatFits:CGSizeMake(50, 50)];
+    uImg.contentMode = UIViewContentModeScaleAspectFit;
     [noteView addSubview:uImg];
     
-    UILabel *noteLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, 220, 100)];
+    UILabel *noteLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, 240, 100)];
     noteLabel.numberOfLines = 0;
     noteLabel.font = [UIFont fontWithName:@"Baskerville" size:16];
     noteLabel.text = self.note.body;
@@ -176,13 +169,15 @@
     UILazyImageView *imageView;
     if (self.note.imageURL)
     {
-        imageView = [[UILazyImageView alloc] initWithFrame:CGRectMake(60, 0, 220, 220)];
+        imageView = [[UILazyImageView alloc] initWithFrame:CGRectMake(60, 0, 240, 220)];
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.clipsToBounds = YES;
         [imageView loadWithURL:[NSURL URLWithString:self.note.imageURL]];
         [noteView addSubview:imageView];
         
         noteLabel.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
         noteLabel.textColor = [UIColor whiteColor];
-        noteLabel.frame = CGRectMake(60, 0, 220, noteLabel.frame.size.height);
+        noteLabel.frame = CGRectMake(60, 0, 240, noteLabel.frame.size.height);
         noteLabel.textAlignment = UITextAlignmentCenter;
     }
     
@@ -195,7 +190,7 @@
         [link setTitle:self.note.link forState:UIControlStateNormal];
         [link addTarget:self action:@selector(onOpenLink) forControlEvents:UIControlEventTouchUpInside];
         [noteView addSubview:link];
-        link.frame = CGRectMake(60, noteLabel.frame.size.height+5, 220, 35);
+        link.frame = CGRectMake(60, noteLabel.frame.size.height+5, 240, 35);
     }
     
     // Resize the note view

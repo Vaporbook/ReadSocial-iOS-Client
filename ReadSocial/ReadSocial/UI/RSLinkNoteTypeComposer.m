@@ -11,6 +11,11 @@
 
 static NSString *linkDescriptionPlaceholder = @"Tell us about the link...";
 
+@interface RSLinkNoteTypeComposer ()
+- (NSURL *) getNormalizedURL:(NSString *)urlString;
+- (BOOL) isValidLink:(NSString *)urlString;
+@end
+
 @implementation RSLinkNoteTypeComposer
 @synthesize link, linkDescription, rootComposerController;
 
@@ -31,6 +36,29 @@ static NSString *linkDescriptionPlaceholder = @"Tell us about the link...";
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (NSURL *) getNormalizedURL:(NSString *)urlString
+{
+    NSURL *url = [NSURL URLWithString:urlString];
+    if (![url scheme])
+    {
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", link.text]];
+    }
+    
+    return url;
+}
+
+- (BOOL) isValidLink:(NSString *)urlString
+{
+    NSURL *url = [self getNormalizedURL:urlString];
+    
+    if (url.host && [url.host rangeOfString:@"."].location!=NSNotFound)
+    {
+        return YES;
+    }
+    
+    return NO;
+}
+
 #pragma mark - RSNoteTypeComposer Methods
 - (id) initWithRootComposerController: (RSComposeNoteViewController *) composerController
 {
@@ -49,11 +77,19 @@ static NSString *linkDescriptionPlaceholder = @"Tell us about the link...";
 }
 - (NSDictionary *) prepareRequestArguments
 {
+    // Normalize link
+    NSURL *url = [self getNormalizedURL:link.text];
+    
     return [NSDictionary dictionaryWithObjectsAndKeys:
-            link.text,              @"note_link",
+            [url absoluteString],   @"note_link",
             linkDescription.text,   @"note_body", 
             @"link",                @"mtype",
             nil];
+}
+
+- (BOOL) shouldEnableSubmitButton
+{
+    return [self isValidLink:link.text];
 }
 
 #pragma mark - View lifecycle
@@ -61,6 +97,8 @@ static NSString *linkDescriptionPlaceholder = @"Tell us about the link...";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    link.delegate = self;
     
     // Add a border to the link description
     linkDescription.layer.cornerRadius = 5.0f;
@@ -102,6 +140,24 @@ static NSString *linkDescriptionPlaceholder = @"Tell us about the link...";
         textView.text = linkDescriptionPlaceholder;
         textView.textColor = [UIColor grayColor];
     }
+}
+
+#pragma mark - UITextField delegate methods
+- (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    // Determine what the new value of the text field is going to be
+    NSString *newValue = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    
+    if ([self isValidLink:newValue])
+    {
+        [rootComposerController enableSubmitButton];
+    }
+    else
+    {
+        [rootComposerController disableSubmitButton];
+    }
+    
+    return YES;
 }
 
 @end

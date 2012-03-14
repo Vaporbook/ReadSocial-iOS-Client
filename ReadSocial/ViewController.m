@@ -105,6 +105,28 @@
     [self.webview stringByEvaluatingJavaScriptFromString:@"RS.unhighlightParagraphs();"];
 }
 
+- (void) userDidComposeNote:(RSNote *)note
+{
+    NSLog(@"User just wrote a new note!");
+}
+
+- (void) userDidComposeResponse:(RSResponse *)response
+{
+    NSLog(@"User just wrote a new response!");
+}
+
+- (void) userDidChangeGroup:(NSString *)newGroup
+{
+    // Clear all the note counts
+    // The implementing app is responsible for removing and adding note counts to paragraphs.
+    [ReadSocialUI removeAllNoteCounts];
+}
+
+- (void) userDidLogin: (RSUser *)user
+{
+    NSLog(@"%@ just logged in.", user.name);
+}
+
 # pragma mark - ReadSocial Data Source
 - (NSInteger) numberOfParagraphsOnPage
 {

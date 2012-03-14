@@ -13,6 +13,7 @@
 #import "ReadSocial.h"
 #import "RSPage.h"
 #import "NSString+RSParagraph.h"
+#import "NSData+RSBase64.h"
 
 @implementation RSCreateNoteRequest
 @synthesize paragraph=_paragraph, note;
@@ -39,6 +40,13 @@
         _paragraph = paragraph;
     }
     return self;
+}
+
+# pragma mark - Utility methods
++ (NSString *) imageURIDataWithImage:(UIImage *)image
+{
+    NSData *data = UIImageJPEGRepresentation(image, 80);
+    return [NSString stringWithFormat:@"data:image/jpeg;base64,%@", [data base64EncodedString]];
 }
 
 # pragma mark - RSAPIRequest Overriden Methods
@@ -83,6 +91,9 @@
     
     // Update the note count for the paragraph
     _paragraph.noteCount = [NSNumber numberWithInt:[_paragraph.notes count]];
+    
+    // Trigger delegate/notification
+    [[ReadSocial sharedInstance] userDidComposeNote:note];
     
     return YES;
 }

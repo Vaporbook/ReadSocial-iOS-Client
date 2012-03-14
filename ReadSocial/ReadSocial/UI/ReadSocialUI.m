@@ -8,6 +8,7 @@
 
 #import "ReadSocialUI.h"
 #import "ReadSocialAPI.h"
+#import "ReadSocialViewController.h"
 #import "RSNoteCountViewController.h"
 
 /**
@@ -18,6 +19,53 @@
 static NSMutableDictionary *noteCountViewControllers;
 
 @implementation ReadSocialUI
+
+- (void) openReadSocialForParagraph:(RSParagraph *)paragraph frame:(CGRect)frame view:(UIView *)view
+{
+    // Open the UI
+    ReadSocialViewController *rsvc = [[ReadSocialViewController alloc] initWithParagraph:paragraph];
+    rsPopover = [[UIPopoverController alloc] initWithContentViewController:rsvc];
+    rsPopover.delegate = self;
+    
+    // Present the UIPopoverController
+    // Determine the orientation of the device
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    
+    // Determine the arrow orientation
+    UIPopoverArrowDirection arrowDirection = UIPopoverArrowDirectionDown;
+    switch (orientation) 
+    {
+        case UIInterfaceOrientationLandscapeRight:
+        case UIInterfaceOrientationLandscapeLeft:
+            arrowDirection = frame.origin.y < 310 ? UIPopoverArrowDirectionRight : UIPopoverArrowDirectionDown;
+            break;
+        default:
+            arrowDirection = (UIPopoverArrowDirectionDown|UIPopoverArrowDirectionUp);
+            break;
+    }
+    
+    [rsPopover presentPopoverFromRect:frame inView:view permittedArrowDirections:arrowDirection animated:YES];
+}
+
+- (RSLoginViewController *) getLoginViewControllerWithDelegate:(id<RSLoginViewControllerDelegate,UIWebViewDelegate>)delegate
+{
+    RSLoginViewController *loginViewController = [RSLoginViewController new];
+    loginViewController.delegate = delegate;
+    loginViewController.webview.delegate = delegate;
+    return loginViewController;
+}
+
++ (ReadSocialUI *) library
+{
+    static ReadSocialUI *sharedInstance;
+    
+    if (!sharedInstance) 
+    {
+        sharedInstance = [ReadSocialUI new];
+    }
+    
+    return sharedInstance;
+}
 
 + (RSNoteCountViewController *) noteCountViewControllerForParagraph: (RSParagraph *)paragraph
 {
@@ -53,5 +101,13 @@ static NSMutableDictionary *noteCountViewControllers;
     
     [noteCountViewControllers removeAllObjects];
 }
+
+# pragma mark - UIPopoverViewControllerDelegate methods
+- (void) popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    [[ReadSocial sharedInstance] userDidUnselectParagraph];
+    rsPopover.delegate = nil;
+}
+
 
 @end

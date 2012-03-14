@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ReadSocialAPI.h"
 #import "RSComposeResponseViewController.h"
-#import "RSCreateNoteResponseRequest.h"
 
 @class RSNote;
 @interface RSNoteDetailViewController : UITableViewController <RSResponseCompositionDelegate, RSAPIRequestDelegate>

@@ -52,6 +52,10 @@
             @"text",                @"mtype",
             nil];
 }
+- (BOOL) shouldEnableSubmitButton
+{
+    return noteBody.text.length!=0;
+}
 
 #pragma mark - View lifecycle
 
@@ -61,6 +65,7 @@
     
     // Add a border to the note body
     noteBody.layer.cornerRadius = 5.0f;
+    noteBody.delegate = self;
 }
 
 - (void)viewDidUnload
@@ -74,6 +79,24 @@
 {
     // Return YES for supported orientations
 	return YES;
+}
+
+#pragma mark - UITextView delegate
+- (BOOL) textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    // Determine what the new value of the text field is going to be
+    NSString *newValue = [textView.text stringByReplacingCharactersInRange:range withString:text];
+    
+    if (newValue.length!=0)
+    {
+        [rootComposerController enableSubmitButton];
+    }
+    else
+    {
+        [rootComposerController disableSubmitButton];
+    }
+    
+    return YES;
 }
 
 @end

@@ -8,7 +8,7 @@
 
 #import "ReadSocialViewController.h"
 #import "RSNotesViewController.h"
-#import "RSAuthentication.h"
+#import "ReadSocialAPI.h"
 
 @implementation ReadSocialViewController
 @synthesize paragraph=_paragraph;

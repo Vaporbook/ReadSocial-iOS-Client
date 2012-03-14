@@ -10,8 +10,6 @@
 #import "RSNoteDetailViewController.h"
 #import "RSGroupViewController.h"
 #import "RSNavigationController.h"
-#import "ReadSocialAPI.h"
-#import "RSDateFormat.h"
 #import "RSTableViewCell.h"
 
 @interface RSNotesViewController()
@@ -66,7 +64,6 @@
 
 - (void) reloadNotes
 {
-    // TODO: This method is getting triggered twice upon opening the view--when new users are updated and when the responses are updated.
     notes = [RSNoteHandler notesForParagraph:_paragraph];
     [self.tableView reloadData];
     [self.tableView flashScrollIndicators];
@@ -119,6 +116,19 @@
     }
 }
 
+- (void) groupDidChange: (NSNotification *)notification
+{
+    [self reloadNotes];
+    
+    [currentGroup setTitle:[NSString stringWithFormat:@"#%@",notification.object] forState:UIControlStateNormal];
+    
+    // Recreate the current paragraph
+    self.paragraph = [RSParagraph createParagraphInDefaultContextForString:raw];
+    
+    // Request updated notes
+    [RSParagraphNotesRequest notesForParagraph:self.paragraph withDelegate:self];
+}
+
 # pragma mark - Note Composer Delegate methods
 - (void) didFinishComposingNote:(RSNote *)note withResult:(NSInteger)result error:(NSError *)error
 {
@@ -139,23 +149,10 @@
     }
 }
 
-#pragma mark - Group Selection delegate
+#pragma mark - RSGroupViewController delegate methods
 - (void) didChangeToGroup:(NSString *)group
 {
-    NSLog(@"Did change group.");
-    self.navigationItem.leftBarButtonItem.title = group;
     
-    // Pull data from the persistent store so that the interface can immediately open
-    [self reloadNotes];
-    
-    // Update the group name in the group selector
-    [currentGroup setTitle:[NSString stringWithFormat:@"#%@",group] forState:UIControlStateNormal];
-    
-    // Recreate the current paragraph
-    self.paragraph = [RSParagraph createParagraphInDefaultContextForString:raw];
-    
-    // Request updated notes
-    [RSParagraphNotesRequest notesForParagraph:self.paragraph withDelegate:self];
 }
 
 #pragma mark - View lifecycle
@@ -192,6 +189,9 @@
     // Request updated notes
     [RSParagraphNotesRequest notesForParagraph:self.paragraph withDelegate:self];
     
+    // Listen for the group to change
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(groupDidChange:) name:ReadSocialUserDidChangeGroupNotification object:nil];
+    
     // Hide filler rows on table
     UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 5)];
     v.backgroundColor = [UIColor clearColor];
@@ -201,13 +201,12 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self checkForNoComments];
+    [self reloadNotes];
     
     [super viewWillAppear:animated];
 }
@@ -220,13 +219,14 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    
+    // Stop listening for managed object changes
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSManagedObjectContextObjectsDidChangeNotification object:[DataContext defaultContext]];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -311,6 +311,8 @@
     if (note.thumbnailURL)
     {
         [cell.thumbnail loadWithURL:[NSURL URLWithString:note.thumbnailURL]];
+        cell.thumbnail.contentMode = UIViewContentModeScaleAspectFill;
+        cell.thumbnail.clipsToBounds = YES;
     }
     else
     {
@@ -396,9 +398,10 @@
 {
     NSLog(@"Updating notes...");
     [activityIndicator startAnimating];
+    loadingNewItems = YES;
+    
     // Listen for the data context to change
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadNotes) name:NSManagedObjectContextObjectsDidChangeNotification object:[DataContext defaultContext]];
-    loadingNewItems = YES;
 }
 - (void) requestDidSucceed:(RSAPIRequest *)request
 {

@@ -7,7 +7,6 @@
 //
 
 #import "RSGroupViewController.h"
-#import "ReadSocial.h"
 
 @implementation RSGroupViewController
 @synthesize groups, delegate, paragraph;
