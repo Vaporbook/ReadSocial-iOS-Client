@@ -56,7 +56,6 @@
 		0EBFDF5A14F0CDAE00CD45F6 /* RSDateFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBFDF5914F0CDAC00CD45F6 /* RSDateFormat.m */; };
 		0EBFDF6014F0E33F00CD45F6 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFDF5E14F0E33B00CD45F6 /* Icon-72.png */; };
 		0EBFDF6114F0E33F00CD45F6 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFDF5F14F0E33D00CD45F6 /* iTunesArtwork */; };
-		0EBFDF6314F0E35500CD45F6 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFDF6214F0E35400CD45F6 /* Icon-72.png */; };
 		0EBFDF6514F0E45400CD45F6 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFDF6414F0E45400CD45F6 /* Default-Landscape~ipad.png */; };
 		0EBFDF6714F0E47500CD45F6 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFDF6614F0E47400CD45F6 /* Default-Portrait~ipad.png */; };
 		0EC7B36814F34F8F0026D97D /* RSLinkNoteTypeComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7B36614F34F8F0026D97D /* RSLinkNoteTypeComposer.m */; };
@@ -506,7 +505,6 @@
 				0EBFDF5714F0C6FF00CD45F6 /* logo.png in Resources */,
 				0EBFDF6014F0E33F00CD45F6 /* Icon-72.png in Resources */,
 				0EBFDF6114F0E33F00CD45F6 /* iTunesArtwork in Resources */,
-				0EBFDF6314F0E35500CD45F6 /* Icon-72.png in Resources */,
 				0EBFDF6514F0E45400CD45F6 /* Default-Landscape~ipad.png in Resources */,
 				0EBFDF6714F0E47500CD45F6 /* Default-Portrait~ipad.png in Resources */,
 				0EC7B36914F34F8F0026D97D /* RSLinkNoteTypeComposer.xib in Resources */,
