@@ -34,11 +34,14 @@ extern NSString* const ReadSocialAPIURL;
     RSAuthentication *auth;
 }
 
+// true when the request is currently active (sending or receiving a response from a server).
+@property (nonatomic, readonly) BOOL active;
 @property (nonatomic, readonly) BOOL receivedError;
 @property (strong, nonatomic) id<RSAPIRequestDelegate> delegate;
 
 - (NSMutableURLRequest *)createRequest;
 - (void) start;
+- (void) cancel;
 
 // Returns whether data was changed or not
 - (BOOL) handleResponse: (id)data error: (NSError**)error;

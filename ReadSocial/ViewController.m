@@ -131,13 +131,22 @@
     // Get comma-separated coordinates
     NSString *coordinates = [self.webview stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"RS.coordinatesForParagraphAtIndex(%d)", index]];
     
+    // Default height and width of paragraph
+    float x = 0;
+    float y = 0;
+    float width = 0;
+    float height = 0;
+    
     // Split the coordinates into components
     NSArray *components = [coordinates componentsSeparatedByString:@","];
     
-    float x = [[components objectAtIndex:0] floatValue];
-    float y = [[components objectAtIndex:1] floatValue];
-    float width = [[components objectAtIndex:2] floatValue];
-    float height = [[components objectAtIndex:3] floatValue];
+    if ([components count]==4) 
+    {
+        x = [[components objectAtIndex:0] floatValue];
+        y = [[components objectAtIndex:1] floatValue];
+        width = [[components objectAtIndex:2] floatValue];
+        height = [[components objectAtIndex:3] floatValue];
+    }
     
     return CGRectMake(x, y, width, height);
 }

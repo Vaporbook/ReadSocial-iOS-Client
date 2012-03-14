@@ -11,6 +11,7 @@
 
 @interface RSImageNoteTypeComposer ()
 - (NSData *) getImageData;
+- (NSString *) getImageURIData;
 @end
 
 @implementation RSImageNoteTypeComposer
@@ -53,6 +54,12 @@
     return data;
 }
 
+- (NSString *) getImageURIData
+{
+    NSData *data = [self getImageData];
+    return [NSString stringWithFormat:@"data:image/jpeg;base64,%@", [data base64EncodedString]];
+}
+
 #pragma mark - RSNoteTypeComposer Methods
 - (id) initWithRootComposerController: (RSComposeNoteViewController *) composerController
 {
@@ -73,8 +80,8 @@
 - (NSDictionary *) prepareRequestArguments
 {
     return [NSDictionary dictionaryWithObjectsAndKeys:
-            description.text,                           @"note_body",
-            [[self getImageData] base64EncodedString],  @"note_img",
+            description.text,           @"note_body",
+            [self getImageURIData],     @"note_img",
             nil];
 }
 

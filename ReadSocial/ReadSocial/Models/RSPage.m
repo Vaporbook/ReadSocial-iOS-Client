@@ -19,6 +19,7 @@
     if (self)
     {
         rs = [ReadSocial sharedInstance];
+        activeNoteCountRequests = [NSMutableArray array];
     }
     return self;
 }
@@ -53,9 +54,21 @@
         [self createParagraphs];
     }
     
+    RSNoteCountRequest *request;
     for (RSParagraph *paragraph in paragraphs) 
     {
-        [RSNoteCountRequest retrieveNoteCountOnParagraph:paragraph withDelegate:self];
+        request = [RSNoteCountRequest retrieveNoteCountOnParagraph:paragraph withDelegate:self];
+        [activeNoteCountRequests addObject:request];
+    }
+}
+
+- (void) cancelNoteCountRequests
+{
+    // Iterates through the active connections
+    // and cancels all of them
+    for (RSNoteCountRequest *request in activeNoteCountRequests) 
+    {
+        [request cancel];
     }
 }
 
@@ -64,8 +77,17 @@
     // Request from the data source the index of the selected paragraph
     NSInteger index = [datasource paragraphIndexAtSelection];
     
-    // Determine the RSParagraph associated with that index
-    return [paragraphs objectAtIndex:index];
+    // Make sure index is within the range of paragraphs
+    if (index>=0 && index<[paragraphs count]) 
+    {
+        // Determine the RSParagraph associated with that index
+        return [paragraphs objectAtIndex:index];
+    }
+    // If the index is not within bounds, then the paragraph was not found
+    else
+    {
+        return nil;
+    }
 }
 
 - (NSString *) selection
@@ -78,6 +100,11 @@
 {
     NSInteger index = [paragraphs indexOfObject:request.paragraph];
     [rs noteCountUpdatedForParagraph:request.paragraph atIndex:index];
+    [activeNoteCountRequests removeObject:request];
+}
+- (void) requestDidFail:(RSAPIRequest *)request withError:(NSError *)error
+{
+    [activeNoteCountRequests removeObject:request];
 }
 
 @end

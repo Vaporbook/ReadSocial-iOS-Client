@@ -15,6 +15,7 @@
 @interface RSPage : NSObject <RSAPIRequestDelegate>
 {
     ReadSocial *rs;
+    NSMutableArray *activeNoteCountRequests;
 }
 
 @property (strong, nonatomic) NSArray *paragraphs;
@@ -26,5 +27,6 @@
 
 - (void) createParagraphs;
 - (void) requestCommentCount;
+- (void) cancelNoteCountRequests;
 
 @end

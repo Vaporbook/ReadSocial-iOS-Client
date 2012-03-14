@@ -108,6 +108,10 @@ NSString* const ReadSocialUserDidChangeGroupNotification            =   @"ReadSo
 + (void) setCurrentPage: (id<ReadSocialDataSource>)view
 {
     ReadSocial *rs = [ReadSocial sharedInstance];
+    
+    // Cancel the requests on the current page
+    [rs.currentPage cancelNoteCountRequests];
+    
     rs.currentPage = [rs initializeView:view];
 }
 
@@ -119,6 +123,12 @@ NSString* const ReadSocialUserDidChangeGroupNotification            =   @"ReadSo
 
 + (void) openReadSocialForParagraph:(RSParagraph *)paragraph inView :(UIView *)view
 {
+    // Verify that paragraph is not nil
+    if (!paragraph) 
+    {
+        return;
+    }
+    
     ReadSocial *rs = [ReadSocial sharedInstance];
     
     // Determine the index of the paragraph on the current page.

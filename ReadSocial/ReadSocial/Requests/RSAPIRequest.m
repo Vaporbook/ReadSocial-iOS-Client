@@ -24,7 +24,7 @@ static NSString *userAgent;
 @end;
 
 @implementation RSAPIRequest
-@synthesize delegate, receivedError;
+@synthesize delegate, receivedError, active;
 
 + (void) initialize
 {
@@ -41,6 +41,8 @@ static NSString *userAgent;
         networkID       =   [ReadSocial networkID];
         group           =   [ReadSocial currentGroup];
         receivedError   =   NO;
+        active          =   NO;
+        connection      =   nil;
     }
     return self;
 }
@@ -80,7 +82,20 @@ static NSString *userAgent;
     
     sentTime = [NSDate date];
     [self didStartRequest];
-    [NSURLConnection connectionWithRequest:request delegate:self];
+    connection = [NSURLConnection connectionWithRequest:request delegate:self];
+    active = YES;
+}
+
+- (void) cancel
+{
+    // Don't do anything if the request is not active
+    if (!active)
+    {
+        return;
+    }
+    
+    NSLog(@"Connection cancelled.");
+    [connection cancel];
 }
 
 - (BOOL) handleResponse: (id)data error: (NSError**)error
@@ -125,11 +140,13 @@ static NSString *userAgent;
 
 - (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
+    active = NO;
     [self requestDidFailWithError:error];
 }
 
 - (void) connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 {
+    active = NO;
     NSError *error = [NSError errorWithDomain:@"API Requested Authentication" code:401 userInfo:nil];
     [self requestDidFailWithError:error];
 }
@@ -160,6 +177,7 @@ static NSString *userAgent;
 
 - (void) connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    active = NO;
     // Connection complete
     // Calculate the response time
     NSTimeInterval responseTime = [[NSDate date] timeIntervalSinceDate:sentTime];

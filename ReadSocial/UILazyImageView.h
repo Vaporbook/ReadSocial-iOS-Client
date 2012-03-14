@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UILazyImageView : UIImageView
+@interface UILazyImageView : UIImageView <NSURLConnectionDelegate>
 {
+    NSURLConnection *downloadingConnection;
     NSMutableData *receivedData;
     UIActivityIndicatorView *activityIndicator;
 }
@@ -18,5 +19,6 @@
 
 - (id) initWithURL:(NSURL *)url;
 - (void) loadWithURL:(NSURL *)url;
+- (void) cancelImageDownload;
 
 @end
