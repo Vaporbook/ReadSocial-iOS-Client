@@ -35,7 +35,7 @@ NSString* const kResponseNoteId     = @"note_id";
 {
     self.body       = [args valueForKey:kResponseBody];
     self.note       = [RSNoteHandler noteForId:[args valueForKey:kResponseNoteId]];
-    self.timestamp  = [NSDate dateWithTimeIntervalSince1970:[[args valueForKey:kResponseCreated] floatValue]/1000.0];
+    self.timestamp  = [NSDate dateWithTimeIntervalSince1970:[[args valueForKey:kResponseCreated] doubleValue]/1000.0];
     self.user       = [RSUserHandler userForID:[args valueForKey:kUserId]];
 }
 

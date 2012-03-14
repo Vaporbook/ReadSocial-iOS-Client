@@ -14,8 +14,11 @@
 #import <Foundation/Foundation.h>
 
 @class RSNote;
+@class RSResponse;
 
 @interface RSResponseHandler : NSObject
+
++ (RSResponse *) updateOrCreateResponseWithDictionary: (NSDictionary *)data;
 
 /**
  Immediately pulls all responses for a note from the local store and places the
@@ -28,15 +31,7 @@
  @return An NSArray of RSResponse's for the note.
  */
 + (NSArray *) responsesForNote: (RSNote *)note;
-
-/**
- Initiates a request to the API and updates the local store with the latest information
- from the server. Once the data is available, it saves the data context initiating
- a notification so that all active views can update their content.
- 
- @param note The note for which to fetch responses.
- */
-+ (void) updateResponsesForNote: (RSNote *)note;
++ (NSArray *) responsesForNote:(RSNote *)note before:(NSDate *)timestamp;
 
 /**
  Updates/creates RSResponse objects in the persistent store with the contents of an NSArray.
@@ -44,7 +39,9 @@
  
  @param notes The NSArray should contain NSDictionary elements with data retrieved from the API.
  */
-+ (void) updateOrCreateResponsesWithArray: (NSArray *)responses;
++ (void) updateOrCreateResponsesWithArray: (NSArray *)responses forNote:(RSNote *)note;
+
++ (RSResponse *) responseForId: (NSString *)id;
 
 /**
  Retrieves an NSArray of RSResponse objects for each response ID specified.

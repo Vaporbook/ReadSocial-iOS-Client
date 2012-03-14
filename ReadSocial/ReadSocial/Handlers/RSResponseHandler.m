@@ -21,57 +21,88 @@
     return [note.responses sortedArrayUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO]]];
 }
 
-+ (void) updateResponsesForNote: (RSNote *)note
++ (RSResponse *) updateOrCreateResponseWithDictionary: (NSDictionary *)data
 {
-    [RSNoteResponsesRequest responsesForNote:note];
+    RSResponse *response = [RSResponseHandler responseForId:[data valueForKey:kResponseId]];
+    
+    if (!response)
+    {
+        response = [RSResponse responseFromDictionary:data];
+    }
+    else
+    {
+        [response updateResponseWithDictionary:data];
+    }
+    
+    return response;
 }
 
-+ (void) updateOrCreateResponsesWithArray: (NSArray *)responses
++ (void) updateOrCreateResponsesWithArray: (NSArray *)responses forNote:(RSNote *)note
 {
-    // Get an array of all the IDs that need to be saved
-    NSMutableArray *ids = [NSMutableArray array];
-    for (NSDictionary *pResponse in responses)
+    // Delete all stored responses with a date prior to the date on the
+    // first response received from the API.
+    
+    // Get a reference to all the cached responses on this note
+    NSArray *oldResponses;
+    
+    // Check if there are new responses to be downloaded for the note
+    if ([responses count]>0)
     {
-        [ids addObject:[pResponse valueForKey:kResponseId]];
-    }
-    
-    // Fetch notes currently in the store with the same ID
-    NSArray *fetchedItems = [RSResponseHandler responsesForIds:ids];
-    
-    // Retrieve the first object in each array
-    NSEnumerator *fetchedEnumerator = [fetchedItems objectEnumerator];
-    NSEnumerator *responseEnumerator = [responses objectEnumerator];
-    RSResponse *fetchedItem = [fetchedEnumerator nextObject];
-    NSDictionary *item  = [responseEnumerator nextObject];
-    
-    // Walk through the arrays
-    while (item || fetchedItem)
-    {
-        // If the IDs are equal on the fetched note (the one from the store) and the note
-        // received from the API, then the note is already stored--just need to update it.
-        if ([fetchedItem.id isEqualToString:[item valueForKey:kResponseId]]) 
-        {
-            NSLog(@"Update item: %@", fetchedItem.id);
-            [fetchedItem updateResponseWithDictionary:item];
-            
-            // Next notes
-            item        = [responseEnumerator nextObject];
-            fetchedItem = [fetchedEnumerator nextObject];
-        }
+        // Retrieve the response data for the last updated response
+        NSDictionary *lastUpdatedResponseData = [responses objectAtIndex:0];
+        RSResponse *lastUpdatedResponse = [RSResponseHandler updateOrCreateResponseWithDictionary:lastUpdatedResponseData];
         
-        // If there is a note object that doesn't match the current fetchedNote
-        // then it is a new note; insert it into the context.
-        else if (item)
-        {
-            NSLog(@"Create a new item: %@", [item valueForKey:kResponseId]);
-            [RSResponse responseFromDictionary:item];
-            
-            item = [responseEnumerator nextObject];
-        }
+        // Fetch all the responses with a created date prior to this response
+        oldResponses = [RSResponseHandler responsesForNote:note before:lastUpdatedResponse.timestamp];
+        NSLog(@"Found %d responses before %@ for note: %@", [oldResponses count], lastUpdatedResponse.timestamp, note);
     }
     
-    // TODO: Responses that didn't receive an update from the server should probably be deleted from the store
-    // Low priority since users cannot delete their own responses.
+    // If responses is nil or empty, then erase all the responses on this note (created before right now...which should be all of them).
+    else
+    {
+        oldResponses = [RSResponseHandler responsesForNote:note before:[NSDate date]];
+    }
+    
+    // Delete all the old responses
+    for (RSResponse *oldResponse in oldResponses) 
+    {
+        [[DataContext defaultContext] deleteObject:oldResponse];
+    }
+    
+    NSLog(@"Deleted %d old responses.", [oldResponses count]);
+    
+    // Create new responses
+    for (NSDictionary *responseData in responses) 
+    {
+        [RSResponseHandler updateOrCreateResponseWithDictionary:responseData];
+    }
+    
+    NSLog(@"Created %d new responses.", [responses count]);
+    
+    // The caller MUST save the context otherwise the update will not complete.
+}
+
++ (NSArray *) responsesForNote:(RSNote *)note before:(NSDate *)timestamp
+{
+    NSFetchRequest *request = [NSFetchRequest new];
+    [request setEntity:[NSEntityDescription entityForName:@"RSResponse" inManagedObjectContext:[DataContext defaultContext]]];
+    
+    [request setPredicate:[NSPredicate predicateWithFormat:@"timestamp < %@ AND note==%@", timestamp, note]];
+    
+    NSArray *responses = [[DataContext defaultContext] executeFetchRequest:request error:nil];
+    return responses;
+}
+
++ (RSResponse *) responseForId: (NSString *)id
+{
+    NSArray *responses = [RSResponseHandler responsesForIds:[NSArray arrayWithObject:id]];
+    
+    if (!responses || [responses count]==0)
+    {
+        return nil;
+    }
+    
+    return [responses objectAtIndex:0];
 }
 
 + (NSArray *) responsesForIds: (NSArray *)ids

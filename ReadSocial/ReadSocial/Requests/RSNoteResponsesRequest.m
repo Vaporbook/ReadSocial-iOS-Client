@@ -79,7 +79,10 @@
     NSArray *responses = (NSArray *)json;
     
     [RSUserHandler updateOrCreateUsersWithArray:responses];
-    [RSResponseHandler updateOrCreateResponsesWithArray:responses];
+    [RSResponseHandler updateOrCreateResponsesWithArray:responses forNote:self.note];
+    
+    // Retrieve an updated number of responses on this note
+    [RSNoteResponseCountRequest retrieveNoteResponseCountOnNote:self.note];
     
     // Retrieve an updated number of responses on this note
     [RSNoteResponseCountRequest retrieveNoteResponseCountOnNote:self.note];
