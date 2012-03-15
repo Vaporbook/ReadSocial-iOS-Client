@@ -107,6 +107,7 @@ static NSMutableDictionary *noteCountViewControllers;
 {
     [[ReadSocial sharedInstance] userDidUnselectParagraph];
     rsPopover.delegate = nil;
+    rsPopover = nil;
 }
 
 

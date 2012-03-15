@@ -48,7 +48,7 @@ NSString* const ReadSocialUserDidLoginNotification                  =   @"ReadSo
 
 
 @implementation ReadSocial
-@synthesize delegate, networkID, rsPopover, currentPage, currentSelection, defaultGroup, readSocialUI;
+@synthesize delegate, networkID, currentPage, currentSelection, defaultGroup, readSocialUI;
 
 - (NSString *) getCurrentGroup
 {

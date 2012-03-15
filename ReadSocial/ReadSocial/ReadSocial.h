@@ -36,13 +36,6 @@ extern NSString* const ReadSocialUserDidLoginNotification;
 @property (nonatomic, strong) NSNumber *networkID;
 
 /**
- The root UI controller for ReadSocial.
- Right now, it is assumed that the ReadSocial UI will be presented in a UIPopover.
- TODO: Another level of abstraction needs to be added so that the interface for ReadSocial can be anything--not just a popover.
- */
-@property (nonatomic, strong) UIPopoverController *rsPopover;
-
-/**
  The page the user is currently viewing.
  Contains references to each paragraph on the page as well as the datasource 
  reference to obtain more information as needed.
