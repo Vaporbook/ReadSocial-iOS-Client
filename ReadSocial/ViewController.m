@@ -17,6 +17,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    readSocialIsOpen = NO;
     noteCounts = [NSMutableDictionary dictionary];
     self.webview.delegate = self;
     [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html"]]]];
@@ -55,7 +56,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-	return YES;
+	return !readSocialIsOpen;
 }
 
 
@@ -98,11 +99,13 @@
 {
     NSLog(@"User did select paragraph.");
     [self.webview stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"RS.highlightParagraphAtIndex(%d)", index]];
+    readSocialIsOpen = YES;
 }
 
 - (void) userDidUnselectParagraph
 {
     [self.webview stringByEvaluatingJavaScriptFromString:@"RS.unhighlightParagraphs();"];
+    readSocialIsOpen = NO;
 }
 
 - (void) userDidComposeNote:(RSNote *)note

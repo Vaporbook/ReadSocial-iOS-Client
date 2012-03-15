@@ -16,6 +16,7 @@
      Keys are paragraph hashes.
      */
     NSMutableDictionary *noteCounts;
+    BOOL readSocialIsOpen;
 }
 @property (strong, nonatomic) IBOutlet UIWebView *webview;
 
