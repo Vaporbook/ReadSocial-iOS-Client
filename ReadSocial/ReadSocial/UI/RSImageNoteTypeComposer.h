@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RSComposeNoteViewController.h"
 
+@class UIPlaceholderTextView;
 @interface RSImageNoteTypeComposer : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, RSNoteTypeComposer>
 {
     BOOL imageIsSet;
@@ -19,7 +20,7 @@
  */
 @property (nonatomic, strong) RSComposeNoteViewController *rootComposerController;
 @property (nonatomic, strong) IBOutlet UIButton *imagePreview;
-@property (nonatomic, strong) IBOutlet UITextView *description;
+@property (nonatomic, strong) IBOutlet UIPlaceholderTextView *description;
 
 - (IBAction) onSelectImage:(id)sender;
 

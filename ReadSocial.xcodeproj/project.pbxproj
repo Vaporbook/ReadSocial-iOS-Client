@@ -15,6 +15,7 @@
 		0E28E64515105CDC002F7500 /* image-active-btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E28E64215105CDC002F7500 /* image-active-btn.png */; };
 		0E28E64615105CDC002F7500 /* link-active-btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E28E64315105CDC002F7500 /* link-active-btn.png */; };
 		0E28E64715105CDC002F7500 /* note-active-btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E28E64415105CDC002F7500 /* note-active-btn.png */; };
+		0E2D21011512815700B76774 /* UIPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2D21001512815700B76774 /* UIPlaceholderTextView.m */; };
 		0E34D0C214CF097A00AAEC1D /* RSParagraph+Core.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0C114CF097A00AAEC1D /* RSParagraph+Core.m */; };
 		0E34D0C514CF0C1F00AAEC1D /* RSParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0C414CF0C1E00AAEC1D /* RSParagraph.m */; };
 		0E34D0C814CF0C7200AAEC1D /* NSString+RSParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0C714CF0C7100AAEC1D /* NSString+RSParagraph.m */; };
@@ -97,6 +98,8 @@
 		0E28E64215105CDC002F7500 /* image-active-btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image-active-btn.png"; sourceTree = "<group>"; };
 		0E28E64315105CDC002F7500 /* link-active-btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "link-active-btn.png"; sourceTree = "<group>"; };
 		0E28E64415105CDC002F7500 /* note-active-btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "note-active-btn.png"; sourceTree = "<group>"; };
+		0E2D20FF1512815700B76774 /* UIPlaceholderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceholderTextView.h; sourceTree = "<group>"; };
+		0E2D21001512815700B76774 /* UIPlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceholderTextView.m; sourceTree = "<group>"; };
 		0E34D0C014CF097A00AAEC1D /* RSParagraph+Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RSParagraph+Core.h"; sourceTree = "<group>"; };
 		0E34D0C114CF097A00AAEC1D /* RSParagraph+Core.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RSParagraph+Core.m"; sourceTree = "<group>"; };
 		0E34D0C314CF0C1E00AAEC1D /* RSParagraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSParagraph.h; sourceTree = "<group>"; };
@@ -441,6 +444,8 @@
 				0EC7B37614F35F420026D97D /* RSImageNoteTypeComposer.xib */,
 				0EC7B39714F38ABF0026D97D /* UILazyImageView.h */,
 				0EC7B39814F38ABF0026D97D /* UILazyImageView.m */,
+				0E2D20FF1512815700B76774 /* UIPlaceholderTextView.h */,
+				0E2D21001512815700B76774 /* UIPlaceholderTextView.m */,
 			);
 			name = UI;
 			path = ReadSocial/UI;
@@ -609,6 +614,7 @@
 				0EBB23D6150A8CDB0060E8FB /* RSNote.m in Sources */,
 				0EBB23DB150A9EBB0060E8FB /* RSUserImageRequest.m in Sources */,
 				0E73909B1510EBEE00C5A141 /* RSActiveGroupsRequest.m in Sources */,
+				0E2D21011512815700B76774 /* UIPlaceholderTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

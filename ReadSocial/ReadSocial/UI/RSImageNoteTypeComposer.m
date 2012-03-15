@@ -7,6 +7,7 @@
 //
 
 #import "RSImageNoteTypeComposer.h"
+#import "UIPlaceholderTextView.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation RSImageNoteTypeComposer
@@ -82,6 +83,7 @@
     
     // Add a border to the note body
     description.layer.cornerRadius = 5.0f;
+    description.placeholder = @"Tell us about the image...";
     imagePreview.layer.cornerRadius = 5.0f;
     imagePreview.clipsToBounds = YES;
     imagePreview.imageView.contentMode = UIViewContentModeScaleAspectFill;

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RSComposeNoteViewController.h"
 
+@class UIPlaceholderTextView;
 @interface RSLinkNoteTypeComposer : UIViewController <RSNoteTypeComposer, UITextViewDelegate, UITextFieldDelegate>
 
 /**
@@ -19,7 +20,7 @@
 /**
  The user's description of the contents of the link.
  */
-@property (nonatomic, strong) IBOutlet UITextView *linkDescription;
+@property (nonatomic, strong) IBOutlet UIPlaceholderTextView *linkDescription;
 
 /**
  The note composition controller.

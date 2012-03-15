@@ -7,9 +7,8 @@
 //
 
 #import "RSLinkNoteTypeComposer.h"
+#import "UIPlaceholderTextView.h"
 #import <QuartzCore/QuartzCore.h>
-
-static NSString *linkDescriptionPlaceholder = @"Tell us about the link...";
 
 @interface RSLinkNoteTypeComposer ()
 - (NSURL *) getNormalizedURL:(NSString *)urlString;
@@ -102,11 +101,8 @@ static NSString *linkDescriptionPlaceholder = @"Tell us about the link...";
     
     // Add a border to the link description
     linkDescription.layer.cornerRadius = 5.0f;
-    
-    // Set the link description to the placeholder
-    linkDescription.text = linkDescriptionPlaceholder;
-    linkDescription.textColor = [UIColor grayColor];
     linkDescription.delegate = self;
+    linkDescription.placeholder = @"Tell us about the link...";
 }
 
 - (void)viewDidUnload
@@ -120,26 +116,6 @@ static NSString *linkDescriptionPlaceholder = @"Tell us about the link...";
 {
     // Return YES for supported orientations
 	return YES;
-}
-
-# pragma mark - UITextViewDelegate methods
-- (void) textViewDidBeginEditing:(UITextView *)textView
-{
-    if ([textView.text isEqualToString:linkDescriptionPlaceholder])
-    {
-        textView.text = @"";
-        textView.textColor = [UIColor blackColor];
-    }
-}
-
-- (void) textViewDidEndEditing:(UITextView *)textView
-{
-    // If the text view is empty, set it back to the placeholder text
-    if ([textView.text isEqualToString:@""]) 
-    {
-        textView.text = linkDescriptionPlaceholder;
-        textView.textColor = [UIColor grayColor];
-    }
 }
 
 #pragma mark - UITextField delegate methods
