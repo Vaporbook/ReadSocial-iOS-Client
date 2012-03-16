@@ -700,7 +700,6 @@
 		0E61BE6014CB20720017F3E3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = ReadSocial/ReadSocial.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ReadSocial/ReadSocial-Prefix.pch";
 				INFOPLIST_FILE = "ReadSocial/ReadSocial-Info.plist";
