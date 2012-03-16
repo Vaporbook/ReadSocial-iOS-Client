@@ -90,7 +90,7 @@
     note = [RSNote noteFromDictionary:json];
     
     // Update the note count for the paragraph
-    _paragraph.noteCount = [NSNumber numberWithInt:[_paragraph.notes count]];
+    _paragraph.noteCount = [NSNumber numberWithInt:[_paragraph.noteCount intValue]+1];
     
     // Trigger delegate/notification
     [[ReadSocial sharedInstance] userDidComposeNote:note];

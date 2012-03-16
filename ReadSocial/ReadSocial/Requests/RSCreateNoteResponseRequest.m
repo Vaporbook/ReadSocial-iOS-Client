@@ -65,6 +65,9 @@
     // Create a new response
     rsResponse = [RSResponse responseFromDictionary:json];
     
+    // Update the response count for the note
+    self.note.responseCount = [NSNumber numberWithInt:[self.note.responseCount intValue]+1];
+    
     // Trigger delegate/notification
     [[ReadSocial sharedInstance] userDidComposeResponse:rsResponse];
     
