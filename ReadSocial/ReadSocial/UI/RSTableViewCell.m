@@ -56,11 +56,11 @@
     self.imageView.frame = CGRectMake( 5, 5, 50, 50 );
     self.thumbnail.center = CGPointMake(280, 30);
     
-    if (thumbnail.url)
+    // Check if an image has been loading or if one
+    // is attempting to load
+    if (thumbnail.image || thumbnail.url)
     {
-        NSLog(@"Determine if text label needs to move.");
-        
-        CGSize textSize = [self.textLabel.text sizeWithFont:self.textLabel.font constrainedToSize:CGSizeMake(175, 40) lineBreakMode:UILineBreakModeWordWrap];
+        CGSize textSize = [self.textLabel.text sizeWithFont:self.textLabel.font constrainedToSize:CGSizeMake(195, 40) lineBreakMode:UILineBreakModeWordWrap];
         CGRect labelFrame = self.textLabel.frame;
         labelFrame.size = textSize;
         self.textLabel.frame = labelFrame;

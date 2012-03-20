@@ -90,6 +90,7 @@ static NSMutableDictionary *cache;
     
     [downloadingConnection cancel];
     downloadingConnection = nil;
+    self.url = nil;
     [activityIndicator stopAnimating];
 }
 
