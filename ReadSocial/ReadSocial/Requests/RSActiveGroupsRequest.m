@@ -40,7 +40,7 @@
     // Add the paragraph argument
     if (self.paragraph)
     {
-        url = [url stringByAppendingFormat:@"?=par_hash=%@",self.paragraph.par_hash];
+        url = [url stringByAppendingFormat:@"?par_hash=%@",self.paragraph.par_hash];
     }
     
     request.URL = [NSURL URLWithString:url];
