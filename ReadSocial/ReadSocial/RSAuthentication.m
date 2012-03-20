@@ -97,8 +97,17 @@
 - (void) requestDidSucceed:(RSAuthStatusRequest *)request
 {
     NSLog(@"Status check succeeded! Authed: %d", request.authed);
-    RSUser *user = [RSUserHandler retrieveOrCreateUser: request.user];
-    [self loginWasSuccessfulForUser:user];
+    
+    // Verify that the user successfully logged in
+    if (request.authed)
+    {
+        RSUser *user = [RSUserHandler retrieveOrCreateUser: request.user];
+        [self loginWasSuccessfulForUser:user];
+    }
+    else
+    {
+        [self didCancelLogin];
+    }
 }
 
 - (void) requestDidFail:(RSAuthStatusRequest *)request withError:(NSError *)error
