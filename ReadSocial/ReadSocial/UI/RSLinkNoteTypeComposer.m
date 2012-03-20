@@ -40,7 +40,7 @@
     NSURL *url = [NSURL URLWithString:urlString];
     if (![url scheme])
     {
-        url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", link.text]];
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", urlString]];
     }
     
     return url;
@@ -50,12 +50,30 @@
 {
     NSURL *url = [self getNormalizedURL:urlString];
     
-    if (url.host && [url.host rangeOfString:@"."].location!=NSNotFound)
+    if (!url.host)
     {
-        return YES;
+        return NO;
     }
     
-    return NO;
+    // Verify that this is a valid host
+    NSArray *hostComps = [url.host componentsSeparatedByString:@"."];
+    
+    // Verify that there are atleast two components
+    if ([hostComps count]<2)
+    {
+        return NO;
+    }
+    
+    // Each component must be atleast one character long
+    for (NSString *hostComponent in hostComps) 
+    {
+        if (hostComponent.length<1)
+        {
+            return NO;
+        }
+    }
+    
+    return YES;
 }
 
 #pragma mark - RSNoteTypeComposer Methods
@@ -123,6 +141,7 @@
 {
     // Determine what the new value of the text field is going to be
     NSString *newValue = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    NSLog(@"Link: %@", newValue);
     
     if ([self isValidLink:newValue])
     {
