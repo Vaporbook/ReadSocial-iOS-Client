@@ -60,7 +60,18 @@ static NSMutableDictionary *cache;
     
     receivedData = [NSMutableData data];
     
-    downloadingConnection = [NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:url] delegate:self];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    
+    // Do NOT request cookies when downloading the image.
+    // This is primarily for the benefit of the ReadSocial API.
+    // The user's session ID is stored in a cookie and is based on his/her user agent string.
+    // Because the cookie needs to be set by the webview and I can't change the user agent 
+    // used by UIWebView, I have to manually set the user agent on all the API requests--
+    // and this includes images--otherwise the user has to log in again. Instead of setting 
+    // the user agent on every request, I will just prevent cookies from being returned from the request.
+    request.HTTPShouldHandleCookies = NO;
+    
+    downloadingConnection = [NSURLConnection connectionWithRequest:request delegate:self];
     [activityIndicator startAnimating];
 }
 
