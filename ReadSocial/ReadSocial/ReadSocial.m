@@ -166,7 +166,7 @@ NSString* const ReadSocialUserDidLoginNotification                  =   @"ReadSo
 - (void) userDidSelectParagraph:(RSParagraph *)paragraph atIndex: (NSInteger)index
 {
     // Create a reference the selected text if it is a part of the paragraph that was opened.
-    if ([paragraph.raw rangeOfString:[currentPage.selection normalize]].location != NSNotFound)
+    if ([paragraph.raw rangeOfString:currentPage.selection].location != NSNotFound)
     {
         currentSelection = currentPage.selection;
     }
