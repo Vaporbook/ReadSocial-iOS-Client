@@ -301,7 +301,26 @@
     cell.textLabel.lineBreakMode = UILineBreakModeWordWrap | UILineBreakModeTailTruncation;
     cell.textLabel.numberOfLines = 2;
     cell.textLabel.font = [UIFont systemFontOfSize:14];
-    cell.textLabel.text = note.body;
+    
+    // Check if the user entered a note body
+    if (note.body && note.body.length>0)
+    {
+        cell.textLabel.text = note.body;
+    }
+    // If not and this is a link type, say that the user attached a link
+    else if (note.link && note.link.length>0)
+    {
+        cell.textLabel.text = note.link;
+    }
+    // If not and this is an image, say the user attached an image
+    else if (note.thumbnailURL)
+    {
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ posted an image.", note.user.name];
+    }
+    else
+    {
+        cell.textLabel.text = @"";
+    }
     
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", note.user.name, [RSDateFormat stringFromDate:note.timestamp]];
     cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
