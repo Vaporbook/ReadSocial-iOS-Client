@@ -7,7 +7,35 @@
 //
 
 #import "RSMutableURLRequest.h"
+#import "ReadSocialAPIConfig.h"
+
+NSString static *userAgent;
 
 @implementation RSMutableURLRequest
+
++ (void) initialize
+{
+    userAgent   =   [ReadSocialAPIConfig userAgent];
+}
+
+- (id) init
+{
+    self = [super init];
+    if (self)
+    {
+        [self setValue:userAgent forHTTPHeaderField:@"User-Agent"];
+    }
+    return self;
+}
+
+- (id) initWithURL:(NSURL *)URL
+{
+    self = [super initWithURL:URL];
+    if (self)
+    {
+        [self setValue:userAgent forHTTPHeaderField:@"User-Agent"];
+    }
+    return self;
+}
 
 @end

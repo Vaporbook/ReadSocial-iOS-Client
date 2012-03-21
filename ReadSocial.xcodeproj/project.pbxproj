@@ -51,6 +51,8 @@
 		0E78F67414D5CC2E00DF151B /* RSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E78F67314D5CC2E00DF151B /* RSUser.m */; };
 		0E78F67714D5D10400DF151B /* RSUserHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E78F67614D5D10300DF151B /* RSUserHandler.m */; };
 		0E78F67A14D5E32400DF151B /* RSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E78F67914D5E32400DF151B /* RSLoginViewController.m */; };
+		0E792ECB151A7B0200EF427D /* ReadSocialAPIConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792ECA151A7B0200EF427D /* ReadSocialAPIConfig.m */; };
+		0E792ED4151A81EE00EF427D /* RSMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792ED3151A81EE00EF427D /* RSMutableURLRequest.m */; };
 		0EAEF53B14D74D5000EA2ECE /* RSGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EAEF53A14D74D5000EA2ECE /* RSGroupViewController.m */; };
 		0EAEF53E14D7531C00EA2ECE /* ReadSocial.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EAEF53D14D7531B00EA2ECE /* ReadSocial.m */; };
 		0EAEF54114D7544100EA2ECE /* RSPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EAEF54014D7544100EA2ECE /* RSPage.m */; };
@@ -163,6 +165,10 @@
 		0E78F67614D5D10300DF151B /* RSUserHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSUserHandler.m; sourceTree = "<group>"; };
 		0E78F67814D5E32300DF151B /* RSLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSLoginViewController.h; sourceTree = "<group>"; };
 		0E78F67914D5E32400DF151B /* RSLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSLoginViewController.m; sourceTree = "<group>"; };
+		0E792EC8151A796900EF427D /* ReadSocialAPIConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReadSocialAPIConfig.h; path = ReadSocial/ReadSocialAPIConfig.h; sourceTree = "<group>"; };
+		0E792ECA151A7B0200EF427D /* ReadSocialAPIConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReadSocialAPIConfig.m; path = ReadSocial/ReadSocialAPIConfig.m; sourceTree = "<group>"; };
+		0E792ED2151A81EE00EF427D /* RSMutableURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSMutableURLRequest.h; sourceTree = "<group>"; };
+		0E792ED3151A81EE00EF427D /* RSMutableURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSMutableURLRequest.m; sourceTree = "<group>"; };
 		0EAEF53914D74D5000EA2ECE /* RSGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSGroupViewController.h; sourceTree = "<group>"; };
 		0EAEF53A14D74D5000EA2ECE /* RSGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSGroupViewController.m; sourceTree = "<group>"; };
 		0EAEF53C14D7531A00EA2ECE /* ReadSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReadSocial.h; path = ReadSocial/ReadSocial.h; sourceTree = "<group>"; };
@@ -265,6 +271,8 @@
 				0EBB23DA150A9EBB0060E8FB /* RSUserImageRequest.m */,
 				0E7390991510EBEE00C5A141 /* RSActiveGroupsRequest.h */,
 				0E73909A1510EBEE00C5A141 /* RSActiveGroupsRequest.m */,
+				0E792ED2151A81EE00EF427D /* RSMutableURLRequest.h */,
+				0E792ED3151A81EE00EF427D /* RSMutableURLRequest.m */,
 			);
 			name = "API Requests";
 			path = ReadSocial/Requests;
@@ -340,6 +348,8 @@
 				0EAEF53C14D7531A00EA2ECE /* ReadSocial.h */,
 				0EBFDF4A14F0647200CD45F6 /* ReadSocialAPI.h */,
 				0EAEF53D14D7531B00EA2ECE /* ReadSocial.m */,
+				0E792EC8151A796900EF427D /* ReadSocialAPIConfig.h */,
+				0E792ECA151A7B0200EF427D /* ReadSocialAPIConfig.m */,
 			);
 			path = ReadSocial;
 			sourceTree = "<group>";
@@ -615,6 +625,8 @@
 				0EBB23DB150A9EBB0060E8FB /* RSUserImageRequest.m in Sources */,
 				0E73909B1510EBEE00C5A141 /* RSActiveGroupsRequest.m in Sources */,
 				0E2D21011512815700B76774 /* UIPlaceholderTextView.m in Sources */,
+				0E792ECB151A7B0200EF427D /* ReadSocialAPIConfig.m in Sources */,
+				0E792ED4151A81EE00EF427D /* RSMutableURLRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
