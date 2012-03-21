@@ -16,23 +16,8 @@
 		0E28E64615105CDC002F7500 /* link-active-btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E28E64315105CDC002F7500 /* link-active-btn.png */; };
 		0E28E64715105CDC002F7500 /* note-active-btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E28E64415105CDC002F7500 /* note-active-btn.png */; };
 		0E2D21011512815700B76774 /* UIPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2D21001512815700B76774 /* UIPlaceholderTextView.m */; };
-		0E34D0C214CF097A00AAEC1D /* RSParagraph+Core.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0C114CF097A00AAEC1D /* RSParagraph+Core.m */; };
-		0E34D0C514CF0C1F00AAEC1D /* RSParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0C414CF0C1E00AAEC1D /* RSParagraph.m */; };
-		0E34D0C814CF0C7200AAEC1D /* NSString+RSParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0C714CF0C7100AAEC1D /* NSString+RSParagraph.m */; };
-		0E34D0CB14CF14EA00AAEC1D /* RSParagraphNotesRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0CA14CF14EA00AAEC1D /* RSParagraphNotesRequest.m */; };
-		0E34D0CF14CF1D4100AAEC1D /* RSAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0CE14CF1D4100AAEC1D /* RSAPIRequest.m */; };
-		0E34D0D314CF296000AAEC1D /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0D214CF296000AAEC1D /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		0E34D0D914CF324C00AAEC1D /* RSNote+Core.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0D814CF324C00AAEC1D /* RSNote+Core.m */; };
-		0E34D0DC14CF3D3400AAEC1D /* DataContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0DB14CF3D3300AAEC1D /* DataContext.m */; };
-		0E34D0DF14CF4F2B00AAEC1D /* RSNoteHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0DE14CF4F2A00AAEC1D /* RSNoteHandler.m */; };
-		0E34D0E214CF559400AAEC1D /* RSResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0E114CF559300AAEC1D /* RSResponseHandler.m */; };
-		0E34D0E514CF56A700AAEC1D /* RSNoteResponsesRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0E414CF56A700AAEC1D /* RSNoteResponsesRequest.m */; };
-		0E34D0EB14CF5E3600AAEC1D /* RSResponse+Core.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0EA14CF5E3600AAEC1D /* RSResponse+Core.m */; };
-		0E34D0EE14CF5F4700AAEC1D /* RSResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0ED14CF5F4700AAEC1D /* RSResponse.m */; };
-		0E34D0F114CF662400AAEC1D /* RSCreateNoteResponseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D0F014CF662400AAEC1D /* RSCreateNoteResponseRequest.m */; };
 		0E34D12114CF6D5D00AAEC1D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D11F14CF6D5B00AAEC1D /* ViewController.m */; };
 		0E34D12214CF6D5D00AAEC1D /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E34D12014CF6D5D00AAEC1D /* ViewController.xib */; };
-		0E34D12514CF7B5F00AAEC1D /* RSAuthStatusRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E34D12414CF7B5F00AAEC1D /* RSAuthStatusRequest.m */; };
 		0E61BE4614CB20720017F3E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E61BE4514CB20720017F3E3 /* UIKit.framework */; };
 		0E61BE4814CB20720017F3E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E61BE4714CB20720017F3E3 /* Foundation.framework */; };
 		0E61BE4A14CB20720017F3E3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E61BE4914CB20720017F3E3 /* CoreGraphics.framework */; };
@@ -40,33 +25,52 @@
 		0E61BE5214CB20720017F3E3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0E61BE5014CB20720017F3E3 /* InfoPlist.strings */; };
 		0E61BE5414CB20720017F3E3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E61BE5314CB20720017F3E3 /* main.m */; };
 		0E61BE5814CB20720017F3E3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E61BE5714CB20720017F3E3 /* AppDelegate.m */; };
-		0E61BE5B14CB20720017F3E3 /* ReadSocial.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0E61BE5914CB20720017F3E3 /* ReadSocial.xcdatamodeld */; };
 		0E7390971510C92A00C5A141 /* upload-btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E7390961510C92A00C5A141 /* upload-btn.png */; };
-		0E73909B1510EBEE00C5A141 /* RSActiveGroupsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E73909A1510EBEE00C5A141 /* RSActiveGroupsRequest.m */; };
 		0E78F65714D4627900DF151B /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 0E78F65614D4627900DF151B /* index.html */; };
 		0E78F66014D470DD00DF151B /* RSNotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E78F65F14D470DD00DF151B /* RSNotesViewController.m */; };
 		0E78F66314D48C1400DF151B /* ReadSocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E78F66214D48C1400DF151B /* ReadSocialViewController.m */; };
 		0E78F66614D4915000DF151B /* RSNoteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E78F66514D4915000DF151B /* RSNoteDetailViewController.m */; };
-		0E78F67114D5CB2000DF151B /* RSUser+Core.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E78F67014D5CB2000DF151B /* RSUser+Core.m */; };
-		0E78F67414D5CC2E00DF151B /* RSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E78F67314D5CC2E00DF151B /* RSUser.m */; };
-		0E78F67714D5D10400DF151B /* RSUserHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E78F67614D5D10300DF151B /* RSUserHandler.m */; };
 		0E78F67A14D5E32400DF151B /* RSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E78F67914D5E32400DF151B /* RSLoginViewController.m */; };
-		0E792ECB151A7B0200EF427D /* ReadSocialAPIConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792ECA151A7B0200EF427D /* ReadSocialAPIConfig.m */; };
-		0E792ED4151A81EE00EF427D /* RSMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792ED3151A81EE00EF427D /* RSMutableURLRequest.m */; };
+		0E792F1C151A886600EF427D /* RSAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792ED9151A886600EF427D /* RSAuthentication.m */; };
+		0E792F1D151A886600EF427D /* RSNoteHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792EDB151A886600EF427D /* RSNoteHandler.m */; };
+		0E792F1E151A886600EF427D /* RSResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792EDD151A886600EF427D /* RSResponseHandler.m */; };
+		0E792F1F151A886600EF427D /* RSUserHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792EDF151A886600EF427D /* RSUserHandler.m */; };
+		0E792F20151A886600EF427D /* ReadSocial.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0E792EE1151A886600EF427D /* ReadSocial.xcdatamodeld */; };
+		0E792F21151A886600EF427D /* RSNote+Core.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792EE4151A886600EF427D /* RSNote+Core.m */; };
+		0E792F22151A886600EF427D /* RSNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792EE6151A886600EF427D /* RSNote.m */; };
+		0E792F23151A886600EF427D /* RSPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792EE8151A886600EF427D /* RSPage.m */; };
+		0E792F24151A886600EF427D /* RSParagraph+Core.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792EEA151A886600EF427D /* RSParagraph+Core.m */; };
+		0E792F25151A886600EF427D /* RSParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792EEC151A886600EF427D /* RSParagraph.m */; };
+		0E792F26151A886600EF427D /* RSResponse+Core.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792EEE151A886600EF427D /* RSResponse+Core.m */; };
+		0E792F27151A886600EF427D /* RSResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792EF0151A886600EF427D /* RSResponse.m */; };
+		0E792F28151A886600EF427D /* RSUser+Core.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792EF2151A886600EF427D /* RSUser+Core.m */; };
+		0E792F29151A886600EF427D /* RSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792EF4151A886600EF427D /* RSUser.m */; };
+		0E792F2A151A886600EF427D /* ReadSocial.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792EF6151A886600EF427D /* ReadSocial.m */; };
+		0E792F2B151A886600EF427D /* ReadSocialAPIConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792EF9151A886600EF427D /* ReadSocialAPIConfig.m */; };
+		0E792F2C151A886600EF427D /* RSActiveGroupsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792EFC151A886600EF427D /* RSActiveGroupsRequest.m */; };
+		0E792F2D151A886600EF427D /* RSAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792EFE151A886600EF427D /* RSAPIRequest.m */; };
+		0E792F2E151A886600EF427D /* RSAuthStatusRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792F00151A886600EF427D /* RSAuthStatusRequest.m */; };
+		0E792F2F151A886600EF427D /* RSCreateNoteRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792F02151A886600EF427D /* RSCreateNoteRequest.m */; };
+		0E792F30151A886600EF427D /* RSCreateNoteResponseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792F04151A886600EF427D /* RSCreateNoteResponseRequest.m */; };
+		0E792F31151A886600EF427D /* RSMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792F06151A886600EF427D /* RSMutableURLRequest.m */; };
+		0E792F32151A886600EF427D /* RSNoteCountRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792F08151A886600EF427D /* RSNoteCountRequest.m */; };
+		0E792F33151A886600EF427D /* RSNoteImageRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792F0A151A886600EF427D /* RSNoteImageRequest.m */; };
+		0E792F34151A886600EF427D /* RSNoteResponseCountRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792F0C151A886600EF427D /* RSNoteResponseCountRequest.m */; };
+		0E792F35151A886600EF427D /* RSNoteResponsesRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792F0E151A886600EF427D /* RSNoteResponsesRequest.m */; };
+		0E792F36151A886600EF427D /* RSParagraphNotesRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792F10151A886600EF427D /* RSParagraphNotesRequest.m */; };
+		0E792F37151A886600EF427D /* RSUserImageRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792F12151A886600EF427D /* RSUserImageRequest.m */; };
+		0E792F38151A886600EF427D /* DataContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792F15151A886600EF427D /* DataContext.m */; };
+		0E792F39151A886600EF427D /* NSData+RSBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792F17151A886600EF427D /* NSData+RSBase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		0E792F3A151A886600EF427D /* NSString+RSParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792F19151A886600EF427D /* NSString+RSParagraph.m */; };
+		0E792F3B151A886600EF427D /* RSDateFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792F1B151A886600EF427D /* RSDateFormat.m */; };
+		0E792F3F151A88D000EF427D /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E792F3E151A88D000EF427D /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		0E792F41151A890C00EF427D /* default_user.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E792F40151A890C00EF427D /* default_user.png */; };
+		0E792F42151A892F00EF427D /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFDF6214F0E35400CD45F6 /* Icon-72.png */; };
 		0EAEF53B14D74D5000EA2ECE /* RSGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EAEF53A14D74D5000EA2ECE /* RSGroupViewController.m */; };
-		0EAEF53E14D7531C00EA2ECE /* ReadSocial.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EAEF53D14D7531B00EA2ECE /* ReadSocial.m */; };
-		0EAEF54114D7544100EA2ECE /* RSPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EAEF54014D7544100EA2ECE /* RSPage.m */; };
-		0EAEF54414D756C100EA2ECE /* RSNoteCountRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EAEF54314D756C100EA2ECE /* RSNoteCountRequest.m */; };
-		0EBB23D2150A742B0060E8FB /* RSNoteResponseCountRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBB23D1150A742B0060E8FB /* RSNoteResponseCountRequest.m */; };
-		0EBB23D6150A8CDB0060E8FB /* RSNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBB23D5150A8CDB0060E8FB /* RSNote.m */; };
-		0EBB23D8150A9DBD0060E8FB /* default_user.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBB23D7150A9DBD0060E8FB /* default_user.png */; };
-		0EBB23DB150A9EBB0060E8FB /* RSUserImageRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBB23DA150A9EBB0060E8FB /* RSUserImageRequest.m */; };
 		0EBFDF4F14F0718000CD45F6 /* RSNoteCountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBFDF4E14F0718000CD45F6 /* RSNoteCountViewController.m */; };
 		0EBFDF5214F09BE200CD45F6 /* ReadSocialUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBFDF5114F09BE200CD45F6 /* ReadSocialUI.m */; };
 		0EBFDF5514F0B40F00CD45F6 /* notes.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFDF5414F0B40F00CD45F6 /* notes.png */; };
 		0EBFDF5714F0C6FF00CD45F6 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFDF5614F0C6FF00CD45F6 /* logo.png */; };
-		0EBFDF5A14F0CDAE00CD45F6 /* RSDateFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBFDF5914F0CDAC00CD45F6 /* RSDateFormat.m */; };
-		0EBFDF6014F0E33F00CD45F6 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFDF5E14F0E33B00CD45F6 /* Icon-72.png */; };
 		0EBFDF6114F0E33F00CD45F6 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFDF5F14F0E33D00CD45F6 /* iTunesArtwork */; };
 		0EBFDF6514F0E45400CD45F6 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFDF6414F0E45400CD45F6 /* Default-Landscape~ipad.png */; };
 		0EBFDF6714F0E47500CD45F6 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFDF6614F0E47400CD45F6 /* Default-Portrait~ipad.png */; };
@@ -77,15 +81,11 @@
 		0EC7B37014F35AD30026D97D /* RSTextNoteTypeComposer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EC7B36E14F35AD30026D97D /* RSTextNoteTypeComposer.xib */; };
 		0EC7B37714F35F420026D97D /* RSImageNoteTypeComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7B37514F35F420026D97D /* RSImageNoteTypeComposer.m */; };
 		0EC7B37814F35F420026D97D /* RSImageNoteTypeComposer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EC7B37614F35F420026D97D /* RSImageNoteTypeComposer.xib */; };
-		0EC7B37C14F367CF0026D97D /* NSData+RSBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7B37B14F367CF0026D97D /* NSData+RSBase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		0EC7B38514F372510026D97D /* RSNoteImageRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7B38414F372510026D97D /* RSNoteImageRequest.m */; };
 		0EC7B39214F37B380026D97D /* RSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7B39114F37B380026D97D /* RSTableViewCell.m */; };
 		0EC7B39914F38ABF0026D97D /* UILazyImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7B39814F38ABF0026D97D /* UILazyImageView.m */; };
 		0EC7B39E14F39AB00026D97D /* separator.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EC7B39D14F39AB00026D97D /* separator.png */; };
 		0EC7B3A014F3AAE10026D97D /* no-comments.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EC7B39F14F3AAE10026D97D /* no-comments.png */; };
-		0EC8A9BD14D5FAB600EA7C74 /* RSAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8A9BC14D5FAB600EA7C74 /* RSAuthentication.m */; };
 		0EC8A9C114D6504F00EA7C74 /* RSComposeNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8A9C014D6504F00EA7C74 /* RSComposeNoteViewController.m */; };
-		0EC8A9C414D6639500EA7C74 /* RSCreateNoteRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8A9C314D6639500EA7C74 /* RSCreateNoteRequest.m */; };
 		0EC8A9C714D66E3D00EA7C74 /* RSComposeResponseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8A9C614D66E3C00EA7C74 /* RSComposeResponseViewController.m */; };
 		0EE9417E14D79A1400526C36 /* rs.js in Resources */ = {isa = PBXBuildFile; fileRef = 0EE9417B14D794FE00526C36 /* rs.js */; };
 /* End PBXBuildFile section */
@@ -102,39 +102,9 @@
 		0E28E64415105CDC002F7500 /* note-active-btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "note-active-btn.png"; sourceTree = "<group>"; };
 		0E2D20FF1512815700B76774 /* UIPlaceholderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceholderTextView.h; sourceTree = "<group>"; };
 		0E2D21001512815700B76774 /* UIPlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceholderTextView.m; sourceTree = "<group>"; };
-		0E34D0C014CF097A00AAEC1D /* RSParagraph+Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RSParagraph+Core.h"; sourceTree = "<group>"; };
-		0E34D0C114CF097A00AAEC1D /* RSParagraph+Core.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RSParagraph+Core.m"; sourceTree = "<group>"; };
-		0E34D0C314CF0C1E00AAEC1D /* RSParagraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSParagraph.h; sourceTree = "<group>"; };
-		0E34D0C414CF0C1E00AAEC1D /* RSParagraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSParagraph.m; sourceTree = "<group>"; };
-		0E34D0C614CF0C7100AAEC1D /* NSString+RSParagraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+RSParagraph.h"; path = "ReadSocial/NSString+RSParagraph.h"; sourceTree = "<group>"; };
-		0E34D0C714CF0C7100AAEC1D /* NSString+RSParagraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+RSParagraph.m"; path = "ReadSocial/NSString+RSParagraph.m"; sourceTree = "<group>"; };
-		0E34D0C914CF14EA00AAEC1D /* RSParagraphNotesRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSParagraphNotesRequest.h; sourceTree = "<group>"; };
-		0E34D0CA14CF14EA00AAEC1D /* RSParagraphNotesRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSParagraphNotesRequest.m; sourceTree = "<group>"; };
-		0E34D0CD14CF1D4100AAEC1D /* RSAPIRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAPIRequest.h; sourceTree = "<group>"; };
-		0E34D0CE14CF1D4100AAEC1D /* RSAPIRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAPIRequest.m; sourceTree = "<group>"; };
-		0E34D0D114CF296000AAEC1D /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
-		0E34D0D214CF296000AAEC1D /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
-		0E34D0D714CF324C00AAEC1D /* RSNote+Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RSNote+Core.h"; sourceTree = "<group>"; };
-		0E34D0D814CF324C00AAEC1D /* RSNote+Core.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RSNote+Core.m"; sourceTree = "<group>"; };
-		0E34D0DA14CF3D3300AAEC1D /* DataContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataContext.h; sourceTree = "<group>"; };
-		0E34D0DB14CF3D3300AAEC1D /* DataContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataContext.m; sourceTree = "<group>"; };
-		0E34D0DD14CF4F2A00AAEC1D /* RSNoteHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNoteHandler.h; sourceTree = "<group>"; };
-		0E34D0DE14CF4F2A00AAEC1D /* RSNoteHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNoteHandler.m; sourceTree = "<group>"; };
-		0E34D0E014CF559200AAEC1D /* RSResponseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSResponseHandler.h; sourceTree = "<group>"; };
-		0E34D0E114CF559300AAEC1D /* RSResponseHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSResponseHandler.m; sourceTree = "<group>"; };
-		0E34D0E314CF56A700AAEC1D /* RSNoteResponsesRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNoteResponsesRequest.h; sourceTree = "<group>"; };
-		0E34D0E414CF56A700AAEC1D /* RSNoteResponsesRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNoteResponsesRequest.m; sourceTree = "<group>"; };
-		0E34D0E914CF5E3600AAEC1D /* RSResponse+Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RSResponse+Core.h"; sourceTree = "<group>"; };
-		0E34D0EA14CF5E3600AAEC1D /* RSResponse+Core.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RSResponse+Core.m"; sourceTree = "<group>"; };
-		0E34D0EC14CF5F4600AAEC1D /* RSResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSResponse.h; sourceTree = "<group>"; };
-		0E34D0ED14CF5F4700AAEC1D /* RSResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSResponse.m; sourceTree = "<group>"; };
-		0E34D0EF14CF662400AAEC1D /* RSCreateNoteResponseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSCreateNoteResponseRequest.h; sourceTree = "<group>"; };
-		0E34D0F014CF662400AAEC1D /* RSCreateNoteResponseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSCreateNoteResponseRequest.m; sourceTree = "<group>"; };
 		0E34D11E14CF6D5B00AAEC1D /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		0E34D11F14CF6D5B00AAEC1D /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		0E34D12014CF6D5D00AAEC1D /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
-		0E34D12314CF7B5E00AAEC1D /* RSAuthStatusRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAuthStatusRequest.h; sourceTree = "<group>"; };
-		0E34D12414CF7B5F00AAEC1D /* RSAuthStatusRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAuthStatusRequest.m; sourceTree = "<group>"; };
 		0E61BE4114CB20720017F3E3 /* ReadSocial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReadSocial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E61BE4514CB20720017F3E3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0E61BE4714CB20720017F3E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -146,10 +116,7 @@
 		0E61BE5514CB20720017F3E3 /* ReadSocial-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ReadSocial-Prefix.pch"; sourceTree = "<group>"; };
 		0E61BE5614CB20720017F3E3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0E61BE5714CB20720017F3E3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		0E61BE5A14CB20720017F3E3 /* ReadSocial.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ReadSocial.xcdatamodel; sourceTree = "<group>"; };
 		0E7390961510C92A00C5A141 /* upload-btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "upload-btn.png"; sourceTree = "<group>"; };
-		0E7390991510EBEE00C5A141 /* RSActiveGroupsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSActiveGroupsRequest.h; sourceTree = "<group>"; };
-		0E73909A1510EBEE00C5A141 /* RSActiveGroupsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSActiveGroupsRequest.m; sourceTree = "<group>"; };
 		0E78F65614D4627900DF151B /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		0E78F65E14D470DD00DF151B /* RSNotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNotesViewController.h; sourceTree = "<group>"; };
 		0E78F65F14D470DD00DF151B /* RSNotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNotesViewController.m; sourceTree = "<group>"; };
@@ -157,45 +124,85 @@
 		0E78F66214D48C1400DF151B /* ReadSocialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadSocialViewController.m; sourceTree = "<group>"; };
 		0E78F66414D4915000DF151B /* RSNoteDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNoteDetailViewController.h; sourceTree = "<group>"; };
 		0E78F66514D4915000DF151B /* RSNoteDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNoteDetailViewController.m; sourceTree = "<group>"; };
-		0E78F66F14D5CB2000DF151B /* RSUser+Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RSUser+Core.h"; sourceTree = "<group>"; };
-		0E78F67014D5CB2000DF151B /* RSUser+Core.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RSUser+Core.m"; sourceTree = "<group>"; };
-		0E78F67214D5CC2D00DF151B /* RSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSUser.h; sourceTree = "<group>"; };
-		0E78F67314D5CC2E00DF151B /* RSUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSUser.m; sourceTree = "<group>"; };
-		0E78F67514D5D10300DF151B /* RSUserHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSUserHandler.h; sourceTree = "<group>"; };
-		0E78F67614D5D10300DF151B /* RSUserHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSUserHandler.m; sourceTree = "<group>"; };
 		0E78F67814D5E32300DF151B /* RSLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSLoginViewController.h; sourceTree = "<group>"; };
 		0E78F67914D5E32400DF151B /* RSLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSLoginViewController.m; sourceTree = "<group>"; };
-		0E792EC8151A796900EF427D /* ReadSocialAPIConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReadSocialAPIConfig.h; path = ReadSocial/ReadSocialAPIConfig.h; sourceTree = "<group>"; };
-		0E792ECA151A7B0200EF427D /* ReadSocialAPIConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReadSocialAPIConfig.m; path = ReadSocial/ReadSocialAPIConfig.m; sourceTree = "<group>"; };
-		0E792ED2151A81EE00EF427D /* RSMutableURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSMutableURLRequest.h; sourceTree = "<group>"; };
-		0E792ED3151A81EE00EF427D /* RSMutableURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSMutableURLRequest.m; sourceTree = "<group>"; };
+		0E792ED8151A886600EF427D /* RSAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAuthentication.h; sourceTree = "<group>"; };
+		0E792ED9151A886600EF427D /* RSAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAuthentication.m; sourceTree = "<group>"; };
+		0E792EDA151A886600EF427D /* RSNoteHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNoteHandler.h; sourceTree = "<group>"; };
+		0E792EDB151A886600EF427D /* RSNoteHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNoteHandler.m; sourceTree = "<group>"; };
+		0E792EDC151A886600EF427D /* RSResponseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSResponseHandler.h; sourceTree = "<group>"; };
+		0E792EDD151A886600EF427D /* RSResponseHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSResponseHandler.m; sourceTree = "<group>"; };
+		0E792EDE151A886600EF427D /* RSUserHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSUserHandler.h; sourceTree = "<group>"; };
+		0E792EDF151A886600EF427D /* RSUserHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSUserHandler.m; sourceTree = "<group>"; };
+		0E792EE2151A886600EF427D /* ReadSocial.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ReadSocial.xcdatamodel; sourceTree = "<group>"; };
+		0E792EE3151A886600EF427D /* RSNote+Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RSNote+Core.h"; sourceTree = "<group>"; };
+		0E792EE4151A886600EF427D /* RSNote+Core.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RSNote+Core.m"; sourceTree = "<group>"; };
+		0E792EE5151A886600EF427D /* RSNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNote.h; sourceTree = "<group>"; };
+		0E792EE6151A886600EF427D /* RSNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNote.m; sourceTree = "<group>"; };
+		0E792EE7151A886600EF427D /* RSPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSPage.h; sourceTree = "<group>"; };
+		0E792EE8151A886600EF427D /* RSPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSPage.m; sourceTree = "<group>"; };
+		0E792EE9151A886600EF427D /* RSParagraph+Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RSParagraph+Core.h"; sourceTree = "<group>"; };
+		0E792EEA151A886600EF427D /* RSParagraph+Core.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RSParagraph+Core.m"; sourceTree = "<group>"; };
+		0E792EEB151A886600EF427D /* RSParagraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSParagraph.h; sourceTree = "<group>"; };
+		0E792EEC151A886600EF427D /* RSParagraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSParagraph.m; sourceTree = "<group>"; };
+		0E792EED151A886600EF427D /* RSResponse+Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RSResponse+Core.h"; sourceTree = "<group>"; };
+		0E792EEE151A886600EF427D /* RSResponse+Core.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RSResponse+Core.m"; sourceTree = "<group>"; };
+		0E792EEF151A886600EF427D /* RSResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSResponse.h; sourceTree = "<group>"; };
+		0E792EF0151A886600EF427D /* RSResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSResponse.m; sourceTree = "<group>"; };
+		0E792EF1151A886600EF427D /* RSUser+Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RSUser+Core.h"; sourceTree = "<group>"; };
+		0E792EF2151A886600EF427D /* RSUser+Core.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RSUser+Core.m"; sourceTree = "<group>"; };
+		0E792EF3151A886600EF427D /* RSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSUser.h; sourceTree = "<group>"; };
+		0E792EF4151A886600EF427D /* RSUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSUser.m; sourceTree = "<group>"; };
+		0E792EF5151A886600EF427D /* ReadSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadSocial.h; sourceTree = "<group>"; };
+		0E792EF6151A886600EF427D /* ReadSocial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadSocial.m; sourceTree = "<group>"; };
+		0E792EF7151A886600EF427D /* ReadSocialAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadSocialAPI.h; sourceTree = "<group>"; };
+		0E792EF8151A886600EF427D /* ReadSocialAPIConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadSocialAPIConfig.h; sourceTree = "<group>"; };
+		0E792EF9151A886600EF427D /* ReadSocialAPIConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadSocialAPIConfig.m; sourceTree = "<group>"; };
+		0E792EFB151A886600EF427D /* RSActiveGroupsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSActiveGroupsRequest.h; sourceTree = "<group>"; };
+		0E792EFC151A886600EF427D /* RSActiveGroupsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSActiveGroupsRequest.m; sourceTree = "<group>"; };
+		0E792EFD151A886600EF427D /* RSAPIRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAPIRequest.h; sourceTree = "<group>"; };
+		0E792EFE151A886600EF427D /* RSAPIRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAPIRequest.m; sourceTree = "<group>"; };
+		0E792EFF151A886600EF427D /* RSAuthStatusRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAuthStatusRequest.h; sourceTree = "<group>"; };
+		0E792F00151A886600EF427D /* RSAuthStatusRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAuthStatusRequest.m; sourceTree = "<group>"; };
+		0E792F01151A886600EF427D /* RSCreateNoteRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSCreateNoteRequest.h; sourceTree = "<group>"; };
+		0E792F02151A886600EF427D /* RSCreateNoteRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSCreateNoteRequest.m; sourceTree = "<group>"; };
+		0E792F03151A886600EF427D /* RSCreateNoteResponseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSCreateNoteResponseRequest.h; sourceTree = "<group>"; };
+		0E792F04151A886600EF427D /* RSCreateNoteResponseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSCreateNoteResponseRequest.m; sourceTree = "<group>"; };
+		0E792F05151A886600EF427D /* RSMutableURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSMutableURLRequest.h; sourceTree = "<group>"; };
+		0E792F06151A886600EF427D /* RSMutableURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSMutableURLRequest.m; sourceTree = "<group>"; };
+		0E792F07151A886600EF427D /* RSNoteCountRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNoteCountRequest.h; sourceTree = "<group>"; };
+		0E792F08151A886600EF427D /* RSNoteCountRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNoteCountRequest.m; sourceTree = "<group>"; };
+		0E792F09151A886600EF427D /* RSNoteImageRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNoteImageRequest.h; sourceTree = "<group>"; };
+		0E792F0A151A886600EF427D /* RSNoteImageRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNoteImageRequest.m; sourceTree = "<group>"; };
+		0E792F0B151A886600EF427D /* RSNoteResponseCountRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNoteResponseCountRequest.h; sourceTree = "<group>"; };
+		0E792F0C151A886600EF427D /* RSNoteResponseCountRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNoteResponseCountRequest.m; sourceTree = "<group>"; };
+		0E792F0D151A886600EF427D /* RSNoteResponsesRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNoteResponsesRequest.h; sourceTree = "<group>"; };
+		0E792F0E151A886600EF427D /* RSNoteResponsesRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNoteResponsesRequest.m; sourceTree = "<group>"; };
+		0E792F0F151A886600EF427D /* RSParagraphNotesRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSParagraphNotesRequest.h; sourceTree = "<group>"; };
+		0E792F10151A886600EF427D /* RSParagraphNotesRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSParagraphNotesRequest.m; sourceTree = "<group>"; };
+		0E792F11151A886600EF427D /* RSUserImageRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSUserImageRequest.h; sourceTree = "<group>"; };
+		0E792F12151A886600EF427D /* RSUserImageRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSUserImageRequest.m; sourceTree = "<group>"; };
+		0E792F14151A886600EF427D /* DataContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataContext.h; sourceTree = "<group>"; };
+		0E792F15151A886600EF427D /* DataContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataContext.m; sourceTree = "<group>"; };
+		0E792F16151A886600EF427D /* NSData+RSBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+RSBase64.h"; sourceTree = "<group>"; };
+		0E792F17151A886600EF427D /* NSData+RSBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+RSBase64.m"; sourceTree = "<group>"; };
+		0E792F18151A886600EF427D /* NSString+RSParagraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RSParagraph.h"; sourceTree = "<group>"; };
+		0E792F19151A886600EF427D /* NSString+RSParagraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RSParagraph.m"; sourceTree = "<group>"; };
+		0E792F1A151A886600EF427D /* RSDateFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSDateFormat.h; sourceTree = "<group>"; };
+		0E792F1B151A886600EF427D /* RSDateFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSDateFormat.m; sourceTree = "<group>"; };
+		0E792F3D151A88D000EF427D /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		0E792F3E151A88D000EF427D /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		0E792F40151A890C00EF427D /* default_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_user.png; sourceTree = "<group>"; };
 		0EAEF53914D74D5000EA2ECE /* RSGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSGroupViewController.h; sourceTree = "<group>"; };
 		0EAEF53A14D74D5000EA2ECE /* RSGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSGroupViewController.m; sourceTree = "<group>"; };
-		0EAEF53C14D7531A00EA2ECE /* ReadSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReadSocial.h; path = ReadSocial/ReadSocial.h; sourceTree = "<group>"; };
-		0EAEF53D14D7531B00EA2ECE /* ReadSocial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReadSocial.m; path = ReadSocial/ReadSocial.m; sourceTree = "<group>"; };
-		0EAEF53F14D7544100EA2ECE /* RSPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSPage.h; sourceTree = "<group>"; };
-		0EAEF54014D7544100EA2ECE /* RSPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSPage.m; sourceTree = "<group>"; };
-		0EAEF54214D756C100EA2ECE /* RSNoteCountRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNoteCountRequest.h; sourceTree = "<group>"; };
-		0EAEF54314D756C100EA2ECE /* RSNoteCountRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNoteCountRequest.m; sourceTree = "<group>"; };
-		0EBB23D0150A742B0060E8FB /* RSNoteResponseCountRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNoteResponseCountRequest.h; sourceTree = "<group>"; };
-		0EBB23D1150A742B0060E8FB /* RSNoteResponseCountRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNoteResponseCountRequest.m; sourceTree = "<group>"; };
-		0EBB23D4150A8CDB0060E8FB /* RSNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNote.h; sourceTree = "<group>"; };
-		0EBB23D5150A8CDB0060E8FB /* RSNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNote.m; sourceTree = "<group>"; };
-		0EBB23D7150A9DBD0060E8FB /* default_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default_user.png; path = ../ReadSocial/Resources/default_user.png; sourceTree = "<group>"; };
-		0EBB23D9150A9EBA0060E8FB /* RSUserImageRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSUserImageRequest.h; sourceTree = "<group>"; };
-		0EBB23DA150A9EBB0060E8FB /* RSUserImageRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSUserImageRequest.m; sourceTree = "<group>"; };
-		0EBFDF4A14F0647200CD45F6 /* ReadSocialAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReadSocialAPI.h; path = ReadSocial/ReadSocialAPI.h; sourceTree = "<group>"; };
 		0EBFDF4D14F0718000CD45F6 /* RSNoteCountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNoteCountViewController.h; sourceTree = "<group>"; };
 		0EBFDF4E14F0718000CD45F6 /* RSNoteCountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNoteCountViewController.m; sourceTree = "<group>"; };
 		0EBFDF5014F09BE200CD45F6 /* ReadSocialUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadSocialUI.h; sourceTree = "<group>"; };
 		0EBFDF5114F09BE200CD45F6 /* ReadSocialUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadSocialUI.m; sourceTree = "<group>"; };
 		0EBFDF5414F0B40F00CD45F6 /* notes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notes.png; sourceTree = "<group>"; };
 		0EBFDF5614F0C6FF00CD45F6 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
-		0EBFDF5814F0CDAA00CD45F6 /* RSDateFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSDateFormat.h; path = ReadSocial/RSDateFormat.h; sourceTree = "<group>"; };
-		0EBFDF5914F0CDAC00CD45F6 /* RSDateFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSDateFormat.m; path = ReadSocial/RSDateFormat.m; sourceTree = "<group>"; };
 		0EBFDF5B14F0E10A00CD45F6 /* RSTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTableViewCell.h; sourceTree = "<group>"; };
-		0EBFDF5E14F0E33B00CD45F6 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
-		0EBFDF5F14F0E33D00CD45F6 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
+		0EBFDF5F14F0E33D00CD45F6 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = ReadSocial/iTunesArtwork; sourceTree = "<group>"; };
 		0EBFDF6214F0E35400CD45F6 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		0EBFDF6414F0E45400CD45F6 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		0EBFDF6614F0E47400CD45F6 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
@@ -209,24 +216,15 @@
 		0EC7B37414F35F420026D97D /* RSImageNoteTypeComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSImageNoteTypeComposer.h; sourceTree = "<group>"; };
 		0EC7B37514F35F420026D97D /* RSImageNoteTypeComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSImageNoteTypeComposer.m; sourceTree = "<group>"; };
 		0EC7B37614F35F420026D97D /* RSImageNoteTypeComposer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RSImageNoteTypeComposer.xib; sourceTree = "<group>"; };
-		0EC7B37A14F367CF0026D97D /* NSData+RSBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+RSBase64.h"; sourceTree = "<group>"; };
-		0EC7B37B14F367CF0026D97D /* NSData+RSBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+RSBase64.m"; sourceTree = "<group>"; };
-		0EC7B38314F372510026D97D /* RSNoteImageRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNoteImageRequest.h; sourceTree = "<group>"; };
-		0EC7B38414F372510026D97D /* RSNoteImageRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNoteImageRequest.m; sourceTree = "<group>"; };
 		0EC7B39114F37B380026D97D /* RSTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTableViewCell.m; sourceTree = "<group>"; };
-		0EC7B39714F38ABF0026D97D /* UILazyImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UILazyImageView.h; path = ../../UILazyImageView.h; sourceTree = "<group>"; };
-		0EC7B39814F38ABF0026D97D /* UILazyImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UILazyImageView.m; path = ../../UILazyImageView.m; sourceTree = "<group>"; };
+		0EC7B39714F38ABF0026D97D /* UILazyImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILazyImageView.h; sourceTree = "<group>"; };
+		0EC7B39814F38ABF0026D97D /* UILazyImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILazyImageView.m; sourceTree = "<group>"; };
 		0EC7B39D14F39AB00026D97D /* separator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = separator.png; sourceTree = "<group>"; };
 		0EC7B39F14F3AAE10026D97D /* no-comments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no-comments.png"; sourceTree = "<group>"; };
-		0EC8A9BB14D5FAB600EA7C74 /* RSAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSAuthentication.h; path = ../RSAuthentication.h; sourceTree = "<group>"; };
-		0EC8A9BC14D5FAB600EA7C74 /* RSAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSAuthentication.m; path = ../RSAuthentication.m; sourceTree = "<group>"; };
 		0EC8A9BF14D6504E00EA7C74 /* RSComposeNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSComposeNoteViewController.h; sourceTree = "<group>"; };
 		0EC8A9C014D6504F00EA7C74 /* RSComposeNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSComposeNoteViewController.m; sourceTree = "<group>"; };
-		0EC8A9C214D6639500EA7C74 /* RSCreateNoteRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSCreateNoteRequest.h; sourceTree = "<group>"; };
-		0EC8A9C314D6639500EA7C74 /* RSCreateNoteRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSCreateNoteRequest.m; sourceTree = "<group>"; };
 		0EC8A9C514D66E3C00EA7C74 /* RSComposeResponseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSComposeResponseViewController.h; sourceTree = "<group>"; };
 		0EC8A9C614D66E3C00EA7C74 /* RSComposeResponseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSComposeResponseViewController.m; sourceTree = "<group>"; };
-		0EE63EC6150910B80057EA9C /* ReadSocial.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ReadSocial.entitlements; sourceTree = "<group>"; };
 		0EE9417B14D794FE00526C36 /* rs.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = rs.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -246,54 +244,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0E34D0CC14CF1D1500AAEC1D /* API Requests */ = {
-			isa = PBXGroup;
-			children = (
-				0E34D0C914CF14EA00AAEC1D /* RSParagraphNotesRequest.h */,
-				0E34D0CA14CF14EA00AAEC1D /* RSParagraphNotesRequest.m */,
-				0E34D0CD14CF1D4100AAEC1D /* RSAPIRequest.h */,
-				0E34D0CE14CF1D4100AAEC1D /* RSAPIRequest.m */,
-				0E34D0E314CF56A700AAEC1D /* RSNoteResponsesRequest.h */,
-				0E34D0E414CF56A700AAEC1D /* RSNoteResponsesRequest.m */,
-				0E34D0EF14CF662400AAEC1D /* RSCreateNoteResponseRequest.h */,
-				0E34D0F014CF662400AAEC1D /* RSCreateNoteResponseRequest.m */,
-				0E34D12314CF7B5E00AAEC1D /* RSAuthStatusRequest.h */,
-				0E34D12414CF7B5F00AAEC1D /* RSAuthStatusRequest.m */,
-				0EC8A9C214D6639500EA7C74 /* RSCreateNoteRequest.h */,
-				0EC8A9C314D6639500EA7C74 /* RSCreateNoteRequest.m */,
-				0EAEF54214D756C100EA2ECE /* RSNoteCountRequest.h */,
-				0EAEF54314D756C100EA2ECE /* RSNoteCountRequest.m */,
-				0EBB23D0150A742B0060E8FB /* RSNoteResponseCountRequest.h */,
-				0EBB23D1150A742B0060E8FB /* RSNoteResponseCountRequest.m */,
-				0EC7B38314F372510026D97D /* RSNoteImageRequest.h */,
-				0EC7B38414F372510026D97D /* RSNoteImageRequest.m */,
-				0EBB23D9150A9EBA0060E8FB /* RSUserImageRequest.h */,
-				0EBB23DA150A9EBB0060E8FB /* RSUserImageRequest.m */,
-				0E7390991510EBEE00C5A141 /* RSActiveGroupsRequest.h */,
-				0E73909A1510EBEE00C5A141 /* RSActiveGroupsRequest.m */,
-				0E792ED2151A81EE00EF427D /* RSMutableURLRequest.h */,
-				0E792ED3151A81EE00EF427D /* RSMutableURLRequest.m */,
-			);
-			name = "API Requests";
-			path = ReadSocial/Requests;
-			sourceTree = "<group>";
-		};
-		0E34D0D014CF296000AAEC1D /* JSONKit */ = {
-			isa = PBXGroup;
-			children = (
-				0E34D0D114CF296000AAEC1D /* JSONKit.h */,
-				0E34D0D214CF296000AAEC1D /* JSONKit.m */,
-			);
-			path = JSONKit;
-			sourceTree = "<group>";
-		};
 		0E61BE3614CB20720017F3E3 = {
 			isa = PBXGroup;
 			children = (
 				0EBFDF6614F0E47400CD45F6 /* Default-Portrait~ipad.png */,
 				0EBFDF6414F0E45400CD45F6 /* Default-Landscape~ipad.png */,
 				0EBFDF6214F0E35400CD45F6 /* Icon-72.png */,
-				0E61BE4D14CB20720017F3E3 /* ReadSocial */,
+				0EBFDF5F14F0E33D00CD45F6 /* iTunesArtwork */,
+				0E61BE4D14CB20720017F3E3 /* ReadSocial Demo */,
 				0E61BE4414CB20720017F3E3 /* Frameworks */,
 				0E61BE4214CB20720017F3E3 /* Products */,
 			);
@@ -319,38 +277,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		0E61BE4D14CB20720017F3E3 /* ReadSocial */ = {
+		0E61BE4D14CB20720017F3E3 /* ReadSocial Demo */ = {
 			isa = PBXGroup;
 			children = (
-				0EE63EC6150910B80057EA9C /* ReadSocial.entitlements */,
-				0EC7B37914F367BB0026D97D /* Base64 */,
-				0EBFDF5E14F0E33B00CD45F6 /* Icon-72.png */,
-				0EBFDF5F14F0E33D00CD45F6 /* iTunesArtwork */,
-				0E78F65D14D4704300DF151B /* UI */,
+				0E792F43151A895200EF427D /* ReadSocial Library */,
 				0E78F65514D4624100DF151B /* Resources */,
-				0E34D0D014CF296000AAEC1D /* JSONKit */,
-				0E61BE6414CB3F680017F3E3 /* Models */,
-				0E34D0CC14CF1D1500AAEC1D /* API Requests */,
-				0E78F65414D4568800DF151B /* Data Handlers */,
 				0E34D11E14CF6D5B00AAEC1D /* ViewController.h */,
 				0E34D11F14CF6D5B00AAEC1D /* ViewController.m */,
-				0EBFDF5814F0CDAA00CD45F6 /* RSDateFormat.h */,
-				0EBFDF5914F0CDAC00CD45F6 /* RSDateFormat.m */,
 				0E34D12014CF6D5D00AAEC1D /* ViewController.xib */,
 				0E61BE5614CB20720017F3E3 /* AppDelegate.h */,
 				0E61BE5714CB20720017F3E3 /* AppDelegate.m */,
-				0E61BE5914CB20720017F3E3 /* ReadSocial.xcdatamodeld */,
 				0E61BE4E14CB20720017F3E3 /* Supporting Files */,
-				0E34D0C614CF0C7100AAEC1D /* NSString+RSParagraph.h */,
-				0E34D0C714CF0C7100AAEC1D /* NSString+RSParagraph.m */,
-				0E34D0DA14CF3D3300AAEC1D /* DataContext.h */,
-				0E34D0DB14CF3D3300AAEC1D /* DataContext.m */,
-				0EAEF53C14D7531A00EA2ECE /* ReadSocial.h */,
-				0EBFDF4A14F0647200CD45F6 /* ReadSocialAPI.h */,
-				0EAEF53D14D7531B00EA2ECE /* ReadSocial.m */,
-				0E792EC8151A796900EF427D /* ReadSocialAPIConfig.h */,
-				0E792ECA151A7B0200EF427D /* ReadSocialAPIConfig.m */,
 			);
+			name = "ReadSocial Demo";
 			path = ReadSocial;
 			sourceTree = "<group>";
 		};
@@ -365,52 +304,9 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		0E61BE6414CB3F680017F3E3 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				0E34D0C014CF097A00AAEC1D /* RSParagraph+Core.h */,
-				0E34D0C114CF097A00AAEC1D /* RSParagraph+Core.m */,
-				0E34D0C314CF0C1E00AAEC1D /* RSParagraph.h */,
-				0E34D0C414CF0C1E00AAEC1D /* RSParagraph.m */,
-				0E34D0D714CF324C00AAEC1D /* RSNote+Core.h */,
-				0E34D0D814CF324C00AAEC1D /* RSNote+Core.m */,
-				0E34D0E914CF5E3600AAEC1D /* RSResponse+Core.h */,
-				0E34D0EA14CF5E3600AAEC1D /* RSResponse+Core.m */,
-				0E34D0EC14CF5F4600AAEC1D /* RSResponse.h */,
-				0E34D0ED14CF5F4700AAEC1D /* RSResponse.m */,
-				0E78F66F14D5CB2000DF151B /* RSUser+Core.h */,
-				0E78F67014D5CB2000DF151B /* RSUser+Core.m */,
-				0E78F67214D5CC2D00DF151B /* RSUser.h */,
-				0E78F67314D5CC2E00DF151B /* RSUser.m */,
-				0EAEF53F14D7544100EA2ECE /* RSPage.h */,
-				0EAEF54014D7544100EA2ECE /* RSPage.m */,
-				0EBB23D4150A8CDB0060E8FB /* RSNote.h */,
-				0EBB23D5150A8CDB0060E8FB /* RSNote.m */,
-			);
-			name = Models;
-			path = ReadSocial/Models;
-			sourceTree = "<group>";
-		};
-		0E78F65414D4568800DF151B /* Data Handlers */ = {
-			isa = PBXGroup;
-			children = (
-				0EC8A9BB14D5FAB600EA7C74 /* RSAuthentication.h */,
-				0EC8A9BC14D5FAB600EA7C74 /* RSAuthentication.m */,
-				0E34D0DD14CF4F2A00AAEC1D /* RSNoteHandler.h */,
-				0E34D0DE14CF4F2A00AAEC1D /* RSNoteHandler.m */,
-				0E34D0E014CF559200AAEC1D /* RSResponseHandler.h */,
-				0E34D0E114CF559300AAEC1D /* RSResponseHandler.m */,
-				0E78F67514D5D10300DF151B /* RSUserHandler.h */,
-				0E78F67614D5D10300DF151B /* RSUserHandler.m */,
-			);
-			name = "Data Handlers";
-			path = ReadSocial/Handlers;
-			sourceTree = "<group>";
-		};
 		0E78F65514D4624100DF151B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				0EBB23D7150A9DBD0060E8FB /* default_user.png */,
 				0E78F65614D4627900DF151B /* index.html */,
 				0EE9417B14D794FE00526C36 /* rs.js */,
 			);
@@ -461,9 +357,133 @@
 			path = ReadSocial/UI;
 			sourceTree = "<group>";
 		};
+		0E792ED6151A886500EF427D /* API */ = {
+			isa = PBXGroup;
+			children = (
+				0E792ED7151A886600EF427D /* Handlers */,
+				0E792EE0151A886600EF427D /* Models */,
+				0E792F3C151A88D000EF427D /* JSONKit */,
+				0E792EF5151A886600EF427D /* ReadSocial.h */,
+				0E792EF6151A886600EF427D /* ReadSocial.m */,
+				0E792EF7151A886600EF427D /* ReadSocialAPI.h */,
+				0E792EF8151A886600EF427D /* ReadSocialAPIConfig.h */,
+				0E792EF9151A886600EF427D /* ReadSocialAPIConfig.m */,
+				0E792EFA151A886600EF427D /* Requests */,
+				0E792F13151A886600EF427D /* Utilities */,
+			);
+			name = API;
+			path = ReadSocial/API;
+			sourceTree = "<group>";
+		};
+		0E792ED7151A886600EF427D /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				0E792ED8151A886600EF427D /* RSAuthentication.h */,
+				0E792ED9151A886600EF427D /* RSAuthentication.m */,
+				0E792EDA151A886600EF427D /* RSNoteHandler.h */,
+				0E792EDB151A886600EF427D /* RSNoteHandler.m */,
+				0E792EDC151A886600EF427D /* RSResponseHandler.h */,
+				0E792EDD151A886600EF427D /* RSResponseHandler.m */,
+				0E792EDE151A886600EF427D /* RSUserHandler.h */,
+				0E792EDF151A886600EF427D /* RSUserHandler.m */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
+		0E792EE0151A886600EF427D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0E792EE1151A886600EF427D /* ReadSocial.xcdatamodeld */,
+				0E792EE3151A886600EF427D /* RSNote+Core.h */,
+				0E792EE4151A886600EF427D /* RSNote+Core.m */,
+				0E792EE5151A886600EF427D /* RSNote.h */,
+				0E792EE6151A886600EF427D /* RSNote.m */,
+				0E792EE7151A886600EF427D /* RSPage.h */,
+				0E792EE8151A886600EF427D /* RSPage.m */,
+				0E792EE9151A886600EF427D /* RSParagraph+Core.h */,
+				0E792EEA151A886600EF427D /* RSParagraph+Core.m */,
+				0E792EEB151A886600EF427D /* RSParagraph.h */,
+				0E792EEC151A886600EF427D /* RSParagraph.m */,
+				0E792EED151A886600EF427D /* RSResponse+Core.h */,
+				0E792EEE151A886600EF427D /* RSResponse+Core.m */,
+				0E792EEF151A886600EF427D /* RSResponse.h */,
+				0E792EF0151A886600EF427D /* RSResponse.m */,
+				0E792EF1151A886600EF427D /* RSUser+Core.h */,
+				0E792EF2151A886600EF427D /* RSUser+Core.m */,
+				0E792EF3151A886600EF427D /* RSUser.h */,
+				0E792EF4151A886600EF427D /* RSUser.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0E792EFA151A886600EF427D /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				0E792EFB151A886600EF427D /* RSActiveGroupsRequest.h */,
+				0E792EFC151A886600EF427D /* RSActiveGroupsRequest.m */,
+				0E792EFD151A886600EF427D /* RSAPIRequest.h */,
+				0E792EFE151A886600EF427D /* RSAPIRequest.m */,
+				0E792EFF151A886600EF427D /* RSAuthStatusRequest.h */,
+				0E792F00151A886600EF427D /* RSAuthStatusRequest.m */,
+				0E792F01151A886600EF427D /* RSCreateNoteRequest.h */,
+				0E792F02151A886600EF427D /* RSCreateNoteRequest.m */,
+				0E792F03151A886600EF427D /* RSCreateNoteResponseRequest.h */,
+				0E792F04151A886600EF427D /* RSCreateNoteResponseRequest.m */,
+				0E792F05151A886600EF427D /* RSMutableURLRequest.h */,
+				0E792F06151A886600EF427D /* RSMutableURLRequest.m */,
+				0E792F07151A886600EF427D /* RSNoteCountRequest.h */,
+				0E792F08151A886600EF427D /* RSNoteCountRequest.m */,
+				0E792F09151A886600EF427D /* RSNoteImageRequest.h */,
+				0E792F0A151A886600EF427D /* RSNoteImageRequest.m */,
+				0E792F0B151A886600EF427D /* RSNoteResponseCountRequest.h */,
+				0E792F0C151A886600EF427D /* RSNoteResponseCountRequest.m */,
+				0E792F0D151A886600EF427D /* RSNoteResponsesRequest.h */,
+				0E792F0E151A886600EF427D /* RSNoteResponsesRequest.m */,
+				0E792F0F151A886600EF427D /* RSParagraphNotesRequest.h */,
+				0E792F10151A886600EF427D /* RSParagraphNotesRequest.m */,
+				0E792F11151A886600EF427D /* RSUserImageRequest.h */,
+				0E792F12151A886600EF427D /* RSUserImageRequest.m */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
+		0E792F13151A886600EF427D /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				0E792F14151A886600EF427D /* DataContext.h */,
+				0E792F15151A886600EF427D /* DataContext.m */,
+				0E792F16151A886600EF427D /* NSData+RSBase64.h */,
+				0E792F17151A886600EF427D /* NSData+RSBase64.m */,
+				0E792F18151A886600EF427D /* NSString+RSParagraph.h */,
+				0E792F19151A886600EF427D /* NSString+RSParagraph.m */,
+				0E792F1A151A886600EF427D /* RSDateFormat.h */,
+				0E792F1B151A886600EF427D /* RSDateFormat.m */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		0E792F3C151A88D000EF427D /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				0E792F3D151A88D000EF427D /* JSONKit.h */,
+				0E792F3E151A88D000EF427D /* JSONKit.m */,
+			);
+			path = JSONKit;
+			sourceTree = "<group>";
+		};
+		0E792F43151A895200EF427D /* ReadSocial Library */ = {
+			isa = PBXGroup;
+			children = (
+				0E792ED6151A886500EF427D /* API */,
+				0E78F65D14D4704300DF151B /* UI */,
+			);
+			name = "ReadSocial Library";
+			sourceTree = "<group>";
+		};
 		0EBFDF5314F0B3F700CD45F6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0E792F40151A890C00EF427D /* default_user.png */,
 				0E7390961510C92A00C5A141 /* upload-btn.png */,
 				0E28E64215105CDC002F7500 /* image-active-btn.png */,
 				0E28E64315105CDC002F7500 /* link-active-btn.png */,
@@ -477,17 +497,7 @@
 				0EBFDF5614F0C6FF00CD45F6 /* logo.png */,
 				0EBFDF5414F0B40F00CD45F6 /* notes.png */,
 			);
-			name = Resources;
-			path = ../Resources;
-			sourceTree = "<group>";
-		};
-		0EC7B37914F367BB0026D97D /* Base64 */ = {
-			isa = PBXGroup;
-			children = (
-				0EC7B37A14F367CF0026D97D /* NSData+RSBase64.h */,
-				0EC7B37B14F367CF0026D97D /* NSData+RSBase64.m */,
-			);
-			name = Base64;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -547,7 +557,6 @@
 				0E78F65714D4627900DF151B /* index.html in Resources */,
 				0EBFDF5514F0B40F00CD45F6 /* notes.png in Resources */,
 				0EBFDF5714F0C6FF00CD45F6 /* logo.png in Resources */,
-				0EBFDF6014F0E33F00CD45F6 /* Icon-72.png in Resources */,
 				0EBFDF6114F0E33F00CD45F6 /* iTunesArtwork in Resources */,
 				0EBFDF6514F0E45400CD45F6 /* Default-Landscape~ipad.png in Resources */,
 				0EBFDF6714F0E47500CD45F6 /* Default-Portrait~ipad.png in Resources */,
@@ -556,7 +565,6 @@
 				0EC7B37814F35F420026D97D /* RSImageNoteTypeComposer.xib in Resources */,
 				0EC7B39E14F39AB00026D97D /* separator.png in Resources */,
 				0EC7B3A014F3AAE10026D97D /* no-comments.png in Resources */,
-				0EBB23D8150A9DBD0060E8FB /* default_user.png in Resources */,
 				0E28E63B151056C3002F7500 /* group-background.png in Resources */,
 				0E28E63F151058A8002F7500 /* image-btn.png in Resources */,
 				0E28E640151058A8002F7500 /* link-btn.png in Resources */,
@@ -565,6 +573,8 @@
 				0E28E64615105CDC002F7500 /* link-active-btn.png in Resources */,
 				0E28E64715105CDC002F7500 /* note-active-btn.png in Resources */,
 				0E7390971510C92A00C5A141 /* upload-btn.png in Resources */,
+				0E792F41151A890C00EF427D /* default_user.png in Resources */,
+				0E792F42151A892F00EF427D /* Icon-72.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,56 +587,56 @@
 			files = (
 				0E61BE5414CB20720017F3E3 /* main.m in Sources */,
 				0E61BE5814CB20720017F3E3 /* AppDelegate.m in Sources */,
-				0E61BE5B14CB20720017F3E3 /* ReadSocial.xcdatamodeld in Sources */,
-				0E34D0C214CF097A00AAEC1D /* RSParagraph+Core.m in Sources */,
-				0E34D0C514CF0C1F00AAEC1D /* RSParagraph.m in Sources */,
-				0E34D0C814CF0C7200AAEC1D /* NSString+RSParagraph.m in Sources */,
-				0E34D0CB14CF14EA00AAEC1D /* RSParagraphNotesRequest.m in Sources */,
-				0E34D0CF14CF1D4100AAEC1D /* RSAPIRequest.m in Sources */,
-				0E34D0D314CF296000AAEC1D /* JSONKit.m in Sources */,
-				0E34D0D914CF324C00AAEC1D /* RSNote+Core.m in Sources */,
-				0E34D0DC14CF3D3400AAEC1D /* DataContext.m in Sources */,
-				0E34D0DF14CF4F2B00AAEC1D /* RSNoteHandler.m in Sources */,
-				0E34D0E214CF559400AAEC1D /* RSResponseHandler.m in Sources */,
-				0E34D0E514CF56A700AAEC1D /* RSNoteResponsesRequest.m in Sources */,
-				0E34D0EB14CF5E3600AAEC1D /* RSResponse+Core.m in Sources */,
-				0E34D0EE14CF5F4700AAEC1D /* RSResponse.m in Sources */,
-				0E34D0F114CF662400AAEC1D /* RSCreateNoteResponseRequest.m in Sources */,
 				0E34D12114CF6D5D00AAEC1D /* ViewController.m in Sources */,
-				0E34D12514CF7B5F00AAEC1D /* RSAuthStatusRequest.m in Sources */,
 				0E78F66014D470DD00DF151B /* RSNotesViewController.m in Sources */,
 				0E78F66314D48C1400DF151B /* ReadSocialViewController.m in Sources */,
 				0E78F66614D4915000DF151B /* RSNoteDetailViewController.m in Sources */,
-				0E78F67114D5CB2000DF151B /* RSUser+Core.m in Sources */,
-				0E78F67414D5CC2E00DF151B /* RSUser.m in Sources */,
-				0E78F67714D5D10400DF151B /* RSUserHandler.m in Sources */,
 				0E78F67A14D5E32400DF151B /* RSLoginViewController.m in Sources */,
-				0EC8A9BD14D5FAB600EA7C74 /* RSAuthentication.m in Sources */,
 				0EC8A9C114D6504F00EA7C74 /* RSComposeNoteViewController.m in Sources */,
-				0EC8A9C414D6639500EA7C74 /* RSCreateNoteRequest.m in Sources */,
 				0EC8A9C714D66E3D00EA7C74 /* RSComposeResponseViewController.m in Sources */,
 				0EAEF53B14D74D5000EA2ECE /* RSGroupViewController.m in Sources */,
-				0EAEF53E14D7531C00EA2ECE /* ReadSocial.m in Sources */,
-				0EAEF54114D7544100EA2ECE /* RSPage.m in Sources */,
-				0EAEF54414D756C100EA2ECE /* RSNoteCountRequest.m in Sources */,
 				0E1BAC1414D8580E009F5C69 /* RSNavigationController.m in Sources */,
 				0EBFDF4F14F0718000CD45F6 /* RSNoteCountViewController.m in Sources */,
 				0EBFDF5214F09BE200CD45F6 /* ReadSocialUI.m in Sources */,
-				0EBFDF5A14F0CDAE00CD45F6 /* RSDateFormat.m in Sources */,
 				0EC7B36814F34F8F0026D97D /* RSLinkNoteTypeComposer.m in Sources */,
 				0EC7B36F14F35AD30026D97D /* RSTextNoteTypeComposer.m in Sources */,
 				0EC7B37714F35F420026D97D /* RSImageNoteTypeComposer.m in Sources */,
-				0EC7B37C14F367CF0026D97D /* NSData+RSBase64.m in Sources */,
-				0EC7B38514F372510026D97D /* RSNoteImageRequest.m in Sources */,
 				0EC7B39214F37B380026D97D /* RSTableViewCell.m in Sources */,
 				0EC7B39914F38ABF0026D97D /* UILazyImageView.m in Sources */,
-				0EBB23D2150A742B0060E8FB /* RSNoteResponseCountRequest.m in Sources */,
-				0EBB23D6150A8CDB0060E8FB /* RSNote.m in Sources */,
-				0EBB23DB150A9EBB0060E8FB /* RSUserImageRequest.m in Sources */,
-				0E73909B1510EBEE00C5A141 /* RSActiveGroupsRequest.m in Sources */,
 				0E2D21011512815700B76774 /* UIPlaceholderTextView.m in Sources */,
-				0E792ECB151A7B0200EF427D /* ReadSocialAPIConfig.m in Sources */,
-				0E792ED4151A81EE00EF427D /* RSMutableURLRequest.m in Sources */,
+				0E792F1C151A886600EF427D /* RSAuthentication.m in Sources */,
+				0E792F1D151A886600EF427D /* RSNoteHandler.m in Sources */,
+				0E792F1E151A886600EF427D /* RSResponseHandler.m in Sources */,
+				0E792F1F151A886600EF427D /* RSUserHandler.m in Sources */,
+				0E792F20151A886600EF427D /* ReadSocial.xcdatamodeld in Sources */,
+				0E792F21151A886600EF427D /* RSNote+Core.m in Sources */,
+				0E792F22151A886600EF427D /* RSNote.m in Sources */,
+				0E792F23151A886600EF427D /* RSPage.m in Sources */,
+				0E792F24151A886600EF427D /* RSParagraph+Core.m in Sources */,
+				0E792F25151A886600EF427D /* RSParagraph.m in Sources */,
+				0E792F26151A886600EF427D /* RSResponse+Core.m in Sources */,
+				0E792F27151A886600EF427D /* RSResponse.m in Sources */,
+				0E792F28151A886600EF427D /* RSUser+Core.m in Sources */,
+				0E792F29151A886600EF427D /* RSUser.m in Sources */,
+				0E792F2A151A886600EF427D /* ReadSocial.m in Sources */,
+				0E792F2B151A886600EF427D /* ReadSocialAPIConfig.m in Sources */,
+				0E792F2C151A886600EF427D /* RSActiveGroupsRequest.m in Sources */,
+				0E792F2D151A886600EF427D /* RSAPIRequest.m in Sources */,
+				0E792F2E151A886600EF427D /* RSAuthStatusRequest.m in Sources */,
+				0E792F2F151A886600EF427D /* RSCreateNoteRequest.m in Sources */,
+				0E792F30151A886600EF427D /* RSCreateNoteResponseRequest.m in Sources */,
+				0E792F31151A886600EF427D /* RSMutableURLRequest.m in Sources */,
+				0E792F32151A886600EF427D /* RSNoteCountRequest.m in Sources */,
+				0E792F33151A886600EF427D /* RSNoteImageRequest.m in Sources */,
+				0E792F34151A886600EF427D /* RSNoteResponseCountRequest.m in Sources */,
+				0E792F35151A886600EF427D /* RSNoteResponsesRequest.m in Sources */,
+				0E792F36151A886600EF427D /* RSParagraphNotesRequest.m in Sources */,
+				0E792F37151A886600EF427D /* RSUserImageRequest.m in Sources */,
+				0E792F38151A886600EF427D /* DataContext.m in Sources */,
+				0E792F39151A886600EF427D /* NSData+RSBase64.m in Sources */,
+				0E792F3A151A886600EF427D /* NSString+RSParagraph.m in Sources */,
+				0E792F3B151A886600EF427D /* RSDateFormat.m in Sources */,
+				0E792F3F151A88D000EF427D /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -744,12 +754,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		0E61BE5914CB20720017F3E3 /* ReadSocial.xcdatamodeld */ = {
+		0E792EE1151A886600EF427D /* ReadSocial.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				0E61BE5A14CB20720017F3E3 /* ReadSocial.xcdatamodel */,
+				0E792EE2151A886600EF427D /* ReadSocial.xcdatamodel */,
 			);
-			currentVersion = 0E61BE5A14CB20720017F3E3 /* ReadSocial.xcdatamodel */;
+			currentVersion = 0E792EE2151A886600EF427D /* ReadSocial.xcdatamodel */;
 			path = ReadSocial.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
