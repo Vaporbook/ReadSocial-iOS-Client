@@ -35,6 +35,7 @@ var RS = {
         RS.unhighlightParagraphs();
         var p = RS.paragraphs[i];
         p.className += " rs-highlighted";
+        p.style.backgroundColor = "#FF9";
     },
     
     unhighlightParagraphs: function()
@@ -43,6 +44,7 @@ var RS = {
         for (var i=0; i<paragraphs.length; ++i)
         {
             paragraphs[i].className = paragraphs[i].className.replace("rs-highlighted", "");
+            paragraphs[i].style.backgroundColor = "";
         }
     },
     

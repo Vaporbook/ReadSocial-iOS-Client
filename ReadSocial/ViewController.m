@@ -20,7 +20,12 @@
     readSocialIsOpen = NO;
     noteCounts = [NSMutableDictionary dictionary];
     self.webview.delegate = self;
-    [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html"]]]];
+    
+    // Define the URL for the page to load into the view
+    NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html"]];
+    
+    // Load the page into the webview
+    [self.webview loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
 - (void) openReadSocial
@@ -187,6 +192,10 @@
         [ReadSocial setCurrentPage:self];
         return NO;
     }
+    
+    // Clear off any existing note counts
+    [ReadSocialUI removeAllNoteCounts];
+    
     return YES;
 }
 - (void) webViewDidFinishLoad:(UIWebView *)webView
