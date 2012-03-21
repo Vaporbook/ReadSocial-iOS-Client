@@ -11,7 +11,7 @@ If you just want to see ReadSocial in action, simply download and build the samp
 
 Adding ReadSocial to a new app
 ------------------------------
-There are two parts to the library: the API--which handles communication and data between the app and the server, and the UI--which allows the user to interact with the service. You'll need to copy both sections of code into your app.
+There are two parts to the library: the API--which handles communication and data between the app and the server, and the UI--which allows the user to interact with the service. You'll need to copy both sections of code into your app (the API and UI directories are located inside the ReadSocial folder).
 
 ### 1. Initialize ReadSocial.
 In your AppDelegate, initialize ReadSocial with the settings you want, including:
@@ -50,9 +50,16 @@ ReadSocial needs to know where how to get the content your user is interacting w
 
 See ViewController.m for an example of how to implement these methods.
 
-### 4. Enable ReadSocial actions
-The final step you need to do is trigger ReadSocial to open at different points. We recommend implementing a custom UIMenuItem to appear when a user selects text. Again, take a look at ViewController.m to see an example of how this could be done.
+### 4. Add note numbers to your view
+People will interact more if they see that people have already commented on a paragraph. The ReadSocial API and UI Library provide an easy way to add a note count to each paragraph.
+
+Make sure your view controller is implementing the `ReadSocialDelegate` protocol and implement the `- (void) noteCountUpdatedForParagraph:(RSParagraph *)paragraph atIndex:(NSInteger)index` method. This will get triggered every time the note count is updated for a given paragraph. Look at ViewController.m for an example of how to implement it.
+
+### 5. Add a UIMenuItem
+Another powerful way ReadSocial allows users to interact with your content is through selecting text. Add a UIMenuItem that will trigger `[ReadSocial openReadSocialForSelectionInView:self.view];`.
 
 Current Limitations/Issues
 -----------
 ReadSocial uses Core Data to organize and store data from the service and from the user. Currently, it requires that the implementing app start with the Core Data Xcode template. We're working to remove this requirement very soon.
+
+The ReadSocial Demo (and the library of code within the demo) rely on Automated Reference Counting (ARC) within iOS 5.
