@@ -1,7 +1,7 @@
 ReadSocial Objective-C Library
 ==============================
 
-[ReadSocial](http://readsocial.net) is a service that adds social features to your content quickly and easily. [Learn more](https://www.readsocial.net/about/team)
+[ReadSocial](http://readsocial.net) is a service that adds social features to your content quickly and easily. [Learn more](https://www.readsocial.net/)
 
 The Objective-C library takes care of the common tasks required to enable social reading within your iOS application. This is project includes the code library, the UI, and shows its implementation in a sample app.
 
