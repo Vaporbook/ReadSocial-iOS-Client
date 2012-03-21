@@ -37,6 +37,7 @@
 // Helpers
 #import "NSString+RSParagraph.h"
 #import "RSDateFormat.h"
+#import "RSMutableURLRequest.h"
 
 // Context
 // TODO: Determine if DataContext should be a public header--in theory, implementing apps shouldn't be directly accessing the data context.

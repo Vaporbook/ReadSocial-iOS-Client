@@ -37,12 +37,12 @@
 }
 
 # pragma mark - RSAPIRequest Overriden Methods
-- (NSMutableURLRequest *) createRequest
+- (RSMutableURLRequest *) createRequest
 {
-    NSMutableURLRequest *request = [super createRequest];
+    RSMutableURLRequest *request = [super createRequest];
     
     // Set the URL
-    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/notes/%@/responses/create", ReadSocialAPIURL, networkID, self.note.id];
+    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/notes/%@/responses/create", RSAPIURL, networkID, self.note.id];
     [request setURL:[NSURL URLWithString:url]];
     
     // Set the headers

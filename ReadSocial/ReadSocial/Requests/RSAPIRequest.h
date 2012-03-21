@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
-// API URL
-extern NSString* const ReadSocialAPIURL;
+#import "RSMutableURLRequest.h"
+#import "ReadSocialAPIConfig.h"
 
 @protocol RSAPIRequestDelegate;
 @class RSAuthentication;
@@ -39,7 +38,7 @@ extern NSString* const ReadSocialAPIURL;
 @property (nonatomic, readonly) BOOL receivedError;
 @property (strong, nonatomic) id<RSAPIRequestDelegate> delegate;
 
-- (NSMutableURLRequest *)createRequest;
+- (RSMutableURLRequest *)createRequest;
 - (void) start;
 - (void) cancel;
 

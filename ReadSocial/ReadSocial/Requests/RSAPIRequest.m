@@ -10,8 +10,8 @@
 #import "JSONKit.h"
 #import "RSAuthentication.h"
 #import "ReadSocial.h"
+#import "ReadSocialAPIConfig.h"
 
-NSString* const ReadSocialAPIURL = @"https://api.readsocial.net";
 static NSString *userAgent;
 
 @interface RSAPIRequest ()
@@ -28,9 +28,7 @@ static NSString *userAgent;
 
 + (void) initialize
 {
-    // Create a UIWebView to retrieve the user agent
-    UIWebView* webView = [[UIWebView alloc] initWithFrame:CGRectZero];
-    userAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
+    userAgent = [ReadSocialAPIConfig userAgent];
 }
 
 - (id) init
@@ -47,18 +45,17 @@ static NSString *userAgent;
     return self;
 }
 
-- (NSMutableURLRequest *)createRequest
+- (RSMutableURLRequest *)createRequest
 {
-    NSMutableURLRequest *request = [NSMutableURLRequest new];
+    RSMutableURLRequest *request = [RSMutableURLRequest new];
     
     // Get the cookies for the API
-    NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:ReadSocialAPIURL]];
+    NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:RSAPIURL]];
     [request setAllHTTPHeaderFields:[NSHTTPCookie requestHeaderFieldsWithCookies:cookies]];
     
     // Add additional header values
     [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request addValue:userAgent forHTTPHeaderField:@"User-Agent"];
     assumeJSONResponse = YES;
     
     return request;
@@ -66,7 +63,7 @@ static NSString *userAgent;
 
 - (void) start
 {
-    NSURLRequest *request = [self createRequest];
+    RSMutableURLRequest *request = [self createRequest];
     
     responseData = [NSMutableData data];
     
@@ -83,6 +80,7 @@ static NSString *userAgent;
     sentTime = [NSDate date];
     [self didStartRequest];
     connection = [NSURLConnection connectionWithRequest:request delegate:self];
+    
     active = YES;
 }
 

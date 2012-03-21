@@ -45,12 +45,12 @@
 }
 
 # pragma mark - RSAPIRequest Overriden Methods
-- (NSMutableURLRequest *) createRequest
+- (RSMutableURLRequest *) createRequest
 {
-    NSMutableURLRequest *request = [super createRequest];
+    RSMutableURLRequest *request = [super createRequest];
     
     // Determine the URL
-    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/%@/notes?par_hash=%@", ReadSocialAPIURL, networkID, group, self.paragraph.par_hash];
+    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/%@/notes?par_hash=%@", RSAPIURL, networkID, group, self.paragraph.par_hash];
     
     if (before) 
     {

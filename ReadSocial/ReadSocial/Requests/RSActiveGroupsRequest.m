@@ -30,12 +30,12 @@
     return self;
 }
 
-- (NSMutableURLRequest *) createRequest
+- (RSMutableURLRequest *) createRequest
 {
-    NSMutableURLRequest *request = [super createRequest];
+    RSMutableURLRequest *request = [super createRequest];
     
     // Determine the URL for the request
-    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/groups", ReadSocialAPIURL, networkID];
+    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/groups", RSAPIURL, networkID];
     
     // Add the paragraph argument
     if (self.paragraph)

@@ -6,9 +6,8 @@
 //  Copyright (c) 2012 Float Mobile Learning. All rights reserved.
 //
 
-#define RSDefaultGroup  @"partner-testing-channel"
-
 #import "ReadSocial.h"
+#import "ReadSocialAPIConfig.h"
 #import "RSPage.h"
 #import "DataContext.h"
 #import "RSParagraph+Core.h"
@@ -49,6 +48,12 @@ NSString* const ReadSocialUserDidLoginNotification                  =   @"ReadSo
 
 @implementation ReadSocial
 @synthesize delegate, networkID, currentPage, currentSelection, defaultGroup, readSocialUI;
+
++ (void) initialize
+{
+    NSDictionary *dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:[ReadSocialAPIConfig userAgent], @"UserAgent", nil];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
+}
 
 - (NSString *) getCurrentGroup
 {

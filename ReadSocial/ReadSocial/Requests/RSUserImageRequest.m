@@ -37,9 +37,9 @@
 }
 
 # pragma mark - RSAPIRequest Overriden Methods
-- (NSMutableURLRequest *) createRequest
+- (RSMutableURLRequest *) createRequest
 {
-    NSMutableURLRequest *request = [NSMutableURLRequest new];
+    RSMutableURLRequest *request = [RSMutableURLRequest new];
     assumeJSONResponse = NO;
     
     // Determine the URL
