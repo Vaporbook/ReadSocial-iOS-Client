@@ -36,6 +36,18 @@ extern NSString* const ReadSocialUserDidLoginNotification;
 @property (nonatomic, strong) NSNumber *networkID;
 
 /**
+ Sets the app key; if both the appKey and appSecret are set, 
+ then they will be sent in the Authorization header in each API request.
+ */
+@property (nonatomic, strong) NSString *appKey;
+
+/**
+ Sets the app secret; if both the appKey and appSecret are set, 
+ then they will be sent in the Authorization header in each API request.
+ */
+@property (nonatomic, strong) NSString *appSecret;
+
+/**
  The URL to attempt to use as the API.
  */
 @property (nonatomic, strong) NSURL *apiURL;

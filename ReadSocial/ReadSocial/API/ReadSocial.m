@@ -48,7 +48,7 @@ NSString* const ReadSocialUserDidLoginNotification                  =   @"ReadSo
 
 
 @implementation ReadSocial
-@synthesize delegate, networkID, apiURL=_apiURL, currentPage, currentSelection, defaultGroup, readSocialUI, authProviders;
+@synthesize delegate, networkID, apiURL=_apiURL, currentPage, currentSelection, defaultGroup, readSocialUI, authProviders, appKey, appSecret;
 
 + (void) initialize
 {
@@ -72,6 +72,10 @@ NSString* const ReadSocialUserDidLoginNotification                  =   @"ReadSo
         
         // Google
         [authProviders addObject:[RSAuthProvider providerWithName:@"Google" icon:[UIImage imageNamed:@"google"] andEndpoint:@"auth/login/google"]];
+        
+        // Empty out the key and secret
+        appKey = nil;
+        appSecret = nil;
     }
     return self;
 }
