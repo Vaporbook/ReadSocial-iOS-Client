@@ -45,6 +45,7 @@
     self.title = self.provider.name;
     
     webview.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    webview.scalesPageToFit = YES;
     webview.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:webview];
     
