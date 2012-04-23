@@ -70,6 +70,19 @@
     [self checkForNoComments];
 }
 
+- (void) logout
+{
+    [RSAuthLogoutRequest logout];
+}
+- (void) showLogoutButton
+{
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logout)];
+}
+- (void) hideLogoutButton
+{
+    self.navigationItem.leftBarButtonItem = nil;
+}
+
 - (void) loadMoreNotes
 {
     NSLog(@"Loading more notes");
@@ -208,6 +221,19 @@
 {
     [self reloadNotes];
     
+    // Check if a logout button should be visible
+    if ([ReadSocial sharedInstance].loggedIn)
+    {
+        [self showLogoutButton];
+    }
+    else
+    {
+        [self hideLogoutButton];
+    }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideLogoutButton) name:ReadSocialUserDidLogoutNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLogoutButton) name:ReadSocialUserDidLoginNotification object:nil];
+    
     [super viewWillAppear:animated];
 }
 
@@ -222,6 +248,9 @@
     
     // Stop listening for managed object changes
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSManagedObjectContextObjectsDidChangeNotification object:[DataContext defaultContext]];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:ReadSocialUserDidLoginNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:ReadSocialUserDidLogoutNotification object:nil];
 }
 
 - (void)viewDidDisappear:(BOOL)animated

@@ -13,6 +13,7 @@
 #import "RSParagraph+Core.h"
 #import "NSString+RSParagraph.h"
 #import "RSAuthProvider.h"
+#import "RSAuthStatusRequest.h"
 
 NSString* const ReadSocialUserSelectedParagraphNotification         =   @"ReadSocialUserSelectedParagraphNotification";
 NSString* const ReadSocialUserUnselectedParagraphNotification       =   @"ReadSocialUserUnselectedParagraphNotification";
@@ -23,6 +24,7 @@ NSString* const ReadSocialUserDidComposeResponseNotification        =   @"ReadSo
 NSString* const ReadSocialParagraphNoteCountUpdatedNotification     =   @"ReadSocialParagraphNoteCountUpdatedNotification";
 NSString* const ReadSocialUserDidChangeGroupNotification            =   @"ReadSocialUserDidChangeGroupNotification";
 NSString* const ReadSocialUserDidLoginNotification                  =   @"ReadSocialUserDidLogin";
+NSString* const ReadSocialUserDidLogoutNotification                  =   @"ReadSocialUserDidLogout";
 
 @interface ReadSocial()
 {
@@ -48,7 +50,7 @@ NSString* const ReadSocialUserDidLoginNotification                  =   @"ReadSo
 
 
 @implementation ReadSocial
-@synthesize delegate, networkID, apiURL=_apiURL, currentPage, currentSelection, defaultGroup, readSocialUI, authProviders, appKey, appSecret;
+@synthesize delegate, networkID, apiURL=_apiURL, currentPage, currentSelection, defaultGroup, readSocialUI, authProviders, appKey, appSecret, loggedIn;
 
 + (void) initialize
 {
@@ -144,6 +146,11 @@ NSString* const ReadSocialUserDidLoginNotification                  =   @"ReadSo
     RSPage *page = [[RSPage alloc] initWithDataSource:view];
     [page createParagraphs];
     [page requestCommentCount];
+    
+    
+    // Check the user's authentication
+    [RSAuthStatusRequest requestAuthStatusWithDelegate:self];
+    
     return page;
 }
 
@@ -270,11 +277,22 @@ NSString* const ReadSocialUserDidLoginNotification                  =   @"ReadSo
 
 - (void) userDidLogin:(RSUser *)user
 {
+    loggedIn = YES;
     if ([delegate respondsToSelector:@selector(userDidLogin:)])
     {
         [delegate userDidLogin:user];
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:ReadSocialUserDidLoginNotification object:user];
+}
+
+- (void) userDidLogout
+{
+    loggedIn = NO;
+    if ([delegate respondsToSelector:@selector(userDidLogout:)])
+    {
+        [delegate userDidLogout];
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:ReadSocialUserDidLogoutNotification object:nil];
 }
 
 + (NSNumber *) networkID
@@ -334,6 +352,19 @@ NSString* const ReadSocialUserDidLoginNotification                  =   @"ReadSo
     initialized = true;
     
     return rs;
+}
+
+# pragma mark - RSAPIRequest Delegate methods
+- (void) requestDidSucceed:(RSAuthStatusRequest *)request
+{
+    if (request.authed)
+    {
+        loggedIn = YES;
+    }
+    else
+    {
+        loggedIn = NO;
+    }
 }
 
 @end
