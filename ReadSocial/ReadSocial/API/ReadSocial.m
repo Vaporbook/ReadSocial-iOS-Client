@@ -12,6 +12,7 @@
 #import "DataContext.h"
 #import "RSParagraph+Core.h"
 #import "NSString+RSParagraph.h"
+#import "RSAuthProvider.h"
 
 NSString* const ReadSocialUserSelectedParagraphNotification         =   @"ReadSocialUserSelectedParagraphNotification";
 NSString* const ReadSocialUserUnselectedParagraphNotification       =   @"ReadSocialUserUnselectedParagraphNotification";
@@ -47,12 +48,32 @@ NSString* const ReadSocialUserDidLoginNotification                  =   @"ReadSo
 
 
 @implementation ReadSocial
-@synthesize delegate, networkID, apiURL=_apiURL, currentPage, currentSelection, defaultGroup, readSocialUI;
+@synthesize delegate, networkID, apiURL=_apiURL, currentPage, currentSelection, defaultGroup, readSocialUI, authProviders;
 
 + (void) initialize
 {
     NSDictionary *dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:[ReadSocialAPIConfig userAgent], @"UserAgent", nil];
     [[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
+}
+
+- (id) init
+{
+    self = [super init];
+    if (self)
+    {
+        authProviders = [NSMutableArray array];
+        
+        // Prepopulate authProviders with the current auth providers
+        // Twitter
+        [authProviders addObject:[RSAuthProvider providerWithName:@"Twitter" icon:nil andEndpoint:@"auth/login/twitter"]];
+        
+        // Facebook
+        [authProviders addObject:[RSAuthProvider providerWithName:@"Facebook" icon:nil andEndpoint:@"auth/login/facebook"]];
+        
+        // Google
+        [authProviders addObject:[RSAuthProvider providerWithName:@"Google" icon:nil andEndpoint:@"auth/login/google"]];
+    }
+    return self;
 }
 
 - (NSString *) getCurrentGroup

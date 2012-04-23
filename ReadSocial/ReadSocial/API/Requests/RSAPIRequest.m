@@ -153,8 +153,7 @@ static NSString *userAgent;
 - (void) connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 {
     active = NO;
-    NSError *error = [NSError errorWithDomain:@"API Requested Authentication" code:401 userInfo:nil];
-    [self requestDidFailWithError:error];
+    auth = [RSAuthentication loginAndReattemptRequest:self];
 }
 
 - (void) connection:(NSURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite

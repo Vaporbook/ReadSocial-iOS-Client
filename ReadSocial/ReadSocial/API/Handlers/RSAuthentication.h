@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RSLoginViewController.h"
+#import "RSAuthProviderSelect.h"
 #import "RSAuthStatusRequest.h"
 
 @class RSAPIRequest;
@@ -17,9 +17,9 @@
 - (void) didCancelLogin;
 @end
 
-@interface RSAuthentication : NSObject <UIWebViewDelegate, RSAPIRequestDelegate, RSLoginViewControllerDelegate>
+@interface RSAuthentication : NSObject <UIWebViewDelegate, RSAPIRequestDelegate, RSAuthProviderLoginDelegate>
 {
-    UIViewController *loginViewController;
+    RSAuthProviderSelect *loginViewController;
     NSURLRequest *lastInspectedRequest;
     NSHTTPURLResponse *urlResponse;
     NSMutableData *responseData;

@@ -10,6 +10,7 @@
 #import "RSUser+Core.h"
 #import "RSUserHandler.h"
 #import "ReadSocial.h"
+#import "RSAuthProviderSelect.h"
 
 @interface RSAuthentication ()
 
@@ -48,24 +49,25 @@
     self = [super init];
     if (self)
     {
-        loginViewController = [[ReadSocial sharedInstance].readSocialUI getLoginViewControllerWithDelegate:self];
+        loginViewController = [RSAuthProviderSelect new];
+        loginViewController.delegate = self;
     }
     return self;
 }
 
 + (NSURL *) loginURL
 {
-    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/auth/login", [ReadSocial sharedInstance].apiURL, [ReadSocial networkID]];
+    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/auth/login/twitter", [ReadSocial sharedInstance].apiURL, [ReadSocial networkID]];
     return [NSURL URLWithString:url];
 }
 
 + (NSURL *) completeURL
 {
-    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/auth/complete", [ReadSocial sharedInstance].apiURL, [ReadSocial networkID]];
+    NSString *url = [NSString stringWithFormat:@"%@/auth/complete", [ReadSocial sharedInstance].apiURL, [ReadSocial networkID]];
     return [NSURL URLWithString:url];
 }
 
-# pragma mark RSLoginViewController Delegate methods
+# pragma mark RSAuthProviderLogin Delegate methods
 - (void) didCancelLogin
 {
     [self closeModalView];
