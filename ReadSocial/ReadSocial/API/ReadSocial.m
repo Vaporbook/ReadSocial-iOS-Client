@@ -47,7 +47,7 @@ NSString* const ReadSocialUserDidLoginNotification                  =   @"ReadSo
 
 
 @implementation ReadSocial
-@synthesize delegate, networkID, currentPage, currentSelection, defaultGroup, readSocialUI;
+@synthesize delegate, networkID, apiURL=_apiURL, currentPage, currentSelection, defaultGroup, readSocialUI;
 
 + (void) initialize
 {
@@ -104,6 +104,15 @@ NSString* const ReadSocialUserDidLoginNotification                  =   @"ReadSo
     }
 }
 
+- (NSURL *) apiURL
+{
+    if (!_apiURL)
+    {
+        _apiURL = [NSURL URLWithString:RSAPIURL];
+    }
+    
+    return _apiURL;
+}
 
 - (RSPage *) initializeView: (id<ReadSocialDataSource>)view
 {

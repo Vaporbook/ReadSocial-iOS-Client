@@ -55,13 +55,13 @@
 
 + (NSURL *) loginURL
 {
-    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/auth/login", RSAPIURL, [ReadSocial networkID]];
+    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/auth/login", [ReadSocial sharedInstance].apiURL, [ReadSocial networkID]];
     return [NSURL URLWithString:url];
 }
 
 + (NSURL *) completeURL
 {
-    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/auth/complete", RSAPIURL, [ReadSocial networkID]];
+    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/auth/complete", [ReadSocial sharedInstance].apiURL, [ReadSocial networkID]];
     return [NSURL URLWithString:url];
 }
 

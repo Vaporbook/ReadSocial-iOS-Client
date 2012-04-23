@@ -13,7 +13,7 @@
 #define RSDefaultGroup      @"partner-testing-channel"
 
 /**
- The URL to the ReadSocial API.
+ The default URL to the ReadSocial API (this can be overridden).
  */
 #define RSAPIURL            @"https://api.readsocial.net"
 

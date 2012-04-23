@@ -32,8 +32,7 @@
     RSMutableURLRequest *request = [super createRequest];
     
     // Determine the URL
-    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/notes/%@/responses/count", RSAPIURL, networkID, self.note.id];
-    
+    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/notes/%@/responses/count", apiURL, networkID, self.note.id];
     [request setURL:[NSURL URLWithString:url]];
     
     return request;

@@ -36,6 +36,11 @@ extern NSString* const ReadSocialUserDidLoginNotification;
 @property (nonatomic, strong) NSNumber *networkID;
 
 /**
+ The URL to attempt to use as the API.
+ */
+@property (nonatomic, strong) NSURL *apiURL;
+
+/**
  The page the user is currently viewing.
  Contains references to each paragraph on the page as well as the datasource 
  reference to obtain more information as needed.
