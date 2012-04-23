@@ -19,6 +19,10 @@
     // The API url (received from [ReadSocial sharedSession].apiURL
     NSURL *apiURL;
     
+    // The consumer/secret key for the app (received from the shared session)
+    NSString *appKey;
+    NSString *appSecret;
+    
     // Copy of session variables for request
     // Just in case the session changes in the middle of a request.
     NSNumber *networkID;
