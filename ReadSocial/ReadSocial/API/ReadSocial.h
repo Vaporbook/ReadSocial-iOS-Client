@@ -36,6 +36,16 @@ extern NSString* const ReadSocialUserDidLoginNotification;
 @property (nonatomic, strong) NSNumber *networkID;
 
 /**
+ The URL to attempt to use as the API.
+ */
+@property (nonatomic, strong) NSURL *apiURL;
+
+/**
+ An array of all the authentication providers supported by the app.
+ */
+@property (nonatomic, strong) NSMutableArray *authProviders;
+
+/**
  The page the user is currently viewing.
  Contains references to each paragraph on the page as well as the datasource 
  reference to obtain more information as needed.
@@ -195,6 +205,5 @@ extern NSString* const ReadSocialUserDidLoginNotification;
 @protocol ReadSocialUILibrary <NSObject>
 
 - (void) openReadSocialForParagraph:(RSParagraph *)paragraph frame:(CGRect)frame view:(UIView *)view;
-- (UIViewController *) getLoginViewControllerWithDelegate:(id)delegate;
 
 @end

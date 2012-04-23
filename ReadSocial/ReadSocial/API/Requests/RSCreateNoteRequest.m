@@ -55,7 +55,7 @@
     RSMutableURLRequest *request = [super createRequest];
     
     // Set the URL
-    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/%@/notes/create", RSAPIURL, networkID, group];
+    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/%@/notes/create", apiURL, networkID, group];
     [request setURL:[NSURL URLWithString:url]];
     
     // Try to get more information from the data source
@@ -85,6 +85,13 @@
 - (BOOL) handleResponse:(id)json error:(NSError *__autoreleasing *)error
 {
     [super handleResponse:json error:error];
+    
+    // ResponseJSON should be an NSDictionary
+    if (![json isKindOfClass:[NSDictionary class]])
+    {
+        *error = [NSError errorWithDomain:@"Invalid response from server." code:0 userInfo:nil];
+        return NO;
+    }
     
     // Create a new note
     note = [RSNote noteFromDictionary:json];

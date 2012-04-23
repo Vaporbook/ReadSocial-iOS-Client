@@ -278,6 +278,10 @@
 - (void) requestDidFail:(RSAPIRequest *)request withError:(NSError *)error
 {
     NSLog(@"Note failed to create.");
+    
+    // Show an alert
+    [[[UIAlertView alloc] initWithTitle:error.localizedDescription message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+    
     [self enableSubmitButton];
     [self finishNoteCompositionWithResult:RSNoteCompositionFailed error:error];
     self.navigationItem.titleView = nil;

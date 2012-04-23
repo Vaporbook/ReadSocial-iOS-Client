@@ -18,7 +18,7 @@
         return nil;
     }
     
-    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/images/%@", RSAPIURL, [ReadSocial networkID], imageName];
+    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/images/%@", [ReadSocial sharedInstance].apiURL, [ReadSocial networkID], imageName];
     return [NSURL URLWithString:url];
 }
 

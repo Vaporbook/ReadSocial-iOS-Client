@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "RSMutableURLRequest.h"
-#import "ReadSocialAPIConfig.h"
 
 @protocol RSAPIRequestDelegate;
 @class RSAuthentication;
@@ -16,6 +15,9 @@
 // Creates a request to send to the API
 @interface RSAPIRequest : NSObject <NSURLConnectionDelegate, NSURLConnectionDataDelegate> {
     NSURLConnection *connection;
+    
+    // The API url (received from [ReadSocial sharedSession].apiURL
+    NSURL *apiURL;
     
     // Copy of session variables for request
     // Just in case the session changes in the middle of a request.

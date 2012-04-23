@@ -42,7 +42,7 @@
     RSMutableURLRequest *request = [super createRequest];
     
     // Set the URL
-    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/notes/%@/responses/create", RSAPIURL, networkID, self.note.id];
+    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/notes/%@/responses/create", apiURL, networkID, self.note.id];
     [request setURL:[NSURL URLWithString:url]];
     
     // Set the headers
@@ -62,6 +62,13 @@
 
 - (BOOL) handleResponse:(id)json error:(NSError *__autoreleasing *)error
 {
+    // ResponseJSON should be an NSDictionary
+    if (![json isKindOfClass:[NSDictionary class]])
+    {
+        *error = [NSError errorWithDomain:@"Invalid response from server." code:0 userInfo:nil];
+        return NO;
+    }
+    
     // Create a new response
     rsResponse = [RSResponse responseFromDictionary:json];
     

@@ -35,7 +35,7 @@
     RSMutableURLRequest *request = [super createRequest];
     
     // Determine the URL for the request
-    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/groups", RSAPIURL, networkID];
+    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/groups", apiURL, networkID];
     
     // Add the paragraph argument
     if (self.paragraph)

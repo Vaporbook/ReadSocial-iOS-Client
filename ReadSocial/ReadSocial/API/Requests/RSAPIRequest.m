@@ -36,6 +36,7 @@ static NSString *userAgent;
     self = [super init];
     if (self)
     {
+        apiURL          =   [ReadSocial sharedInstance].apiURL;
         networkID       =   [ReadSocial networkID];
         group           =   [ReadSocial currentGroup];
         receivedError   =   NO;
@@ -50,7 +51,7 @@ static NSString *userAgent;
     RSMutableURLRequest *request = [RSMutableURLRequest new];
     
     // Get the cookies for the API
-    NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:RSAPIURL]];
+    NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:apiURL];
     [request setAllHTTPHeaderFields:[NSHTTPCookie requestHeaderFieldsWithCookies:cookies]];
     
     // Add additional header values
@@ -152,8 +153,7 @@ static NSString *userAgent;
 - (void) connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 {
     active = NO;
-    NSError *error = [NSError errorWithDomain:@"API Requested Authentication" code:401 userInfo:nil];
-    [self requestDidFailWithError:error];
+    auth = [RSAuthentication loginAndReattemptRequest:self];
 }
 
 - (void) connection:(NSURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite

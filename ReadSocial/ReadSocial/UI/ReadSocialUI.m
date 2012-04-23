@@ -47,14 +47,6 @@ static NSMutableDictionary *noteCountViewControllers;
     [rsPopover presentPopoverFromRect:frame inView:view permittedArrowDirections:arrowDirection animated:YES];
 }
 
-- (RSLoginViewController *) getLoginViewControllerWithDelegate:(id<RSLoginViewControllerDelegate,UIWebViewDelegate>)delegate
-{
-    RSLoginViewController *loginViewController = [RSLoginViewController new];
-    loginViewController.delegate = delegate;
-    loginViewController.webview.delegate = delegate;
-    return loginViewController;
-}
-
 + (ReadSocialUI *) library
 {
     static ReadSocialUI *sharedInstance;

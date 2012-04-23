@@ -30,7 +30,7 @@
     RSMutableURLRequest *request = [super createRequest];
     
     // Set the URL
-    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/auth/status", RSAPIURL, networkID];
+    NSString *url = [NSString stringWithFormat:@"%@/v1/%@/auth/status", apiURL, networkID];
     [request setURL:[NSURL URLWithString:url]];
     
     return request;
