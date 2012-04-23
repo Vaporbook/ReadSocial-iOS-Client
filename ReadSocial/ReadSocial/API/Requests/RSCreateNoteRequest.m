@@ -86,6 +86,13 @@
 {
     [super handleResponse:json error:error];
     
+    // ResponseJSON should be an NSDictionary
+    if (![json isKindOfClass:[NSDictionary class]])
+    {
+        *error = [NSError errorWithDomain:@"Invalid response from server." code:0 userInfo:nil];
+        return NO;
+    }
+    
     // Create a new note
     note = [RSNote noteFromDictionary:json];
     
