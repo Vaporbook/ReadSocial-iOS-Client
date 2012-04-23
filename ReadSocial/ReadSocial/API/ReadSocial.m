@@ -65,13 +65,13 @@ NSString* const ReadSocialUserDidLoginNotification                  =   @"ReadSo
         
         // Prepopulate authProviders with the current auth providers
         // Twitter
-        [authProviders addObject:[RSAuthProvider providerWithName:@"Twitter" icon:nil andEndpoint:@"auth/login/twitter"]];
+        [authProviders addObject:[RSAuthProvider providerWithName:@"Twitter" icon:[UIImage imageNamed:@"twitter"] andEndpoint:@"auth/login/twitter"]];
         
         // Facebook
-        [authProviders addObject:[RSAuthProvider providerWithName:@"Facebook" icon:nil andEndpoint:@"auth/login/facebook"]];
+        [authProviders addObject:[RSAuthProvider providerWithName:@"Facebook" icon:[UIImage imageNamed:@"facebook"] andEndpoint:@"auth/login/facebook"]];
         
         // Google
-        [authProviders addObject:[RSAuthProvider providerWithName:@"Google" icon:nil andEndpoint:@"auth/login/google"]];
+        [authProviders addObject:[RSAuthProvider providerWithName:@"Google" icon:[UIImage imageNamed:@"google"] andEndpoint:@"auth/login/google"]];
     }
     return self;
 }

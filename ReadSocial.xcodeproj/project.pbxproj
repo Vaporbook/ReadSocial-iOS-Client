@@ -68,6 +68,9 @@
 		0EAAFE561545E10D004E5A00 /* RSAuthProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EAAFE551545E10D004E5A00 /* RSAuthProvider.m */; };
 		0EAAFE591545E37C004E5A00 /* RSAuthProviderSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EAAFE581545E37C004E5A00 /* RSAuthProviderSelect.m */; };
 		0EAAFE5C1545E465004E5A00 /* RSAuthProviderLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EAAFE5B1545E465004E5A00 /* RSAuthProviderLogin.m */; };
+		0EAAFE611545F6AA004E5A00 /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EAAFE5E1545F6AA004E5A00 /* facebook.png */; };
+		0EAAFE621545F6AA004E5A00 /* google.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EAAFE5F1545F6AA004E5A00 /* google.png */; };
+		0EAAFE631545F6AA004E5A00 /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EAAFE601545F6AA004E5A00 /* twitter.png */; };
 		0EAEF53B14D74D5000EA2ECE /* RSGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EAEF53A14D74D5000EA2ECE /* RSGroupViewController.m */; };
 		0EBFDF4F14F0718000CD45F6 /* RSNoteCountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBFDF4E14F0718000CD45F6 /* RSNoteCountViewController.m */; };
 		0EBFDF5214F09BE200CD45F6 /* ReadSocialUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBFDF5114F09BE200CD45F6 /* ReadSocialUI.m */; };
@@ -199,6 +202,9 @@
 		0EAAFE581545E37C004E5A00 /* RSAuthProviderSelect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAuthProviderSelect.m; sourceTree = "<group>"; };
 		0EAAFE5A1545E465004E5A00 /* RSAuthProviderLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAuthProviderLogin.h; sourceTree = "<group>"; };
 		0EAAFE5B1545E465004E5A00 /* RSAuthProviderLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAuthProviderLogin.m; sourceTree = "<group>"; };
+		0EAAFE5E1545F6AA004E5A00 /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
+		0EAAFE5F1545F6AA004E5A00 /* google.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = google.png; sourceTree = "<group>"; };
+		0EAAFE601545F6AA004E5A00 /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter.png; sourceTree = "<group>"; };
 		0EAEF53914D74D5000EA2ECE /* RSGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSGroupViewController.h; sourceTree = "<group>"; };
 		0EAEF53A14D74D5000EA2ECE /* RSGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSGroupViewController.m; sourceTree = "<group>"; };
 		0EBFDF4D14F0718000CD45F6 /* RSNoteCountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNoteCountViewController.h; sourceTree = "<group>"; };
@@ -364,6 +370,7 @@
 		0E792ED6151A886500EF427D /* API */ = {
 			isa = PBXGroup;
 			children = (
+				0EAAFE5D1545F6A7004E5A00 /* Resources */,
 				0EAAFE531545E0EE004E5A00 /* Authentication */,
 				0E792ED7151A886600EF427D /* Handlers */,
 				0E792EE0151A886600EF427D /* Models */,
@@ -498,6 +505,16 @@
 			path = Authentication;
 			sourceTree = "<group>";
 		};
+		0EAAFE5D1545F6A7004E5A00 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0EAAFE5E1545F6AA004E5A00 /* facebook.png */,
+				0EAAFE5F1545F6AA004E5A00 /* google.png */,
+				0EAAFE601545F6AA004E5A00 /* twitter.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		0EBFDF5314F0B3F700CD45F6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -593,6 +610,9 @@
 				0E7390971510C92A00C5A141 /* upload-btn.png in Resources */,
 				0E792F41151A890C00EF427D /* default_user.png in Resources */,
 				0E792F42151A892F00EF427D /* Icon-72.png in Resources */,
+				0EAAFE611545F6AA004E5A00 /* facebook.png in Resources */,
+				0EAAFE621545F6AA004E5A00 /* google.png in Resources */,
+				0EAAFE631545F6AA004E5A00 /* twitter.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

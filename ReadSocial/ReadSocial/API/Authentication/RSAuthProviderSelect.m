@@ -109,8 +109,12 @@
     // Configure the cell...
     RSAuthProvider *provider = [[ReadSocial sharedInstance].authProviders objectAtIndex:indexPath.row];
     
-    cell.textLabel.text =   provider.name;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.textLabel.text     =   provider.name;
+    cell.accessoryType      =   UITableViewCellAccessoryDisclosureIndicator;
+    
+    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    cell.imageView.image    =   provider.icon;
+    
     
     return cell;
 }
