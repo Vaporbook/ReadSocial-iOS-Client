@@ -22,6 +22,11 @@ NSString* const kResponseNoteId     = @"note_id";
 
 + (RSResponse *) responseFromDictionary: (NSDictionary *)args
 {
+    if (!args)
+    {
+        return nil;
+    }
+    
     // Creates a new managed object
     RSResponse *response    = (RSResponse *)[NSEntityDescription insertNewObjectForEntityForName:@"RSResponse" inManagedObjectContext:[DataContext defaultContext]];
     response.id             = [args valueForKey:kResponseId];

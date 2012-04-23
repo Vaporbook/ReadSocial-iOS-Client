@@ -27,6 +27,11 @@ NSString* const kHighlightedText    = @"hi_nrml";
 
 + (RSNote *) noteFromDictionary: (NSDictionary *)args
 {
+    if (!args)
+    {
+        return nil;
+    }
+    
     // Creates a new managed object
     RSNote *note    = (RSNote *)[NSEntityDescription insertNewObjectForEntityForName:@"RSNote" inManagedObjectContext:[DataContext defaultContext]];
     note.id         = [args valueForKey:kNoteId];
