@@ -25,6 +25,7 @@
     
     // Initialize ReadSocial
     [ReadSocial initializeWithNetworkID:[NSNumber numberWithInt:8] defaultGroup:@"partner-testing-channel" andUILibrary:[ReadSocialUI library]];
+    [[ReadSocial sharedInstance] setApiURL:[NSURL URLWithString:@"http://dev.readsocial.net"]];
     
     self.window.backgroundColor = [UIColor whiteColor];
     
