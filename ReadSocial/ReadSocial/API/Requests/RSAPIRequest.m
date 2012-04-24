@@ -11,6 +11,7 @@
 #import "RSAuthentication.h"
 #import "ReadSocial.h"
 #import "ReadSocialAPIConfig.h"
+#import "NSData+RSBase64.h"
 
 static NSString *userAgent;
 
@@ -39,6 +40,8 @@ static NSString *userAgent;
         apiURL          =   [ReadSocial sharedInstance].apiURL;
         networkID       =   [ReadSocial networkID];
         group           =   [ReadSocial currentGroup];
+        appKey          =   [ReadSocial sharedInstance].appKey;
+        appSecret       =   [ReadSocial sharedInstance].appSecret;
         receivedError   =   NO;
         active          =   NO;
         connection      =   nil;
@@ -58,6 +61,13 @@ static NSString *userAgent;
     [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     assumeJSONResponse = YES;
+    
+    // Check if authorization headers need to be added
+    if (appKey && appSecret)
+    {
+        NSString *credentials = [[[NSString stringWithFormat:@"%@:%@", appKey, appSecret] data] base64EncodedString];
+        [request addValue:[NSString stringWithFormat:@"Basic %@", credentials] forHTTPHeaderField:@"Authorization"];
+    }
     
     return request;
 }

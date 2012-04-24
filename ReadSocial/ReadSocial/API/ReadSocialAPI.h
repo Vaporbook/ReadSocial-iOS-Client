@@ -31,6 +31,7 @@
 #import "RSCreateNoteRequest.h"
 #import "RSCreateNoteResponseRequest.h"
 #import "RSAuthStatusRequest.h"
+#import "RSAuthLogoutRequest.h"
 #import "RSNoteCountRequest.h"
 #import "RSActiveGroupsRequest.h"
 

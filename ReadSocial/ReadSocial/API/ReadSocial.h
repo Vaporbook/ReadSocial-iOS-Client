@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RSAPIRequest.h"
 
 @class RSPage;
 @class RSParagraph;
@@ -27,13 +28,26 @@ extern NSString* const ReadSocialUserDidComposeResponseNotification;
 extern NSString* const ReadSocialParagraphNoteCountUpdatedNotification;
 extern NSString* const ReadSocialUserDidChangeGroupNotification;
 extern NSString* const ReadSocialUserDidLoginNotification;
+extern NSString* const ReadSocialUserDidLogoutNotification;
 
-@interface ReadSocial : NSObject
+@interface ReadSocial : NSObject <RSAPIRequestDelegate>
 
 /**
  The default network ID for this ReadSocial session.
  */
 @property (nonatomic, strong) NSNumber *networkID;
+
+/**
+ Sets the app key; if both the appKey and appSecret are set, 
+ then they will be sent in the Authorization header in each API request.
+ */
+@property (nonatomic, strong) NSString *appKey;
+
+/**
+ Sets the app secret; if both the appKey and appSecret are set, 
+ then they will be sent in the Authorization header in each API request.
+ */
+@property (nonatomic, strong) NSString *appSecret;
 
 /**
  The URL to attempt to use as the API.
@@ -78,6 +92,11 @@ extern NSString* const ReadSocialUserDidLoginNotification;
 @property (nonatomic, strong) id<ReadSocialDelegate> delegate;
 
 /**
+ YES if the user is currently logged in; NO otherwise.
+ */
+@property (nonatomic, readonly) BOOL loggedIn;
+
+/**
  UI Library
  */
 @property (nonatomic, strong) id<ReadSocialUILibrary> readSocialUI;
@@ -99,6 +118,7 @@ extern NSString* const ReadSocialUserDidLoginNotification;
 - (void) noteCountUpdatedForParagraph: (RSParagraph *)paragraph atIndex: (NSInteger)index;
 - (void) userDidChangeGroup: (NSString *)newGroup;
 - (void) userDidLogin: (RSUser *)user;
+- (void) userDidLogout;
 
 # pragma mark Methods
 - (RSPage *) initializeView: (id<ReadSocialDataSource>)view;
@@ -152,6 +172,7 @@ extern NSString* const ReadSocialUserDidLoginNotification;
 - (void) noteCountUpdatedForParagraph: (RSParagraph *)paragraph atIndex: (NSInteger)index;
 - (void) userDidChangeGroup: (NSString *)newGroup;
 - (void) userDidLogin: (RSUser *)user;
+- (void) userDidLogout;
 
 @end
 
