@@ -65,8 +65,11 @@ static NSString *userAgent;
     // Check if authorization headers need to be added
     if (appKey && appSecret)
     {
-        NSString *credentials = [[[NSString stringWithFormat:@"%@:%@", appKey, appSecret] data] base64EncodedString];
-        [request addValue:[NSString stringWithFormat:@"Basic %@", credentials] forHTTPHeaderField:@"Authorization"];
+        NSString *credentials = [NSString stringWithFormat:@"%@:%@", appKey, appSecret];
+        NSString *encodedCredentials = [[credentials dataUsingEncoding:NSUTF8StringEncoding] base64EncodedString];
+        // Remove line breaks from encoded string
+        encodedCredentials = [[encodedCredentials componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]] componentsJoinedByString:@""];
+        [request addValue:[NSString stringWithFormat:@"Basic %@", encodedCredentials] forHTTPHeaderField:@"Authorization"];
     }
     
     return request;
