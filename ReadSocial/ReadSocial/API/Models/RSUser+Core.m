@@ -59,12 +59,18 @@ NSString* const kUserDomain =   @"udom";
 
 + (RSUser *) userWithDictionary: (NSDictionary *)args
 {
+    if (![[args valueForKey:kUserId] isKindOfClass:[NSNumber class]]) 
+    {
+        return nil;
+    }
+    
     // Creates a new managed object
     RSUser *user    = (RSUser *)[NSEntityDescription insertNewObjectForEntityForName:@"RSUser" inManagedObjectContext:[DataContext defaultContext]];
+    
     user.uid        = [NSNumber numberWithInt:[[args valueForKey:kUserId] intValue]]; // Make sure that uid is an integer
     
     [user updateUserWithDictionary:args];
-    
+    NSLog(@"Created user: %@", user.name);
     return user;
 }
 

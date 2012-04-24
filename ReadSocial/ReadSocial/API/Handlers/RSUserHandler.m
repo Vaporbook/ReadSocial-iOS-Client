@@ -23,6 +23,12 @@
     {
         NSNumber *uid = [pUser valueForKey:kUserId];
         
+        // Confirm that this is a number
+        if (![uid isKindOfClass:[NSNumber class]]) 
+        {
+            continue;
+        }
+        
         // Only add this user if it hasn't been tracked
         if ([ids indexOfObject:uid]==NSNotFound)
         {
@@ -49,6 +55,13 @@
     // Walk through the arrays
     while (item || fetchedItem)
     {
+        // If the item doesn't have a uid, then there's not reason to continue
+        if (![[item valueForKey:kUserId] isKindOfClass:[NSNumber class]])
+        {
+            item = [responseEnumerator nextObject];
+            continue;
+        }
+        
         // If the IDs are equal on the fetched note (the one from the store) and the note
         // received from the API, then the note is already stored--just need to update it.
         if ([fetchedItem.uid intValue]==[[item valueForKey:kUserId] intValue]) 
@@ -89,6 +102,12 @@
 
 + (RSUser *) userForID: (NSString *)id
 {
+    // If the ID is null, then there is no user
+    if (![id isKindOfClass:[NSNumber class]])
+    {
+        return nil;
+    }
+    
     NSArray *users = [RSUserHandler usersForIds:[NSArray arrayWithObject:id]];
     
     if (!users || [users count]==0)
