@@ -30,10 +30,12 @@
     [[ReadSocial sharedInstance] setApiURL:[NSURL URLWithString:@"http://dev.readsocial.net"]];
     
     // If your app has private/secret keys, set them here:
-    // If you set private/secret keys, you MUST set the current user information before creating
-    // a note or a response or the app will crash.
     //[[ReadSocial sharedInstance] setAppKey:@"fSxua20klUTHGvq0TPHF8CVHtFI6SVTwJepRU6bl"];
     //[[ReadSocial sharedInstance] setAppSecret:@"8iwQBJDIfslTRhs8wR1DJ3pRNpcviq53BLqTm5dO"];
+    
+    // If you set private/secret keys, you MUST set the current user information before creating
+    // a note or a response or the user will get an error when attempting to create notes/responses.
+    //[[ReadSocial sharedInstance] setCurrentUser:[RSUser userWithID:[NSNumber numberWithInt:100] andName:@"Daniel Pfeiffer" andImageURL:[NSURL URLWithString:@"http://floatlearning.com/wp-content/uploads/userphoto/11.thumbnail.jpeg"] forDomain:@"floatlearning.com"]];
     
     self.window.backgroundColor = [UIColor whiteColor];
     
