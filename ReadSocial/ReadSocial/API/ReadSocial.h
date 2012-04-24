@@ -79,6 +79,11 @@ extern NSString* const ReadSocialUserDidLogoutNotification;
 @property (strong, readonly) NSString *currentSelection;
 
 /**
+ User data for the currently authenticated user.
+ */
+@property (nonatomic, strong) RSUser *currentUser;
+
+/**
  The default group for this app.
  Changing this value will not change the current group.
  This is generally only referred to on initial app launch as once the user sets

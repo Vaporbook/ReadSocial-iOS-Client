@@ -12,6 +12,7 @@
 #import "ReadSocial.h"
 #import "ReadSocialAPIConfig.h"
 #import "NSData+RSBase64.h"
+#import "RSUser+Core.h"
 
 static NSString *userAgent;
 
@@ -61,6 +62,7 @@ static NSString *userAgent;
     [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     assumeJSONResponse = YES;
+    usingAuthHeaders = NO;
     
     // Check if authorization headers need to be added
     if (appKey && appSecret)
@@ -70,6 +72,7 @@ static NSString *userAgent;
         // Remove line breaks from encoded string
         encodedCredentials = [[encodedCredentials componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]] componentsJoinedByString:@""];
         [request addValue:[NSString stringWithFormat:@"Basic %@", encodedCredentials] forHTTPHeaderField:@"Authorization"];
+        usingAuthHeaders = YES;
     }
     
     return request;
@@ -89,6 +92,19 @@ static NSString *userAgent;
         NSLog(@"Invalid request!");
         [self requestDidFailWithError:[NSError errorWithDomain:@"Invalid request." code:0 userInfo:nil]];
         return;
+    }
+    
+    // If we are using auth headers and this is a POST request, then the payload MUST include user data
+    // If it doesn't then the request fails.
+    if (usingAuthHeaders && [request.HTTPMethod isEqualToString:@"POST"])
+    {
+        // Check the payload for user data--only check for user id
+        NSDictionary *payload = [[JSONDecoder decoder] objectWithData:request.HTTPBody];
+        if (![[payload valueForKey:kUserId] isKindOfClass:[NSNumber class]])
+        {
+            [self requestDidFailWithError:[NSError errorWithDomain:@"User not logged in" code:0 userInfo:nil]];
+            return;
+        }
     }
     
     sentTime = [NSDate date];

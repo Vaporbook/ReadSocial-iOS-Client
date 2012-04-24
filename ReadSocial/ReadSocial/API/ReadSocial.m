@@ -50,7 +50,7 @@ NSString* const ReadSocialUserDidLogoutNotification                  =   @"ReadS
 
 
 @implementation ReadSocial
-@synthesize delegate, networkID, apiURL=_apiURL, currentPage, currentSelection, defaultGroup, readSocialUI, authProviders, appKey, appSecret, loggedIn;
+@synthesize delegate, networkID, apiURL=_apiURL, currentPage, currentSelection, currentUser, defaultGroup, readSocialUI, authProviders, appKey, appSecret, loggedIn;
 
 + (void) initialize
 {
@@ -139,6 +139,11 @@ NSString* const ReadSocialUserDidLogoutNotification                  =   @"ReadS
     }
     
     return _apiURL;
+}
+
+- (void) setCurrentUser:(RSUser *)newUser
+{
+    [self userDidLogin:newUser];
 }
 
 - (RSPage *) initializeView: (id<ReadSocialDataSource>)view
@@ -278,6 +283,8 @@ NSString* const ReadSocialUserDidLogoutNotification                  =   @"ReadS
 - (void) userDidLogin:(RSUser *)user
 {
     loggedIn = YES;
+    currentUser = user;
+    
     if ([delegate respondsToSelector:@selector(userDidLogin:)])
     {
         [delegate userDidLogin:user];
@@ -288,6 +295,8 @@ NSString* const ReadSocialUserDidLogoutNotification                  =   @"ReadS
 - (void) userDidLogout
 {
     loggedIn = NO;
+    currentUser = nil;
+    
     if ([delegate respondsToSelector:@selector(userDidLogout:)])
     {
         [delegate userDidLogout];

@@ -9,6 +9,7 @@
 #import "RSCreateNoteResponseRequest.h"
 #import "ReadSocial.h"
 #import "RSNote+Core.h"
+#import "RSUser+Core.h"
 #import "RSResponse+Core.h"
 #import "JSONKit.h"
 
@@ -46,11 +47,17 @@
     [request setURL:[NSURL URLWithString:url]];
     
     // Set the headers
-    NSDictionary *payload = [NSDictionary dictionaryWithObjectsAndKeys:
+    NSMutableDictionary *payload = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                              networkID,         @"net_id",
                              self.note.id,      @"note_id",
                              noteResponseBody,  @"resp_body", 
                              nil];
+    
+    // If we're using authorization headers, the current user data needs to be appended
+    if (usingAuthHeaders)
+    {
+        [payload addEntriesFromDictionary:[[ReadSocial sharedInstance].currentUser dictionary]];
+    }
     
     [request setHTTPBody:[payload JSONData]];
     

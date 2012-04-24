@@ -22,6 +22,7 @@ extern NSString* const kUserDomain;
 
 @property (nonatomic, readonly, getter = getImage) UIImage *image;
 @property (readonly, getter = getImageIsDownloaded) BOOL imageIsDownloaded;
+@property (nonatomic, readonly) NSDictionary *dictionary;
 
 /**
  Creates a RSUser object from data in an NSDictionary.
@@ -32,6 +33,17 @@ extern NSString* const kUserDomain;
  @return The newly created RSUser object.
  */
 + (RSUser *) userWithDictionary: (NSDictionary *)args;
+
+/**
+ Creates a new user object with a custom ID, name, image, and domain.
+ 
+ @param id  The user's identification number.
+ @param name The user's name (could be a screenname or user name).
+ @param imageURL URL to the user's profile image.
+ @param domain The domain the user belongs to.
+ @return The newly created RSUser object.
+ */
++ (RSUser *) userWithID:(NSNumber *)uid andName:(NSString *)name andImageURL:(NSURL *)imageURL forDomain:(NSString *)domain;
 
 /**
  Updates the RSUser with data in the NSDictionary. It does not update the uid since

@@ -22,6 +22,7 @@
     // The consumer/secret key for the app (received from the shared session)
     NSString *appKey;
     NSString *appSecret;
+    BOOL usingAuthHeaders;
     
     // Copy of session variables for request
     // Just in case the session changes in the middle of a request.

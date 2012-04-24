@@ -10,6 +10,7 @@
 #import "RSParagraph+Core.h"
 #import "JSONKit.h"
 #import "RSNote+Core.h"
+#import "RSUser+Core.h"
 #import "ReadSocial.h"
 #import "RSPage.h"
 #import "NSString+RSParagraph.h"
@@ -73,6 +74,12 @@
     
     // Append to the payload the arguments received from the constructor
     [payload addEntriesFromDictionary:arguments];
+    
+    // If we're using authorization headers, the current user data needs to be appended
+    if (usingAuthHeaders)
+    {
+        [payload addEntriesFromDictionary:[[ReadSocial sharedInstance].currentUser dictionary]];
+    }
     
     [request setHTTPBody:[payload JSONData]];
     

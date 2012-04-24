@@ -74,6 +74,18 @@ NSString* const kUserDomain =   @"udom";
     return user;
 }
 
++ (RSUser *) userWithID:(NSNumber *)uid andName:(NSString *)name andImageURL:(NSURL *)imageURL forDomain:(NSString *)domain
+{
+    NSMutableDictionary *args = [NSMutableDictionary dictionary];
+    
+    [args setValue:uid forKey:kUserId];
+    [args setValue:name forKey:kUserName];
+    [args setValue:[imageURL absoluteString] forKey:kUserImage];
+    [args setValue:domain forKey:kUserDomain];
+    
+    return [RSUser userWithDictionary:args];
+}
+
 - (BOOL) updateUserWithDictionary: (NSDictionary *)args
 {
     self.name       =   [args valueForKey:kUserName];
@@ -89,6 +101,18 @@ NSString* const kUserDomain =   @"udom";
     }
     
     return YES;
+}
+
+- (NSDictionary *) dictionary
+{
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    
+    [data setValue:self.uid         forKey:kUserId];
+    [data setValue:self.name        forKey:kUserName];
+    [data setValue:self.imageURL    forKey:kUserImage];
+    [data setValue:self.udom        forKey:kUserDomain];
+    
+    return [NSDictionary dictionaryWithDictionary:data];
 }
 
 @end
