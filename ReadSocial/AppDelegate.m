@@ -25,7 +25,15 @@
     
     // Initialize ReadSocial
     [ReadSocial initializeWithNetworkID:[NSNumber numberWithInt:8] defaultGroup:@"partner-testing-channel" andUILibrary:[ReadSocialUI library]];
+    
+    // Set the server
     [[ReadSocial sharedInstance] setApiURL:[NSURL URLWithString:@"http://dev.readsocial.net"]];
+    
+    // If your app has private/secret keys, set them here:
+    // If you set private/secret keys, you MUST set the current user information before creating
+    // a note or a response or the app will crash.
+    //[[ReadSocial sharedInstance] setAppKey:@"fSxua20klUTHGvq0TPHF8CVHtFI6SVTwJepRU6bl"];
+    //[[ReadSocial sharedInstance] setAppSecret:@"8iwQBJDIfslTRhs8wR1DJ3pRNpcviq53BLqTm5dO"];
     
     self.window.backgroundColor = [UIColor whiteColor];
     
