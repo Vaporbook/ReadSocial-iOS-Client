@@ -43,7 +43,7 @@ extern NSString* const kUserDomain;
  @param domain The domain the user belongs to.
  @return The newly created RSUser object.
  */
-+ (RSUser *) userWithID:(NSNumber *)uid andName:(NSString *)name andImageURL:(NSURL *)imageURL forDomain:(NSString *)domain;
++ (RSUser *) userWithID:(NSString *)uid andName:(NSString *)name andImageURL:(NSURL *)imageURL forDomain:(NSString *)domain;
 
 /**
  Updates the RSUser with data in the NSDictionary. It does not update the uid since

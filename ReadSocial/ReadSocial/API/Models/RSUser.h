@@ -16,7 +16,7 @@
     BOOL imageIsDownloading;
 }
 
-@property (nonatomic, retain) NSNumber * uid;
+@property (nonatomic, retain) NSString * uid;
 @property (nonatomic, retain) NSData * imageData;
 @property (nonatomic, retain) NSString * imageURL;
 @property (nonatomic, retain) NSString * name;
