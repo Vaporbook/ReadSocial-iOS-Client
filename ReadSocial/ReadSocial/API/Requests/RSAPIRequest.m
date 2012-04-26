@@ -99,8 +99,13 @@ static NSString *userAgent;
     if (usingAuthHeaders && [request.HTTPMethod isEqualToString:@"POST"])
     {
         // Check the payload for user data--only check for user id
-        NSDictionary *payload = [[JSONDecoder decoder] objectWithData:request.HTTPBody];
-        if (![[payload valueForKey:kUserId] isKindOfClass:[NSNumber class]])
+        NSDictionary *payload;
+        if (request.HTTPBody)
+        {
+            payload = [[JSONDecoder decoder] objectWithData:request.HTTPBody];
+        }
+        
+        if (![payload valueForKey:kUserId])
         {
             [self requestDidFailWithError:[NSError errorWithDomain:@"User not logged in" code:0 userInfo:nil]];
             return;
