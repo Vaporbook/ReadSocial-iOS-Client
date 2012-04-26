@@ -58,6 +58,22 @@ Make sure your view controller is implementing the `ReadSocialDelegate` protocol
 ### 5. Add a UIMenuItem
 Another powerful way ReadSocial allows users to interact with your content is through selecting text. Add a UIMenuItem that will trigger `[ReadSocial openReadSocialForSelectionInView:self.view];`.
 
+Implementing the App Identifier Key and Secret Key
+--------------------------------------------------
+If your app needs to supply it's own user authentication and simply send the user data to the ReadSocial server instead of relying on authentication from one of the three default providers, then you need to specify both your app's identifier and app secret key in the app delegate.
+
+    [[ReadSocial sharedInstance] setAppKey:@"fSxua20klUTHGvq0TPHF8CVHtFI6SVTwJepRU6bl"];
+    [[ReadSocial sharedInstance] setAppSecret:@"8iwQBJDIfslTRhs8wR1DJ3pRNpcviq53BLqTm5dO"];
+
+Once you specify your own app key and secret, you need to specify the current user before POSTing data to the server.
+
+    [[ReadSocial sharedInstance] setCurrentUser:[RSUser userWithID:@"9999" andName:@"Display Name" andImageURL:[NSURL URLWithString:@"https://www.readsocial.net/images/demo-avatar.png"] forDomain:@"example.com"]];
+
+* **User ID**--Any identifier for the user. Must be unique within your app.
+* **Display Name**--The display name for the user. Will be displayed next to user's submissions.
+* **Image URL**--The URL where the user's profile image can be found.
+* **Domain**--The user's domain.
+
 Current Limitations/Issues
 -----------
 ReadSocial uses Core Data to organize and store data from the service and from the user. Currently, it requires that the implementing app start with the Core Data Xcode template. We're working to remove this requirement very soon.
