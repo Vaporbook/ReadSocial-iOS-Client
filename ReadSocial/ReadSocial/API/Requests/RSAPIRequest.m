@@ -232,21 +232,26 @@ static NSString *userAgent;
         return;
     }
     
+    // Watch for errors
+    NSError *error = nil;
+    
     // Save JSON response
     id response;
     if (assumeJSONResponse) 
     {
-        // TODO: Implement the error handler for a bad response back from the API
-        NSError *aError = nil;
-        response = [responseData objectFromJSONDataWithParseOptions:JKParseOptionNone error:&aError];
+        // Attempt to parse JSON
+        response = [responseData objectFromJSONDataWithParseOptions:JKParseOptionNone error:&error];
     }
     else
     {
         response = responseData;
     }
     
-    NSError *error;
-    BOOL contextChanged = [self handleResponse:response error:&error];
+    BOOL contextChanged = NO;
+    if (!error)
+    {
+        contextChanged = [self handleResponse:response error:&error];
+    }
     
     // Save the ReadSocial data context
     if (contextChanged)

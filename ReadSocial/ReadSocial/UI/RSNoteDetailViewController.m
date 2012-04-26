@@ -67,7 +67,6 @@
 // This method will be triggered when the data context detects a change
 - (void) reloadResponses
 {
-    // TODO: This method is getting triggered twice upon opening the view--when new users are updated and when the responses are updated.
     NSLog(@"Updating table with new responses.");
     // Reload the references stored in the view and update the table
     responses = [RSResponseHandler responsesForNote:_note];

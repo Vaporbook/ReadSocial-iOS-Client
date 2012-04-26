@@ -237,7 +237,6 @@ NSString* const kRSUserImageURL         =   @"rs_user_image";
 - (void) checkForManualUserData
 {
     [[NSUserDefaults standardUserDefaults] synchronize];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
     
     // Check if we need to use the app key

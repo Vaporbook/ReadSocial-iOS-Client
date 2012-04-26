@@ -24,7 +24,6 @@
     normalized = [normalized stringByReplacingOccurrencesOfString:@"-" withString:@""];
     
     // 4. Replacing multiple spaces with a single space
-    // TODO: This is probably not the most efficient method.
     while ([normalized rangeOfString:@"  "].location!=NSNotFound) 
     {
         normalized = [normalized stringByReplacingOccurrencesOfString:@"  " withString:@" "];

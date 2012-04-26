@@ -143,14 +143,6 @@ extern NSString* const ReadSocialUserDidLogoutNotification;
 + (ReadSocial *) sharedInstance;
 + (ReadSocial *) initializeWithNetworkID: (NSNumber *)networkID defaultGroup: (NSString *)defaultGroup andUILibrary:(id<ReadSocialUILibrary>)ui;
 
-// API Methods //TODO: Implement API Methods
-//- (NSNumber *) noteCountForRawParagraph: (NSString *)raw;
-//- (NSArray *) notesForRawParagraph: (NSString *)raw;
-//- (void) composeNote: (RSNote *)note forParagraph: (RSParagraph *)paragraph;
-//- (NSArray *) responsesForNote: (RSNote *)note;
-//- (void) composeResponse: (RSResponse *)response forNote: (RSNote *)note;
-//- (NSArray *) groupsForParagraph: (RSParagraph *)paragraph;
-
 @end
 
 /**
@@ -202,14 +194,6 @@ extern NSString* const ReadSocialUserDidLogoutNotification;
  The bounding box for the paragraph on the screen.
  */
 - (CGRect) rectForParagraphAtIndex: (NSInteger)index;
-
-/**
- The paragraph content relevant to the current selection on the page.
- This data is requested by the class method openReadSocialForSelectionInView
- which is intended to be invoked by a UIMenuItem.
- TODO: Consider removing the paragraphAtSelection delegate method as it is inconsistent with how other methods interact (based on paragraph index).
- */
-//RETIRED- (NSString *) paragraphAtSelection;
 
 /**
  Same as paragraphAtSelection, but instead of requesting the raw paragraph content,
