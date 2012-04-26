@@ -236,7 +236,9 @@ static NSString *userAgent;
     id response;
     if (assumeJSONResponse) 
     {
-        response = [responseData objectFromJSONData];
+        // TODO: Implement the error handler for a bad response back from the API
+        NSError *aError = nil;
+        response = [responseData objectFromJSONDataWithParseOptions:JKParseOptionNone error:&aError];
     }
     else
     {
