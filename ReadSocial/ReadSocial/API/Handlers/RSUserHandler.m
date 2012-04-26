@@ -31,45 +31,9 @@
         }
     }
     
-    // Replace the parameter with the filtered parameter
-    users = filteredUsers;
-    
-    // Fetch notes currently in the store with the same ID
-    NSArray *fetchedItems = [RSUserHandler usersForIds:ids];
-    
-    // Sort users parameter by user id
-    users = [users sortedArrayUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"uid" ascending:YES]]];
-    
-    // Retrieve the first object in each array
-    NSEnumerator *fetchedEnumerator = [fetchedItems objectEnumerator];
-    NSEnumerator *responseEnumerator = [users objectEnumerator];
-    RSUser *fetchedItem = [fetchedEnumerator nextObject];
-    NSDictionary *item  = [responseEnumerator nextObject];
-    
-    // Walk through the arrays
-    while (item || fetchedItem)
+    for (NSDictionary *data in filteredUsers)
     {
-        // If the IDs are equal on the fetched note (the one from the store) and the note
-        // received from the API, then the note is already stored--just need to update it.
-        if ([fetchedItem.uid isEqualToString:[item valueForKey:kUserId]]) 
-        {
-            NSLog(@"Update user: %@", fetchedItem.uid);
-            [fetchedItem updateUserWithDictionary:item];
-            
-            // Next notes
-            item        = [responseEnumerator nextObject];
-            fetchedItem = [fetchedEnumerator nextObject];
-        }
-        
-        // If there is a note object that doesn't match the current fetchedNote
-        // then it is a new note; insert it into the context.
-        else if (item)
-        {
-            NSLog(@"Create a new user: %@", [item valueForKey:kUserId]);
-            [RSUser userWithDictionary:item];
-            
-            item = [responseEnumerator nextObject];
-        }
+        [RSUserHandler retrieveOrCreateUser:data];
     }
 }
 
