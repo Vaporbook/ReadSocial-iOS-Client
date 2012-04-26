@@ -62,7 +62,7 @@ NSString* const kUserDomain =   @"udom";
     // Creates a new managed object
     RSUser *user    = (RSUser *)[NSEntityDescription insertNewObjectForEntityForName:@"RSUser" inManagedObjectContext:[DataContext defaultContext]];
     
-    user.uid        = [args valueForKey:kUserId];
+    user.uid        = [NSString stringWithFormat:@"%@", [args valueForKey:kUserId]];
     
     [user updateUserWithDictionary:args];
     NSLog(@"Created user: %@", user.name);
