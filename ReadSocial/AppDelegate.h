@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+extern NSString* const kUseAppKey;
+extern NSString* const kAppIdentifierKey;
+extern NSString* const kAppSecretKey;
+extern NSString* const kRSUserID;
+extern NSString* const kRSUserName;
+extern NSString* const kRSUserDomain;
+extern NSString* const kRSUserImageURL;
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
@@ -20,5 +28,6 @@
 - (void) resetStore;
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
+- (void) checkForManualUserData;
 
 @end

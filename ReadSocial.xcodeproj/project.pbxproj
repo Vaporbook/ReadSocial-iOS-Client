@@ -26,6 +26,7 @@
 		0E61BE5414CB20720017F3E3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E61BE5314CB20720017F3E3 /* main.m */; };
 		0E61BE5814CB20720017F3E3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E61BE5714CB20720017F3E3 /* AppDelegate.m */; };
 		0E7390971510C92A00C5A141 /* upload-btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E7390961510C92A00C5A141 /* upload-btn.png */; };
+		0E75CD221549D567003E11AA /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0E75CD211549D567003E11AA /* Settings.bundle */; };
 		0E78F65714D4627900DF151B /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 0E78F65614D4627900DF151B /* index.html */; };
 		0E78F66014D470DD00DF151B /* RSNotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E78F65F14D470DD00DF151B /* RSNotesViewController.m */; };
 		0E78F66314D48C1400DF151B /* ReadSocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E78F66214D48C1400DF151B /* ReadSocialViewController.m */; };
@@ -123,6 +124,7 @@
 		0E61BE5614CB20720017F3E3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0E61BE5714CB20720017F3E3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		0E7390961510C92A00C5A141 /* upload-btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "upload-btn.png"; sourceTree = "<group>"; };
+		0E75CD211549D567003E11AA /* Settings.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = Settings.bundle; sourceTree = "<group>"; };
 		0E78F65614D4627900DF151B /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		0E78F65E14D470DD00DF151B /* RSNotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNotesViewController.h; sourceTree = "<group>"; };
 		0E78F65F14D470DD00DF151B /* RSNotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNotesViewController.m; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				0E61BE5614CB20720017F3E3 /* AppDelegate.h */,
 				0E61BE5714CB20720017F3E3 /* AppDelegate.m */,
 				0E61BE4E14CB20720017F3E3 /* Supporting Files */,
+				0E75CD211549D567003E11AA /* Settings.bundle */,
 			);
 			name = "ReadSocial Demo";
 			path = ReadSocial;
@@ -618,6 +621,7 @@
 				0EAAFE611545F6AA004E5A00 /* facebook.png in Resources */,
 				0EAAFE621545F6AA004E5A00 /* google.png in Resources */,
 				0EAAFE631545F6AA004E5A00 /* twitter.png in Resources */,
+				0E75CD221549D567003E11AA /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

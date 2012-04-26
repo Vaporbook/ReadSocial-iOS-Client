@@ -11,6 +11,14 @@
 #import "ReadSocialAPI.h"
 #import "ReadSocialUI.h"
 
+NSString* const kUseAppKey              =   @"rs_use_appkey";
+NSString* const kAppIdentifierKey       =   @"rs_app_identifier";
+NSString* const kAppSecretKey           =   @"rs_app_secret";
+NSString* const kRSUserID               =   @"rs_user_id";
+NSString* const kRSUserName             =   @"rs_user_name";
+NSString* const kRSUserDomain           =   @"rs_user_domain";
+NSString* const kRSUserImageURL         =   @"rs_user_image";
+
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -23,19 +31,33 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:
+                              @"fSxua20klUTHGvq0TPHF8CVHtFI6SVTwJepRU6bl",          kAppIdentifierKey,
+                              @"8iwQBJDIfslTRhs8wR1DJ3pRNpcviq53BLqTm5dO",          kAppSecretKey,
+                              @"readsocial.net",                                    kRSUserDomain,
+                              @"https://www.readsocial.net/images/demo-avatar.png", kRSUserImageURL,
+                              @"9999",                                              kRSUserID, 
+                              nil];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
+    
     // Initialize ReadSocial
     [ReadSocial initializeWithNetworkID:[NSNumber numberWithInt:8] defaultGroup:@"partner-testing-channel" andUILibrary:[ReadSocialUI library]];
     
     // Set the server
     [[ReadSocial sharedInstance] setApiURL:[NSURL URLWithString:@"http://dev.readsocial.net"]];
     
-    // If your app has private/secret keys, set them here:
+    // Check if the settings specified a user
+    [self checkForManualUserData];
+    
+    // If your app has private/secret keys, typically you'd set them here:
+    // (in our demo app, these values are controlled by the settings bundle--see the checkForManualUserData method).
     //[[ReadSocial sharedInstance] setAppKey:@"fSxua20klUTHGvq0TPHF8CVHtFI6SVTwJepRU6bl"];
     //[[ReadSocial sharedInstance] setAppSecret:@"8iwQBJDIfslTRhs8wR1DJ3pRNpcviq53BLqTm5dO"];
     
     // If you set private/secret keys, you MUST set the current user information before creating
     // a note or a response or the user will get an error when attempting to create notes/responses.
-    //[[ReadSocial sharedInstance] setCurrentUser:[RSUser userWithID:[NSNumber numberWithInt:100] andName:@"Daniel Pfeiffer" andImageURL:[NSURL URLWithString:@"http://floatlearning.com/wp-content/uploads/userphoto/11.thumbnail.jpeg"] forDomain:@"floatlearning.com"]];
+    // (in our demo app, these values are controlled by the settings bundle--see the checkForManualUserData method).
+    //[[ReadSocial sharedInstance] setCurrentUser:[RSUser userWithID:@"100" andName:@"Daniel Pfeiffer" andImageURL:[NSURL URLWithString:@"https://www.readsocial.net/images/demo-avatar.png"] forDomain:@"floatlearning.com"]];
     
     self.window.backgroundColor = [UIColor whiteColor];
     
@@ -68,6 +90,7 @@
     /*
      Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
      */
+    [self checkForManualUserData];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -208,6 +231,38 @@
 - (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+#pragma mark - 
+- (void) checkForManualUserData
+{
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+    
+    // Check if we need to use the app key
+    if ([[settings valueForKey:kUseAppKey] boolValue])
+    {
+        // Key
+        [[ReadSocial sharedInstance] setAppKey:[settings valueForKey:kAppIdentifierKey]];
+        [[ReadSocial sharedInstance] setAppSecret:[settings valueForKey:kAppSecretKey]];
+        
+        // User data
+        RSUser *user = [RSUser userWithID:[settings valueForKey:kRSUserID]
+                                  andName:[settings valueForKey:kRSUserName]
+                              andImageURL:[NSURL URLWithString:[settings valueForKey:kRSUserImageURL]]
+                                forDomain:[settings valueForKey:kRSUserDomain]];
+        
+        [[ReadSocial sharedInstance] setCurrentUser:user];
+        NSLog(@"Enabled manual user data.");
+    }
+    else
+    {
+        [[ReadSocial sharedInstance] setAppKey:nil];
+        [[ReadSocial sharedInstance] setAppSecret:nil];
+        [[ReadSocial sharedInstance] setCurrentUser:nil];
+        NSLog(@"Enabled provider user data.");
+    }
 }
 
 @end
