@@ -153,8 +153,8 @@
     // Create a note view
     UIView *noteView = [[UIView alloc] initWithFrame:CGRectMake(10, bottom+20, contentFrame.size.width, 400)];
     
-    UIImageView *uImg = [[UIImageView alloc] initWithImage:self.note.user.image];
-    [uImg sizeThatFits:CGSizeMake(50, 50)];
+    UIImageView *uImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+    uImg.image = self.note.user.image;
     uImg.contentMode = UIViewContentModeScaleAspectFit;
     [noteView addSubview:uImg];
     
