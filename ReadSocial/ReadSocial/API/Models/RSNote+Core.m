@@ -50,7 +50,7 @@ NSString* const kHighlightedText    = @"hi_nrml";
     self.timestamp      = [NSDate dateWithTimeIntervalSince1970:([[args valueForKey:kNoteCreated] doubleValue]/1000.0)];
     self.paragraph      = [RSParagraph paragraphFromHash:[args valueForKey:kNoteParagraphHash]];
     self.highlightedText= [args valueForKey:kHighlightedText];
-    self.user           = [RSUserHandler userForID:[args valueForKey:kUserId]];
+    self.user           = [RSUserHandler userForID:[args valueForKey:kUserId] inDomain:[args valueForKey:kUserDomain]];
     self.imageURL       = [[RSNoteImageRequest URLForImageName:[args valueForKey:kNoteImage]] absoluteString];
     self.thumbnailURL   = [[RSNoteImageRequest URLForImageName:[args valueForKey:kNoteThumbnail]] absoluteString];
 }

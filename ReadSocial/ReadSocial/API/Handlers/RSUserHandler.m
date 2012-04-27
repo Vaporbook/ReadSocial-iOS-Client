@@ -14,34 +14,17 @@
 
 + (void) updateOrCreateUsersWithArray: (NSArray *)users
 {
-    // Get an array of all the IDs that need to be saved
-    // This also checks for duplicate users in the passed parameter
-    // and removes those duplicates
-    NSMutableArray *ids = [NSMutableArray array];
-    NSMutableArray *filteredUsers = [NSMutableArray array];
-    for (NSDictionary *pUser in users)
-    {
-        NSString *uid = [pUser valueForKey:kUserId];
-        
-        // Only add this user if it hasn't been tracked
-        if ([ids indexOfObject:uid]==NSNotFound)
-        {
-            [ids addObject:[pUser valueForKey:kUserId]];
-            [filteredUsers addObject:pUser];
-        }
-    }
-    
-    for (NSDictionary *data in filteredUsers)
+    for (NSDictionary *data in users)
     {
         [RSUserHandler retrieveOrCreateUser:data];
     }
 }
 
-+ (NSArray *) usersForIds: (NSArray *)ids
++ (NSArray *) usersForIds: (NSArray *)ids inDomain:(NSString *)domain
 {
     NSFetchRequest *request = [NSFetchRequest new];
     [request setEntity:[NSEntityDescription entityForName:@"RSUser" inManagedObjectContext:[DataContext defaultContext]]];
-    [request setPredicate:[NSPredicate predicateWithFormat:@"(uid in %@)", ids]];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"(uid in %@) AND (udom=%@)", ids, domain]];
     
     // Sort by user id
     [request setSortDescriptors:[NSArray arrayWithObjects:[[NSSortDescriptor alloc] initWithKey:@"uid" ascending:YES],nil]];
@@ -51,9 +34,9 @@
     return fetchedResponses;
 }
 
-+ (RSUser *) userForID: (NSString *)id
++ (RSUser *) userForID: (NSString *)id inDomain:(NSString *)domain
 {
-    NSArray *users = [RSUserHandler usersForIds:[NSArray arrayWithObject:id]];
+    NSArray *users = [RSUserHandler usersForIds:[NSArray arrayWithObject:id] inDomain:domain];
     
     if (!users || [users count]==0)
     {
@@ -66,7 +49,7 @@
 + (RSUser *) retrieveOrCreateUser: (NSDictionary *)args
 {
     // First attempt to retrieve the user
-    RSUser *user = [RSUserHandler userForID:[args valueForKey:kUserId]];
+    RSUser *user = [RSUserHandler userForID:[args valueForKey:kUserId] inDomain:[args valueForKey:kUserDomain]];
     
     // If a user was found, update the user information and return the updated object
     if (user)

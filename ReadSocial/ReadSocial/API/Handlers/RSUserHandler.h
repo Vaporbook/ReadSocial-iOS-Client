@@ -22,11 +22,12 @@
 /**
  Retrieves an NSArray of RSUser objects for each user ID specified.
  @param ids An NSArray of user ids to retrieve from the store.
+ @param domain The domain to search for the id to.
  @return An NSArray of RSUser objects that matched the note ids.
  
  I don't think that the return will neccessarily respond in the same order as specified in the parameter.
  */
-+ (NSArray *) usersForIds: (NSArray *)ids;
++ (NSArray *) usersForIds: (NSArray *)ids inDomain:(NSString *)domain;
 
 /**
  Retrieves a single user from the store.
@@ -35,7 +36,7 @@
  @return The RSUser object matching the ID or nil if it could not be found.
  @discussion This function does NOT make a request to the API for the note if it could not be found--it only looks in the local store.
  */
-+ (RSUser *) userForID: (NSString *)id;
++ (RSUser *) userForID: (NSString *)id inDomain:(NSString *)domain;
 
 /**
  Attempts to retrieve a user with the ID found in the arguments;

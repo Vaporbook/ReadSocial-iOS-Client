@@ -63,6 +63,7 @@ NSString* const kUserDomain =   @"udom";
     RSUser *user    = (RSUser *)[NSEntityDescription insertNewObjectForEntityForName:@"RSUser" inManagedObjectContext:[DataContext defaultContext]];
     
     user.uid        = [NSString stringWithFormat:@"%@", [args valueForKey:kUserId]];
+    user.udom       = [args valueForKey:kUserDomain];
     
     [user updateUserWithDictionary:args];
     NSLog(@"Created user: %@", user.name);
@@ -84,7 +85,6 @@ NSString* const kUserDomain =   @"udom";
 - (BOOL) updateUserWithDictionary: (NSDictionary *)args
 {
     self.name       =   [args valueForKey:kUserName];
-    self.udom       =   [args valueForKey:kUserDomain];
     
     // Check if the image URL has changed; if it has, then the image needs to be re-downloaded
     if (![[args valueForKey:kUserImage] isEqualToString:self.imageURL])
