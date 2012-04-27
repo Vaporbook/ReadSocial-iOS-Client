@@ -8,13 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-extern NSString* const kUseAppKey;
-extern NSString* const kAppIdentifierKey;
-extern NSString* const kAppSecretKey;
-extern NSString* const kRSUserID;
-extern NSString* const kRSUserName;
-extern NSString* const kRSUserDomain;
-extern NSString* const kRSUserImageURL;
+extern NSString* const kEmulateSSO;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

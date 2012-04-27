@@ -11,72 +11,30 @@
 			<string>PSGroupSpecifier</string>
 		</dict>
 		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Emulate Single Sign On</string>
+			<key>Key</key>
+			<string>rs_emulate_sso</string>
 			<key>DefaultValue</key>
-			<false/>
-			<key>Key</key>
-			<string>rs_use_appkey</string>
-			<key>Title</key>
-			<string>Use Key Authentication</string>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>App Identifier Key</string>
-			<key>DefaultValue</key>
-			<string>fSxua20klUTHGvq0TPHF8CVHtFI6SVTwJepRU6bl</string>
-			<key>Key</key>
-			<string>rs_app_identifier</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>App Secret Key</string>
-			<key>DefaultValue</key>
-			<string>8iwQBJDIfslTRhs8wR1DJ3pRNpcviq53BLqTm5dO</string>
-			<key>Key</key>
-			<string>rs_app_secret</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>ID</string>
-			<key>Key</key>
-			<string>rs_user_id</string>
-			<key>DefaultValue</key>
-			<string>9999</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>Name</string>
-			<key>Key</key>
-			<string>rs_user_name</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>Domain</string>
-			<key>Key</key>
-			<string>rs_user_domain</string>
-			<key>DefaultValue</key>
-			<string>readsocial.net</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>Image URL</string>
-			<key>Key</key>
-			<string>rs_user_image</string>
-            <key>DefaultValue</key>
-            <string>https://www.readsocial.net/images/demo-avatar.png</string>
+			<string>0</string>
+			<key>Titles</key>
+			<array>
+				<string>Off</string>
+				<string>Homer Simpson</string>
+				<string>Marge Simpson</string>
+				<string>Bart Simpson</string>
+				<string>Lisa Simpson</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<string>0</string>
+				<string>1</string>
+				<string>2</string>
+				<string>3</string>
+				<string>4</string>
+			</array>
 		</dict>
 	</array>
 	<key>StringsTable</key>

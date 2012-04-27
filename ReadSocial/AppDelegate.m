@@ -11,13 +11,7 @@
 #import "ReadSocialAPI.h"
 #import "ReadSocialUI.h"
 
-NSString* const kUseAppKey              =   @"rs_use_appkey";
-NSString* const kAppIdentifierKey       =   @"rs_app_identifier";
-NSString* const kAppSecretKey           =   @"rs_app_secret";
-NSString* const kRSUserID               =   @"rs_user_id";
-NSString* const kRSUserName             =   @"rs_user_name";
-NSString* const kRSUserDomain           =   @"rs_user_domain";
-NSString* const kRSUserImageURL         =   @"rs_user_image";
+NSString* const kEmulateSSO              =   @"rs_emulate_sso";
 
 @implementation AppDelegate
 
@@ -30,15 +24,6 @@ NSString* const kRSUserImageURL         =   @"rs_user_image";
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:
-                              @"fSxua20klUTHGvq0TPHF8CVHtFI6SVTwJepRU6bl",          kAppIdentifierKey,
-                              @"8iwQBJDIfslTRhs8wR1DJ3pRNpcviq53BLqTm5dO",          kAppSecretKey,
-                              @"readsocial.net",                                    kRSUserDomain,
-                              @"https://www.readsocial.net/images/demo-avatar.png", kRSUserImageURL,
-                              @"9999",                                              kRSUserID, 
-                              nil];
-    [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     
     // Initialize ReadSocial
     [ReadSocial initializeWithNetworkID:[NSNumber numberWithInt:8] defaultGroup:@"partner-testing-channel" andUILibrary:[ReadSocialUI library]];
@@ -237,22 +222,38 @@ NSString* const kRSUserImageURL         =   @"rs_user_image";
 - (void) checkForManualUserData
 {
     [[NSUserDefaults standardUserDefaults] synchronize];
-    NSDictionary *settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+    
+    BOOL emulateSSO = NO;
+    switch ([[[NSUserDefaults standardUserDefaults] valueForKey:kEmulateSSO] intValue]) 
+    {
+        case 0:
+            emulateSSO = NO;
+            break;
+        case 1:
+            emulateSSO = YES;
+            [[ReadSocial sharedInstance] setCurrentUser:[RSUser userWithID:@"1000" andName:@"Homer Simpson" andImageURL:[NSURL URLWithString:@"https://www.readsocial.net/images/demo-avatar.png"] forDomain:@"readsocial.net"]];
+            break;
+        case 2:
+            emulateSSO = YES;
+            [[ReadSocial sharedInstance] setCurrentUser:[RSUser userWithID:@"2000" andName:@"Marge Simpson" andImageURL:[NSURL URLWithString:@"https://www.readsocial.net/images/demo-avatar.png"] forDomain:@"readsocial.net"]];
+            break;
+        case 3:
+            emulateSSO = YES;
+            [[ReadSocial sharedInstance] setCurrentUser:[RSUser userWithID:@"3000" andName:@"Bart Simpson" andImageURL:[NSURL URLWithString:@"https://www.readsocial.net/images/demo-avatar.png"] forDomain:@"readsocial.net"]];
+            break;
+        case 4:
+            emulateSSO = YES;
+            [[ReadSocial sharedInstance] setCurrentUser:[RSUser userWithID:@"4000" andName:@"Lisa Simpson" andImageURL:[NSURL URLWithString:@"https://www.readsocial.net/images/demo-avatar.png"] forDomain:@"readsocial.net"]];
+            break;
+        default:
+            break;
+    }
     
     // Check if we need to use the app key
-    if ([[settings valueForKey:kUseAppKey] boolValue])
+    if (emulateSSO)
     {
-        // Key
-        [[ReadSocial sharedInstance] setAppKey:[settings valueForKey:kAppIdentifierKey]];
-        [[ReadSocial sharedInstance] setAppSecret:[settings valueForKey:kAppSecretKey]];
-        
-        // User data
-        RSUser *user = [RSUser userWithID:[settings valueForKey:kRSUserID]
-                                  andName:[settings valueForKey:kRSUserName]
-                              andImageURL:[NSURL URLWithString:[settings valueForKey:kRSUserImageURL]]
-                                forDomain:[settings valueForKey:kRSUserDomain]];
-        
-        [[ReadSocial sharedInstance] setCurrentUser:user];
+        [[ReadSocial sharedInstance] setAppKey:@"fSxua20klUTHGvq0TPHF8CVHtFI6SVTwJepRU6bl"];
+        [[ReadSocial sharedInstance] setAppSecret:@"8iwQBJDIfslTRhs8wR1DJ3pRNpcviq53BLqTm5dO"];
         NSLog(@"Enabled manual user data.");
     }
     else
