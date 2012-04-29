@@ -297,6 +297,13 @@ NSString* const ReadSocialUserDidLogoutNotification                  =   @"ReadS
     loggedIn = NO;
     currentUser = nil;
     
+    // Also clear out all the cookies for the app
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (NSHTTPCookie *cookie in [storage cookies]) 
+    {
+        [storage deleteCookie:cookie];
+    }
+    
     if ([delegate respondsToSelector:@selector(userDidLogout:)])
     {
         [delegate userDidLogout];
