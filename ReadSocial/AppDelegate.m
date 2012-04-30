@@ -28,9 +28,6 @@ NSString* const kEmulateSSO              =   @"rs_emulate_sso";
     // Initialize ReadSocial
     [ReadSocial initializeWithNetworkID:[NSNumber numberWithInt:8] defaultGroup:@"partner-testing-channel" andUILibrary:[ReadSocialUI library]];
     
-    // Set the server
-    [[ReadSocial sharedInstance] setApiURL:[NSURL URLWithString:@"http://dev.readsocial.net"]];
-    
     // Check if the settings specified a user
     [self checkForManualUserData];
     
