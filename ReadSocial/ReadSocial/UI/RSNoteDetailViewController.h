@@ -18,6 +18,11 @@
     int loadMoreRowIndex;
     BOOL loadMoreRowVisible;
     BOOL loadingNewData;
+    
+    /**
+     User profile image.
+     */
+    UIImageView *uImg;
 }
 
 - (id) initWithNote: (RSNote *)note;
