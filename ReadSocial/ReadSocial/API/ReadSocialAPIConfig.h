@@ -25,7 +25,7 @@
 /**
  The library version.
  */
-#define RSLibraryVersion    @"0.8.0"
+#define RSLibraryVersion    @"0.8.1"
 
 
 #import <Foundation/Foundation.h>
