@@ -84,9 +84,6 @@
     // Retrieve an updated number of responses on this note
     [RSNoteResponseCountRequest retrieveNoteResponseCountOnNote:self.note];
     
-    // Retrieve an updated number of responses on this note
-    [RSNoteResponseCountRequest retrieveNoteResponseCountOnNote:self.note];
-    
     return YES;
 }
 
