@@ -9,14 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @class RSAuthProvider;
-@interface RSAuthProviderLogin : UIViewController
+@interface RSAuthProviderLogin : UIViewController<UIWebViewDelegate>
 {
     UIWebView *webview;
+    UIActivityIndicatorView *activityIndicator;
 }
 
 @property (nonatomic,strong) RSAuthProvider *provider;
-@property (nonatomic,strong) id<UIWebViewDelegate> delegate;
+@property (nonatomic,assign) id<UIWebViewDelegate> delegate;
 
 - (id) initWithProvider: (RSAuthProvider *)theProvider andDelegate:(id<UIWebViewDelegate>)delegate;
-
 @end

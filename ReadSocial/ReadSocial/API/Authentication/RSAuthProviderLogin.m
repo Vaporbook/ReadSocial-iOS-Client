@@ -11,7 +11,7 @@
 #import "RSAuthProvider.h"
 
 @implementation RSAuthProviderLogin
-@synthesize provider;
+@synthesize provider, delegate=_delegate;
 
 - (id) initWithProvider: (RSAuthProvider *)theProvider andDelegate:(id<UIWebViewDelegate>)delegate
 {
@@ -19,20 +19,51 @@
     if (self)
     {
         webview = [[UIWebView alloc] init];
-        webview.delegate = delegate;
+        webview.delegate = self;
         self.provider = theProvider;
+        self.delegate = delegate;
+        
+        activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        activityIndicator.hidesWhenStopped = YES;
     }
     return self;
 }
 
-- (id<UIWebViewDelegate>) delegate
+#pragma mark - Webview Delegate methods
+- (BOOL) webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    return webview.delegate;
+    BOOL result = YES;
+    
+    if ([_delegate respondsToSelector:@selector(webView:shouldStartLoadWithRequest:navigationType:)])
+    {
+        result = [_delegate webView:webView shouldStartLoadWithRequest:request navigationType:navigationType];
+    }
+    
+    return result;
 }
-
-- (void) setDelegate:(id<UIWebViewDelegate>)delegate
+- (void) webViewDidStartLoad:(UIWebView *)webView
 {
-    webview.delegate = delegate;
+    if ([_delegate respondsToSelector:@selector(webViewDidStartLoad:)])
+    {
+        [_delegate webViewDidStartLoad:webView];
+    }
+    [activityIndicator startAnimating];
+}
+- (void) webViewDidFinishLoad:(UIWebView *)webView
+{
+    if ([_delegate respondsToSelector:@selector(webViewDidFinishLoad:)])
+    {
+        [_delegate webViewDidFinishLoad:webView];
+    }
+    [activityIndicator stopAnimating];
+}
+- (void) webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    if ([_delegate respondsToSelector:@selector(webView:didFailLoadWithError:)])
+    {
+        [_delegate webView:webview didFailLoadWithError:error];
+    }
+    [activityIndicator stopAnimating];
 }
 
 #pragma mark - View lifecycle
@@ -44,13 +75,22 @@
     
     self.title = self.provider.name;
     
-    webview.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-    webview.scalesPageToFit = YES;
+    //webview.scalesPageToFit = YES;
     webview.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:webview];
     
     NSString *url = [NSString stringWithFormat:@"%@/v1/%@/%@", [ReadSocial sharedInstance].apiURL, [ReadSocial networkID], provider.endpoint];
     [webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+    
+    [self.view addSubview:activityIndicator];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    webview.frame = self.view.frame;
+    activityIndicator.center = self.view.center;
 }
 
 - (void)viewDidUnload
