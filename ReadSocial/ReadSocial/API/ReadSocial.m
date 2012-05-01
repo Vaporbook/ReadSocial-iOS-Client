@@ -11,6 +11,7 @@
 #import "RSPage.h"
 #import "DataContext.h"
 #import "RSParagraph+Core.h"
+#import "RSUser+Core.h"
 #import "NSString+RSParagraph.h"
 #import "RSAuthProvider.h"
 #import "RSAuthStatusRequest.h"
@@ -101,8 +102,14 @@ NSString* const ReadSocialUserDidLogoutNotification                  =   @"ReadS
     [[NSUserDefaults standardUserDefaults] setValue:groupName forKey:@"ReadSocialGroup"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
+    // Remember the current user
+    NSDictionary *user = [currentUser dictionary];
+    
     // Clear out the persistent store
     [DataContext erase];
+    
+    // Reset the current user
+    currentUser = [RSUser userWithDictionary:user];
     
     // Trigger delegate method
     [self userDidChangeGroup:groupName];
